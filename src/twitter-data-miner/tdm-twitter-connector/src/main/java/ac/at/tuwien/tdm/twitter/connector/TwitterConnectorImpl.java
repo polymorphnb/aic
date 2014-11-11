@@ -1,6 +1,14 @@
 package ac.at.tuwien.tdm.twitter.connector;
 
-class TwitterConnectorImpl implements TwitterConnector {
+final class TwitterConnectorImpl implements TwitterConnector {
 
+  
+  public void openConnection() throws TwitterException{
+    
+  }
+  
+  public void closeConnection(){
+    
+  }
   
 }
