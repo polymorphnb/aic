@@ -9,3 +9,4 @@ test-output
 *.ids
 *.eml
 bin/
+*Authentication.properties

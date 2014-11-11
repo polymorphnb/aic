@@ -16,5 +16,8 @@
 
 	<modules>
 		<module>tdm-parent</module>
+    <module>tdm-file-dumper</module>
+    <module>tdm-processor</module>
+    <module>tdm-twitter-connector</module>
 	</modules>
 </project>
