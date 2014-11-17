@@ -7,7 +7,7 @@ import java.util.List;
 
 public final class SearchTweetsJob implements Job<List<Tweet>> {
 
-  private static final int DEFAULT_MAX_RESULTS_PER_TWEET_SEARCH = 350;
+  private static final int DEFAULT_MAX_RESULTS_PER_TWEET_SEARCH = 1000;
 
   private static final int DEFAULT_TWEETS_PER_PAGE = 100;
 

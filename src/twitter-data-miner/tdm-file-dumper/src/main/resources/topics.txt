@@ -1,1 +1,2 @@
 reagan;false
+kennedy;true
