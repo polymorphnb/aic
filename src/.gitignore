@@ -10,3 +10,4 @@ test-output
 *.eml
 bin/
 twitter4j.properties
+dist/
