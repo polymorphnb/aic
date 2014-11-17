@@ -1,0 +1,659 @@
+{"id":352312626,"screenName":"NativeSenses","name":"Kurt Hanson","location":"New York, London, Istanbul","language":"en","statusesCount":357857,"followersCount":65621}
+{"id":2746256998,"screenName":"PrizeLotto59492","name":"Tweet Rewards","location":"","language":"en","statusesCount":330,"followersCount":42}
+{"id":401094657,"screenName":"LeftonMain","name":"Left on Main St.","location":"Northern California","language":"en","statusesCount":75856,"followersCount":3410}
+{"id":262941580,"screenName":"reagan_weger","name":"Reagan W","location":"","language":"en","statusesCount":1071,"followersCount":147}
+{"id":2886302948,"screenName":"JadeFraser21","name":"Jade Fraser","location":"","language":"en","statusesCount":375,"followersCount":18}
+{"id":2887658070,"screenName":"PieperJohnD","name":"John D Pieper","location":"Austin, Texas","language":"en","statusesCount":252,"followersCount":112}
+{"id":1970398459,"screenName":"denshadorabushi","name":"Mike","location":"916 area code","language":"en","statusesCount":6417,"followersCount":160}
+{"id":457794137,"screenName":"chasinthacool","name":"Luis ","location":"Below The Heavens ","language":"en","statusesCount":16488,"followersCount":165}
+{"id":403932208,"screenName":"UniteBlueKY","name":"Turn Kentucky Blue","location":"Kentucky","language":"en","statusesCount":5966,"followersCount":9229}
+{"id":1181305388,"screenName":"reid_bj","name":"Barbara Reid","location":"SoCal","language":"en","statusesCount":8419,"followersCount":912}
+{"id":2732231,"screenName":"ballju","name":"Justin Ball","location":"North Ogden, Utah","language":"en","statusesCount":2824,"followersCount":60}
+{"id":2340670914,"screenName":"mynameismuerte","name":"My name... is MUERTE","location":"","language":"en","statusesCount":182953,"followersCount":161}
+{"id":47728859,"screenName":"steveweinstein","name":"Steve Weinstein","location":"Los Angeles","language":"en","statusesCount":83343,"followersCount":10046}
+{"id":2861410497,"screenName":"tommyfitzgerd","name":"Tommy Fitzgerald","location":"","language":"en","statusesCount":4,"followersCount":27}
+{"id":2354196326,"screenName":"ggeettaaa","name":"Glen T","location":"Arlington, TX","language":"en","statusesCount":24887,"followersCount":2460}
+{"id":2149517129,"screenName":"xBenji_","name":"Ben Mattox","location":"","language":"en","statusesCount":4590,"followersCount":233}
+{"id":403932208,"screenName":"UniteBlueKY","name":"Turn Kentucky Blue","location":"Kentucky","language":"en","statusesCount":5966,"followersCount":9229}
+{"id":1935600896,"screenName":"abutler04","name":"Allen Butler","location":"Chicago","language":"en","statusesCount":13957,"followersCount":731}
+{"id":14367719,"screenName":"famousquotenet","name":"Famous-Quote.net","location":"http://www.famous-quote.net","language":"en","statusesCount":56070,"followersCount":86040}
+{"id":16263791,"screenName":"jpcreel3","name":"John P. Creel III","location":"Chattanooga, TN","language":"en","statusesCount":25669,"followersCount":308}
+{"id":2747024085,"screenName":"vladimised","name":"Abu Bakr Al Baghdadi","location":"Mosul ","language":"en-gb","statusesCount":639,"followersCount":627}
+{"id":395669023,"screenName":"jiveturkeysean","name":"fuckhawk","location":"","language":"en","statusesCount":106815,"followersCount":636}
+{"id":2816730078,"screenName":"omfgninna","name":"Ninna","location":"","language":"en","statusesCount":115,"followersCount":17}
+{"id":1564741718,"screenName":"vera_galvez","name":"Vera Galvez","location":"","language":"en","statusesCount":24171,"followersCount":1142}
+{"id":2176216441,"screenName":"ReformNOW4","name":"#CIR#VOTE TNTweeters","location":"","language":"es","statusesCount":15534,"followersCount":1462}
+{"id":2696910775,"screenName":"Historicalmages","name":"Historical Images","location":"The Past","language":"en","statusesCount":1499,"followersCount":10746}
+{"id":1784382924,"screenName":"fabri_live","name":"Brice Old Garage","location":"Belgique","language":"fr","statusesCount":1573,"followersCount":29}
+{"id":403932208,"screenName":"UniteBlueKY","name":"Turn Kentucky Blue","location":"Kentucky","language":"en","statusesCount":5966,"followersCount":9229}
+{"id":312248392,"screenName":"Maggyw519","name":"Maggy","location":"Beautiful Northwest USA","language":"en","statusesCount":410844,"followersCount":7811}
+{"id":761829432,"screenName":"SquidsLighters","name":"#TBYG Main","location":"All Around Houston, TX","language":"en","statusesCount":17929,"followersCount":11528}
+{"id":706948371,"screenName":"Craigthepatriot","name":"Craig Thomas ","location":"phoenix/So. Utah","language":"en","statusesCount":20604,"followersCount":3305}
+{"id":403932208,"screenName":"UniteBlueKY","name":"Turn Kentucky Blue","location":"Kentucky","language":"en","statusesCount":5966,"followersCount":9229}
+{"id":1934770050,"screenName":"MonsterMarcia","name":"HappyToBeBlue","location":"","language":"en","statusesCount":33680,"followersCount":4208}
+{"id":2808214513,"screenName":"Newintheknow","name":"DontQuoteMe","location":"In your backyard!","language":"en","statusesCount":17974,"followersCount":717}
+{"id":1033380433,"screenName":"abigailbrooke14","name":"•Abby Williams•","location":"•TAMU KAθ•","language":"en","statusesCount":1709,"followersCount":508}
+{"id":2384453438,"screenName":"reagan_lamont","name":"Reagan Lamont","location":"","language":"en","statusesCount":5250,"followersCount":687}
+{"id":269495237,"screenName":"thegodvato","name":"nicole | 2 •","location":" ","language":"en","statusesCount":9759,"followersCount":3592}
+{"id":624561385,"screenName":"marieantoinetes","name":"victoria","location":"","language":"fr","statusesCount":91066,"followersCount":4454}
+{"id":288264031,"screenName":"dooby_blazinton","name":"#IDGT","location":"Houston tx ","language":"en","statusesCount":108209,"followersCount":793}
+{"id":375264436,"screenName":"reagan_ford1","name":"reageyyy✨","location":"","language":"en","statusesCount":53461,"followersCount":1477}
+{"id":2377543436,"screenName":"IntegralDevices","name":"Integral Devices","location":"Seattle","language":"en","statusesCount":50981,"followersCount":375}
+{"id":625016142,"screenName":"ashley_keagan","name":"️《Ash》","location":"","language":"en","statusesCount":5085,"followersCount":449}
+{"id":186429844,"screenName":"Nancy_Reagan","name":"Nancy Reagan","location":"United States","language":"en","statusesCount":22805,"followersCount":32737}
+{"id":1617800972,"screenName":"schulte_reagan","name":"Reagan schulte","location":"","language":"en","statusesCount":1268,"followersCount":284}
+{"id":269495237,"screenName":"thegodvato","name":"nicole | 2 •","location":" ","language":"en","statusesCount":9759,"followersCount":3592}
+{"id":715955995,"screenName":"boobks","name":"Lois","location":"paris, france","language":"en","statusesCount":58163,"followersCount":557}
+{"id":392967213,"screenName":"reagan_phelps","name":"Louisiana_Rancher","location":"Louisiana, America","language":"en","statusesCount":7423,"followersCount":1060}
+{"id":304206649,"screenName":"YvetteMonreal","name":"Yvette Monreal","location":"Los Angeles","language":"en","statusesCount":797,"followersCount":19045}
+{"id":439081795,"screenName":"believingself","name":"ritu","location":"INDIA","language":"en","statusesCount":120,"followersCount":25}
+{"id":1634552636,"screenName":"mterry337","name":"Michael Terry","location":"Tennessee","language":"en","statusesCount":195825,"followersCount":12126}
+{"id":53861909,"screenName":"BJHare","name":"Bonnie Hussein Obama","location":"Raleigh, NC","language":"en","statusesCount":62033,"followersCount":5800}
+{"id":416690465,"screenName":"AztlanConnect","name":"AztlanConnect","location":"California","language":"en","statusesCount":52736,"followersCount":1569}
+{"id":624849630,"screenName":"Future1stLady1","name":"Future First Lady","location":"","language":"en","statusesCount":7623,"followersCount":39331}
+{"id":2247386626,"screenName":"abbulous14","name":"Abigail","location":"UC Bearkitten ","language":"en","statusesCount":825,"followersCount":288}
+{"id":625016142,"screenName":"ashley_keagan","name":"️《Ash》","location":"","language":"en","statusesCount":5085,"followersCount":449}
+{"id":1617800972,"screenName":"schulte_reagan","name":"Reagan schulte","location":"","language":"en","statusesCount":1268,"followersCount":284}
+{"id":2281828358,"screenName":"dannyboylopez78","name":"Danny Lopez","location":"","language":"en","statusesCount":9935,"followersCount":232}
+{"id":2887658070,"screenName":"PieperJohnD","name":"John D Pieper","location":"Austin, Texas","language":"en","statusesCount":252,"followersCount":112}
+{"id":358410527,"screenName":"ireneberns","name":"Irene Berns  ","location":"San Antonio","language":"en","statusesCount":13817,"followersCount":4919}
+{"id":764384694,"screenName":"SweetHaircut","name":"SemiFast","location":"Super Jail","language":"en","statusesCount":11434,"followersCount":512}
+{"id":494213124,"screenName":"RobynBirdddd","name":"Robyn Brown","location":"","language":"en","statusesCount":10124,"followersCount":587}
+{"id":166794157,"screenName":"LI_politico","name":"Lamia","location":"NZ-BD-US-NZ-US-?","language":"en-gb","statusesCount":16480,"followersCount":1144}
+{"id":1222739934,"screenName":"DemarkusDickey","name":"Demarkus Dickey","location":"Mclain, MS, U.S","language":"en","statusesCount":56687,"followersCount":9164}
+{"id":2310651804,"screenName":"D4chin83","name":"Daniel Fortune","location":"California (Bay Area)","language":"en","statusesCount":4780,"followersCount":781}
+{"id":2861223732,"screenName":"MAConservRN","name":"Diane P","location":"Massachusetts","language":"en","statusesCount":61,"followersCount":112}
+{"id":62510409,"screenName":"EricWolfson","name":"Eric Wolfson","location":"Washington, D.C.","language":"en","statusesCount":18690,"followersCount":6280}
+{"id":185723734,"screenName":"rbaker65708","name":"Roger S. Baker","location":"Monett Missouri Ozarks","language":"en","statusesCount":18411,"followersCount":12338}
+{"id":27235734,"screenName":"tinaissa","name":"Tina Issa","location":"   Chicago, IL      South Loop","language":"en","statusesCount":5357,"followersCount":897}
+{"id":365284550,"screenName":"TheForeverReno","name":"Forever Doing Reno","location":"USA","language":"en","statusesCount":139,"followersCount":4}
+{"id":625016142,"screenName":"ashley_keagan","name":"️《Ash》","location":"","language":"en","statusesCount":5085,"followersCount":449}
+{"id":761829432,"screenName":"SquidsLighters","name":"#TBYG Main","location":"All Around Houston, TX","language":"en","statusesCount":17929,"followersCount":11528}
+{"id":2696910775,"screenName":"Historicalmages","name":"Historical Images","location":"The Past","language":"en","statusesCount":1499,"followersCount":10746}
+{"id":2198259181,"screenName":"SonyaSlavskaja","name":"Соня Славская","location":"","language":"ru","statusesCount":340,"followersCount":7}
+{"id":1617800972,"screenName":"schulte_reagan","name":"Reagan schulte","location":"","language":"en","statusesCount":1268,"followersCount":284}
+{"id":625016142,"screenName":"ashley_keagan","name":"️《Ash》","location":"","language":"en","statusesCount":5085,"followersCount":449}
+{"id":894286160,"screenName":"maya_botvin","name":"Mayo","location":"","language":"en","statusesCount":9131,"followersCount":987}
+{"id":461486505,"screenName":"reaganlink","name":"reagan link","location":"","language":"en","statusesCount":4248,"followersCount":409}
+{"id":1617800972,"screenName":"schulte_reagan","name":"Reagan schulte","location":"","language":"en","statusesCount":1268,"followersCount":284}
+{"id":166329578,"screenName":"TheBaxterBean","name":"The Baxter Bean","location":"Lux et Veritas","language":"en","statusesCount":34891,"followersCount":7119}
+{"id":149749939,"screenName":"K_Mowers","name":"Kristalyn Mowers","location":"Moline, IL","language":"en","statusesCount":25606,"followersCount":764}
+{"id":894286160,"screenName":"maya_botvin","name":"Mayo","location":"","language":"en","statusesCount":9131,"followersCount":987}
+{"id":2310651804,"screenName":"D4chin83","name":"Daniel Fortune","location":"California (Bay Area)","language":"en","statusesCount":4780,"followersCount":781}
+{"id":91153829,"screenName":"TEL1967","name":"ROBERT ","location":"","language":"en","statusesCount":7809,"followersCount":1053}
+{"id":330121927,"screenName":"Reagan_Hodgin","name":"YUNG D00B","location":"the thot spot ","language":"en","statusesCount":13816,"followersCount":459}
+{"id":625016142,"screenName":"ashley_keagan","name":"️《Ash》","location":"","language":"en","statusesCount":5085,"followersCount":449}
+{"id":124316976,"screenName":"TibbieX","name":"Tibbie X","location":"NYC and Philly","language":"en","statusesCount":564,"followersCount":305}
+{"id":54399870,"screenName":"TruthFinders1","name":"Truth Finder","location":"","language":"en","statusesCount":153,"followersCount":3}
+{"id":2155322256,"screenName":"AmyRaud3en","name":"αму я","location":"","language":"en","statusesCount":1545,"followersCount":89}
+{"id":237123965,"screenName":"thephucpham","name":"Phuc Pham","location":"Westminster, CA","language":"en","statusesCount":4263,"followersCount":181}
+{"id":2149517129,"screenName":"xBenji_","name":"Ben Mattox","location":"","language":"en","statusesCount":4590,"followersCount":233}
+{"id":375264436,"screenName":"reagan_ford1","name":"reageyyy✨","location":"","language":"en","statusesCount":53461,"followersCount":1477}
+{"id":45671898,"screenName":"finneyk","name":"Karen Finney","location":"DC","language":"en","statusesCount":6616,"followersCount":95709}
+{"id":1853573893,"screenName":"StephenBerry63","name":"Stephen Berry","location":"South Bend, Indiana","language":"en","statusesCount":436,"followersCount":36}
+{"id":123637868,"screenName":"itschelsi","name":"Chelsi Bourgeois","location":"Baton Rouge ","language":"en","statusesCount":6678,"followersCount":111}
+{"id":2149517129,"screenName":"xBenji_","name":"Ben Mattox","location":"","language":"en","statusesCount":4590,"followersCount":233}
+{"id":2161787000,"screenName":"autodog5150","name":"Wendy","location":"","language":"en","statusesCount":32611,"followersCount":1103}
+{"id":1617800972,"screenName":"schulte_reagan","name":"Reagan schulte","location":"","language":"en","statusesCount":1268,"followersCount":284}
+{"id":375264436,"screenName":"reagan_ford1","name":"reageyyy✨","location":"","language":"en","statusesCount":53461,"followersCount":1477}
+{"id":15442036,"screenName":"SenatorBoxer","name":"Sen. Barbara Boxer","location":"Washington, D.C.","language":"en","statusesCount":1531,"followersCount":52183}
+{"id":2370768564,"screenName":"MOVEprofPHD","name":"Elizabeth Desnoyers-","location":"Armstrong  State University","language":"en","statusesCount":11440,"followersCount":793}
+{"id":1232499080,"screenName":"thedartle","name":"steven diaz","location":"new york city","language":"en","statusesCount":5916,"followersCount":58923}
+{"id":1648495621,"screenName":"Aimee_Reagan","name":"aims","location":"","language":"en","statusesCount":6987,"followersCount":494}
+{"id":625016142,"screenName":"ashley_keagan","name":"️《Ash》","location":"","language":"en","statusesCount":5085,"followersCount":449}
+{"id":487600344,"screenName":"Bipartisanism","name":"Bipartisan Report","location":"Seattle, USA","language":"en","statusesCount":7168,"followersCount":76133}
+{"id":2813806196,"screenName":"WalshWalsh7926","name":"Ryan Walsh","location":"Calgary","language":"en","statusesCount":2984,"followersCount":299}
+{"id":15463486,"screenName":"KThomasDC","name":"Ken Thomas","location":"","language":"en","statusesCount":16042,"followersCount":8979}
+{"id":30758317,"screenName":"JenMichigander","name":"Jen Michigander","location":"Detroit, Michigan USA","language":"en","statusesCount":12140,"followersCount":683}
+{"id":735385566,"screenName":"CharlesHolden4","name":"Charles Holden","location":"","language":"en","statusesCount":44620,"followersCount":922}
+{"id":844766941,"screenName":"NotableHistory","name":"OnThisDay \u0026 Facts","location":"","language":"en","statusesCount":38124,"followersCount":72934}
+{"id":195784565,"screenName":"vocausp","name":"Vocabulário USP","location":"São Paulo","language":"pt","statusesCount":5753,"followersCount":333}
+{"id":2816730078,"screenName":"omfgninna","name":"Ninna","location":"","language":"en","statusesCount":115,"followersCount":17}
+{"id":499066194,"screenName":"iamNajidah","name":"Najidah Jamaluddin","location":"ALOR SETAR ","language":"en","statusesCount":18005,"followersCount":297}
+{"id":625016142,"screenName":"ashley_keagan","name":"️《Ash》","location":"","language":"en","statusesCount":5085,"followersCount":449}
+{"id":1617800972,"screenName":"schulte_reagan","name":"Reagan schulte","location":"","language":"en","statusesCount":1268,"followersCount":284}
+{"id":1617800972,"screenName":"schulte_reagan","name":"Reagan schulte","location":"","language":"en","statusesCount":1268,"followersCount":284}
+{"id":1307771388,"screenName":"JayReport","name":"Jay","location":"Kennesaw, GA","language":"en","statusesCount":4903,"followersCount":1114}
+{"id":378365911,"screenName":"my_observation","name":"my_observation","location":"Northern California","language":"en","statusesCount":20991,"followersCount":1538}
+{"id":62510409,"screenName":"EricWolfson","name":"Eric Wolfson","location":"Washington, D.C.","language":"en","statusesCount":18690,"followersCount":6280}
+{"id":129627069,"screenName":"aint2sure","name":"aint2sure","location":"Moultrie GA","language":"en","statusesCount":5476,"followersCount":399}
+{"id":2423738388,"screenName":"NorahMackenzie","name":"norah mackenzie","location":"","language":"en","statusesCount":3205,"followersCount":64}
+{"id":1341005347,"screenName":"hlukewilliams","name":"luke williams","location":"","language":"en","statusesCount":278,"followersCount":53}
+{"id":18548184,"screenName":"novenator","name":"ɹoʇɐuǝʌou  ","location":"Minnesota","language":"en","statusesCount":27410,"followersCount":11205}
+{"id":53994286,"screenName":"RandomMedley","name":"Random Comedy","location":"","language":"en","statusesCount":39042,"followersCount":1378}
+{"id":625016142,"screenName":"ashley_keagan","name":"️《Ash》","location":"","language":"en","statusesCount":5085,"followersCount":449}
+{"id":487225121,"screenName":"maandypooo","name":"shmand","location":"","language":"en","statusesCount":29359,"followersCount":1012}
+{"id":1648495621,"screenName":"Aimee_Reagan","name":"aims","location":"","language":"en","statusesCount":6987,"followersCount":494}
+{"id":376835506,"screenName":"heyitspey","name":"Peyton Lambert","location":"Dallas, TX","language":"en","statusesCount":3452,"followersCount":273}
+{"id":2750489854,"screenName":"reagan_penny","name":"Rae ✨","location":"","language":"en","statusesCount":1486,"followersCount":190}
+{"id":23196362,"screenName":"xyzmichael","name":"Michael Schmitt","location":"Habitant du Canal","language":"en","statusesCount":327,"followersCount":77}
+{"id":243340253,"screenName":"iPunishYoBitch","name":"Ferris Bueller","location":"La Vie En Rose","language":"en","statusesCount":1646,"followersCount":18}
+{"id":1617800972,"screenName":"schulte_reagan","name":"Reagan schulte","location":"","language":"en","statusesCount":1268,"followersCount":284}
+{"id":437030761,"screenName":"reIatabIe","name":"Girl Code","location":"","language":"en","statusesCount":23240,"followersCount":1281075}
+{"id":2384453438,"screenName":"reagan_lamont","name":"Reagan Lamont","location":"","language":"en","statusesCount":5250,"followersCount":687}
+{"id":2808214513,"screenName":"Newintheknow","name":"DontQuoteMe","location":"In your backyard!","language":"en","statusesCount":17974,"followersCount":717}
+{"id":486776943,"screenName":"NoelNoelsanchez","name":"Noel","location":"","language":"en","statusesCount":13890,"followersCount":963}
+{"id":65442958,"screenName":"blackprints_","name":"Nesrin Danan","location":"portland, or","language":"en","statusesCount":18583,"followersCount":7885}
+{"id":1648495621,"screenName":"Aimee_Reagan","name":"aims","location":"","language":"en","statusesCount":6987,"followersCount":494}
+{"id":2310651804,"screenName":"D4chin83","name":"Daniel Fortune","location":"California (Bay Area)","language":"en","statusesCount":4780,"followersCount":781}
+{"id":1556339839,"screenName":"CutRealty","name":"NoelDuram","location":"montana","language":"en","statusesCount":11400,"followersCount":1060}
+{"id":1307771388,"screenName":"JayReport","name":"Jay","location":"Kennesaw, GA","language":"en","statusesCount":4903,"followersCount":1114}
+{"id":15294551,"screenName":"catawu","name":"Cat West","location":"Canada - USA","language":"en","statusesCount":267486,"followersCount":4656}
+{"id":2451781226,"screenName":"amyyvolk","name":".","location":"","language":"en","statusesCount":506,"followersCount":289}
+{"id":20214831,"screenName":"TheRayRay75","name":"James da Giant Peach","location":"","language":"en","statusesCount":73333,"followersCount":706}
+{"id":237572596,"screenName":"Gus_802","name":"Gus","location":"Denver, CO","language":"en","statusesCount":153826,"followersCount":2070}
+{"id":312248392,"screenName":"Maggyw519","name":"Maggy","location":"Beautiful Northwest USA","language":"en","statusesCount":410844,"followersCount":7811}
+{"id":237572596,"screenName":"Gus_802","name":"Gus","location":"Denver, CO","language":"en","statusesCount":153826,"followersCount":2070}
+{"id":48474625,"screenName":"chemoelectric","name":"Barry Schwartz","location":"Saint Paul, Minnesota, USA","language":"en","statusesCount":83717,"followersCount":907}
+{"id":65917863,"screenName":"reagan_samuel","name":"Reagan Samuel","location":"Bombay","language":"en","statusesCount":1541,"followersCount":57}
+{"id":129845242,"screenName":"Inspire_Us","name":"Inspirational Quotes","location":"","language":"en","statusesCount":37234,"followersCount":1298367}
+{"id":700199701,"screenName":"worldhop369","name":"Shannon D","location":"","language":"en","statusesCount":425,"followersCount":18}
+{"id":85865259,"screenName":"ItsShoBoy","name":"ItsShoBoy","location":"CALIFORNIA","language":"en","statusesCount":9373,"followersCount":818}
+{"id":1888446468,"screenName":"dstowe350","name":"Dani Stowe","location":"","language":"en","statusesCount":11096,"followersCount":342}
+{"id":447788977,"screenName":"e_olives","name":"Elena Olivares","location":"MSU","language":"en","statusesCount":10084,"followersCount":938}
+{"id":427044814,"screenName":"Reagan_Dailey","name":"Reagan Dailey","location":"Michigan State University","language":"en","statusesCount":3266,"followersCount":490}
+{"id":237572596,"screenName":"Gus_802","name":"Gus","location":"Denver, CO","language":"en","statusesCount":153826,"followersCount":2070}
+{"id":166329578,"screenName":"TheBaxterBean","name":"The Baxter Bean","location":"Lux et Veritas","language":"en","statusesCount":34891,"followersCount":7119}
+{"id":324489515,"screenName":"DanCas2","name":"Dan Castro","location":"California","language":"en","statusesCount":223714,"followersCount":2938}
+{"id":1187647735,"screenName":"Dory","name":"","location":"P. Sherman 42 Wallaby Way ","language":"en","statusesCount":12128,"followersCount":778509}
+{"id":1617800972,"screenName":"schulte_reagan","name":"Reagan schulte","location":"","language":"en","statusesCount":1268,"followersCount":284}
+{"id":262941580,"screenName":"reagan_weger","name":"Reagan W","location":"","language":"en","statusesCount":1071,"followersCount":147}
+{"id":47728859,"screenName":"steveweinstein","name":"Steve Weinstein","location":"Los Angeles","language":"en","statusesCount":83343,"followersCount":10046}
+{"id":18008403,"screenName":"Greeenguy111","name":"Sobriety rocks!","location":"Washington, DC","language":"en","statusesCount":89624,"followersCount":2832}
+{"id":16654122,"screenName":"timrote","name":"Tim Rote","location":"Central California","language":"en","statusesCount":16823,"followersCount":1253}
+{"id":2202364320,"screenName":"RaeannValesquez","name":"Tropical Fish","location":"","language":"en","statusesCount":110395,"followersCount":763}
+{"id":126966332,"screenName":"PabonMatriarch","name":"Albie Y. Pabon","location":"Houston, TX","language":"en","statusesCount":45706,"followersCount":2248}
+{"id":378460199,"screenName":"unionguy1338","name":"John Shahadi","location":"","language":"en","statusesCount":6586,"followersCount":1186}
+{"id":129845242,"screenName":"Inspire_Us","name":"Inspirational Quotes","location":"","language":"en","statusesCount":37234,"followersCount":1298367}
+{"id":1303989732,"screenName":"tea_fany","name":"Vany green tea","location":"Kitchen","language":"en","statusesCount":930,"followersCount":96}
+{"id":1307771388,"screenName":"JayReport","name":"Jay","location":"Kennesaw, GA","language":"en","statusesCount":4903,"followersCount":1114}
+{"id":58525387,"screenName":"Mooncatadams","name":"Clay Adams","location":"","language":"en","statusesCount":43965,"followersCount":2164}
+{"id":1290258072,"screenName":"BiFunLove","name":"Young Fun","location":"USA","language":"en","statusesCount":789,"followersCount":18168}
+{"id":1176245792,"screenName":"Hotandrews25","name":"Ben Andrews","location":"","language":"en","statusesCount":1998,"followersCount":114}
+{"id":1087741868,"screenName":"99_JackTacos","name":"Fat","location":"South Sacramento","language":"en","statusesCount":30029,"followersCount":352}
+{"id":2310651804,"screenName":"D4chin83","name":"Daniel Fortune","location":"California (Bay Area)","language":"en","statusesCount":4780,"followersCount":781}
+{"id":596779638,"screenName":"GrnGalFrmSoCal","name":"CHERYL FOTIA","location":"Garden Grove,Cal","language":"en","statusesCount":62577,"followersCount":1929}
+{"id":465319729,"screenName":"me_loves_karmy","name":"Kreamy ","location":"Hester High","language":"en","statusesCount":23534,"followersCount":1226}
+{"id":2310651804,"screenName":"D4chin83","name":"Daniel Fortune","location":"California (Bay Area)","language":"en","statusesCount":4780,"followersCount":781}
+{"id":2411443866,"screenName":"edbarber101658","name":"Ed","location":"Arky Boy for life","language":"en","statusesCount":1062,"followersCount":781}
+{"id":2887658070,"screenName":"PieperJohnD","name":"John D Pieper","location":"Austin, Texas","language":"en","statusesCount":252,"followersCount":112}
+{"id":950738846,"screenName":"FroodyWisco","name":"Father O\u0027Blivion","location":"BirchWalkerstan Labor Camp 79","language":"en","statusesCount":89809,"followersCount":1417}
+{"id":19552358,"screenName":"stinacristina","name":"Cristina Marie","location":"El Valle, Tejas ","language":"en","statusesCount":45744,"followersCount":1288}
+{"id":2310651804,"screenName":"D4chin83","name":"Daniel Fortune","location":"California (Bay Area)","language":"en","statusesCount":4780,"followersCount":781}
+{"id":78565403,"screenName":"WellThought_Out","name":"Critical Issues","location":"#EarlyNomsForLieOfTheYear2014","language":"en","statusesCount":13992,"followersCount":1730}
+{"id":604123081,"screenName":"NBA_KingsFans","name":"SacramentoKingsFans","location":"","language":"en","statusesCount":30705,"followersCount":2090}
+{"id":547969112,"screenName":"LessGovMoreFun","name":"Less Gov. More Fun.","location":"Essex \u0026 Orange","language":"en","statusesCount":24195,"followersCount":83832}
+{"id":893046055,"screenName":"jojoaruba52","name":"Joe the Potter","location":"New Holland, PA","language":"en","statusesCount":19307,"followersCount":1442}
+{"id":628271141,"screenName":"NFL_PatriotsFan","name":"NFL Patriots Fans","location":"","language":"en","statusesCount":35073,"followersCount":2304}
+{"id":45671898,"screenName":"finneyk","name":"Karen Finney","location":"DC","language":"en","statusesCount":6616,"followersCount":95709}
+{"id":448298088,"screenName":"moondancer3110","name":"Mary Beth Lee","location":"","language":"en","statusesCount":240,"followersCount":14}
+{"id":600814751,"screenName":"NBA_UpdateNews","name":"NBA Update News","location":"","language":"en","statusesCount":37644,"followersCount":2735}
+{"id":219915030,"screenName":"miliowebid","name":"milio.web.id","location":"jakarta","language":"en","statusesCount":47607,"followersCount":3456}
+{"id":624931276,"screenName":"NBA_BlazerFans","name":"P Trail Blazer Fans","location":"","language":"en","statusesCount":26767,"followersCount":1803}
+{"id":600614567,"screenName":"Harley_FansClub","name":"Harley Davidson Club","location":"","language":"en","statusesCount":34885,"followersCount":5951}
+{"id":627658109,"screenName":"NFL_FalconsFans","name":"NFL Falcons Fans","location":"","language":"en","statusesCount":31944,"followersCount":2803}
+{"id":600894228,"screenName":"nascar_update","name":"NASCAR Update News","location":"","language":"en","statusesCount":32205,"followersCount":2127}
+{"id":224421052,"screenName":"newcarsreview","name":"newcarsreview","location":"ontario","language":"en","statusesCount":40450,"followersCount":2194}
+{"id":2310651804,"screenName":"D4chin83","name":"Daniel Fortune","location":"California (Bay Area)","language":"en","statusesCount":4780,"followersCount":781}
+{"id":101395252,"screenName":"jstines3","name":"Judy Stines","location":"#GodBlessUSA!","language":"en","statusesCount":168084,"followersCount":44550}
+{"id":629793299,"screenName":"NFL_49ersFans","name":"NFL 49ers Fans","location":"","language":"en","statusesCount":33684,"followersCount":2825}
+{"id":628394139,"screenName":"NFL_BearsFans","name":"NFL Bears Fans","location":"","language":"en","statusesCount":31504,"followersCount":1893}
+{"id":47415772,"screenName":"JillDLawrence","name":"Jill Lawrence","location":"Washington, DC","language":"en","statusesCount":13139,"followersCount":7002}
+{"id":15294551,"screenName":"catawu","name":"Cat West","location":"Canada - USA","language":"en","statusesCount":267486,"followersCount":4656}
+{"id":600799231,"screenName":"KTM_Riders","name":"KTM Rider Club","location":"North America","language":"en","statusesCount":32164,"followersCount":3069}
+{"id":600883812,"screenName":"Supercross_Fans","name":"AMA Supercross Fans","location":"","language":"en","statusesCount":31085,"followersCount":5903}
+{"id":627529646,"screenName":"NBA_RaptorsFans","name":"Toronto Raptors Fans","location":"","language":"en","statusesCount":33922,"followersCount":2054}
+{"id":624953882,"screenName":"NFL_RavensFans","name":"NFL Ravens Fans","location":"","language":"en","statusesCount":32420,"followersCount":2160}
+{"id":631356277,"screenName":"NFL_RedskinsFan","name":"NFL Redskins Fans","location":"","language":"en","statusesCount":35010,"followersCount":2103}
+{"id":1230421692,"screenName":"SEC_Logo","name":"The SEC Logo","location":"Heart of The South","language":"en","statusesCount":2878,"followersCount":21884}
+{"id":471496995,"screenName":"brown_reagan","name":"Reagan Brown","location":"Tuscaloosa, AL. ","language":"en","statusesCount":22287,"followersCount":293}
+{"id":465420422,"screenName":"listofvehicles","name":"listofvehicles","location":"usa","language":"en","statusesCount":45613,"followersCount":2816}
+{"id":626220974,"screenName":"NFL_EaglesFans","name":"NFL Eagles Fans","location":"","language":"en","statusesCount":33169,"followersCount":2276}
+{"id":253202806,"screenName":"Reagan_Perry","name":"Reagan Perry","location":"","language":"en","statusesCount":10526,"followersCount":576}
+{"id":2279821525,"screenName":"granniewinkle","name":"granny","location":"(parody account)","language":"en-gb","statusesCount":3159,"followersCount":272934}
+{"id":818658248,"screenName":"reagan_mcdaniel","name":"Reagan","location":"Burleson, Tx","language":"en","statusesCount":25349,"followersCount":1179}
+{"id":622218580,"screenName":"raypaImers","name":"shad coolmemes","location":"ontario","language":"en","statusesCount":42430,"followersCount":1058}
+{"id":273609701,"screenName":"Reagan_Garvin","name":"The Gipper","location":"","language":"en","statusesCount":3254,"followersCount":875}
+{"id":373689086,"screenName":"BruceBartlett","name":"Bruce Bartlett","location":"","language":"en","statusesCount":9051,"followersCount":14110}
+{"id":1145256896,"screenName":"idigpioche","name":"provoueaunionthug","location":"","language":"en","statusesCount":256,"followersCount":20}
+{"id":20162917,"screenName":"ItzRoni","name":"Roni Clark","location":"California, USA","language":"en","statusesCount":6943,"followersCount":208}
+{"id":194947075,"screenName":"M_E_Adams","name":"✮Mł₡ҤλEŁ λÐλM$✮","location":"U.S.A (SEMPER FI)-III%","language":"en","statusesCount":197019,"followersCount":11880}
+{"id":56625292,"screenName":"lillith6","name":"Lillian ","location":"Chicago Il- Naples FL","language":"en","statusesCount":28155,"followersCount":1333}
+{"id":142015635,"screenName":"Larryputt","name":"Larry Putnam","location":"VA/NC/SC","language":"en","statusesCount":96173,"followersCount":19469}
+{"id":23237954,"screenName":"wysini","name":"Wallace","location":"","language":"en","statusesCount":25993,"followersCount":1569}
+{"id":761829432,"screenName":"SquidsLighters","name":"#TBYG Main","location":"All Around Houston, TX","language":"en","statusesCount":17929,"followersCount":11528}
+{"id":392967213,"screenName":"reagan_phelps","name":"Louisiana_Rancher","location":"Louisiana, America","language":"en","statusesCount":7423,"followersCount":1060}
+{"id":16654122,"screenName":"timrote","name":"Tim Rote","location":"Central California","language":"en","statusesCount":16823,"followersCount":1253}
+{"id":71328021,"screenName":"johntheutahn","name":"John Gunter Jr.","location":"Utah","language":"en","statusesCount":146277,"followersCount":1042}
+{"id":250159277,"screenName":"Harringtonkent","name":"Kent Harrington","location":"nyc","language":"en","statusesCount":45983,"followersCount":2851}
+{"id":452729013,"screenName":"MollyFlyAway","name":"Molly","location":"Floating over Puget Sound","language":"en","statusesCount":17979,"followersCount":380}
+{"id":283327937,"screenName":"chiquibon2","name":"Celestial119","location":"Los Angeles, CA","language":"en","statusesCount":1239,"followersCount":513}
+{"id":1624494049,"screenName":"Will_Foran","name":"Will Foran","location":"earth","language":"en","statusesCount":6273,"followersCount":374}
+{"id":62510409,"screenName":"EricWolfson","name":"Eric Wolfson","location":"Washington, D.C.","language":"en","statusesCount":18690,"followersCount":6280}
+{"id":135191649,"screenName":"Mandelamen","name":"Mahari Mengistu","location":"Los Angeles, CA","language":"en","statusesCount":61136,"followersCount":1290}
+{"id":166329578,"screenName":"TheBaxterBean","name":"The Baxter Bean","location":"Lux et Veritas","language":"en","statusesCount":34891,"followersCount":7119}
+{"id":189806241,"screenName":"Twitlertwit","name":"Caligirl22","location":"San Diego","language":"en","statusesCount":249877,"followersCount":6861}
+{"id":14367719,"screenName":"famousquotenet","name":"Famous-Quote.net","location":"http://www.famous-quote.net","language":"en","statusesCount":56070,"followersCount":86040}
+{"id":14552501,"screenName":"dmankow69","name":"dmankow69","location":"EHT, NJ","language":"en","statusesCount":3930,"followersCount":208}
+{"id":349160198,"screenName":"demizgf","name":"† jasmine","location":"thankful to have met her. ","language":"en","statusesCount":85821,"followersCount":1706}
+{"id":631738425,"screenName":"AllHailDemetria","name":"hi. ","location":"hi baby i love you! ","language":"en","statusesCount":42227,"followersCount":1038}
+{"id":881229643,"screenName":"Jordan_Despain","name":"jodaaan","location":"smoke something bitch ","language":"en","statusesCount":15672,"followersCount":609}
+{"id":2897038416,"screenName":"danae_reagan","name":"reagan","location":"","language":"en","statusesCount":70,"followersCount":27}
+{"id":352548417,"screenName":"PaulBegala","name":"Paul Begala","location":"Washington, DC","language":"en","statusesCount":9110,"followersCount":82268}
+{"id":189806241,"screenName":"Twitlertwit","name":"Caligirl22","location":"San Diego","language":"en","statusesCount":249877,"followersCount":6861}
+{"id":15442036,"screenName":"SenatorBoxer","name":"Sen. Barbara Boxer","location":"Washington, D.C.","language":"en","statusesCount":1531,"followersCount":52183}
+{"id":1329863563,"screenName":"namarose2013","name":"Amanda Hernandez","location":"","language":"en","statusesCount":9569,"followersCount":825}
+{"id":2432000035,"screenName":"futejada348","name":"lea","location":"Maracay","language":"es","statusesCount":886,"followersCount":172}
+{"id":19154007,"screenName":"bennowalle","name":"Benno Wallé","location":"Tacoma, Washington State, USA","language":"en","statusesCount":11750,"followersCount":149}
+{"id":2776374476,"screenName":"EducationReddit","name":"Education News","location":"","language":"ja","statusesCount":40922,"followersCount":1126}
+{"id":377953105,"screenName":"ScholarshipCntr","name":"TheScholarshipCenter","location":"","language":"en","statusesCount":65221,"followersCount":2728}
+{"id":2771623852,"screenName":"WChurchillHS","name":"Churchill Counseling","location":"Potomac, MD","language":"en","statusesCount":306,"followersCount":69}
+{"id":860865024,"screenName":"robgiam2001x","name":"Robert Giambelluca","location":"Las Vegas, NV.","language":"en","statusesCount":764,"followersCount":1108}
+{"id":2384453438,"screenName":"reagan_lamont","name":"Reagan Lamont","location":"","language":"en","statusesCount":5250,"followersCount":687}
+{"id":487600344,"screenName":"Bipartisanism","name":"Bipartisan Report","location":"Seattle, USA","language":"en","statusesCount":7168,"followersCount":76133}
+{"id":36771189,"screenName":"brianpiero","name":"brian e.","location":"","language":"en","statusesCount":71034,"followersCount":1112}
+{"id":68344253,"screenName":"harsh__marsh","name":"Marsh Zulla","location":"","language":"en","statusesCount":258,"followersCount":18}
+{"id":1520208854,"screenName":"LellyParker","name":"❤ Lelly ❤","location":"","language":"en-gb","statusesCount":384,"followersCount":13}
+{"id":1120729716,"screenName":"Aust1Child","name":"Austan Child","location":"{THE WOOD}","language":"en","statusesCount":2817,"followersCount":847}
+{"id":2897038416,"screenName":"danae_reagan","name":"reagan","location":"","language":"en","statusesCount":70,"followersCount":27}
+{"id":139969463,"screenName":"m_cosmic_shift","name":"major-cosmic-shift","location":"","language":"en","statusesCount":3996,"followersCount":152}
+{"id":465319729,"screenName":"me_loves_karmy","name":"Kreamy ","location":"Hester High","language":"en","statusesCount":23534,"followersCount":1226}
+{"id":2897038416,"screenName":"danae_reagan","name":"reagan","location":"","language":"en","statusesCount":70,"followersCount":27}
+{"id":2696910775,"screenName":"Historicalmages","name":"Historical Images","location":"The Past","language":"en","statusesCount":1499,"followersCount":10746}
+{"id":2314241106,"screenName":"sm_haj","name":"sm_haj","location":"Germany","language":"de","statusesCount":468,"followersCount":11}
+{"id":200809184,"screenName":"brownaaron1987","name":"Aaron Brown","location":"Michigan","language":"en","statusesCount":225,"followersCount":64}
+{"id":541233028,"screenName":"mattwmorales","name":"Matt Morales","location":"","language":"en","statusesCount":6089,"followersCount":471}
+{"id":62510409,"screenName":"EricWolfson","name":"Eric Wolfson","location":"Washington, D.C.","language":"en","statusesCount":18690,"followersCount":6280}
+{"id":1488517507,"screenName":"MikeyGotStyle","name":"Mikeystyle","location":"","language":"en","statusesCount":17281,"followersCount":630}
+{"id":379482411,"screenName":"Trestresjolie","name":"Kthejolie","location":"Colorado","language":"en","statusesCount":24911,"followersCount":1474}
+{"id":25426931,"screenName":"brysonlozano","name":"Bryson Lozano","location":"Colleyville, Tx","language":"en","statusesCount":14101,"followersCount":417}
+{"id":1399583455,"screenName":"BADRLOSEFAT","name":"Fitness Motivator","location":"","language":"en","statusesCount":31126,"followersCount":1302}
+{"id":1360440474,"screenName":"nicolepinkdavis","name":"nicolepinkdavis","location":"Shreveport la","language":"en","statusesCount":15123,"followersCount":207}
+{"id":1187647735,"screenName":"Dory","name":"","location":"P. Sherman 42 Wallaby Way ","language":"en","statusesCount":12128,"followersCount":778509}
+{"id":2897038416,"screenName":"danae_reagan","name":"reagan","location":"","language":"en","statusesCount":70,"followersCount":27}
+{"id":1121123654,"screenName":"vanessaparkour","name":"jen from appleton","location":"","language":"en","statusesCount":14699,"followersCount":262}
+{"id":352548417,"screenName":"PaulBegala","name":"Paul Begala","location":"Washington, DC","language":"en","statusesCount":9110,"followersCount":82268}
+{"id":284383568,"screenName":"pppatticake","name":"patricia","location":"866ourvote.org","language":"en","statusesCount":28721,"followersCount":2468}
+{"id":583852761,"screenName":"realnathansaul","name":"i like Faye Reagan ","location":"","language":"en","statusesCount":2369,"followersCount":2496}
+{"id":725237748,"screenName":"PaulJack15","name":"Paul Jack","location":"","language":"en","statusesCount":1558,"followersCount":138}
+{"id":2887658070,"screenName":"PieperJohnD","name":"John D Pieper","location":"Austin, Texas","language":"en","statusesCount":252,"followersCount":112}
+{"id":8287732,"screenName":"CamelotGypsy","name":"Joyce","location":"#Progressive in SF Bay Area","language":"en","statusesCount":48534,"followersCount":4404}
+{"id":2887658070,"screenName":"PieperJohnD","name":"John D Pieper","location":"Austin, Texas","language":"en","statusesCount":252,"followersCount":112}
+{"id":1553803897,"screenName":"johnjindar1","name":"home and family","location":"","language":"fr","statusesCount":5798,"followersCount":84}
+{"id":1522109274,"screenName":"johnjindar","name":" iQuote NoW","location":"Q U O T E S ","language":"en-gb","statusesCount":5986,"followersCount":348}
+{"id":129845242,"screenName":"Inspire_Us","name":"Inspirational Quotes","location":"","language":"en","statusesCount":37234,"followersCount":1298367}
+{"id":2898686508,"screenName":"Mrbaker778","name":"isaiah","location":"","language":"en","statusesCount":115,"followersCount":52}
+{"id":1242857678,"screenName":"_Nathalia_Dias","name":"Nathalia Dias","location":"","language":"en","statusesCount":10531,"followersCount":258}
+{"id":2897038416,"screenName":"danae_reagan","name":"reagan","location":"","language":"en","statusesCount":70,"followersCount":27}
+{"id":1709396414,"screenName":"hannahbarryyy","name":"han:)","location":"lake oswego","language":"en","statusesCount":114,"followersCount":128}
+{"id":2562765260,"screenName":"reagan_holmes17","name":"Raygan","location":"","language":"en","statusesCount":70,"followersCount":95}
+{"id":15442036,"screenName":"SenatorBoxer","name":"Sen. Barbara Boxer","location":"Washington, D.C.","language":"en","statusesCount":1531,"followersCount":52183}
+{"id":1634167196,"screenName":"theflippityflip","name":"Jasmine","location":"♡La Universidad de Tejas A\u0026M♡","language":"en","statusesCount":8208,"followersCount":301}
+{"id":312172087,"screenName":"injustcef","name":"Injustice Facts","location":"","language":"en","statusesCount":9261,"followersCount":2093}
+{"id":988324790,"screenName":"AlanaBowker","name":"Alana Bowker","location":"Canada","language":"en","statusesCount":72004,"followersCount":3292}
+{"id":194947075,"screenName":"M_E_Adams","name":"✮Mł₡ҤλEŁ λÐλM$✮","location":"U.S.A (SEMPER FI)-III%","language":"en","statusesCount":197019,"followersCount":11880}
+{"id":586942035,"screenName":"TheChainedDick","name":"The Chained Dick","location":"arizona","language":"en","statusesCount":2361,"followersCount":185}
+{"id":179732982,"screenName":"TheDailyEdge","name":"The Daily Edge","location":"","language":"en","statusesCount":36940,"followersCount":88884}
+{"id":33146307,"screenName":"AndreaLeon","name":"Andrea Leon Grossman","location":"SoCal","language":"en","statusesCount":12465,"followersCount":1596}
+{"id":761829432,"screenName":"SquidsLighters","name":"#TBYG Main","location":"All Around Houston, TX","language":"en","statusesCount":17929,"followersCount":11528}
+{"id":1458439400,"screenName":"ddpaulbell","name":"Paul Bell","location":"","language":"en","statusesCount":3986,"followersCount":332}
+{"id":27235734,"screenName":"tinaissa","name":"Tina Issa","location":"   Chicago, IL      South Loop","language":"en","statusesCount":5357,"followersCount":897}
+{"id":1038235795,"screenName":"mackaysuzie","name":"Susan Mackay","location":"","language":"en","statusesCount":265044,"followersCount":1826}
+{"id":1372975219,"screenName":"BabyAnimalPics","name":"Baby Animals","location":"","language":"en","statusesCount":10204,"followersCount":1076796}
+{"id":2897038416,"screenName":"danae_reagan","name":"reagan","location":"","language":"en","statusesCount":70,"followersCount":27}
+{"id":761829432,"screenName":"SquidsLighters","name":"#TBYG Main","location":"All Around Houston, TX","language":"en","statusesCount":17929,"followersCount":11528}
+{"id":1242171468,"screenName":"bwtanker","name":"William ","location":"Missouri","language":"en","statusesCount":54269,"followersCount":1913}
+{"id":2897038416,"screenName":"danae_reagan","name":"reagan","location":"","language":"en","statusesCount":70,"followersCount":27}
+{"id":13337152,"screenName":"epobirs","name":"epobirs","location":"","language":"en","statusesCount":4100,"followersCount":72}
+{"id":761829432,"screenName":"SquidsLighters","name":"#TBYG Main","location":"All Around Houston, TX","language":"en","statusesCount":17929,"followersCount":11528}
+{"id":1357216692,"screenName":"musicgirlsuzi","name":"Suzette Dauberger","location":"","language":"en","statusesCount":17056,"followersCount":2700}
+{"id":104459389,"screenName":"sheriffali","name":"Sheriff Ali","location":"Beverly Hills, California USA","language":"en","statusesCount":5362,"followersCount":109395}
+{"id":139872196,"screenName":"RonaldClarke","name":"Ronald Clarke","location":"Third planet from the sun","language":"en","statusesCount":13882,"followersCount":159}
+{"id":20735671,"screenName":"miningac","name":"i am groot","location":"https://vine.co/v/Mw7DhdqOluU","language":"en","statusesCount":32497,"followersCount":521}
+{"id":1115539410,"screenName":"GreyShhadow","name":"Chuck Norris","location":"The Carolina\u0027s","language":"en","statusesCount":4277,"followersCount":530}
+{"id":62510409,"screenName":"EricWolfson","name":"Eric Wolfson","location":"Washington, D.C.","language":"en","statusesCount":18690,"followersCount":6280}
+{"id":52230962,"screenName":"PoliticalAnt","name":"Anthony B.","location":"","language":"en","statusesCount":132764,"followersCount":11257}
+{"id":15442036,"screenName":"SenatorBoxer","name":"Sen. Barbara Boxer","location":"Washington, D.C.","language":"en","statusesCount":1531,"followersCount":52183}
+{"id":1934770050,"screenName":"MonsterMarcia","name":"HappyToBeBlue","location":"","language":"en","statusesCount":33680,"followersCount":4208}
+{"id":129845242,"screenName":"Inspire_Us","name":"Inspirational Quotes","location":"","language":"en","statusesCount":37234,"followersCount":1298367}
+{"id":1683230724,"screenName":"Banafrik","name":"TAPANAR","location":"Tema","language":"en","statusesCount":817,"followersCount":41}
+{"id":1143534686,"screenName":"GreyK23","name":"Greyson","location":"","language":"en","statusesCount":34263,"followersCount":591}
+{"id":2897038416,"screenName":"danae_reagan","name":"reagan","location":"","language":"en","statusesCount":70,"followersCount":27}
+{"id":220249920,"screenName":"hamphill108","name":"Osvaldo Gutierrez","location":"Los Angeles California","language":"es","statusesCount":92615,"followersCount":461}
+{"id":186429844,"screenName":"Nancy_Reagan","name":"Nancy Reagan","location":"United States","language":"en","statusesCount":22805,"followersCount":32737}
+{"id":426802833,"screenName":"AP_Politics","name":"AP Politics","location":"Washington, D.C.","language":"en","statusesCount":25138,"followersCount":25646}
+{"id":487816817,"screenName":"GwenCarter3","name":"Gwendolyn Carter","location":"Washington, DC","language":"en","statusesCount":24968,"followersCount":518}
+{"id":352548417,"screenName":"PaulBegala","name":"Paul Begala","location":"Washington, DC","language":"en","statusesCount":9110,"followersCount":82268}
+{"id":820187383,"screenName":"Britpoptarts","name":"Liberal Lore","location":"House of Eclecstacy","language":"en","statusesCount":116542,"followersCount":3901}
+{"id":883520581,"screenName":"PaulMullins104","name":"Paul Mullins","location":"","language":"en","statusesCount":3635,"followersCount":57}
+{"id":312172087,"screenName":"injustcef","name":"Injustice Facts","location":"","language":"en","statusesCount":9261,"followersCount":2093}
+{"id":2738913035,"screenName":"SalvationSyrian","name":"SyrianSalvation","location":"","language":"en","statusesCount":29032,"followersCount":710}
+{"id":572761393,"screenName":"juliaababeee","name":" Julia Divkovic ♕","location":"","language":"en","statusesCount":10341,"followersCount":481}
+{"id":2897038416,"screenName":"danae_reagan","name":"reagan","location":"","language":"en","statusesCount":70,"followersCount":27}
+{"id":107179687,"screenName":"GaryMWatson","name":"Gary Watson","location":"Thousand Oaks, CA","language":"en","statusesCount":5641,"followersCount":1103}
+{"id":352548417,"screenName":"PaulBegala","name":"Paul Begala","location":"Washington, DC","language":"en","statusesCount":9110,"followersCount":82268}
+{"id":487816817,"screenName":"GwenCarter3","name":"Gwendolyn Carter","location":"Washington, DC","language":"en","statusesCount":24968,"followersCount":518}
+{"id":624849630,"screenName":"Future1stLady1","name":"Future First Lady","location":"","language":"en","statusesCount":7623,"followersCount":39331}
+{"id":2777266311,"screenName":"katiedunnavant","name":"Katie Dunnavant","location":"","language":"en","statusesCount":108,"followersCount":166}
+{"id":601298466,"screenName":"femaleproblems","name":"Female Problems","location":"","language":"en","statusesCount":1906,"followersCount":651603}
+{"id":329375189,"screenName":"reagan_atwater","name":"Reagan Atwater","location":"","language":"en","statusesCount":4191,"followersCount":560}
+{"id":586942035,"screenName":"TheChainedDick","name":"The Chained Dick","location":"arizona","language":"en","statusesCount":2361,"followersCount":185}
+{"id":85865259,"screenName":"ItsShoBoy","name":"ItsShoBoy","location":"CALIFORNIA","language":"en","statusesCount":9373,"followersCount":818}
+{"id":2611913754,"screenName":"ingrid_5h","name":"Yvette\u0027s #1 fan ","location":"","language":"en","statusesCount":1941,"followersCount":88}
+{"id":108810407,"screenName":"enigmaXL","name":"Leon Phelps","location":"Shangri-La","language":"en","statusesCount":54397,"followersCount":292}
+{"id":94982241,"screenName":"ErsanCanO","name":"Bon Sauvage","location":"Dersaadet\u0027ten geriye kalan AVM","language":"en","statusesCount":1761,"followersCount":118}
+{"id":761829432,"screenName":"SquidsLighters","name":"#TBYG Main","location":"All Around Houston, TX","language":"en","statusesCount":17929,"followersCount":11528}
+{"id":68645687,"screenName":"PangRy","name":"Maria Oasiska","location":"","language":"en","statusesCount":11809,"followersCount":222}
+{"id":47728859,"screenName":"steveweinstein","name":"Steve Weinstein","location":"Los Angeles","language":"en","statusesCount":83343,"followersCount":10046}
+{"id":244572006,"screenName":"helixion12","name":"helixion12","location":"COLORADO","language":"en","statusesCount":20685,"followersCount":2584}
+{"id":883520581,"screenName":"PaulMullins104","name":"Paul Mullins","location":"","language":"en","statusesCount":3635,"followersCount":57}
+{"id":1624297489,"screenName":"MLogs_Lotomiles","name":"Matthew Logan","location":"","language":"en","statusesCount":151,"followersCount":46}
+{"id":107468035,"screenName":"wpquinlan","name":"Patrick Q.","location":"","language":"en","statusesCount":1962,"followersCount":125}
+{"id":1634552636,"screenName":"mterry337","name":"Michael Terry","location":"Tennessee","language":"en","statusesCount":195825,"followersCount":12126}
+{"id":18008403,"screenName":"Greeenguy111","name":"Sobriety rocks!","location":"Washington, DC","language":"en","statusesCount":89624,"followersCount":2832}
+{"id":2396564900,"screenName":"luvisalluneed4","name":"~Lauren~","location":"somewhere only we know","language":"en","statusesCount":49813,"followersCount":4086}
+{"id":1307771388,"screenName":"JayReport","name":"Jay","location":"Kennesaw, GA","language":"en","statusesCount":4903,"followersCount":1114}
+{"id":18008403,"screenName":"Greeenguy111","name":"Sobriety rocks!","location":"Washington, DC","language":"en","statusesCount":89624,"followersCount":2832}
+{"id":18548184,"screenName":"novenator","name":"ɹoʇɐuǝʌou  ","location":"Minnesota","language":"en","statusesCount":27410,"followersCount":11205}
+{"id":487816817,"screenName":"GwenCarter3","name":"Gwendolyn Carter","location":"Washington, DC","language":"en","statusesCount":24968,"followersCount":518}
+{"id":883520581,"screenName":"PaulMullins104","name":"Paul Mullins","location":"","language":"en","statusesCount":3635,"followersCount":57}
+{"id":65043324,"screenName":"Rachellfry","name":"Rachel Fry ☹","location":"","language":"en","statusesCount":48430,"followersCount":818}
+{"id":375264436,"screenName":"reagan_ford1","name":"reageyyy✨","location":"","language":"en","statusesCount":53461,"followersCount":1477}
+{"id":386189099,"screenName":"FillWerrell","name":"Fill Werrell","location":"TeenHumorMedia@gmail.com","language":"en","statusesCount":10488,"followersCount":2472012}
+{"id":329375189,"screenName":"reagan_atwater","name":"Reagan Atwater","location":"","language":"en","statusesCount":4191,"followersCount":560}
+{"id":487600344,"screenName":"Bipartisanism","name":"Bipartisan Report","location":"Seattle, USA","language":"en","statusesCount":7168,"followersCount":76133}
+{"id":2247799814,"screenName":"girlzinger","name":"girlzinger","location":"","language":"en","statusesCount":2664,"followersCount":62}
+{"id":344398507,"screenName":"LordNino_","name":"Cheech","location":"Jacksonville,Fl","language":"en","statusesCount":92569,"followersCount":621}
+{"id":65043324,"screenName":"Rachellfry","name":"Rachel Fry ☹","location":"","language":"en","statusesCount":48430,"followersCount":818}
+{"id":375264436,"screenName":"reagan_ford1","name":"reageyyy✨","location":"","language":"en","statusesCount":53461,"followersCount":1477}
+{"id":1115539410,"screenName":"GreyShhadow","name":"Chuck Norris","location":"The Carolina\u0027s","language":"en","statusesCount":4277,"followersCount":530}
+{"id":65043324,"screenName":"Rachellfry","name":"Rachel Fry ☹","location":"","language":"en","statusesCount":48430,"followersCount":818}
+{"id":2388192871,"screenName":"mancelet888","name":"CAPTAIND","location":"","language":"en","statusesCount":631,"followersCount":347}
+{"id":754245152,"screenName":"reagan_duhon","name":"Reagann","location":"","language":"en","statusesCount":3986,"followersCount":383}
+{"id":1407971040,"screenName":"nirvanaoffice","name":"george voinea","location":"CONSTANTA","language":"ro","statusesCount":3706,"followersCount":13}
+{"id":220249920,"screenName":"hamphill108","name":"Osvaldo Gutierrez","location":"Los Angeles California","language":"es","statusesCount":92615,"followersCount":461}
+{"id":1523765893,"screenName":"camilusions","name":"what zit tooya","location":"DC yo","language":"en","statusesCount":31304,"followersCount":4385}
+{"id":2890341614,"screenName":"boyfriend_lolo","name":"lolo","location":"Venezuela.","language":"es","statusesCount":1243,"followersCount":87}
+{"id":34455805,"screenName":"ShanghaiSix","name":"Stephen Machuga","location":"Washington DC","language":"en","statusesCount":13253,"followersCount":2205}
+{"id":334693769,"screenName":"_SilverHawk","name":"silverhawk","location":"","language":"en","statusesCount":410,"followersCount":18}
+{"id":27235734,"screenName":"tinaissa","name":"Tina Issa","location":"   Chicago, IL      South Loop","language":"en","statusesCount":5357,"followersCount":897}
+{"id":485497413,"screenName":"MinhKular","name":"LeftieTroublemaker","location":"Cape York and Cairns","language":"en","statusesCount":138943,"followersCount":3837}
+{"id":34455805,"screenName":"ShanghaiSix","name":"Stephen Machuga","location":"Washington DC","language":"en","statusesCount":13253,"followersCount":2205}
+{"id":45579224,"screenName":"Volatar","name":"Volatar","location":"The United States of America!","language":"en","statusesCount":19132,"followersCount":90}
+{"id":487600344,"screenName":"Bipartisanism","name":"Bipartisan Report","location":"Seattle, USA","language":"en","statusesCount":7168,"followersCount":76133}
+{"id":18008403,"screenName":"Greeenguy111","name":"Sobriety rocks!","location":"Washington, DC","language":"en","statusesCount":89624,"followersCount":2832}
+{"id":2475153103,"screenName":"OzHammerette","name":"Katrina Webb","location":"Melbourne, Victoria, Australia","language":"en","statusesCount":979,"followersCount":285}
+{"id":268476335,"screenName":"greenhousenyt","name":"Steven Greenhouse","location":"New York","language":"en","statusesCount":16843,"followersCount":18756}
+{"id":2412124884,"screenName":"If_Its_Magic","name":"DIMWIT2","location":" CARE USA","language":"en","statusesCount":1925,"followersCount":176}
+{"id":2266939603,"screenName":"reagan_swartz","name":"Reggeerrrsss","location":"","language":"en","statusesCount":1851,"followersCount":127}
+{"id":14367719,"screenName":"famousquotenet","name":"Famous-Quote.net","location":"http://www.famous-quote.net","language":"en","statusesCount":56070,"followersCount":86040}
+{"id":443931553,"screenName":"cnthamburi","name":"caroline nthamburi","location":"","language":"en","statusesCount":1487,"followersCount":70}
+{"id":19362770,"screenName":"Henges","name":"Leo Henghes","location":"Kampala, Uganda","language":"en","statusesCount":327,"followersCount":231}
+{"id":27235734,"screenName":"tinaissa","name":"Tina Issa","location":"   Chicago, IL      South Loop","language":"en","statusesCount":5357,"followersCount":897}
+{"id":133507637,"screenName":"sydnets","name":"Dadiva  Netter","location":"worldwide","language":"en","statusesCount":152678,"followersCount":2546}
+{"id":193772643,"screenName":"IrishCasey62","name":"IrishYankee","location":"USA","language":"en","statusesCount":11073,"followersCount":267}
+{"id":304206649,"screenName":"YvetteMonreal","name":"Yvette Monreal","location":"Los Angeles","language":"en","statusesCount":797,"followersCount":19045}
+{"id":1478705497,"screenName":"JustMel_1","name":"Mel ","location":"","language":"es","statusesCount":1820,"followersCount":403}
+{"id":1041629576,"screenName":"jaypangelinan","name":"Juliana Pangelinan","location":"","language":"en","statusesCount":14990,"followersCount":833}
+{"id":748911036,"screenName":"Adrianna_Reagan","name":"A Van Der Woodsen","location":"","language":"en","statusesCount":2058,"followersCount":404}
+{"id":928356048,"screenName":"NarboroughJames","name":"⚒COCKNEYJ⚒","location":"London","language":"en","statusesCount":6579,"followersCount":1948}
+{"id":352548417,"screenName":"PaulBegala","name":"Paul Begala","location":"Washington, DC","language":"en","statusesCount":9110,"followersCount":82268}
+{"id":241360518,"screenName":"planetscape","name":"Nancy","location":"","language":"en","statusesCount":38589,"followersCount":1894}
+{"id":287442081,"screenName":"GrantJBailey","name":"Grant Bailey","location":"","language":"en","statusesCount":1514,"followersCount":618}
+{"id":2208003797,"screenName":"Stoneishot","name":"stone forbus","location":"","language":"en","statusesCount":316,"followersCount":170}
+{"id":68344253,"screenName":"harsh__marsh","name":"Marsh Zulla","location":"","language":"en","statusesCount":258,"followersCount":18}
+{"id":45671898,"screenName":"finneyk","name":"Karen Finney","location":"DC","language":"en","statusesCount":6616,"followersCount":95709}
+{"id":834270494,"screenName":"demWildcat","name":"Laurie Squiric","location":"Living in #TragicallyRedMO ","language":"en","statusesCount":9207,"followersCount":95}
+{"id":844766941,"screenName":"NotableHistory","name":"OnThisDay \u0026 Facts","location":"","language":"en","statusesCount":38124,"followersCount":72934}
+{"id":2740182929,"screenName":"chloeknite","name":"Chloe","location":"","language":"en","statusesCount":5125,"followersCount":548}
+{"id":176406752,"screenName":"Reagan_Girl","name":"Marjorie Haun","location":"John Wayne Country","language":"en","statusesCount":71659,"followersCount":14168}
+{"id":1126529552,"screenName":"Cubby_Jay","name":"Justin Harmon","location":"","language":"en","statusesCount":1553,"followersCount":389}
+{"id":2384453438,"screenName":"reagan_lamont","name":"Reagan Lamont","location":"","language":"en","statusesCount":5250,"followersCount":687}
+{"id":34455805,"screenName":"ShanghaiSix","name":"Stephen Machuga","location":"Washington DC","language":"en","statusesCount":13253,"followersCount":2205}
+{"id":238650023,"screenName":"VidGames_Bible","name":"VideoGames\u0026theBible","location":"","language":"en","statusesCount":8457,"followersCount":449}
+{"id":129845242,"screenName":"Inspire_Us","name":"Inspirational Quotes","location":"","language":"en","statusesCount":37234,"followersCount":1298367}
+{"id":261820658,"screenName":"msjoynail","name":"msjoynail","location":"","language":"en","statusesCount":121,"followersCount":51}
+{"id":34455805,"screenName":"ShanghaiSix","name":"Stephen Machuga","location":"Washington DC","language":"en","statusesCount":13253,"followersCount":2205}
+{"id":525060895,"screenName":"UnusualFactPage","name":"Universal  Facts™","location":"INDIA (Delhi)","language":"en","statusesCount":45819,"followersCount":1468256}
+{"id":2384453438,"screenName":"reagan_lamont","name":"Reagan Lamont","location":"","language":"en","statusesCount":5250,"followersCount":687}
+{"id":1934584670,"screenName":"DesiHugDotCom","name":"DesiHug","location":"","language":"en","statusesCount":129454,"followersCount":5837}
+{"id":1646455254,"screenName":"BlueVA_Hound","name":"TeaBaggersNightmare","location":"Blu Virginia 3rd rock fr Sun","language":"en","statusesCount":6673,"followersCount":11597}
+{"id":1707545593,"screenName":"CryinAllTheTime","name":"Howling Blue","location":"hound trails of Ole Dominion","language":"en","statusesCount":3248,"followersCount":7824}
+{"id":467995718,"screenName":"reagan_naughton","name":"Ray-Gun","location":"Fort Worth, Texas","language":"en","statusesCount":5051,"followersCount":237}
+{"id":47728859,"screenName":"steveweinstein","name":"Steve Weinstein","location":"Los Angeles","language":"en","statusesCount":83343,"followersCount":10046}
+{"id":134971995,"screenName":"missb62","name":"Betty","location":"Colorado","language":"en","statusesCount":649808,"followersCount":4472}
+{"id":312172087,"screenName":"injustcef","name":"Injustice Facts","location":"","language":"en","statusesCount":9261,"followersCount":2093}
+{"id":200918966,"screenName":"dingalingy55","name":"publicOutcry NFZ","location":"fairfax,california","language":"en","statusesCount":66385,"followersCount":960}
+{"id":324859680,"screenName":"devotioniall","name":"Elyse","location":"niall/5 \u0026 3/3","language":"en","statusesCount":93776,"followersCount":8529}
+{"id":483223,"screenName":"itsWanda","name":"Wanda","location":"far left coast","language":"en","statusesCount":198728,"followersCount":2675}
+{"id":141372963,"screenName":"RIXYART","name":"Artist RIXY","location":"in Paris .NY. .Ginza. Belgium","language":"ja","statusesCount":8353,"followersCount":2602}
+{"id":54311047,"screenName":"RepublicanBS","name":"RepublicanBS","location":"North Carolina","language":"en","statusesCount":16574,"followersCount":6351}
+{"id":25009687,"screenName":"skaushik100","name":"Sandeep Kaushik","location":"Seattle, WA","language":"en","statusesCount":754,"followersCount":783}
+{"id":2562765260,"screenName":"reagan_holmes17","name":"Raygan","location":"","language":"en","statusesCount":70,"followersCount":95}
+{"id":844766941,"screenName":"NotableHistory","name":"OnThisDay \u0026 Facts","location":"","language":"en","statusesCount":38124,"followersCount":72934}
+{"id":413732499,"screenName":"kroshkind","name":"Коль Трясучка","location":"Взлетная полоса №1","language":"ru","statusesCount":1540,"followersCount":117}
+{"id":15268600,"screenName":"JeffSharlet","name":"JeffSharlet","location":"","language":"en","statusesCount":25961,"followersCount":10199}
+{"id":897789679,"screenName":"Pieter_Gericke","name":"Pieter","location":"Earth ","language":"en","statusesCount":71473,"followersCount":5534}
+{"id":1012186975,"screenName":"PrincessDelaney","name":"d ","location":"da hillz","language":"en","statusesCount":4014,"followersCount":168}
+{"id":1541842513,"screenName":"DeashiaTrammell","name":"_NEON_RAINBOWS_BIHH","location":"","language":"en","statusesCount":2404,"followersCount":229}
+{"id":465067648,"screenName":"hopieallen","name":"hopie d","location":"","language":"en","statusesCount":3589,"followersCount":326}
+{"id":2897038416,"screenName":"danae_reagan","name":"reagan","location":"","language":"en","statusesCount":70,"followersCount":27}
+{"id":324859680,"screenName":"devotioniall","name":"Elyse","location":"niall/5 \u0026 3/3","language":"en","statusesCount":93776,"followersCount":8529}
+{"id":28152330,"screenName":"fox13now","name":"FOX 13 NOW","location":"Salt Lake City, Utah","language":"en","statusesCount":55315,"followersCount":37331}
+{"id":2897038416,"screenName":"danae_reagan","name":"reagan","location":"","language":"en","statusesCount":70,"followersCount":27}
+{"id":194947075,"screenName":"M_E_Adams","name":"✮Mł₡ҤλEŁ λÐλM$✮","location":"U.S.A (SEMPER FI)-III%","language":"en","statusesCount":197019,"followersCount":11880}
+{"id":2372292854,"screenName":"LauriePatriot","name":"Laurie Tietjen","location":"","language":"en","statusesCount":14124,"followersCount":1503}
+{"id":487600344,"screenName":"Bipartisanism","name":"Bipartisan Report","location":"Seattle, USA","language":"en","statusesCount":7168,"followersCount":76133}
+{"id":2548427874,"screenName":"ladynurse1974","name":"Veronica Wade","location":"","language":"en","statusesCount":13999,"followersCount":1725}
+{"id":1958082043,"screenName":"seth37eee","name":"GlenT","location":"Arlington, TX","language":"en","statusesCount":34113,"followersCount":1909}
+{"id":2816730078,"screenName":"omfgninna","name":"Ninna","location":"","language":"en","statusesCount":115,"followersCount":17}
+{"id":1634552636,"screenName":"mterry337","name":"Michael Terry","location":"Tennessee","language":"en","statusesCount":195825,"followersCount":12126}
+{"id":1644805254,"screenName":"WildPowers","name":"william c powers","location":"Chicago","language":"en","statusesCount":13535,"followersCount":8861}
+{"id":186429844,"screenName":"Nancy_Reagan","name":"Nancy Reagan","location":"United States","language":"en","statusesCount":22805,"followersCount":32737}
+{"id":761829432,"screenName":"SquidsLighters","name":"#TBYG Main","location":"All Around Houston, TX","language":"en","statusesCount":17929,"followersCount":11528}
+{"id":300376515,"screenName":"lmsathishkumar","name":"Sathish Kumar M","location":"India","language":"en","statusesCount":58245,"followersCount":166}
+{"id":492675987,"screenName":"hawaiinshirts","name":"Brandon Williams","location":"","language":"en","statusesCount":28100,"followersCount":137970}
+{"id":578503240,"screenName":"reagan_hooper","name":"regs","location":"","language":"en","statusesCount":9393,"followersCount":543}
+{"id":935172913,"screenName":"banda_jackz","name":"jackie","location":"happy, tx ","language":"en","statusesCount":82422,"followersCount":1509}
+{"id":2457321936,"screenName":"Jhovanny1997","name":"Gio","location":"","language":"en","statusesCount":11160,"followersCount":424}
+{"id":935172913,"screenName":"banda_jackz","name":"jackie","location":"happy, tx ","language":"en","statusesCount":82422,"followersCount":1509}
+{"id":62510409,"screenName":"EricWolfson","name":"Eric Wolfson","location":"Washington, D.C.","language":"en","statusesCount":18690,"followersCount":6280}
+{"id":551323901,"screenName":"CollierKen","name":"KenCollier","location":"Syracuse NY","language":"en","statusesCount":377,"followersCount":296}
+{"id":883520581,"screenName":"PaulMullins104","name":"Paul Mullins","location":"","language":"en","statusesCount":3635,"followersCount":57}
+{"id":844766941,"screenName":"NotableHistory","name":"OnThisDay \u0026 Facts","location":"","language":"en","statusesCount":38124,"followersCount":72934}
+{"id":2219919122,"screenName":"racphillipson","name":"RACHAEL","location":"","language":"en-gb","statusesCount":10716,"followersCount":490}
+{"id":22084427,"screenName":"robdelaney","name":"rob delaney","location":"London","language":"en","statusesCount":21081,"followersCount":1109848}
+{"id":3033901,"screenName":"EShy","name":"EShy","location":"49er land","language":"en","statusesCount":5768,"followersCount":269}
+{"id":251873569,"screenName":"aWilly7653","name":"Ariana Williford","location":"Salt Lake City, Utah","language":"en","statusesCount":5824,"followersCount":541}
+{"id":2897038416,"screenName":"danae_reagan","name":"reagan","location":"","language":"en","statusesCount":70,"followersCount":27}
+{"id":1977706561,"screenName":"shaunholt8587","name":"Shaun Holt","location":"","language":"en","statusesCount":33357,"followersCount":1684}
+{"id":489096490,"screenName":"FAQSHOALPANTHER","name":"FAQSHOAL PANTHER","location":"Keys","language":"en","statusesCount":7348,"followersCount":57}
+{"id":380995558,"screenName":"9691uaeB","name":"Beau Bodacious","location":"Ocoee Fl","language":"en","statusesCount":8242,"followersCount":595}
+{"id":2897038416,"screenName":"danae_reagan","name":"reagan","location":"","language":"en","statusesCount":70,"followersCount":27}
+{"id":14367719,"screenName":"famousquotenet","name":"Famous-Quote.net","location":"http://www.famous-quote.net","language":"en","statusesCount":56070,"followersCount":86040}
+{"id":1948559838,"screenName":"JMcGuire6094","name":"J. McGuire","location":"California","language":"en","statusesCount":5936,"followersCount":168}
+{"id":864313800,"screenName":"davidf4444","name":"Nonsense Interceptor","location":"New York, NY","language":"en","statusesCount":130211,"followersCount":6177}
+{"id":2457321936,"screenName":"Jhovanny1997","name":"Gio","location":"","language":"en","statusesCount":11160,"followersCount":424}
+{"id":87994986,"screenName":"foreman_jade","name":"jade.jpg","location":"From Genovia","language":"en","statusesCount":5150,"followersCount":633}
+{"id":194947075,"screenName":"M_E_Adams","name":"✮Mł₡ҤλEŁ λÐλM$✮","location":"U.S.A (SEMPER FI)-III%","language":"en","statusesCount":197019,"followersCount":11880}
+{"id":2853443310,"screenName":"9975Ts","name":"Tim Sherman","location":"","language":"en","statusesCount":9632,"followersCount":1574}
+{"id":172656901,"screenName":"REAGAN_BANGIN","name":"Reagan❤️❤️","location":"Ft.Worth--- »Denton","language":"en","statusesCount":25063,"followersCount":788}
+{"id":62510409,"screenName":"EricWolfson","name":"Eric Wolfson","location":"Washington, D.C.","language":"en","statusesCount":18690,"followersCount":6280}
+{"id":820187383,"screenName":"Britpoptarts","name":"Liberal Lore","location":"House of Eclecstacy","language":"en","statusesCount":116542,"followersCount":3901}
+{"id":1977706561,"screenName":"shaunholt8587","name":"Shaun Holt","location":"","language":"en","statusesCount":33357,"followersCount":1684}
+{"id":129845242,"screenName":"Inspire_Us","name":"Inspirational Quotes","location":"","language":"en","statusesCount":37234,"followersCount":1298367}
+{"id":835229306,"screenName":"brave_zizhou","name":"Brave Zizhou","location":"Colleen Bawn, Zimbabwe","language":"en","statusesCount":97,"followersCount":76}
+{"id":74673372,"screenName":"Johnson333","name":"Daniel","location":"","language":"en","statusesCount":131,"followersCount":50}
+{"id":292560045,"screenName":"StillJohnCA","name":"Think Gooder","location":"","language":"en","statusesCount":60920,"followersCount":3815}
+{"id":1410601014,"screenName":"winn1_winn","name":"Carroll Winn","location":"In own world","language":"en","statusesCount":31417,"followersCount":2890}
+{"id":129845242,"screenName":"Inspire_Us","name":"Inspirational Quotes","location":"","language":"en","statusesCount":37234,"followersCount":1298367}
+{"id":623989336,"screenName":"niyootintin","name":"Mr Tintin","location":"Lagos.","language":"en","statusesCount":347,"followersCount":22}
+{"id":2897038416,"screenName":"danae_reagan","name":"reagan","location":"","language":"en","statusesCount":70,"followersCount":27}
+{"id":19028953,"screenName":"JColeNC","name":"J. Cole","location":"","language":"en","statusesCount":2394,"followersCount":5657790}
+{"id":281770473,"screenName":"tha_reagan_era","name":"Jeremy Fabre","location":"Chicago","language":"en","statusesCount":4738,"followersCount":132}
+{"id":87994986,"screenName":"foreman_jade","name":"jade.jpg","location":"From Genovia","language":"en","statusesCount":5150,"followersCount":633}
+{"id":2897038416,"screenName":"danae_reagan","name":"reagan","location":"","language":"en","statusesCount":70,"followersCount":27}
+{"id":2444532542,"screenName":"reagan_nixon44","name":"Reagan nixon","location":"","language":"en","statusesCount":2337,"followersCount":220}
+{"id":2897038416,"screenName":"danae_reagan","name":"reagan","location":"","language":"en","statusesCount":70,"followersCount":27}
+{"id":19492233,"screenName":"Muehlhans","name":"Muehlhans","location":"","language":"en","statusesCount":5387,"followersCount":2001}
+{"id":66533920,"screenName":"ZaidJilani","name":"Zaid Jilani","location":"Atlanta","language":"en","statusesCount":121185,"followersCount":9249}
+{"id":229549328,"screenName":"AndresAndres33","name":"Mr. Logical","location":"SD, CA","language":"en","statusesCount":1042,"followersCount":129}
+{"id":2261633088,"screenName":"unesbadr","name":"unes unes","location":"maroc","language":"fr","statusesCount":1801,"followersCount":87}
+{"id":15442036,"screenName":"SenatorBoxer","name":"Sen. Barbara Boxer","location":"Washington, D.C.","language":"en","statusesCount":1531,"followersCount":52183}
+{"id":820187383,"screenName":"Britpoptarts","name":"Liberal Lore","location":"House of Eclecstacy","language":"en","statusesCount":116542,"followersCount":3901}
+{"id":17466132,"screenName":"AJentleson","name":"Adam Jentleson","location":"","language":"en","statusesCount":10976,"followersCount":5509}
+{"id":15611268,"screenName":"RuthElizabeth","name":"Ruth","location":"Ann Arbor, MI","language":"en","statusesCount":1517,"followersCount":338}
+{"id":126966332,"screenName":"PabonMatriarch","name":"Albie Y. Pabon","location":"Houston, TX","language":"en","statusesCount":45706,"followersCount":2248}
+{"id":246943485,"screenName":"NoticingTheGap","name":"Karen","location":"","language":"en","statusesCount":3749,"followersCount":157}
+{"id":360429320,"screenName":"Reagan_Potts","name":"Reagan","location":"VA","language":"en","statusesCount":31977,"followersCount":1006}
+{"id":1601718098,"screenName":"wu1fy","name":"foo1y","location":"","language":"en","statusesCount":14765,"followersCount":280}
+{"id":1263250232,"screenName":"MatDegnan","name":"kemba ⚾️","location":"YSU","language":"en","statusesCount":20291,"followersCount":624}
+{"id":1557315432,"screenName":"HistoryInPix","name":"History In Pictures","location":"","language":"en","statusesCount":3100,"followersCount":602598}
+{"id":507533463,"screenName":"NoomGraham","name":"Childish Grahambino ","location":"","language":"en","statusesCount":2145,"followersCount":388}
+{"id":360429320,"screenName":"Reagan_Potts","name":"Reagan","location":"VA","language":"en","statusesCount":31977,"followersCount":1006}
+{"id":15268600,"screenName":"JeffSharlet","name":"JeffSharlet","location":"","language":"en","statusesCount":25961,"followersCount":10199}
+{"id":2460297384,"screenName":"stxvie_x","name":"Stevie hughes","location":"","language":"en","statusesCount":2929,"followersCount":247}
+{"id":357303672,"screenName":"allllliie","name":"allie gorby","location":"☀️","language":"en","statusesCount":14826,"followersCount":1292}
+{"id":1307771388,"screenName":"JayReport","name":"Jay","location":"Kennesaw, GA","language":"en","statusesCount":4903,"followersCount":1114}
+{"id":531946181,"screenName":"BarricadesBloom","name":"The Abbot Trithemius","location":"★ #OWS  #UniteBlue ★","language":"en","statusesCount":4306,"followersCount":1098}
+{"id":54130320,"screenName":"Allenoids","name":"Allen Ramirez","location":"","language":"en","statusesCount":46064,"followersCount":1978}
+{"id":1646455254,"screenName":"BlueVA_Hound","name":"TeaBaggersNightmare","location":"Blu Virginia 3rd rock fr Sun","language":"en","statusesCount":6673,"followersCount":11597}
+{"id":279628372,"screenName":"kennyplan","name":"planman","location":"","language":"en","statusesCount":12075,"followersCount":776}
+{"id":387448420,"screenName":"LaurenAdams22","name":"Lauren Adams ","location":"","language":"en","statusesCount":10932,"followersCount":624}
+{"id":2696910775,"screenName":"Historicalmages","name":"Historical Images","location":"The Past","language":"en","statusesCount":1499,"followersCount":10746}
+{"id":377690654,"screenName":"SnorinLauren13","name":"Lauren R ","location":"Deep In The Heart Of Texas","language":"en","statusesCount":4084,"followersCount":91}
+{"id":194947075,"screenName":"M_E_Adams","name":"✮Mł₡ҤλEŁ λÐλM$✮","location":"U.S.A (SEMPER FI)-III%","language":"en","statusesCount":197019,"followersCount":11880}
+{"id":370324628,"screenName":"JeannaEckert","name":"Jeanna Eckert","location":"Selah, WA","language":"en","statusesCount":18446,"followersCount":2022}
+{"id":2444532542,"screenName":"reagan_nixon44","name":"Reagan nixon","location":"","language":"en","statusesCount":2337,"followersCount":220}
+{"id":844766941,"screenName":"NotableHistory","name":"OnThisDay \u0026 Facts","location":"","language":"en","statusesCount":38124,"followersCount":72934}
+{"id":2323379298,"screenName":"Bear49Fred","name":"Michael Scott","location":"Ohio","language":"en","statusesCount":7744,"followersCount":254}
+{"id":483223,"screenName":"itsWanda","name":"Wanda","location":"far left coast","language":"en","statusesCount":198728,"followersCount":2675}
+{"id":2309929450,"screenName":"MenSauveur","name":"Mad Men ","location":"Toulouse France ","language":"fr","statusesCount":35002,"followersCount":2254}
+{"id":381621278,"screenName":"alex_sgreen","name":"Alex Sullivan-Green","location":"Fort Worth, TX","language":"en","statusesCount":2403,"followersCount":375}
+{"id":467995718,"screenName":"reagan_naughton","name":"Ray-Gun","location":"Fort Worth, Texas","language":"en","statusesCount":5051,"followersCount":237}
+{"id":381621278,"screenName":"alex_sgreen","name":"Alex Sullivan-Green","location":"Fort Worth, TX","language":"en","statusesCount":2403,"followersCount":375}
+{"id":14367719,"screenName":"famousquotenet","name":"Famous-Quote.net","location":"http://www.famous-quote.net","language":"en","statusesCount":56070,"followersCount":86040}
+{"id":1597573830,"screenName":"edward_fo","name":"Edward Fox","location":"Yakima Wa.","language":"en","statusesCount":90,"followersCount":4}
+{"id":1056499729,"screenName":"katgren","name":"katherine lindgren","location":"newton","language":"en","statusesCount":2644,"followersCount":361}
+{"id":1194183889,"screenName":"Quotes_hour","name":"Quotes Hour","location":"","language":"en","statusesCount":260,"followersCount":365}
+{"id":237572596,"screenName":"Gus_802","name":"Gus","location":"Denver, CO","language":"en","statusesCount":153826,"followersCount":2070}
+{"id":1062225217,"screenName":"dannalynette","name":"Dana Wells","location":"Savannah•FtLaud•Lex\u0027Ville,KY","language":"en","statusesCount":10658,"followersCount":2090}
+{"id":2171353298,"screenName":"sammiepozos","name":"hmsam?","location":"","language":"en","statusesCount":581,"followersCount":179}
+{"id":578503240,"screenName":"reagan_hooper","name":"regs","location":"","language":"en","statusesCount":9393,"followersCount":543}
+{"id":29761428,"screenName":"C_Denhard22","name":"collin denhard","location":"","language":"en","statusesCount":5642,"followersCount":506}
+{"id":421427483,"screenName":"FosterGreen2","name":"Foster Green","location":"","language":"en","statusesCount":12293,"followersCount":631}
+{"id":2513785449,"screenName":"QueenFakingIt","name":"♛","location":"","language":"en","statusesCount":4081,"followersCount":5646}
+{"id":114594317,"screenName":"ParkMiinHee","name":"taem","location":"Sunnydale, California","language":"fr","statusesCount":24555,"followersCount":181}
+{"id":844766941,"screenName":"NotableHistory","name":"OnThisDay \u0026 Facts","location":"","language":"en","statusesCount":38124,"followersCount":72934}
+{"id":992503711,"screenName":"axlrose995","name":"(♡ τᎯરεκ ♥)⌒。+♬゛","location":"","language":"en","statusesCount":26603,"followersCount":3692}
+{"id":312172087,"screenName":"injustcef","name":"Injustice Facts","location":"","language":"en","statusesCount":9261,"followersCount":2093}
+{"id":41831995,"screenName":"PoliticalBee","name":"B.L. McMillan","location":"Florida","language":"en","statusesCount":151706,"followersCount":5993}
+{"id":2490692354,"screenName":"Texas6ASports","name":"Texas 6A Sports","location":"Texas","language":"en","statusesCount":5564,"followersCount":13354}
+{"id":533969928,"screenName":"BrianGute27","name":"Brian gutierrez","location":"","language":"en","statusesCount":10934,"followersCount":487}
+{"id":382190496,"screenName":"petetruth","name":"Pete Truth","location":"Portsmouth, NH","language":"en","statusesCount":23219,"followersCount":1296}
+{"id":33276161,"screenName":"JohnFugelsang","name":"John Fugelsang","location":"NYC, LA \u0026 The Beautiful South ","language":"en","statusesCount":37844,"followersCount":123278}
+{"id":16430175,"screenName":"taygrand","name":"tay","location":"pdx","language":"en","statusesCount":3631,"followersCount":189}
+{"id":375264436,"screenName":"reagan_ford1","name":"reageyyy✨","location":"","language":"en","statusesCount":53461,"followersCount":1477}
+{"id":292560045,"screenName":"StillJohnCA","name":"Think Gooder","location":"","language":"en","statusesCount":60920,"followersCount":3815}
+{"id":460577661,"screenName":"fuller_derek","name":"WhoIsGovt","location":"Now","language":"en","statusesCount":193415,"followersCount":6822}
+{"id":1003223892,"screenName":"PubPolitica","name":"PubPolitica","location":"United States","language":"en","statusesCount":30924,"followersCount":69}
+{"id":126966332,"screenName":"PabonMatriarch","name":"Albie Y. Pabon","location":"Houston, TX","language":"en","statusesCount":45706,"followersCount":2248}
+{"id":279628372,"screenName":"kennyplan","name":"planman","location":"","language":"en","statusesCount":12075,"followersCount":776}
+{"id":130294479,"screenName":"JohnGGalt","name":"John Galt","location":"5,189—14,203 feet, Colorado","language":"en","statusesCount":15289,"followersCount":49989}
+{"id":292560045,"screenName":"StillJohnCA","name":"Think Gooder","location":"","language":"en","statusesCount":60920,"followersCount":3815}
+{"id":45627569,"screenName":"JayandSteve","name":"Steve Crandall ","location":"Palm Springs, United States","language":"en","statusesCount":175487,"followersCount":5285}
+{"id":312172087,"screenName":"injustcef","name":"Injustice Facts","location":"","language":"en","statusesCount":9261,"followersCount":2093}
+{"id":20655577,"screenName":"Lynnier","name":"Lynn","location":"Outside San Francisco, USA","language":"en","statusesCount":21691,"followersCount":479}
+{"id":2155322256,"screenName":"AmyRaud3en","name":"αму я","location":"","language":"en","statusesCount":1545,"followersCount":89}
+{"id":292560045,"screenName":"StillJohnCA","name":"Think Gooder","location":"","language":"en","statusesCount":60920,"followersCount":3815}
+{"id":108742401,"screenName":"Reagan_Santos","name":"Reagan Santos","location":"The Bronx, NY","language":"en","statusesCount":37726,"followersCount":372}
+{"id":712111249,"screenName":"Jacob_Howatt44","name":"jacobbb.","location":"Rancho Cucamonga","language":"en","statusesCount":5553,"followersCount":9485}
+{"id":2232146869,"screenName":"reagan_watford","name":" reagie","location":"","language":"en","statusesCount":1459,"followersCount":173}
+{"id":2523154659,"screenName":"reage_reagan","name":"Reagan reage","location":"","language":"en","statusesCount":5,"followersCount":1}
+{"id":1646455254,"screenName":"BlueVA_Hound","name":"TeaBaggersNightmare","location":"Blu Virginia 3rd rock fr Sun","language":"en","statusesCount":6673,"followersCount":11597}
+{"id":20634939,"screenName":"siaayrom","name":"Sia Ayrom","location":"Houston, Texas","language":"en","statusesCount":27989,"followersCount":1605}
+{"id":2816730078,"screenName":"omfgninna","name":"Ninna","location":"","language":"en","statusesCount":115,"followersCount":17}
+{"id":514945986,"screenName":"WsongTan","name":"Wsong","location":"Malaysia","language":"en","statusesCount":1438,"followersCount":89}
+{"id":2318356159,"screenName":"ZhaoJas","name":"zhaojas","location":"","language":"en","statusesCount":673,"followersCount":17}
+{"id":15442036,"screenName":"SenatorBoxer","name":"Sen. Barbara Boxer","location":"Washington, D.C.","language":"en","statusesCount":1531,"followersCount":52183}
+{"id":17848241,"screenName":"gluck1tx","name":"Adam G.","location":"","language":"en","statusesCount":13161,"followersCount":432}
+{"id":844766941,"screenName":"NotableHistory","name":"OnThisDay \u0026 Facts","location":"","language":"en","statusesCount":38124,"followersCount":72934}
+{"id":1041253951,"screenName":"shandonnx3","name":"shandon kelleher","location":"","language":"en","statusesCount":2661,"followersCount":335}
+{"id":1634552636,"screenName":"mterry337","name":"Michael Terry","location":"Tennessee","language":"en","statusesCount":195825,"followersCount":12126}
+{"id":287275623,"screenName":"Liberalibrarian","name":"Liberalibrarian","location":"Las Vegas, Nevada","language":"en","statusesCount":33242,"followersCount":1335}
+{"id":2816730078,"screenName":"omfgninna","name":"Ninna","location":"","language":"en","statusesCount":115,"followersCount":17}
+{"id":1865775098,"screenName":"Voicememories","name":"Libby","location":"","language":"en","statusesCount":4549,"followersCount":567}
+{"id":1419188864,"screenName":"reagan_rosie","name":"ray-gun","location":"","language":"en","statusesCount":1282,"followersCount":219}
+{"id":709408308,"screenName":"MelissaOwens16","name":"★Melissa Owens★","location":"","language":"en","statusesCount":5605,"followersCount":763}
+{"id":375264436,"screenName":"reagan_ford1","name":"reageyyy✨","location":"","language":"en","statusesCount":53461,"followersCount":1477}
+{"id":1865775098,"screenName":"Voicememories","name":"Libby","location":"","language":"en","statusesCount":4549,"followersCount":567}
+{"id":396070562,"screenName":"ThaniaaaG","name":"nymph ","location":"Seattle,Wa","language":"en","statusesCount":15241,"followersCount":810}
+{"id":2268231901,"screenName":"soulisticwomban","name":"Bolivia Guzmán","location":"The Cosmos of Inglewood","language":"en","statusesCount":5930,"followersCount":296}
+{"id":809957654,"screenName":"TheFakeBlakeG","name":"Cole Smith","location":"Im Half Black","language":"en","statusesCount":1254,"followersCount":240}
+{"id":18035760,"screenName":"mgillaspie","name":"mgillaspie","location":"Denver, Colorado","language":"en","statusesCount":41679,"followersCount":1602}
+{"id":373970722,"screenName":"castletoking","name":"D.Reid","location":"","language":"en","statusesCount":22968,"followersCount":2001}
+{"id":1634552636,"screenName":"mterry337","name":"Michael Terry","location":"Tennessee","language":"en","statusesCount":195825,"followersCount":12126}
+{"id":20655577,"screenName":"Lynnier","name":"Lynn","location":"Outside San Francisco, USA","language":"en","statusesCount":21691,"followersCount":479}
+{"id":194947075,"screenName":"M_E_Adams","name":"✮Mł₡ҤλEŁ λÐλM$✮","location":"U.S.A (SEMPER FI)-III%","language":"en","statusesCount":197019,"followersCount":11880}
+{"id":312230865,"screenName":"FactsOfSchool","name":"Student Problems","location":"✉ factsofschool@gmail.com","language":"en","statusesCount":29085,"followersCount":3886809}
+{"id":2444532542,"screenName":"reagan_nixon44","name":"Reagan nixon","location":"","language":"en","statusesCount":2337,"followersCount":220}
+{"id":1627091725,"screenName":"caguirre94","name":"Carlos Aguirre","location":"Los Angeles, Ca.","language":"en","statusesCount":28762,"followersCount":337}
+{"id":385696419,"screenName":"2dialogue","name":"Mike Bloomfield","location":"Acworth, Georgia","language":"en","statusesCount":36572,"followersCount":283}
+{"id":186429844,"screenName":"Nancy_Reagan","name":"Nancy Reagan","location":"United States","language":"en","statusesCount":22805,"followersCount":32737}
+{"id":33898668,"screenName":"nctclions","name":"NCTC","location":"5 campuses in North Texas","language":"en","statusesCount":4641,"followersCount":1201}
+{"id":187626332,"screenName":"Ben_Baby","name":"Ben Baby","location":"San Antonio, TX","language":"en","statusesCount":10549,"followersCount":2174}
+{"id":1175074992,"screenName":"Strip4Trillz","name":"Dev","location":"850☀️","language":"en","statusesCount":78015,"followersCount":1239}
+{"id":397192423,"screenName":"Robbins_Rule","name":"tai ✩彡","location":"","language":"en","statusesCount":35931,"followersCount":1690}
+{"id":2379182562,"screenName":"JosephStanley82","name":"Joseph Stanley","location":"Washington DC","language":"en","statusesCount":9024,"followersCount":537}
+{"id":147725246,"screenName":"FoxNewsInsider","name":"FoxNewsInsider","location":"NYC NY","language":"en","statusesCount":31636,"followersCount":48062}
+{"id":2768521183,"screenName":"acooper40","name":"Anna Louise","location":"","language":"en","statusesCount":1291,"followersCount":137}
+{"id":71643224,"screenName":"conradhackett","name":"Conrad Hackett","location":"Washington, DC","language":"en","statusesCount":2236,"followersCount":78175}
+{"id":184823288,"screenName":"thereaganjames","name":"Reagan James","location":"","language":"en","statusesCount":4932,"followersCount":17539}
+{"id":1380086209,"screenName":"straponfuck","name":"Strapon Fuck","location":"","language":"en","statusesCount":3612,"followersCount":414}
+{"id":1582853809,"screenName":"HistoryInPics","name":"History In Pictures","location":"","language":"en","statusesCount":8169,"followersCount":2055457}
+{"id":2480224699,"screenName":"VolkevensUK","name":"watch faking it","location":"","language":"en","statusesCount":6842,"followersCount":842}
+{"id":183367621,"screenName":"garetcarlson","name":"Garet Carlson","location":"San Diego, California","language":"en","statusesCount":9414,"followersCount":1032}
+{"id":293267112,"screenName":"ftwjauregui","name":"reagan stan","location":"","language":"en","statusesCount":81751,"followersCount":17831}
+{"id":829927645,"screenName":"Jasmin_Masic","name":"Jasmin","location":"","language":"en","statusesCount":2771,"followersCount":224}
+{"id":545424757,"screenName":"reagandown","name":"reagan","location":"","language":"en","statusesCount":3025,"followersCount":631}
+{"id":64615644,"screenName":"reagan_borgman","name":"Reagan ","location":"Margaritaville","language":"en","statusesCount":8469,"followersCount":428}
+{"id":1489510970,"screenName":"maattpaark","name":"matt frat","location":"CARPE DIEM","language":"en","statusesCount":15933,"followersCount":392}
+{"id":35051304,"screenName":"PolitiBunny","name":"KillerBunny Sam J.","location":" Out West Somewhere","language":"en","statusesCount":133967,"followersCount":34768}
+{"id":1921037611,"screenName":"jessieboyter","name":"↞jєรรเє ๒๏ץtєг↠","location":"","language":"en","statusesCount":2481,"followersCount":206}
+{"id":17264476,"screenName":"Spacekatgal","name":"Brianna Wu aka LW3","location":"Boston, MA","language":"en","statusesCount":33173,"followersCount":28294}
+{"id":40595559,"screenName":"Nwoody5","name":"Nick Woodward","location":"Bourbonnais, IL/ Goshen IN","language":"en","statusesCount":4033,"followersCount":488}
+{"id":2153915344,"screenName":"nataliienoel","name":"natalie","location":"","language":"en","statusesCount":5453,"followersCount":409}
+{"id":176251092,"screenName":"RTurakira","name":"Turakira Reagan","location":"Kampala","language":"en-gb","statusesCount":4324,"followersCount":111}
+{"id":2592419502,"screenName":"cbecker55373","name":"Carol Becker","location":"","language":"en","statusesCount":15860,"followersCount":675}
+{"id":312172087,"screenName":"injustcef","name":"Injustice Facts","location":"","language":"en","statusesCount":9261,"followersCount":2093}
+{"id":184823288,"screenName":"thereaganjames","name":"Reagan James","location":"","language":"en","statusesCount":4932,"followersCount":17539}
+{"id":483223,"screenName":"itsWanda","name":"Wanda","location":"far left coast","language":"en","statusesCount":198728,"followersCount":2675}
+{"id":844766941,"screenName":"NotableHistory","name":"OnThisDay \u0026 Facts","location":"","language":"en","statusesCount":38124,"followersCount":72934}
+{"id":2542207489,"screenName":"VineForTheBird","name":"VineForTheBird","location":"DM your funny vines to me :)","language":"en","statusesCount":234,"followersCount":106700}
+{"id":465067648,"screenName":"hopieallen","name":"hopie d","location":"","language":"en","statusesCount":3589,"followersCount":326}
+{"id":28152330,"screenName":"fox13now","name":"FOX 13 NOW","location":"Salt Lake City, Utah","language":"en","statusesCount":55315,"followersCount":37331}
+{"id":194947075,"screenName":"M_E_Adams","name":"✮Mł₡ҤλEŁ λÐλM$✮","location":"U.S.A (SEMPER FI)-III%","language":"en","statusesCount":197019,"followersCount":11880}
+{"id":487600344,"screenName":"Bipartisanism","name":"Bipartisan Report","location":"Seattle, USA","language":"en","statusesCount":7168,"followersCount":76133}
+{"id":1634552636,"screenName":"mterry337","name":"Michael Terry","location":"Tennessee","language":"en","statusesCount":195825,"followersCount":12126}
+{"id":35863396,"screenName":"Brielllexo","name":"brielle","location":"","language":"en","statusesCount":14787,"followersCount":398}
+{"id":492675987,"screenName":"hawaiinshirts","name":"Brandon Williams","location":"","language":"en","statusesCount":28100,"followersCount":137970}
+{"id":2457321936,"screenName":"Jhovanny1997","name":"Gio","location":"","language":"en","statusesCount":11160,"followersCount":424}
+{"id":935172913,"screenName":"banda_jackz","name":"jackie","location":"happy, tx ","language":"en","statusesCount":82422,"followersCount":1509}
+{"id":62510409,"screenName":"EricWolfson","name":"Eric Wolfson","location":"Washington, D.C.","language":"en","statusesCount":18690,"followersCount":6280}
+{"id":22084427,"screenName":"robdelaney","name":"rob delaney","location":"London","language":"en","statusesCount":21081,"followersCount":1109848}
+{"id":251873569,"screenName":"aWilly7653","name":"Ariana Williford","location":"Salt Lake City, Utah","language":"en","statusesCount":5824,"followersCount":541}
+{"id":1158452509,"screenName":"Stompy_0487","name":"Al the Root-Worker","location":"Inland Empire","language":"en","statusesCount":15318,"followersCount":309}
+{"id":15923226,"screenName":"cspanwj","name":"Washington Journal","location":"Washington, DC","language":"en","statusesCount":10560,"followersCount":38769}
+{"id":489096490,"screenName":"FAQSHOALPANTHER","name":"FAQSHOAL PANTHER","location":"Keys","language":"en","statusesCount":7348,"followersCount":57}
+{"id":87994986,"screenName":"foreman_jade","name":"jade.jpg","location":"From Genovia","language":"en","statusesCount":5150,"followersCount":633}
+{"id":14367719,"screenName":"famousquotenet","name":"Famous-Quote.net","location":"http://www.famous-quote.net","language":"en","statusesCount":56070,"followersCount":86040}
+{"id":2425223344,"screenName":"I_LUV_ISRAEL","name":"I HATE U MUSLIM","location":"NYC JEW","language":"en","statusesCount":11510,"followersCount":847}
+{"id":2897038416,"screenName":"danae_reagan","name":"reagan","location":"","language":"en","statusesCount":70,"followersCount":27}
+{"id":33792282,"screenName":"KingNaij","name":"IG: KingNaij","location":"Atl ~ Ω̴̩̩̩̥VΩ̴̩̩̩̥ ","language":"en","statusesCount":87853,"followersCount":34419}
+{"id":129845242,"screenName":"Inspire_Us","name":"Inspirational Quotes","location":"","language":"en","statusesCount":37234,"followersCount":1298367}
+{"id":292560045,"screenName":"StillJohnCA","name":"Think Gooder","location":"","language":"en","statusesCount":60920,"followersCount":3815}
+{"id":19028953,"screenName":"JColeNC","name":"J. Cole","location":"","language":"en","statusesCount":2394,"followersCount":5657790}
+{"id":2460297384,"screenName":"stxvie_x","name":"Stevie hughes","location":"","language":"en","statusesCount":2929,"followersCount":247}
+{"id":860865024,"screenName":"robgiam2001x","name":"Robert Giambelluca","location":"Las Vegas, NV.","language":"en","statusesCount":764,"followersCount":1108}
+{"id":66533920,"screenName":"ZaidJilani","name":"Zaid Jilani","location":"Atlanta","language":"en","statusesCount":121185,"followersCount":9249}
+{"id":15442036,"screenName":"SenatorBoxer","name":"Sen. Barbara Boxer","location":"Washington, D.C.","language":"en","statusesCount":1531,"fo

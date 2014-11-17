@@ -17,6 +17,8 @@
 		<version.servlet>3.0.1</version.servlet>
 		<version.h2>1.4.177</version.h2>
 		<version.slf4j>1.7.7</version.slf4j>
+		<version.twitter>4.0.2</version.twitter>
+		<version.gson>2.3</version.gson>
 	</properties>
 
 	<dependencyManagement>
@@ -46,6 +48,17 @@
 				<version>${version.h2}</version>
 			</dependency>
 
+			<dependency>
+				<groupId>org.twitter4j</groupId>
+				<artifactId>twitter4j-core</artifactId>
+				<version>${version.twitter}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.google.code.gson</groupId>
+				<artifactId>gson</artifactId>
+				<version>${version.gson}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
