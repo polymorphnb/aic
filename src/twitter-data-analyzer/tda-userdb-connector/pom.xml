@@ -10,15 +10,15 @@
 		<relativePath>..</relativePath>
 	</parent>
 
-	<artifactId>tda-json-processor</artifactId>
+	<artifactId>tda-docstore-connector</artifactId>
 	<packaging>jar</packaging>
 
 	<properties>
 		<version.slf4j>1.7.7</version.slf4j>
-		<neo4j-version>2.1.5</neo4j-version>
-		<jacksonjson-version>1.9.13</jacksonjson-version>
+		<version.h2>1.4.182</version.h2>
 	</properties>
 
+	<dependencyManagement>
 		<dependencies>
 			<dependency>
 				<groupId>org.slf4j</groupId>
@@ -27,22 +27,11 @@
 			</dependency>
 			
 			<dependency>
-				<groupId>org.codehaus.jackson</groupId>
-				<artifactId>jackson-core-asl</artifactId>
-				<version>${jacksonjson-version}</version>
+				<groupId>com.h2database</groupId>
+				<artifactId>h2</artifactId>
+				<version>${version.h2}</version>
 			</dependency>
-			
-			<dependency>
-				<groupId>org.codehaus.jackson</groupId>
-				<artifactId>jackson-mapper-asl</artifactId>
-				<version>${jacksonjson-version}</version>
-			</dependency>
-			
-			<dependency>
-				<groupId>com.google.code.gson</groupId>
-				<artifactId>gson</artifactId>
-			</dependency>
-			
 		</dependencies>
+	</dependencyManagement>
 
 </project>
