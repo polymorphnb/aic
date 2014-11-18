@@ -16,8 +16,11 @@
 
 	<modules>
 		<module>tdm-parent</module>
-    <module>tdm-file-dumper</module>
-    <module>tdm-processor</module>
-    <module>tdm-twitter-connector</module>
+		<module>tdm-file-dumper</module>
+		<module>tdm-processor</module>
+		<module>tdm-twitter-connector</module>
+		<module>tdm-userdb-connector</module>
+		<module>tdm-neo4j-connector</module>
+		<module>tdm-docstore-connector</module>
 	</modules>
 </project>
