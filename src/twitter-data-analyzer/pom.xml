@@ -16,9 +16,5 @@
 
 	<modules>
 		<module>tda-parent</module>
-		<module>tda-json-processor</module>
-		<module>tda-neo4j-connector</module>
-		<module>tda-userdb-connector</module>
-		<module>tda-docstore-connector</module>
 	</modules>	
 </project>
