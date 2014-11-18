@@ -5,9 +5,9 @@
 
 	<parent>
 		<groupId>at.ac.tuwien</groupId>
-		<artifactId>tdm-root</artifactId>
+		<artifactId>tdm-parent</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
-		<relativePath>..</relativePath>
+		<relativePath>../tdm-parent</relativePath>
 	</parent>
 
 	<artifactId>tdm-docstore-connector</artifactId>
@@ -18,21 +18,19 @@
 		<version.mongodb>2.12.4</version.mongodb>
 	</properties>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-api</artifactId>
-				<version>${version.slf4j}</version>
-			</dependency>
-			
-			<dependency>
-				<groupId>org.mongodb</groupId>
-				<artifactId>mongo-java-driver</artifactId>
-				<version>${version.mongodb}</version>
-			</dependency>
-			
-		</dependencies>
-	</dependencyManagement>
+	<dependencies>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${version.slf4j}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongo-java-driver</artifactId>
+			<version>${version.mongodb}</version>
+		</dependency>
+		
+	</dependencies>
 
 </project>

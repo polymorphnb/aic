@@ -1,0 +1,14 @@
+{
+	"Ad1": { 
+		"id" : 1, 
+		"topic_id": 1, 
+		"name": "kennedy_ad", 
+		"content": "democrat" 
+	},
+	"Ad2": { 
+		"id" : 2, 
+		"topic_id": 2, 
+		"name": "reagan_ad", 
+		"content": "republican" 
+	}
+}
