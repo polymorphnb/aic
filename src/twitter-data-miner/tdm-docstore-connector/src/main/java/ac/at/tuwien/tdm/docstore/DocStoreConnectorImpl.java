@@ -17,6 +17,8 @@ import com.mongodb.util.JSON;
 public class DocStoreConnectorImpl {
   
   private static final String DB_NAME = "AIC";
+  private static final String SERVER = "localhost";
+  private static final int PORT = 27017;
   private static final String TOPIC_FILE = "topics.json";
   private static final String ADS_FILE = "ads.json";
   private static final String TOPIC_COLLECTION = "topics";
@@ -26,9 +28,8 @@ public class DocStoreConnectorImpl {
   public void connect() {
     try {
       
-      
-      MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
-      this.db = mongoClient.getDB(DB_NAME);
+      MongoClient mongoClient = new MongoClient(DocStoreConnectorImpl.SERVER, DocStoreConnectorImpl.PORT);
+      this.db = mongoClient.getDB(DocStoreConnectorImpl.DB_NAME);
  
     } catch (UnknownHostException e) {
       e.printStackTrace();
