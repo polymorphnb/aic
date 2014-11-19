@@ -14,7 +14,6 @@
 	<packaging>pom</packaging>
 
 	<properties>
-		<version.servlet>3.0.1</version.servlet>
 		<version.h2>1.4.177</version.h2>
 		<version.slf4j>1.7.7</version.slf4j>
 		<version.twitter>4.0.2</version.twitter>
@@ -33,13 +32,6 @@
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-log4j12</artifactId>
 				<version>${version.slf4j}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>javax.servlet</groupId>
-				<artifactId>javax.servlet-api</artifactId>
-				<version>${version.servlet}</version>
-				<scope>provided</scope>
 			</dependency>
 
 			<dependency>

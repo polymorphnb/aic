@@ -13,7 +13,7 @@ public final class JobBuilder {
     return new SearchTweetsJob.Builder(searchTerm);
   }
 
-  public static LookUpUsersJob.Builder FindUserJob(final List<Long> userIdsToLookUp) {
+  public static LookUpUsersJob.Builder LookUpUsersJob(final List<Long> userIdsToLookUp) {
     return new LookUpUsersJob.Builder(userIdsToLookUp);
   }
 }

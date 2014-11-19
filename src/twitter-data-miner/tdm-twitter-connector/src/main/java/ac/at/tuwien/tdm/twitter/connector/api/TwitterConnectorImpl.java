@@ -1,5 +1,6 @@
 package ac.at.tuwien.tdm.twitter.connector.api;
 
+import ac.at.tuwien.tdm.twitter.connector.Defense;
 import ac.at.tuwien.tdm.twitter.connector.job.JobBuilder;
 import ac.at.tuwien.tdm.twitter.connector.job.LookUpUsersJob;
 import ac.at.tuwien.tdm.twitter.connector.job.SearchTweetsJob;
@@ -9,15 +10,22 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+/**
+ * Implementation of {@link TwitterConnector}
+ * 
+ * @author Irnes Okic (irnes.okic@student.tuwien.ac.at)
+ *
+ */
 public final class TwitterConnectorImpl implements TwitterConnector {
 
   private final ExecutorService searchTweetsExecutor = Executors.newSingleThreadExecutor();
   
-  private final ExecutorService findUserExecutor = Executors.newSingleThreadExecutor();
+  private final ExecutorService lookupUsersExecutor = Executors.newSingleThreadExecutor();
   
   @Override
   public Future<List<Tweet>> findByKeyWord(final String searchTerm, final boolean searchOnlyInHashTags) {
-
+    Defense.notBlank("searchTerm", searchTerm);
+    
     final SearchTweetsJob searchTweetsJob = 
         JobBuilder
           .SearchTweetsJob(searchTerm)
@@ -30,6 +38,8 @@ public final class TwitterConnectorImpl implements TwitterConnector {
   @Override
   public Future<List<Tweet>> findByKeyWord(final String searchTerm, final boolean searchOnlyInHashTags, 
       final int maxResults) {
+    Defense.notBlank("searchTerm", searchTerm);
+    Defense.biggerThanZero("maxResults", maxResults);
 
     final SearchTweetsJob searchTweetsJob = 
         JobBuilder
@@ -43,18 +53,25 @@ public final class TwitterConnectorImpl implements TwitterConnector {
 
   @Override
   public Future<List<User>> lookUpUsersById(final List<Long> userIdsToLookUp) {
+    Defense.notEmpty("userIdsToLookUp", userIdsToLookUp);
+    
+    if(userIdsToLookUp.size() > 100){
+      throw new IllegalArgumentException(
+          String.format("List with userIdsToLookUp must not contain more than 100 values. Actual size: ", 
+              userIdsToLookUp.size()));
+    }
 
     final LookUpUsersJob findUserJob =
         JobBuilder
-          .FindUserJob(userIdsToLookUp)
+          .LookUpUsersJob(userIdsToLookUp)
           .build();
     
-    return findUserExecutor.submit(findUserJob);
+    return lookupUsersExecutor.submit(findUserJob);
   }
 
   @Override
   public void shutdownService() {
     searchTweetsExecutor.shutdownNow();
-    findUserExecutor.shutdownNow();
+    lookupUsersExecutor.shutdownNow();
   }
 }

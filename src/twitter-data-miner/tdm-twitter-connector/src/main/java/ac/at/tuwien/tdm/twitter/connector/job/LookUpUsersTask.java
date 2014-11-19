@@ -1,6 +1,7 @@
 package ac.at.tuwien.tdm.twitter.connector.job;
 
 import ac.at.tuwien.tdm.twitter.connector.DtoFactory;
+import ac.at.tuwien.tdm.twitter.connector.Maybe;
 import ac.at.tuwien.tdm.twitter.connector.api.User;
 
 import java.util.ArrayList;
@@ -31,7 +32,12 @@ public final class LookUpUsersTask implements Task<LookUpUsersResult> {
     final ResponseList<twitter4j.User> twitterUsers = twitter.lookupUsers(toPrimitiveArray(userIdsToLookUp));
 
     for (final twitter4j.User twitterUser : twitterUsers) {
-      users.add(DtoFactory.createUserFromTwitterUser(twitterUser));
+      // dto factory performs sanity checks
+      final Maybe<User> maybeUser = DtoFactory.createUserFromTwitterUser(twitterUser);
+
+      if (maybeUser.isKnown()) {
+        users.add(maybeUser.value());
+      }
     }
 
     return new LookUpUsersResult(users);

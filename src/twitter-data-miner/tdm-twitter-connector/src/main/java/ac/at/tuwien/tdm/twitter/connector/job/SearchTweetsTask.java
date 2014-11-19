@@ -1,6 +1,7 @@
 package ac.at.tuwien.tdm.twitter.connector.job;
 
 import ac.at.tuwien.tdm.twitter.connector.DtoFactory;
+import ac.at.tuwien.tdm.twitter.connector.Maybe;
 import ac.at.tuwien.tdm.twitter.connector.api.Tweet;
 
 import java.util.ArrayList;
@@ -83,14 +84,19 @@ public final class SearchTweetsTask implements Task<TweetSearchResult> {
       final Status retweetedStatus = status.getRetweetedStatus();
 
       if (retweetedStatus != null) {
-        tweets.add(buildTweet(retweetedStatus, false));
+        addStatus(tweets, retweetedStatus, false);
       }
 
-      tweets.add(buildTweet(status, true));
+      addStatus(tweets, status, true);
     }
   }
 
-  private Tweet buildTweet(final Status status, final boolean includeRetweetedStatus) {
-    return DtoFactory.createTweetFromStatus(status, includeRetweetedStatus);
+  private void addStatus(final List<Tweet> tweets, final Status status, final boolean includeRetweetedStatus) {
+    // dto factory performs sanity checks
+    final Maybe<Tweet> maybeTweet = DtoFactory.createTweetFromStatus(status, includeRetweetedStatus);
+
+    if (maybeTweet.isKnown()) {
+      tweets.add(maybeTweet.value());
+    }
   }
 }
