@@ -31,7 +31,7 @@ public interface TwitterConnector {
    * @param searchOnlyInHashTags restricts search to hash tags only
    * @return a {@link Future} that returns a list of tweets, or an empty list if nothing was found
    */
-  Future<List<Tweet>> findByKeyWord(String searchTerm, boolean searchOnlyInHashTags);
+  Future<List<Tweet>> findByKeyWord(String searchTerm, boolean searchOnlyInHashTags) throws TwitterConnectorException;
 
   /**
    * Finds tweets using the given search term, searching in 'free text' and hash tags. Returns an empty list if nothing
@@ -46,7 +46,8 @@ public interface TwitterConnector {
    * @param maxResults maximum number of tweets that should be returned
    * @return a {@link Future} that returns a list of tweets, or an empty list if nothing was found
    */
-  Future<List<Tweet>> findByKeyWord(String searchTerm, boolean searchOnlyInHashTags, int maxResults);
+  Future<List<Tweet>> findByKeyWord(String searchTerm, boolean searchOnlyInHashTags, int maxResults)
+      throws TwitterConnectorException;
 
   /**
    * Finds users using the given user ids. Limited to 100 users.
@@ -54,7 +55,7 @@ public interface TwitterConnector {
    * @param ids list of user ids that should be looked up. Must not be more than 100 ids
    * @return a {@link Future} that returns a list of users, or an empty list if nothing was found
    */
-  Future<List<User>> lookUpUsersById(List<Long> ids);
+  Future<List<User>> lookUpUsersById(List<Long> ids) throws TwitterConnectorException;
 
   /**
    * Shuts the connector down (stopping 'running' threads)

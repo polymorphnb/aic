@@ -23,7 +23,8 @@ public final class TwitterConnectorImpl implements TwitterConnector {
   private final ExecutorService lookupUsersExecutor = Executors.newSingleThreadExecutor();
   
   @Override
-  public Future<List<Tweet>> findByKeyWord(final String searchTerm, final boolean searchOnlyInHashTags) {
+  public Future<List<Tweet>> findByKeyWord(final String searchTerm, final boolean searchOnlyInHashTags) 
+      throws TwitterConnectorException {
     Defense.notBlank("searchTerm", searchTerm);
     
     final SearchTweetsJob searchTweetsJob = 
@@ -37,7 +38,7 @@ public final class TwitterConnectorImpl implements TwitterConnector {
 
   @Override
   public Future<List<Tweet>> findByKeyWord(final String searchTerm, final boolean searchOnlyInHashTags, 
-      final int maxResults) {
+      final int maxResults) throws TwitterConnectorException {
     Defense.notBlank("searchTerm", searchTerm);
     Defense.biggerThanZero("maxResults", maxResults);
 
@@ -52,15 +53,9 @@ public final class TwitterConnectorImpl implements TwitterConnector {
   }
 
   @Override
-  public Future<List<User>> lookUpUsersById(final List<Long> userIdsToLookUp) {
+  public Future<List<User>> lookUpUsersById(final List<Long> userIdsToLookUp) throws TwitterConnectorException {
     Defense.notEmpty("userIdsToLookUp", userIdsToLookUp);
     
-    if(userIdsToLookUp.size() > 100){
-      throw new IllegalArgumentException(
-          String.format("List with userIdsToLookUp must not contain more than 100 values. Actual size: ", 
-              userIdsToLookUp.size()));
-    }
-
     final LookUpUsersJob findUserJob =
         JobBuilder
           .LookUpUsersJob(userIdsToLookUp)

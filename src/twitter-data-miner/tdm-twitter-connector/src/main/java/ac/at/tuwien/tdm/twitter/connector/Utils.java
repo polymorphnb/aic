@@ -12,7 +12,7 @@ public final class Utils {
     // hide constructor
   }
 
-  public static boolean isNotNullAndNotBlank(final String str) {
+  public static boolean isNotBlank(final String str) {
     if (str == null || str.trim().isEmpty()) {
       return false;
     } else {

@@ -6,6 +6,12 @@ import java.util.List;
 
 import twitter4j.Query;
 
+/**
+ * Represents a tweet search result that may contain a following up query (next result page)
+ * 
+ * @author Irnes Okic (irnes.okic@student.tuwien.ac.at)
+ * 
+ */
 public final class TweetSearchResult {
 
   private final List<Tweet> tweets;

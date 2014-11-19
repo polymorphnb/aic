@@ -1,8 +1,11 @@
 package ac.at.tuwien.tdm.twitter.connector.job;
 
+import ac.at.tuwien.tdm.twitter.connector.Defense;
 import ac.at.tuwien.tdm.twitter.connector.DtoFactory;
 import ac.at.tuwien.tdm.twitter.connector.Maybe;
+import ac.at.tuwien.tdm.twitter.connector.TwitterConnectorConstants;
 import ac.at.tuwien.tdm.twitter.connector.api.Tweet;
+import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnectorException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +17,13 @@ import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 
+/**
+ * Looks for up to 'tweetsPerPage' tweets (tweets per result page) containing a given search term. <br />
+ * default value: {@link TwitterConnectorConstants.DEFAULT_AMOUNT_OF_TWEETS_PER_RESULT_PAGE}
+ * 
+ * @author Irnes Okic (irnes.okic@student.tuwien.ac.at)
+ * 
+ */
 public final class SearchTweetsTask implements Task<TweetSearchResult> {
 
   private final String searchTerm;
@@ -38,10 +48,11 @@ public final class SearchTweetsTask implements Task<TweetSearchResult> {
   }
 
   public static SearchTweetsTask newInstanceForContinuingSearch(final Query query, final int tweetsPerPage) {
+    Defense.notNull("Query", query);
     return new SearchTweetsTask(null, false, query, tweetsPerPage);
   }
 
-  public TweetSearchResult execute() throws LimitReachedException, TwitterException {
+  public TweetSearchResult execute() throws LimitReachedException, TwitterConnectorException {
 
     final List<Tweet> tweets = new ArrayList<Tweet>(Integer.highestOneBit(tweetsPerPage) * 2);
     QueryResult result = null;
@@ -49,31 +60,28 @@ public final class SearchTweetsTask implements Task<TweetSearchResult> {
     try {
       final Twitter twitter = TwitterFactory.getSingleton();
 
-      Query query = buildStatusSearchQuery();
+      Query query = (this.query != null ? this.query : buildStatusSearchQuery());
       result = twitter.search(query);
       processResults(result, tweets);
 
     } catch (final TwitterException e) {
       if (e.exceededRateLimitation()) {
-        throw new LimitReachedException();
+        throw new LimitReachedException(e.getRateLimitStatus());
       } else {
-        throw e;
+        throw new TwitterConnectorException(e);
       }
     }
 
-    return new TweetSearchResult(tweets, result.hasNext() ? result.nextQuery() : null);
+    final boolean isNextQueryAvailable = (result != null && result.hasNext());
+    return new TweetSearchResult(tweets, isNextQueryAvailable ? result.nextQuery() : null);
   }
 
   private Query buildStatusSearchQuery() {
-    if (this.query != null) {
-      return this.query;
-    }
-
     final String hashTagSearchTerm = (searchOnlyInHashTags ? "#" : "");
 
     final Query query = new Query(hashTagSearchTerm + searchTerm);
     query.setCount(tweetsPerPage);
-    query.setLang("en");
+    query.setLang(TwitterConnectorConstants.TWEET_LANGUAGE);
 
     return query;
   }

@@ -1,15 +1,20 @@
 package ac.at.tuwien.tdm.twitter.connector.job;
 
+import ac.at.tuwien.tdm.twitter.connector.TwitterConnectorConstants;
 import ac.at.tuwien.tdm.twitter.connector.api.Tweet;
+import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnectorException;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Looks for up to 'maxResults' tweets containing a given search term. <br />
+ * default value: {@link TwitterConnectorConstants.DEFAULT_MAX_RESULTS_PER_TWEET_SEARCH}
+ * 
+ * @author Irnes Okic (irnes.okic@student.tuwien.ac.at)
+ * 
+ */
 public final class SearchTweetsJob implements Job<List<Tweet>> {
-
-  private static final int DEFAULT_MAX_RESULTS_PER_TWEET_SEARCH = 1000;
-
-  private static final int DEFAULT_TWEETS_PER_PAGE = 100;
 
   private final String searchTerm;
 
@@ -24,35 +29,40 @@ public final class SearchTweetsJob implements Job<List<Tweet>> {
   }
 
   @Override
-  public List<Tweet> call() throws Exception {
+  public List<Tweet> call() throws TwitterConnectorException {
 
-    final List<Tweet> allTweets = new ArrayList<>(Integer.highestOneBit(DEFAULT_MAX_RESULTS_PER_TWEET_SEARCH) * 2);
+    final List<Tweet> allTweets = new ArrayList<>(Integer.highestOneBit(maxResults) * 2);
+    int resultsPerPage = TwitterConnectorConstants.DEFAULT_AMOUNT_OF_TWEETS_PER_RESULT_PAGE;
 
-    SearchTweetsTask task = SearchTweetsTask.newInstanceForFirstSearch(this, DEFAULT_TWEETS_PER_PAGE);
-    TweetSearchResult result = task.execute();
-    allTweets.addAll(result.getTweets());
-
-    int searchRuns = 1;
-
-    while (result.getNextQuery() != null) {
-
-      boolean isLastSearch = false;
-      int tweetsPerPage = DEFAULT_TWEETS_PER_PAGE;
-
-      if ((searchRuns + 1) * DEFAULT_TWEETS_PER_PAGE >= DEFAULT_MAX_RESULTS_PER_TWEET_SEARCH) {
-        isLastSearch = true;
-        tweetsPerPage = (DEFAULT_MAX_RESULTS_PER_TWEET_SEARCH - (searchRuns * DEFAULT_TWEETS_PER_PAGE));
-      }
-
-      task = SearchTweetsTask.newInstanceForContinuingSearch(result.getNextQuery(), tweetsPerPage);
-      result = task.execute();
-
+    try {
+      SearchTweetsTask task = SearchTweetsTask.newInstanceForFirstSearch(this, resultsPerPage);
+      TweetSearchResult result = task.execute();
       allTweets.addAll(result.getTweets());
-      searchRuns++;
 
-      if (isLastSearch) {
-        break;
+      int searchRuns = 1;
+
+      while (result.getNextQuery() != null) {
+
+        boolean isLastSearch = false;
+
+        if ((searchRuns + 1) * resultsPerPage >= maxResults) {
+          isLastSearch = true;
+          resultsPerPage = (maxResults - (searchRuns * resultsPerPage));
+        }
+
+        task = SearchTweetsTask.newInstanceForContinuingSearch(result.getNextQuery(), resultsPerPage);
+        result = task.execute();
+
+        allTweets.addAll(result.getTweets());
+        searchRuns++;
+
+        if (isLastSearch) {
+          break;
+        }
       }
+    } catch (final LimitReachedException e) {
+      //FIXME
+      throw new RuntimeException(e);
     }
 
     return allTweets;
@@ -66,10 +76,6 @@ public final class SearchTweetsJob implements Job<List<Tweet>> {
     return searchOnlyInHashTags;
   }
 
-  public int getMaxResults() {
-    return maxResults;
-  }
-
   public static class Builder {
 
     private String searchTerm;
@@ -78,7 +84,7 @@ public final class SearchTweetsJob implements Job<List<Tweet>> {
     private boolean searchOnlyInHashTags = false;
 
     // optional
-    private int maxResults = DEFAULT_MAX_RESULTS_PER_TWEET_SEARCH;
+    private int maxResults = TwitterConnectorConstants.DEFAULT_MAX_RESULTS_PER_TWEET_SEARCH;
 
     public Builder(final String searchTerm) {
       this.searchTerm = searchTerm;

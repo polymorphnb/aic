@@ -3,6 +3,7 @@ package ac.at.tuwien.tdm.file.dumper;
 import ac.at.tuwien.tdm.twitter.connector.api.Tweet;
 import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnector;
 import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnectorFactory;
+import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnectorException;
 import ac.at.tuwien.tdm.twitter.connector.api.User;
 
 import java.io.BufferedReader;
@@ -30,7 +31,7 @@ public final class TwitterFileDumper {
   private TwitterFileDumper() {
   }
 
-  public static void main(final String[] args) throws IOException {
+  public static void main(final String[] args) throws IOException, TwitterConnectorException {
 
     final TwitterConnector connector = TwitterConnectorFactory.createTwitterConnector();
     TwitterFileDumper fileDumper = null;
@@ -46,7 +47,7 @@ public final class TwitterFileDumper {
     }
   }
 
-  private void perform(final TwitterConnector connector) throws IOException {
+  private void perform(final TwitterConnector connector) throws IOException, TwitterConnectorException {
 
     final List<TweetSearchTopic> topics = readTopicsFromDefaultFile();
 

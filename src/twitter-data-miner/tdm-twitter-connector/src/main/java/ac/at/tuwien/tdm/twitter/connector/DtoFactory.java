@@ -23,7 +23,7 @@ public final class DtoFactory {
     final Long retweetedFromUserId = (isRetweetAndIncludeOriginalTweet ? status.getRetweetedStatus().getUser().getId()
         : -1l);
 
-    final boolean isTweetUsable = (status.getId() != -1l && Utils.isNotNullAndNotBlank(status.getText()) && status
+    final boolean isTweetUsable = (status.getId() != -1l && Utils.isNotBlank(status.getText()) && status
         .getUser() != null);
 
     // should not happen, but make it more robust anyway
