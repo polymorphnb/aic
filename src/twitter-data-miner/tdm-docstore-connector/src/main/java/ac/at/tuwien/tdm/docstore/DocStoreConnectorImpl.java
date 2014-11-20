@@ -107,6 +107,18 @@ public class DocStoreConnectorImpl {
     }
   }
   
+  public String getKeywordsForTopic(int id) {
+    DBCollection collection = this.db.getCollection(DocStoreConnectorImpl.TOPIC_COLLECTION);
+    BasicDBObject whereQuery = new BasicDBObject();
+    whereQuery.put("id", id);
+    DBCursor cursor = collection.find(whereQuery);
+    while(cursor.hasNext()) {
+        DBObject obj = cursor.next();
+        System.out.println(obj.get("keywords"));
+    }
+    return null;
+  }
+  
   public void dropCollection(String collectionName) {
     DBCollection collection = this.db.getCollection(collectionName);
     collection.drop();
@@ -120,13 +132,15 @@ public class DocStoreConnectorImpl {
     DocStoreConnectorImpl docstore = new DocStoreConnectorImpl();
     docstore.connect();
     //docstore.dropDatabase();
-//    docstore.createTopicCollection();
-//    docstore.createAdsCollection();
-//    
-//    docstore.retrieveAds();
-//    docstore.retrieveTopics();
+    docstore.createTopicCollection();
+    docstore.createAdsCollection();
     
-    docstore.getTopicForID(2);
+    docstore.retrieveAds();
+    docstore.retrieveTopics();
+    
+    docstore.getKeywordsForTopic(2);
+    
+    // docstore.getTopicForID(2);
   }
 
 }
