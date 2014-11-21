@@ -1,6 +1,6 @@
 package ac.at.tuwien.tdm.file.dumper.pipeline;
 
-import ac.at.tuwien.tdm.file.dumper.TweetSearchTopic;
+import ac.at.tuwien.tdm.file.dumper.TweetSearchTerm;
 import ac.at.tuwien.tdm.twitter.connector.api.Tweet;
 import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnector;
 import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnectorException;
@@ -12,9 +12,9 @@ import java.util.concurrent.Future;
 
 public final class TweetSearchTask extends TwitterTask {
 
-  private final TweetSearchTopic topic;
+  private final TweetSearchTerm topic;
 
-  public TweetSearchTask(final TwitterConnector twitterConnector, final TweetSearchTopic topic) {
+  public TweetSearchTask(final TwitterConnector twitterConnector, final TweetSearchTerm topic) {
     super(twitterConnector);
     this.topic = topic;
   }

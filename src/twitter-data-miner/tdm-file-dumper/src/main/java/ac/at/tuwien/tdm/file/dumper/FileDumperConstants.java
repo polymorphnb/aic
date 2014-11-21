@@ -1,5 +1,7 @@
 package ac.at.tuwien.tdm.file.dumper;
 
+import java.nio.charset.Charset;
+
 /**
  * File dumper constants
  * 
@@ -18,5 +20,9 @@ public final class FileDumperConstants {
 
   public static final String TOPICS_FILE_NAME = "topics.txt";
   
-  public static final int AMOUNT_OF_WORKER_THREADS = 10;
+  public static final int AMOUNT_OF_WORKER_THREADS = 5;
+  
+  public static final String LINE_ENDING = "\n";
+  
+  public static final Charset ENCODING = Charset.forName("UTF-8");
 }

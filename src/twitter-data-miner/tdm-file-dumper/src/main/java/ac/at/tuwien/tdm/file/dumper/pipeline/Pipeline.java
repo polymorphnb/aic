@@ -1,6 +1,6 @@
 package ac.at.tuwien.tdm.file.dumper.pipeline;
 
-import ac.at.tuwien.tdm.file.dumper.TweetSearchTopic;
+import ac.at.tuwien.tdm.file.dumper.TweetSearchTerm;
 import ac.at.tuwien.tdm.twitter.connector.api.Tweet;
 import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnector;
 import ac.at.tuwien.tdm.twitter.connector.api.User;
@@ -16,7 +16,7 @@ public final class Pipeline implements Runnable {
   
   private final CountDownLatch latch;
 
-  private Pipeline(final TwitterConnector twitterConnector, final CountDownLatch latch, final TweetSearchTopic topic) {
+  private Pipeline(final TwitterConnector twitterConnector, final CountDownLatch latch, final TweetSearchTerm topic) {
     this.latch = latch;
 
     tasks = new LinkedList<>();
@@ -25,7 +25,7 @@ public final class Pipeline implements Runnable {
     tasks.add(new WriteToFilesTask());
   }
 
-  public static Pipeline newInstance(final TwitterConnector twitterConnector, final CountDownLatch latch, final TweetSearchTopic topic) {
+  public static Pipeline newInstance(final TwitterConnector twitterConnector, final CountDownLatch latch, final TweetSearchTerm topic) {
     return new Pipeline(twitterConnector, latch, topic);
   }
 

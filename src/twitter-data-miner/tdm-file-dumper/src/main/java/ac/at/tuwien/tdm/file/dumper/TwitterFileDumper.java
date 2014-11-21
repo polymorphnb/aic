@@ -7,16 +7,15 @@ import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnector;
 import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnectorException;
 import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnectorFactory;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -58,10 +57,10 @@ public final class TwitterFileDumper {
   private void collect(final TwitterConnector connector) throws IOException, TwitterConnectorException,
       InterruptedException {
 
-    final List<TweetSearchTopic> topics = readTopicsFromDefaultFile();
+    final List<TweetSearchTerm> topics = readSearchTermsFromDefaultFile();
     final CountDownLatch latch = new CountDownLatch(topics.size());
 
-    for (final TweetSearchTopic topic : topics) {
+    for (final TweetSearchTerm topic : topics) {
       final Pipeline pipeline = Pipeline.newInstance(connector, latch, topic);
       executorService.submit(pipeline);
     }
@@ -70,15 +69,14 @@ public final class TwitterFileDumper {
     executorService.shutdownNow();
   }
 
-  private List<TweetSearchTopic> readTopicsFromDefaultFile() {
-    final List<TweetSearchTopic> topics = new ArrayList<>();
+  private List<TweetSearchTerm> readSearchTermsFromDefaultFile() {
+    final List<TweetSearchTerm> searchTerms = new ArrayList<>();
     final InputStream resource = ClassLoader.getSystemResourceAsStream(FileDumperConstants.TOPICS_FILE_NAME);
 
-    BufferedReader br = new BufferedReader(new InputStreamReader(resource));
-    String readLine;
-
     try {
-      while ((readLine = br.readLine()) != null) {
+      final List<String> readLines = IOUtils.readLines(resource, FileDumperConstants.ENCODING);
+
+      for (final String readLine : readLines) {
         final String[] values = readLine.split(";");
 
         if (values.length != 2) {
@@ -88,7 +86,7 @@ public final class TwitterFileDumper {
         final String searchTerm = values[0].trim();
         final boolean onlyHashTags = Boolean.parseBoolean(values[1].trim());
 
-        topics.add(new TweetSearchTopic(searchTerm, onlyHashTags));
+        searchTerms.add(new TweetSearchTerm(searchTerm, onlyHashTags));
       }
     } catch (final IOException e) {
       throw new RuntimeException(e);
@@ -96,13 +94,13 @@ public final class TwitterFileDumper {
       throw e;
     } finally {
       try {
-        br.close();
+        resource.close();
       } catch (IOException e) {
         // log and forget
       }
     }
 
-    return topics;
+    return searchTerms;
   }
 
   private void cleanUpResources() {

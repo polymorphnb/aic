@@ -1,5 +1,7 @@
 package ac.at.tuwien.tdm.twitter.connector.api;
 
+import ac.at.tuwien.tdm.twitter.connector.GsonInstance;
+
 /**
  * DTO for tweet data.
  * 
@@ -109,8 +111,6 @@ public final class Tweet {
 
   @Override
   public String toString() {
-    return "Tweet [id=" + id + ", content=" + content + ", authorUserId=" + authorUserId + ", repliedToUserId="
-        + repliedToUserId + ", retweetedFromUserId=" + retweetedFromUserId + ", favoritedCount=" + favoritedCount
-        + ", retweetedCount=" + retweetedCount + "]";
+    return GsonInstance.get().toJson(this);
   }
 }

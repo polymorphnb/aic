@@ -1,5 +1,7 @@
 package ac.at.tuwien.tdm.twitter.connector.api;
 
+import ac.at.tuwien.tdm.twitter.connector.GsonInstance;
+
 /**
  * DTO for user data.
  * 
@@ -100,7 +102,6 @@ public final class User {
 
   @Override
   public String toString() {
-    return "User [id=" + id + ", screenName=" + screenName + ", name=" + name + ", location=" + location
-        + ", language=" + language + ", statusesCount=" + statusesCount + ", followersCount=" + followersCount + "]";
+    return GsonInstance.get().toJson(this);
   }
 }

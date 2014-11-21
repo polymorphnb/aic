@@ -1,17 +1,18 @@
 package ac.at.tuwien.tdm.file.dumper.writer;
 
-import java.io.BufferedWriter;
+import ac.at.tuwien.tdm.file.dumper.FileDumperConstants;
+
+import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
 import java.util.TimeZone;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.google.gson.Gson;
 
 /**
  * A simple file writer that persists a list of data as json (one entry per line). Appending content is thread safe.
@@ -24,52 +25,37 @@ public abstract class TwitterFileWriter<T> {
 
   private static final long timestamp = Calendar.getInstance(TimeZone.getTimeZone("UTC")).getTimeInMillis();
 
-  private static final Gson gson = new Gson();
-
   private final String filePath;
 
-  private BufferedWriter fileWriter;
+  private BufferedOutputStream outputStream;
 
   protected TwitterFileWriter(final String fileName, final String fileExtension) {
     this.filePath = (fileName + timestamp + fileExtension);
   }
 
   public synchronized void appendToFile(final List<T> dataList) throws IOException {
-    final BufferedWriter fileWriter = openFileAsStream();
+    final BufferedOutputStream outputStream = openFileAsStream();
 
-    for (final T data : dataList) {
-      fileWriter.append(gson.toJson(data));
-      fileWriter.newLine();
-    }
+    IOUtils.writeLines(dataList, FileDumperConstants.LINE_ENDING, outputStream, FileDumperConstants.ENCODING);
+    outputStream.flush();
   }
 
-  private BufferedWriter openFileAsStream() throws IOException {
-    if (fileWriter == null) {
+  private BufferedOutputStream openFileAsStream() throws IOException {
+    if (outputStream == null) {
       final File tweetFile = new File(filePath);
-
-      final File dir = tweetFile.getParentFile();
-
-      if (!dir.exists()) {
-        dir.mkdirs();
-      }
-
-      if (!tweetFile.exists()) {
-        tweetFile.createNewFile();
-      }
-
-      fileWriter = new BufferedWriter(new FileWriter(filePath, true));
+      outputStream = new BufferedOutputStream(FileUtils.openOutputStream(tweetFile, true));
     }
 
-    return fileWriter;
+    return outputStream;
   }
 
   public void closeFileStream() {
     try {
-      if (fileWriter != null) {
-        fileWriter.close();
+      if (outputStream != null) {
+        outputStream.close();
       }
     } catch (IOException e) {
-      LOGGER.error(String.format("Couldn't close file writer of file '%s'", filePath), e);
+      LOGGER.error(String.format("Couldn't close output stream of file '%s'", filePath), e);
     }
   }
 }

@@ -6,13 +6,13 @@ package ac.at.tuwien.tdm.file.dumper;
  * @author Irnes Okic (irnes.okic@student.tuwien.ac.at)
  * 
  */
-public final class TweetSearchTopic {
+public final class TweetSearchTerm {
 
   private final String searchTerm;
 
   private final boolean searchOnlyInHashTags;
 
-  public TweetSearchTopic(final String searchTerm, final boolean searchOnlyInHashTags) {
+  public TweetSearchTerm(final String searchTerm, final boolean searchOnlyInHashTags) {
     this.searchTerm = searchTerm;
     this.searchOnlyInHashTags = searchOnlyInHashTags;
   }
