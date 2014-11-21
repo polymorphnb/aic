@@ -1,4 +1,4 @@
-package ac.at.tuwien.tdm.file.dumper;
+package ac.at.tuwien.tdm.file.dumper.writer;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -8,9 +8,19 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.TimeZone;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.google.gson.Gson;
 
-abstract class TwitterFileWriter<T> {
+/**
+ * A simple file writer that persists a list of data as json (one entry per line). Appending content is thread safe.
+ * 
+ * @author Irnes Okic (irnes.okic@student.tuwien.ac.at)
+ */
+public abstract class TwitterFileWriter<T> {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(TwitterFileWriter.class);
 
   private static final long timestamp = Calendar.getInstance(TimeZone.getTimeZone("UTC")).getTimeInMillis();
 
@@ -24,7 +34,7 @@ abstract class TwitterFileWriter<T> {
     this.filePath = (fileName + timestamp + fileExtension);
   }
 
-  public void appendToFile(final List<T> dataList) throws IOException {
+  public synchronized void appendToFile(final List<T> dataList) throws IOException {
     final BufferedWriter fileWriter = openFileAsStream();
 
     for (final T data : dataList) {
@@ -59,7 +69,7 @@ abstract class TwitterFileWriter<T> {
         fileWriter.close();
       }
     } catch (IOException e) {
-
+      LOGGER.error(String.format("Couldn't close file writer of file '%s'", filePath), e);
     }
   }
 }

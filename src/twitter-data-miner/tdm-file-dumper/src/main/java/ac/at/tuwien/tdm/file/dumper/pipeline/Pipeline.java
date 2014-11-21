@@ -1,0 +1,47 @@
+package ac.at.tuwien.tdm.file.dumper.pipeline;
+
+import ac.at.tuwien.tdm.file.dumper.TweetSearchTopic;
+import ac.at.tuwien.tdm.twitter.connector.api.Tweet;
+import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnector;
+import ac.at.tuwien.tdm.twitter.connector.api.User;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.concurrent.CountDownLatch;
+
+public final class Pipeline implements Runnable {
+
+  private final LinkedList<Task> tasks;
+  
+  private final CountDownLatch latch;
+
+  private Pipeline(final TwitterConnector twitterConnector, final CountDownLatch latch, final TweetSearchTopic topic) {
+    this.latch = latch;
+
+    tasks = new LinkedList<>();
+    tasks.add(new TweetSearchTask(twitterConnector, topic));
+    tasks.add(new UserLookUpTask(twitterConnector));
+    tasks.add(new WriteToFilesTask());
+  }
+
+  public static Pipeline newInstance(final TwitterConnector twitterConnector, final CountDownLatch latch, final TweetSearchTopic topic) {
+    return new Pipeline(twitterConnector, latch, topic);
+  }
+
+  @Override
+  public void run() {
+    final List<Tweet> tweets = new ArrayList<>();
+    final List<User> users = new ArrayList<>();
+
+    try {
+      for (final Task task : tasks) {
+        task.execute(tweets, users);
+      }
+    } catch (final Exception e) {
+
+    }finally{
+      latch.countDown();
+    }
+  }
+}

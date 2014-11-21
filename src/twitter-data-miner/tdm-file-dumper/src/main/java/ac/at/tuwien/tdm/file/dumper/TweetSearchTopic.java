@@ -1,6 +1,12 @@
 package ac.at.tuwien.tdm.file.dumper;
 
-final class TweetSearchTopic {
+/**
+ * Represents a topic that should be searched for (in tweets)
+ * 
+ * @author Irnes Okic (irnes.okic@student.tuwien.ac.at)
+ * 
+ */
+public final class TweetSearchTopic {
 
   private final String searchTerm;
 

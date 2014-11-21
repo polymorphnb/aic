@@ -1,44 +1,52 @@
 package ac.at.tuwien.tdm.file.dumper;
 
-import ac.at.tuwien.tdm.twitter.connector.api.Tweet;
+import ac.at.tuwien.tdm.file.dumper.pipeline.Pipeline;
+import ac.at.tuwien.tdm.file.dumper.writer.TweetFileWriter;
+import ac.at.tuwien.tdm.file.dumper.writer.UserFileWriter;
 import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnector;
-import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnectorFactory;
 import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnectorException;
-import ac.at.tuwien.tdm.twitter.connector.api.User;
+import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnectorFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
-import java.util.Set;
-import java.util.concurrent.Future;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * Collects tweets and users related to topics defined by topics.txt
+ * 
+ * @author Irnes Okic (irnes.okic@student.tuwien.ac.at)
+ * 
+ */
 public final class TwitterFileDumper {
 
-  private final Queue<Future<List<Tweet>>> pendingTweetSearchResults = new LinkedList<>();
+  private static final Logger LOGGER = LoggerFactory.getLogger(TwitterFileDumper.class);
 
-  private final Queue<Future<List<User>>> pendingUserLookUpResults = new LinkedList<>();
-
-  private final LinkedList<Long> userIdsToLookUp = new LinkedList<>();
-
-  private final Set<Long> alreadyLookedUpUserIds = new HashSet<>();
+  private final ExecutorService executorService = Executors
+      .newFixedThreadPool(FileDumperConstants.AMOUNT_OF_WORKER_THREADS);
 
   private TwitterFileDumper() {
+    // hide constructor
   }
 
-  public static void main(final String[] args) throws IOException, TwitterConnectorException {
+  public static void main(final String[] args) {
 
     final TwitterConnector connector = TwitterConnectorFactory.createTwitterConnector();
     TwitterFileDumper fileDumper = null;
 
     try {
       fileDumper = new TwitterFileDumper();
-      fileDumper.perform(connector);
+      fileDumper.collect(connector);
+    } catch (final Exception e) {
+      LOGGER.error("Unexpected exception", e);
     } finally {
       if (fileDumper != null) {
         fileDumper.cleanUpResources();
@@ -47,130 +55,24 @@ public final class TwitterFileDumper {
     }
   }
 
-  private void perform(final TwitterConnector connector) throws IOException, TwitterConnectorException {
+  private void collect(final TwitterConnector connector) throws IOException, TwitterConnectorException,
+      InterruptedException {
 
     final List<TweetSearchTopic> topics = readTopicsFromDefaultFile();
+    final CountDownLatch latch = new CountDownLatch(topics.size());
 
     for (final TweetSearchTopic topic : topics) {
-      pendingTweetSearchResults.add(connector.findByKeyWord(topic.getSearchTerm(), topic.isSearchOnlyInHashTags()));
+      final Pipeline pipeline = Pipeline.newInstance(connector, latch, topic);
+      executorService.submit(pipeline);
     }
 
-    while (pendingTweetSearchResults.peek() != null) {
-
-      final Future<List<Tweet>> pendingSearchResult = pendingTweetSearchResults.poll();
-      List<Tweet> searchResult = null;
-
-      try {
-        searchResult = pendingSearchResult.get();
-      } catch (final Exception e) {
-        // dismiss search
-      }
-
-      if (searchResult != null) {
-        retrieveUserIdsForLookUp(searchResult);
-        processTweetResults(searchResult);
-      }
-
-      while (userIdsToLookUp.size() >= 100) {
-        final List<Long> firstUserIds = pollFirstOneHundredEntries(userIdsToLookUp);
-        pendingUserLookUpResults.add(connector.lookUpUsersById(firstUserIds));
-      }
-
-      while (pendingUserLookUpResults.peek() != null) {
-        final Future<List<User>> pendingLookUpResult = pendingUserLookUpResults.poll();
-
-        List<User> lookUpResult = null;
-
-        try {
-          lookUpResult = pendingLookUpResult.get();
-        } catch (final Exception e) {
-          // dismiss search
-        }
-
-        if (lookUpResult != null) {
-          processUserResults(lookUpResult);
-        }
-      }
-    }
-
-    if (userIdsToLookUp.size() > 0) {
-      pendingUserLookUpResults.add(connector.lookUpUsersById((List<Long>) userIdsToLookUp));
-    }
-
-    while (pendingUserLookUpResults.peek() != null) {
-      final Future<List<User>> pendingLookUpResult = pendingUserLookUpResults.poll();
-
-      List<User> lookUpResult = null;
-
-      try {
-        lookUpResult = pendingLookUpResult.get();
-      } catch (final Exception e) {
-        // dismiss search
-      }
-
-      if (lookUpResult != null) {
-        processUserResults(lookUpResult);
-      }
-    }
-  }
-
-  private List<Long> pollFirstOneHundredEntries(final Queue<Long> userIdQueue) {
-    final List<Long> userIds = new ArrayList<>(128);
-
-    for (int i = 0; i < 100; i++) {
-      final Long userId = userIdQueue.poll();
-
-      if (userId == null) {
-        break;
-      }
-
-      if (!alreadyLookedUpUserIds.contains(userId)) {
-        userIds.add(userId);
-        alreadyLookedUpUserIds.add(userId);
-      }
-    }
-
-    return userIds;
-  }
-
-  private void retrieveUserIdsForLookUp(final List<Tweet> tweets) {
-    for (final Tweet tweet : tweets) {
-
-      if (tweet.getRepliedToUserId() != -1) {
-        userIdsToLookUp.add(tweet.getRepliedToUserId());
-      }
-
-      if (tweet.getRetweetedFromUserId() != -1) {
-        userIdsToLookUp.add(tweet.getRetweetedFromUserId());
-      }
-    }
-  }
-
-  private void processTweetResults(final List<Tweet> tweets) throws IOException {
-    TweetFileWriter.getInstance().appendToFile(tweets);
-
-    final List<User> authorUsers = retrieveAuthorUsersFromTweets(tweets);
-    UserFileWriter.getInstance().appendToFile(authorUsers);
-  }
-
-  private void processUserResults(final List<User> users) throws IOException {
-    UserFileWriter.getInstance().appendToFile(users);
-  }
-
-  private List<User> retrieveAuthorUsersFromTweets(final List<Tweet> tweets) {
-    final List<User> authorUsers = new ArrayList<>(Integer.highestOneBit(tweets.size()) * 2);
-
-    for (final Tweet tweet : tweets) {
-      authorUsers.add(tweet.getAuthorUser());
-      alreadyLookedUpUserIds.add(tweet.getAuthorUserId());
-    }
-
-    return authorUsers;
+    latch.await();
+    executorService.shutdownNow();
   }
 
   private List<TweetSearchTopic> readTopicsFromDefaultFile() {
     final List<TweetSearchTopic> topics = new ArrayList<>();
-    final InputStream resource = ClassLoader.getSystemResourceAsStream(Constants.TOPICS_FILE_NAME);
+    final InputStream resource = ClassLoader.getSystemResourceAsStream(FileDumperConstants.TOPICS_FILE_NAME);
 
     BufferedReader br = new BufferedReader(new InputStreamReader(resource));
     String readLine;
@@ -205,5 +107,6 @@ public final class TwitterFileDumper {
 
   private void cleanUpResources() {
     TweetFileWriter.getInstance().closeFileStream();
+    UserFileWriter.getInstance().closeFileStream();
   }
 }

@@ -12,7 +12,7 @@ public final class TwitterConnectorConstants {
     //hide constructor
   }
 
-  public static final int MINUTE_IN_SECONDS = 60;
+  private static final int MINUTE_IN_SECONDS = 60;
 
   public static final int TIME_WINDOW_IN_SECONDS = (15 * MINUTE_IN_SECONDS);
   
