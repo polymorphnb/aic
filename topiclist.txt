@@ -1,0 +1,46 @@
+Cars:
+	- Mercedes
+	- Ferrari
+	- Seat
+	- VW
+	- Motor
+	
+Programming:
+	- Java
+	- Scala
+	- c#
+	- HTML5
+	- Javascript
+
+VIP: (das sollte recht viel hergeben)
+	- Justin Bieber
+	- Lady Gaga
+	- Bruno Mars
+	- ...
+	
+Politics:
+	- Obama
+	- Putin
+	- Ukraine
+	- ...
+	
+Games:
+	- Ubisoft
+	- EA
+	- ...
+	
+Music:
+	- Rock
+	- Punk
+	- Metal
+	- Guitar
+	- Drums
+	- ...
+
+Travel:
+	- Australia
+	- Great Barrier Reef
+	- Kangaroo
+	- Statue of Liberty
+	- Eiffeltower
+	- ...
