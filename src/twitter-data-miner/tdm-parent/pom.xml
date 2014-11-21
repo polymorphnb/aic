@@ -19,6 +19,7 @@
 		<version.twitter>4.0.2</version.twitter>
 		<version.gson>2.3</version.gson>
 		<version.commons.io>2.4</version.commons.io>
+		<version.neo4j>2.1.5</version.neo4j>
 	</properties>
 
 	<dependencyManagement>
@@ -57,6 +58,12 @@
 				<groupId>commons-io</groupId>
 				<artifactId>commons-io</artifactId>
 				<version>${version.commons.io}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.neo4j</groupId>
+				<artifactId>neo4j</artifactId>
+				<version>${version.neo4j}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
