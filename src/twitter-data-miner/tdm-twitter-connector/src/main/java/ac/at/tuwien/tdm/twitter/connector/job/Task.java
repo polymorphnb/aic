@@ -1,6 +1,7 @@
 package ac.at.tuwien.tdm.twitter.connector.job;
 
 import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnectorException;
+import ac.at.tuwien.tdm.twitter.connector.result.TaskResult;
 
 /**
  * Represents a (sub)request against twitter and is a part of {@link Job}
@@ -8,7 +9,7 @@ import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnectorException;
  * @author Irnes Okic (irnes.okic@student.tuwien.ac.at)
  * 
  */
-public interface Task<T> {
+public interface Task<T extends TaskResult> {
 
   /**
    * Executes a request against twitter and returns the result
@@ -18,5 +19,4 @@ public interface Task<T> {
    * @throws TwitterConnectorException some kind of request executing error
    */
   T execute() throws LimitReachedException, TwitterConnectorException;
-
 }

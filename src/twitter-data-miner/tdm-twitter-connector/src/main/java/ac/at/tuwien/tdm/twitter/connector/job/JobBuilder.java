@@ -21,4 +21,12 @@ public final class JobBuilder {
   public static LookUpUsersJob.Builder LookUpUsersJob(final List<Long> userIdsToLookUp) {
     return new LookUpUsersJob.Builder(userIdsToLookUp);
   }
+
+  public static FindFollowersJob.Builder FindFollowersJob(final Long userIdToLookUp) {
+    return new FindFollowersJob.Builder(userIdToLookUp);
+  }
+
+  public static FindFriendsJob.Builder FindFriendsJob(final Long userIdToLookUp) {
+    return new FindFriendsJob.Builder(userIdToLookUp);
+  }
 }

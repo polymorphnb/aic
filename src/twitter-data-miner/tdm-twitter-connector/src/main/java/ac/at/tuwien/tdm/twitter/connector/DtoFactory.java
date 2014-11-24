@@ -16,15 +16,17 @@ public final class DtoFactory {
     // hide constructor
   }
 
-  public static Maybe<Tweet> createTweetFromStatus(final Status status, final boolean includeRetweetedStatus) {
+  public static Maybe<Tweet> createTweetFromStatus(final String searchTerm, final Status status,
+      final boolean includeRetweetedStatus) {
+    Defense.notBlank("searchTerm", searchTerm);
     Defense.notNull("status", status);
 
     final boolean isRetweetAndIncludeOriginalTweet = (status.getRetweetedStatus() != null && includeRetweetedStatus);
     final Long retweetedFromUserId = (isRetweetAndIncludeOriginalTweet ? status.getRetweetedStatus().getUser().getId()
         : -1l);
+    final Long retweetedFromTweetId = (isRetweetAndIncludeOriginalTweet ? status.getRetweetedStatus().getId() : -1l);
 
-    final boolean isTweetUsable = (status.getId() != -1l && Utils.isNotBlank(status.getText()) && status
-        .getUser() != null);
+    final boolean isTweetUsable = (status.getId() != -1l && Utils.isNotBlank(status.getText()) && status.getUser() != null);
 
     // should not happen, but make it more robust anyway
     if (!isTweetUsable) {
@@ -32,8 +34,9 @@ public final class DtoFactory {
     }
 
     final Tweet tweet = new Tweet(status.getId(), status.getText(),
-        createUserFromTwitterUser(status.getUser()).value(), status.getInReplyToUserId(), retweetedFromUserId,
-        status.getFavoriteCount(), status.getRetweetCount());
+        createUserFromTwitterUser(status.getUser()).value(), status.getInReplyToUserId(),
+        status.getInReplyToStatusId(), retweetedFromUserId, retweetedFromTweetId, status.getFavoriteCount(),
+        status.getRetweetCount(), searchTerm);
 
     return Maybe.definitely(tweet);
   }
@@ -43,7 +46,7 @@ public final class DtoFactory {
 
     final User user = new User(twitterUser.getId(), twitterUser.getScreenName(), twitterUser.getName(),
         twitterUser.getLocation(), twitterUser.getLang(), twitterUser.getStatusesCount(),
-        twitterUser.getFollowersCount());
+        twitterUser.getFavouritesCount(), twitterUser.getFollowersCount(), twitterUser.getFriendsCount());
 
     return Maybe.definitely(user);
   }

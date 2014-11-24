@@ -1,10 +1,11 @@
-package ac.at.tuwien.tdm.twitter.connector.job;
+package ac.at.tuwien.tdm.twitter.connector.result;
 
 import ac.at.tuwien.tdm.twitter.connector.api.Tweet;
 
 import java.util.List;
 
 import twitter4j.Query;
+import twitter4j.RateLimitStatus;
 
 /**
  * Represents a tweet search result that may contain a following up query (next result page)
@@ -12,19 +13,13 @@ import twitter4j.Query;
  * @author Irnes Okic (irnes.okic@student.tuwien.ac.at)
  * 
  */
-public final class TweetSearchResult {
-
-  private final List<Tweet> tweets;
+public final class TweetSearchResult extends ListTaskResult<Tweet> {
 
   private final Query nextQuery;
 
-  public TweetSearchResult(final List<Tweet> tweets, final Query nextQuery) {
-    this.tweets = tweets;
+  public TweetSearchResult(final RateLimitStatus rateLimitStatus, final List<Tweet> result, final Query nextQuery) {
+    super(rateLimitStatus, result);
     this.nextQuery = nextQuery;
-  }
-
-  public List<Tweet> getTweets() {
-    return tweets;
   }
 
   public Query getNextQuery() {

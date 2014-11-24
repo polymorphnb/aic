@@ -38,6 +38,8 @@ public final class TwitterFileDumper {
 
   public static void main(final String[] args) {
 
+    final long startUpTime = Clock.currentTime().getTimeInMillis();
+
     final TwitterConnector connector = TwitterConnectorFactory.createTwitterConnector();
     TwitterFileDumper fileDumper = null;
 
@@ -52,16 +54,26 @@ public final class TwitterFileDumper {
       }
       connector.shutdownService();
     }
+
+    final long durationInMilliSeconds = (startUpTime - Clock.currentTime().getTimeInMillis());
+    final long amountOfFoundTweets = TweetFileWriter.getInstance().getTotalAmountOfEntries();
+    final long amountOfFoundUsers = UserFileWriter.getInstance().getTotalAmountOfEntries();
+
+    final long durationMinutes = ((durationInMilliSeconds / 1000) / 60);
+    final long durationSeconds = ((durationInMilliSeconds - (durationMinutes * 60 * 1000)) / 1000);
+
+    LOGGER.info(String.format("Found %d tweets and %d users in %d minutes and %d seconds", amountOfFoundTweets,
+        amountOfFoundUsers, durationMinutes, durationSeconds));
   }
 
   private void collect(final TwitterConnector connector) throws IOException, TwitterConnectorException,
       InterruptedException {
 
-    final List<TweetSearchTerm> topics = readSearchTermsFromDefaultFile();
-    final CountDownLatch latch = new CountDownLatch(topics.size());
+    final List<TweetSearchTerm> searchTerms = readSearchTermsFromDefaultFile();
+    final CountDownLatch latch = new CountDownLatch(searchTerms.size());
 
-    for (final TweetSearchTerm topic : topics) {
-      final Pipeline pipeline = Pipeline.newInstance(connector, latch, topic);
+    for (final TweetSearchTerm searchTerm : searchTerms) {
+      final Pipeline pipeline = Pipeline.newInstance(connector, latch, searchTerm);
       executorService.submit(pipeline);
     }
 
@@ -71,7 +83,7 @@ public final class TwitterFileDumper {
 
   private List<TweetSearchTerm> readSearchTermsFromDefaultFile() {
     final List<TweetSearchTerm> searchTerms = new ArrayList<>();
-    final InputStream resource = ClassLoader.getSystemResourceAsStream(FileDumperConstants.TOPICS_FILE_NAME);
+    final InputStream resource = ClassLoader.getSystemResourceAsStream(FileDumperConstants.SEARCH_TERMS_FILE_NAME);
 
     try {
       final List<String> readLines = IOUtils.readLines(resource, FileDumperConstants.ENCODING);
@@ -96,7 +108,9 @@ public final class TwitterFileDumper {
       try {
         resource.close();
       } catch (IOException e) {
-        // log and forget
+        LOGGER.error(
+            String.format("File stream for file '%s' couldn't be closed", FileDumperConstants.SEARCH_TERMS_FILE_NAME),
+            e);
       }
     }
 

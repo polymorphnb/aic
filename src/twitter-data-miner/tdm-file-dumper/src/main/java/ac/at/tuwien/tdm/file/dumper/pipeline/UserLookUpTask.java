@@ -8,7 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Future;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public final class UserLookUpTask extends TwitterTask {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(UserLookUpTask.class);
 
   private static final long INVALID_VALUE = -1l;
 
@@ -22,11 +27,17 @@ public final class UserLookUpTask extends TwitterTask {
     transferAuthorUsers(tweets, users);
 
     final List<Long> userIds = retrieveUserIds(tweets);
+
+    if (userIds.isEmpty()) {
+      return;
+    }
+
     final List<List<Long>> userIdLists = splitIntoListsOfOneHundredEntriesEach(userIds);
 
     for (final List<Long> maxOneHundredUserIds : userIdLists) {
       final Future<List<User>> pendingResult = twitterConnector.lookUpUsersById(maxOneHundredUserIds);
       users.addAll(pendingResult.get());
+      LOGGER.info(String.format("Looked up %d user ids", maxOneHundredUserIds.size()));
     }
   }
 

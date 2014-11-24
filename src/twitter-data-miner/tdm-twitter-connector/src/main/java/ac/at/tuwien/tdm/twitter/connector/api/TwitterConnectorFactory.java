@@ -13,6 +13,10 @@ public final class TwitterConnectorFactory {
   }
 
   public static TwitterConnector createTwitterConnector() {
-    return new TwitterConnectorImpl();
+    try {
+      return new TwitterConnectorImpl();
+    } catch (final Exception e) {
+      throw new RuntimeException("Couldn't build twitter connector");
+    }
   }
 }

@@ -8,12 +8,18 @@ import ac.at.tuwien.tdm.twitter.connector.api.User;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.concurrent.CountDownLatch;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public final class Pipeline implements Runnable {
 
-  private final LinkedList<Task> tasks;
-  
+  private static final Logger LOGGER = LoggerFactory.getLogger(Pipeline.class);
+
+  private final Queue<Task> tasks;
+
   private final CountDownLatch latch;
 
   private Pipeline(final TwitterConnector twitterConnector, final CountDownLatch latch, final TweetSearchTerm topic) {
@@ -22,10 +28,12 @@ public final class Pipeline implements Runnable {
     tasks = new LinkedList<>();
     tasks.add(new TweetSearchTask(twitterConnector, topic));
     tasks.add(new UserLookUpTask(twitterConnector));
+    tasks.add(new RelationshipBuilderTask(twitterConnector));
     tasks.add(new WriteToFilesTask());
   }
 
-  public static Pipeline newInstance(final TwitterConnector twitterConnector, final CountDownLatch latch, final TweetSearchTerm topic) {
+  public static Pipeline newInstance(final TwitterConnector twitterConnector, final CountDownLatch latch,
+      final TweetSearchTerm topic) {
     return new Pipeline(twitterConnector, latch, topic);
   }
 
@@ -39,8 +47,8 @@ public final class Pipeline implements Runnable {
         task.execute(tweets, users);
       }
     } catch (final Exception e) {
-
-    }finally{
+      LOGGER.error("Task failed", e);
+    } finally {
       latch.countDown();
     }
   }

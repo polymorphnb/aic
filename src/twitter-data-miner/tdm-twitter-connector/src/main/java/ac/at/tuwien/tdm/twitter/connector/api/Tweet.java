@@ -28,22 +28,32 @@ public final class Tweet {
 
   private final long repliedToUserId;
 
+  private final long repliedToTweetId;
+
   private final long retweetedFromUserId;
+
+  private final long retweetedFromTweetId;
 
   private final int favoritedCount;
 
   private final int retweetedCount;
 
+  private final String searchTerm;
+
   public Tweet(final long id, final String content, final User authorUser, final long repliedToUserId,
-      final long retweetedFromUserId, final int favoritedCount, final int retweetedCount) {
+      final long repliedToTweetId, final long retweetedFromUserId, final long retweetedFromTweetId,
+      final int favoritedCount, final int retweetedCount, final String searchTerm) {
     this.id = id;
     this.content = content;
     this.authorUser = authorUser;
     this.authorUserId = authorUser.getId();
     this.repliedToUserId = repliedToUserId;
+    this.repliedToTweetId = repliedToTweetId;
     this.retweetedFromUserId = retweetedFromUserId;
+    this.retweetedFromTweetId = retweetedFromTweetId;
     this.favoritedCount = favoritedCount;
     this.retweetedCount = retweetedCount;
+    this.searchTerm = searchTerm;
   }
 
   public long getId() {
@@ -66,8 +76,16 @@ public final class Tweet {
     return repliedToUserId;
   }
 
+  public long getRepliedToTweetId() {
+    return repliedToTweetId;
+  }
+
   public long getRetweetedFromUserId() {
     return retweetedFromUserId;
+  }
+
+  public long getRetweetedFromTweetId() {
+    return retweetedFromTweetId;
   }
 
   public int getFavoritedCount() {
@@ -76,6 +94,10 @@ public final class Tweet {
 
   public int getRetweetedCount() {
     return retweetedCount;
+  }
+
+  public String getSearchTerm() {
+    return searchTerm;
   }
 
   @Override

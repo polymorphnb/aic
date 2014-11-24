@@ -2,8 +2,11 @@ package ac.at.tuwien.tdm.twitter.connector.job;
 
 import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnectorException;
 import ac.at.tuwien.tdm.twitter.connector.api.User;
+import ac.at.tuwien.tdm.twitter.connector.result.ListTaskResult;
 
 import java.util.List;
+
+import twitter4j.TwitterException;
 
 /**
  * Looks up user data of up to 100 users
@@ -11,7 +14,7 @@ import java.util.List;
  * @author Irnes Okic (irnes.okic@student.tuwien.ac.at)
  * 
  */
-public class LookUpUsersJob implements Job<List<User>> {
+public class LookUpUsersJob extends AbstractJob<List<User>> {
 
   private final List<Long> userIdsToLookUp;
 
@@ -23,14 +26,28 @@ public class LookUpUsersJob implements Job<List<User>> {
   public List<User> call() throws TwitterConnectorException {
     final LookUpUsersTask task = LookUpUsersTask.newInstance(userIdsToLookUp);
 
-    try {
-      return task.execute();
-    } catch (final LimitReachedException e) {
-      //FIXME
-      throw new RuntimeException(e);
-    }
+    ListTaskResult<User> result = null;
 
-    // FIXME return Collections.emptyList();
+    try {
+      do {
+        try {
+          result = task.execute();
+        } catch (final LimitReachedException e) {
+          handleReachedLimit(e.getResetTimestamp());
+        }
+      } while (result == null);
+
+      checkRateLimit(result);
+    } catch (final TwitterException e) {
+      throw new TwitterConnectorException(e);
+    }
+    
+    return result.getResult();
+  }
+
+  @Override
+  protected String getRequestType() {
+    return "lookUpUsers";
   }
 
   public static class Builder {

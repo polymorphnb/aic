@@ -12,10 +12,14 @@ public final class WriteToFilesTask implements Task {
   @Override
   public void execute(final List<Tweet> tweets, final List<User> users) throws Exception {
 
-    final TweetFileWriter tweetWriter = TweetFileWriter.getInstance();
-    tweetWriter.appendToFile(tweets);
+    if (!tweets.isEmpty()) {
+      final TweetFileWriter tweetWriter = TweetFileWriter.getInstance();
+      tweetWriter.appendToFile(tweets);
+    }
 
-    final UserFileWriter userWriter = UserFileWriter.getInstance();
-    userWriter.appendToFile(users);
+    if (!users.isEmpty()) {
+      final UserFileWriter userWriter = UserFileWriter.getInstance();
+      userWriter.appendToFile(users);
+    }
   }
 }

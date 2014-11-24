@@ -3,9 +3,11 @@ package ac.at.tuwien.tdm.twitter.connector.job;
 import ac.at.tuwien.tdm.twitter.connector.Defense;
 import ac.at.tuwien.tdm.twitter.connector.DtoFactory;
 import ac.at.tuwien.tdm.twitter.connector.Maybe;
+import ac.at.tuwien.tdm.twitter.connector.TwitterAuthenticationService;
 import ac.at.tuwien.tdm.twitter.connector.TwitterConnectorConstants;
 import ac.at.tuwien.tdm.twitter.connector.api.Tweet;
 import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnectorException;
+import ac.at.tuwien.tdm.twitter.connector.result.TweetSearchResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +17,6 @@ import twitter4j.QueryResult;
 import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
-import twitter4j.TwitterFactory;
 
 /**
  * Looks for up to 'tweetsPerPage' tweets (tweets per result page) containing a given search term. <br />
@@ -47,9 +48,10 @@ public final class SearchTweetsTask implements Task<TweetSearchResult> {
         tweetsPerPage);
   }
 
-  public static SearchTweetsTask newInstanceForContinuingSearch(final Query query, final int tweetsPerPage) {
+  public static SearchTweetsTask newInstanceForContinuingSearch(final String searchTerm, final Query query,
+      final int tweetsPerPage) {
     Defense.notNull("Query", query);
-    return new SearchTweetsTask(null, false, query, tweetsPerPage);
+    return new SearchTweetsTask(searchTerm, false, query, tweetsPerPage);
   }
 
   public TweetSearchResult execute() throws LimitReachedException, TwitterConnectorException {
@@ -58,7 +60,7 @@ public final class SearchTweetsTask implements Task<TweetSearchResult> {
     QueryResult result = null;
 
     try {
-      final Twitter twitter = TwitterFactory.getSingleton();
+      final Twitter twitter = TwitterAuthenticationService.getInstance().getTwitter();
 
       Query query = (this.query != null ? this.query : buildStatusSearchQuery());
       result = twitter.search(query);
@@ -73,7 +75,7 @@ public final class SearchTweetsTask implements Task<TweetSearchResult> {
     }
 
     final boolean isNextQueryAvailable = (result != null && result.hasNext());
-    return new TweetSearchResult(tweets, isNextQueryAvailable ? result.nextQuery() : null);
+    return new TweetSearchResult(result.getRateLimitStatus(), tweets, isNextQueryAvailable ? result.nextQuery() : null);
   }
 
   private Query buildStatusSearchQuery() {
@@ -101,7 +103,7 @@ public final class SearchTweetsTask implements Task<TweetSearchResult> {
 
   private void addStatus(final List<Tweet> tweets, final Status status, final boolean includeRetweetedStatus) {
     // dto factory performs sanity checks
-    final Maybe<Tweet> maybeTweet = DtoFactory.createTweetFromStatus(status, includeRetweetedStatus);
+    final Maybe<Tweet> maybeTweet = DtoFactory.createTweetFromStatus(searchTerm, status, includeRetweetedStatus);
 
     if (maybeTweet.isKnown()) {
       tweets.add(maybeTweet.value());

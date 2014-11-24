@@ -3,9 +3,13 @@ package ac.at.tuwien.tdm.twitter.connector.job;
 import ac.at.tuwien.tdm.twitter.connector.TwitterConnectorConstants;
 import ac.at.tuwien.tdm.twitter.connector.api.Tweet;
 import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnectorException;
+import ac.at.tuwien.tdm.twitter.connector.result.TweetSearchResult;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import twitter4j.Query;
+import twitter4j.TwitterException;
 
 /**
  * Looks for up to 'maxResults' tweets containing a given search term. <br />
@@ -14,7 +18,7 @@ import java.util.List;
  * @author Irnes Okic (irnes.okic@student.tuwien.ac.at)
  * 
  */
-public final class SearchTweetsJob implements Job<List<Tweet>> {
+public final class SearchTweetsJob extends AbstractJob<List<Tweet>> {
 
   private final String searchTerm;
 
@@ -34,38 +38,62 @@ public final class SearchTweetsJob implements Job<List<Tweet>> {
     final List<Tweet> allTweets = new ArrayList<>(Integer.highestOneBit(maxResults) * 2);
     int resultsPerPage = TwitterConnectorConstants.DEFAULT_AMOUNT_OF_TWEETS_PER_RESULT_PAGE;
 
-    try {
-      SearchTweetsTask task = SearchTweetsTask.newInstanceForFirstSearch(this, resultsPerPage);
-      TweetSearchResult result = task.execute();
-      allTweets.addAll(result.getTweets());
+    if (resultsPerPage < 1 || resultsPerPage > 100) {
+      throw new IllegalArgumentException(String.format("ResultsPerPage must be between 1 and 100. Actual value: %d",
+          resultsPerPage));
+    }
 
+    try {
+      TweetSearchResult result = null;
+      SearchTweetsTask task = SearchTweetsTask.newInstanceForFirstSearch(this, resultsPerPage);
+
+      do {
+        try {
+          result = task.execute();
+        } catch (final LimitReachedException e) {
+          handleReachedLimit(e.getResetTimestamp());
+        }
+      } while (result == null);
+
+      allTweets.addAll(result.getResult());
+      checkRateLimit(result);
+
+      Query nextQuery = result.getNextQuery();
       int searchRuns = 1;
 
-      while (result.getNextQuery() != null) {
+      if (allTweets.size() < maxResults && nextQuery != null) {
+        do {
+          try {
+            boolean isLastSearch = false;
 
-        boolean isLastSearch = false;
+            if ((searchRuns + 1) * resultsPerPage >= maxResults && !isLastSearch) {
+              isLastSearch = true;
+              resultsPerPage = (maxResults - (searchRuns * resultsPerPage));
+            }
 
-        if ((searchRuns + 1) * resultsPerPage >= maxResults) {
-          isLastSearch = true;
-          resultsPerPage = (maxResults - (searchRuns * resultsPerPage));
-        }
+            task = SearchTweetsTask.newInstanceForContinuingSearch(searchTerm, nextQuery, resultsPerPage);
+            result = task.execute();
 
-        task = SearchTweetsTask.newInstanceForContinuingSearch(result.getNextQuery(), resultsPerPage);
-        result = task.execute();
+            allTweets.addAll(result.getResult());
+            searchRuns++;
 
-        allTweets.addAll(result.getTweets());
-        searchRuns++;
-
-        if (isLastSearch) {
-          break;
-        }
+            nextQuery = (isLastSearch ? null : result.getNextQuery());
+            checkRateLimit(result);
+          } catch (final LimitReachedException e) {
+            handleReachedLimit(e.getResetTimestamp());
+          }
+        } while (nextQuery != null);
       }
-    } catch (final LimitReachedException e) {
-      //FIXME
-      throw new RuntimeException(e);
+    } catch (final TwitterException e) {
+      throw new TwitterConnectorException(e);
     }
 
     return allTweets;
+  }
+
+  @Override
+  protected String getRequestType() {
+    return "searchTweets";
   }
 
   public String getSearchTerm() {

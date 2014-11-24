@@ -2,8 +2,10 @@ package ac.at.tuwien.tdm.twitter.connector.job;
 
 import ac.at.tuwien.tdm.twitter.connector.DtoFactory;
 import ac.at.tuwien.tdm.twitter.connector.Maybe;
+import ac.at.tuwien.tdm.twitter.connector.TwitterAuthenticationService;
 import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnectorException;
 import ac.at.tuwien.tdm.twitter.connector.api.User;
+import ac.at.tuwien.tdm.twitter.connector.result.ListTaskResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +13,6 @@ import java.util.List;
 import twitter4j.ResponseList;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
-import twitter4j.TwitterFactory;
 
 /**
  * Looks up user data of up to 100 users
@@ -19,7 +20,7 @@ import twitter4j.TwitterFactory;
  * @author Irnes Okic (irnes.okic@student.tuwien.ac.at)
  * 
  */
-public final class LookUpUsersTask implements Task<List<User>> {
+public final class LookUpUsersTask implements Task<ListTaskResult<User>> {
 
   private final List<Long> userIdsToLookUp;
 
@@ -32,13 +33,14 @@ public final class LookUpUsersTask implements Task<List<User>> {
   }
 
   @Override
-  public List<User> execute() throws LimitReachedException, TwitterConnectorException {
+  public ListTaskResult<User> execute() throws LimitReachedException, TwitterConnectorException {
 
     final List<User> users = new ArrayList<>(128);
+    ResponseList<twitter4j.User> twitterUsers;
 
     try {
-      final Twitter twitter = TwitterFactory.getSingleton();
-      final ResponseList<twitter4j.User> twitterUsers = twitter.lookupUsers(toPrimitiveArray(userIdsToLookUp));
+      final Twitter twitter = TwitterAuthenticationService.getInstance().getTwitter();
+      twitterUsers = twitter.lookupUsers(toPrimitiveArray(userIdsToLookUp));
 
       for (final twitter4j.User twitterUser : twitterUsers) {
         // dto factory performs sanity checks
@@ -56,7 +58,7 @@ public final class LookUpUsersTask implements Task<List<User>> {
       }
     }
 
-    return users;
+    return new ListTaskResult<>(twitterUsers.getRateLimitStatus(), users);
   }
 
   private long[] toPrimitiveArray(final List<Long> list) {
