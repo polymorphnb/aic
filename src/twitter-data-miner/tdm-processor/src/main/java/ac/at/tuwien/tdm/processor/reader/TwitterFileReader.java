@@ -30,6 +30,8 @@ public class TwitterFileReader {
   }
   
   public List<String> getDataForFile(File file) {
+    // TODO: read files per fileiterator? FileUtils.lineIterator(file, "UTF-8");
+    // this is in case the files are getting to large
     List<String> readLines = null;
     try {
       readLines = FileUtils.readLines(file, ConfigConstants.ENCODING);

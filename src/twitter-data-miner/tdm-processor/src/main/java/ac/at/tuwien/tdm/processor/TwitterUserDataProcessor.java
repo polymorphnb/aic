@@ -23,8 +23,21 @@ public class TwitterUserDataProcessor extends TwitterDataProcessor {
         
         User user = gson.fromJson(readLine, User.class);
         
-        // TODO: call graphpart, userdb-part....
+        this.addUserFollowersRelationship(user);
+        this.addUserFriendsRelationship(user);
       }
+    }
+  }
+  
+  private void addUserFollowersRelationship(User user) {
+    for(Long userID : user.getFollowerUserIds()) {
+      this.neo4j.addFollowsRelationship(String.valueOf(user.getId()), userID.toString());
+    }
+  }
+  
+  private void addUserFriendsRelationship(User user) {
+    for(Long userID : user.getFollowerUserIds()) {
+      this.neo4j.addFriendsRelationship(String.valueOf(user.getId()), userID.toString());
     }
   }
   
