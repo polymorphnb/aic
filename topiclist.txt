@@ -58,3 +58,37 @@ Hardware:
 	- Intel
 	- Nvidia
 	- AMD
+
+Film:
+	- The Hunger Games
+	- The Hobbit
+	- Transformers
+	- Spiderman
+	- Batman
+
+Plants:
+	- orchid
+	- cactus
+	- lily
+ 	- violet
+
+Decoration:
+	- Mirror
+	- Picture
+	- Candle
+	- Figure
+
+
+Gambling:
+	- lottery
+	- bingo
+	- casino	
+	- poker
+	- black jack
+
+Sport:
+	- ski
+	- football
+	- tennis
+	- basketball
+	- snowboard
