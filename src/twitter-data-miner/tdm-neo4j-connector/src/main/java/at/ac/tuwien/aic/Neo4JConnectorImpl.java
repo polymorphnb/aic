@@ -71,6 +71,10 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
     this.addRelationship(userID1, userID2, TwitterRelationshipType.FOLLOWS);
   }
   
+  public void addFriendsRelationship(String userID1, String userID2) {
+    this.addRelationship(userID1, userID2, TwitterRelationshipType.FRIEND);
+  }
+  
   public void addRepliesRelationship(String userID1, String userID2) {
     this.addRelationship(userID1, userID2, TwitterRelationshipType.REPLIES);
   }

@@ -5,8 +5,10 @@ import org.neo4j.graphdb.RelationshipType;
 
 public enum TwitterRelationshipType implements RelationshipType {
   FOLLOWS(RelationshipTypeConstants.FOLLOWS),
+  FRIEND(RelationshipTypeConstants.FRIEND),
   RETWEETS(RelationshipTypeConstants.RETWEETS),
   REPLIES(RelationshipTypeConstants.REPLIES);
+  
   
   private String value;
 
