@@ -29,14 +29,18 @@ public final class TwitterFileDumper {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(TwitterFileDumper.class);
 
-  private final ExecutorService executorService = Executors
-      .newFixedThreadPool(FileDumperConstants.AMOUNT_OF_WORKER_THREADS);
+  private final ExecutorService executorService;
 
-  private TwitterFileDumper() {
-    // hide constructor
+  private TwitterFileDumper(final int amountWorkerThreads) {
+    executorService = Executors.newFixedThreadPool(amountWorkerThreads);
   }
 
   public static void main(final String[] args) {
+
+    final long mb = 1024 * 1024;
+
+    final Runtime runtime = Runtime.getRuntime();
+    final int maxMemoryInMb = (int) (runtime.maxMemory() / mb);
 
     final long startUpTime = Clock.currentTime().getTimeInMillis();
 
@@ -44,7 +48,9 @@ public final class TwitterFileDumper {
     TwitterFileDumper fileDumper = null;
 
     try {
-      fileDumper = new TwitterFileDumper();
+      final int amountWorkerThreads = 1; // ((maxMemoryInMb / 2) / 100);
+      LOGGER.info(String.format("Using %d worker thread(s)", amountWorkerThreads));
+      fileDumper = new TwitterFileDumper(amountWorkerThreads);
       fileDumper.collect(connector);
     } catch (final Exception e) {
       LOGGER.error("Unexpected exception", e);

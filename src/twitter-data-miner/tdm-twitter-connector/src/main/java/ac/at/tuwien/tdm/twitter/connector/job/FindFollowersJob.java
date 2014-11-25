@@ -10,10 +10,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import twitter4j.RateLimitStatus;
 import twitter4j.TwitterException;
 
 public final class FindFollowersJob extends AbstractJob<List<Long>> {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(FindFollowersJob.class);
 
   private final Long userIdToLookUp;
 
@@ -37,6 +42,8 @@ public final class FindFollowersJob extends AbstractJob<List<Long>> {
         try {
           approach = determineApproach();
         } catch (final LimitReachedException e) {
+          LOGGER.debug("Limit reached during determineApproach(), timestamp: " + e.getResetTimestamp()
+              + ", followersCount: " + followersCount + ", foundIds: " + userIds.size() + ", remaining: " + e.getRemaining());
           approach = FindFollowersJobApproachEnum.LIST; // only for log message
           handleReachedLimit(e.getResetTimestamp());
           approach = null;
@@ -52,6 +59,8 @@ public final class FindFollowersJob extends AbstractJob<List<Long>> {
         try {
           result = task.execute();
         } catch (final LimitReachedException e) {
+          LOGGER.debug("Limit reached during first task execution, timestamp: " + e.getResetTimestamp()
+              + ", followersCount: " + followersCount + ", foundIds: " + userIds.size() + ", remaining: " + e.getRemaining());
           handleReachedLimit(e.getResetTimestamp());
         } catch (final ConnectionException e) {
           handleConnectionError();
@@ -59,6 +68,7 @@ public final class FindFollowersJob extends AbstractJob<List<Long>> {
       } while (result == null);
 
       userIds.addAll(result.getResult());
+      LOGGER.debug("Executed first task, followersCount: " + followersCount + ", userIdsSize: " + userIds.size());
       checkRateLimit(result);
 
       if (result.hasNextResultPage()) {
@@ -68,8 +78,11 @@ public final class FindFollowersJob extends AbstractJob<List<Long>> {
           try {
             result = task.execute();
             userIds.addAll(result.getResult());
+            LOGGER.debug("Executed continuing task, followersCount: " + followersCount + ", userIdsSize: " + userIds.size());
             checkRateLimit(result);
           } catch (final LimitReachedException e) {
+            LOGGER.debug("Limit reached during continuing task execution, timestamp: " + e.getResetTimestamp()
+                + ", followersCount: " + followersCount + ", foundIds: " + userIds.size() + ", remaining: " + e.getRemaining());
             handleReachedLimit(e.getResetTimestamp());
           } catch (final ConnectionException e) {
             handleConnectionError();

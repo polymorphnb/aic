@@ -14,31 +14,32 @@ import ac.at.tuwien.tdm.twitter.connector.GsonInstance;
  * @author Irnes Okic (irnes.okic@student.tuwien.ac.at)
  * 
  */
+// approx. 588 bytes 
 public final class Tweet {
 
   // unique and used for equals & hashCode
-  private final long id;
+  private final long id; // 8 bytes
 
-  private final String content;
+  private final String content; // 255 * 2 bytes
 
   // not to persist, only used by other processing logic
-  private transient final User authorUser;
+  private transient final User authorUser; // zero bytes
 
-  private final long authorUserId;
+  private final long authorUserId; // 8 bytes
 
-  private final long repliedToUserId;
+  private final long repliedToUserId; // 8 bytes
 
-  private final long repliedToTweetId;
+  private final long repliedToTweetId; // 8 bytes
 
-  private final long retweetedFromUserId;
+  private final long retweetedFromUserId; // 8 bytes
 
-  private final long retweetedFromTweetId;
+  private final long retweetedFromTweetId; // 8 bytes
 
-  private final int favoritedCount;
+  private final int favoritedCount; // 4 bytes
 
-  private final int retweetedCount;
+  private final int retweetedCount; // 4 bytes
 
-  private final String searchTerm;
+  private final String searchTerm; // approx. 12 * 2 bytes
 
   public Tweet(final long id, final String content, final User authorUser, final long repliedToUserId,
       final long repliedToTweetId, final long retweetedFromUserId, final long retweetedFromTweetId,

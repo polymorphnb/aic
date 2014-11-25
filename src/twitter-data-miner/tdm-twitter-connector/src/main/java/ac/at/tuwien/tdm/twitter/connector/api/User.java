@@ -16,30 +16,31 @@ import java.util.List;
  * @author Irnes Okic (irnes.okic@student.tuwien.ac.at)
  * 
  */
+// approx. 30008 bytes
 public final class User {
 
   // unique and used for equals & hashCode
-  private final long id;
+  private final long id; // 8 bytes
 
-  private final String screenName;
+  private final String screenName; // approx. 12 * 2 bytes
 
-  private final String name;
+  private final String name; // approx. 12 * 2 bytes
 
-  private final String location;
+  private final String location; // approx. 12 * 2 bytes
 
-  private final String language;
+  private final String language; // approx. 3 * 2 bytes
 
-  private final int statusesCount;
+  private final int statusesCount; // 4 bytes
 
-  private final int favoritesCount;
+  private final int favoritesCount; // 4 bytes
 
-  private final int followersCount;
+  private final int followersCount; // 4 bytes
 
-  private final int friendsCount;
+  private final int friendsCount; // 4 bytes
 
-  private final List<Long> followerUserIds;
+  private final List<Long> followerUserIds; // approx. 2500 * 8 bytes
 
-  private final List<Long> friendsUserIds;
+  private final List<Long> friendsUserIds; // approx. 1250 * 8 bytes
 
   public User(final long id, final String screenName, final String name, final String location, final String language,
       final int statusesCount, final int favoritesCount, final int followersCount, final int friendsCount) {

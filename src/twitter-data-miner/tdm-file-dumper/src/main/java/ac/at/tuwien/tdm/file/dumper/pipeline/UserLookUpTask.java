@@ -6,6 +6,7 @@ import ac.at.tuwien.tdm.twitter.connector.api.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.Future;
 
 import org.slf4j.Logger;
@@ -22,7 +23,7 @@ public final class UserLookUpTask extends TwitterTask {
   }
 
   @Override
-  public void execute(final List<Tweet> tweets, final List<User> users) throws Exception {
+  public void execute(final List<Tweet> tweets, final Set<User> users) throws Exception {
 
     transferAuthorUsers(tweets, users);
 
@@ -41,7 +42,7 @@ public final class UserLookUpTask extends TwitterTask {
     }
   }
 
-  private void transferAuthorUsers(final List<Tweet> tweets, final List<User> users) {
+  private void transferAuthorUsers(final List<Tweet> tweets, final Set<User> users) {
     for (final Tweet tweet : tweets) {
       users.add(tweet.getAuthorUser());
     }

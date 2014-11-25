@@ -6,7 +6,7 @@ import ac.at.tuwien.tdm.file.dumper.FileDumperConstants;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
+import java.util.Collection;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -39,7 +39,7 @@ public abstract class TwitterFileWriter<T> {
     this.fileExtension = fileExtension;
   }
 
-  public synchronized void appendToFile(final String searchTerm, final List<T> dataList) throws IOException {
+  public synchronized void appendToFile(final String searchTerm, final Collection<T> dataList) throws IOException {
     final BufferedOutputStream outputStream = openFileAsStream(searchTerm);
 
     IOUtils.writeLines(dataList, FileDumperConstants.LINE_ENDING, outputStream, FileDumperConstants.ENCODING);

@@ -20,11 +20,11 @@ public final class FileDumperConstants {
 
   public static final String SEARCH_TERMS_FILE_NAME = "searchTerms.txt";
   
-  public static final int AMOUNT_OF_WORKER_THREADS = 3;
+  // public static final int AMOUNT_OF_WORKER_THREADS = 2;
   
   public static final String LINE_ENDING = "\n";
   
   public static final Charset ENCODING = Charset.forName("UTF-8");
   
-  public static final long MAX_ENTRIES_PER_FILE = 1000;
+  // public static final long MAX_ENTRIES_PER_FILE = 1000;
 }

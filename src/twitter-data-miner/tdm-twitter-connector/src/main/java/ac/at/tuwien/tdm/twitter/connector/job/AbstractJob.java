@@ -1,7 +1,10 @@
 package ac.at.tuwien.tdm.twitter.connector.job;
 
+import ac.at.tuwien.tdm.twitter.connector.Clock;
 import ac.at.tuwien.tdm.twitter.connector.TwitterAuthenticationService;
 import ac.at.tuwien.tdm.twitter.connector.result.TaskResult;
+
+import java.util.Calendar;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +31,14 @@ public abstract class AbstractJob<T> implements Job<T> {
     }
 
     if (rateLimitStatus.getRemaining() == 0) {
-      handleReachedLimit(((long) rateLimitStatus.getResetTimeInSeconds()) * 1000l);
+      LOGGER.debug("Limit reached during checkRateLimit(), timestamp: "
+          + ((taskResult.getRateLimitStatus().getResetTimeInSeconds() * 1000l) + 60l * 1000l) + ", remaining: "
+          + taskResult.getRateLimitStatus().getRemaining());
+
+      final Calendar c = Clock.currentTime();
+      c.setTimeInMillis(((long) rateLimitStatus.getResetTimeInSeconds()) * 1000l);
+      c.add(Calendar.MINUTE, 1);
+      handleReachedLimit(c.getTimeInMillis());
     }
   }
 

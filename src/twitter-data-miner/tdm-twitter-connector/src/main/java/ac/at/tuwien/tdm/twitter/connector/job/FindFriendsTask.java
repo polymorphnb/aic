@@ -51,7 +51,7 @@ public final class FindFriendsTask extends AbstractFriendsFollowersTask {
       }
     } catch (final TwitterException e) {
       if (e.exceededRateLimitation()) {
-        throw new LimitReachedException(e.getRateLimitStatus());
+        throw new LimitReachedException(e, e.getRateLimitStatus());
       } else if (e.isCausedByNetworkIssue()) {
         throw new ConnectionException(e);
       } else {

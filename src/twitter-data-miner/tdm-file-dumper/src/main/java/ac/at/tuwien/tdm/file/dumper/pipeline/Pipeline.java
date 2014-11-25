@@ -6,9 +6,11 @@ import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnector;
 import ac.at.tuwien.tdm.twitter.connector.api.User;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.Set;
 import java.util.concurrent.CountDownLatch;
 
 import org.slf4j.Logger;
@@ -40,7 +42,7 @@ public final class Pipeline implements Runnable {
   @Override
   public void run() {
     final List<Tweet> tweets = new ArrayList<>();
-    final List<User> users = new ArrayList<>();
+    final Set<User> users = new HashSet<>();
 
     try {
       for (final Task task : tasks) {

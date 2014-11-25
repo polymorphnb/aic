@@ -6,6 +6,7 @@ import ac.at.tuwien.tdm.twitter.connector.api.Tweet;
 import ac.at.tuwien.tdm.twitter.connector.api.User;
 
 import java.util.List;
+import java.util.Set;
 
 public final class WriteToFilesTask implements Task {
 
@@ -16,7 +17,7 @@ public final class WriteToFilesTask implements Task {
   }
 
   @Override
-  public void execute(final List<Tweet> tweets, final List<User> users) throws Exception {
+  public void execute(final List<Tweet> tweets, final Set<User> users) throws Exception {
 
     if (!tweets.isEmpty()) {
       final TweetFileWriter tweetWriter = TweetFileWriter.getInstance();

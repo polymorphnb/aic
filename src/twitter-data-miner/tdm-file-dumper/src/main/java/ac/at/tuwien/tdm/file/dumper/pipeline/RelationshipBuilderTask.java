@@ -6,6 +6,7 @@ import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnectorException;
 import ac.at.tuwien.tdm.twitter.connector.api.User;
 
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
@@ -21,7 +22,7 @@ public final class RelationshipBuilderTask extends TwitterTask {
   }
 
   @Override
-  public void execute(final List<Tweet> tweets, final List<User> users) throws Exception {
+  public void execute(final List<Tweet> tweets, final Set<User> users) throws Exception {
     for (final User user : users) {
       lookUpFollowers(user);
       lookUpFriends(user);

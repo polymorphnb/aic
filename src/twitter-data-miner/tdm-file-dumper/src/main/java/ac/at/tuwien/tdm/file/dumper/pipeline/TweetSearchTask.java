@@ -7,6 +7,7 @@ import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnectorException;
 import ac.at.tuwien.tdm.twitter.connector.api.User;
 
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
@@ -25,7 +26,7 @@ public final class TweetSearchTask extends TwitterTask {
   }
 
   @Override
-  public void execute(final List<Tweet> tweets, final List<User> users) throws TwitterConnectorException,
+  public void execute(final List<Tweet> tweets, final Set<User> users) throws TwitterConnectorException,
       InterruptedException, ExecutionException {
 
     final Future<List<Tweet>> pendingResult = twitterConnector.findByKeyWord(searchTerm.getSearchTerm(),
