@@ -1,6 +1,9 @@
 package ac.at.tuwien.tdm.twitter.connector;
 
 import java.nio.charset.Charset;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Twitter connector constants
@@ -28,6 +31,17 @@ public final class TwitterConnectorConstants {
 
   // must be <= 100
   public static final int DEFAULT_AMOUNT_OF_TWEETS_PER_RESULT_PAGE = 100;
-  
-  public static final int ID_LIST_APPROACH_THRESHOLD = 140;
+
+  public static final int ID_LIST_APPROACH_THRESHOLD = 160;
+
+  private static final int HTTP_UNAUTHORIZED = 401;
+
+  private static final int HTTP_FORBIDDEN = 403;
+
+  private static final int HTTP_INTERNAL_SERVER_ERROR = 500;
+
+  private static final int HTTP_SERVICE_UNAVAILABLE = 503;
+
+  public static final Set<Integer> HTTP_RETRY_PROBLEMS = new HashSet<>(Arrays.asList(HTTP_UNAUTHORIZED, HTTP_FORBIDDEN,
+      HTTP_INTERNAL_SERVER_ERROR, HTTP_SERVICE_UNAVAILABLE));
 }

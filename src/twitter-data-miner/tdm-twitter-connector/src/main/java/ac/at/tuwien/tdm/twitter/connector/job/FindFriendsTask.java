@@ -2,6 +2,7 @@ package ac.at.tuwien.tdm.twitter.connector.job;
 
 import ac.at.tuwien.tdm.twitter.connector.ConnectionException;
 import ac.at.tuwien.tdm.twitter.connector.TwitterAuthenticationService;
+import ac.at.tuwien.tdm.twitter.connector.TwitterConnectorConstants;
 import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnectorException;
 import ac.at.tuwien.tdm.twitter.connector.job.FindFriendsJob.FindFriendsJobApproachEnum;
 import ac.at.tuwien.tdm.twitter.connector.result.CursorListTaskResult;
@@ -34,7 +35,7 @@ public final class FindFriendsTask extends AbstractFriendsFollowersTask {
 
   @Override
   public CursorListTaskResult<Long> execute() throws LimitReachedException, TwitterConnectorException,
-      ConnectionException {
+      ConnectionException, HttpRetryProblemException {
 
     final Twitter twitter = TwitterAuthenticationService.getInstance().getTwitter();
 
@@ -54,6 +55,8 @@ public final class FindFriendsTask extends AbstractFriendsFollowersTask {
         throw new LimitReachedException(e, e.getRateLimitStatus());
       } else if (e.isCausedByNetworkIssue()) {
         throw new ConnectionException(e);
+      } else if (TwitterConnectorConstants.HTTP_RETRY_PROBLEMS.contains(e.getStatusCode())) {
+        throw new HttpRetryProblemException(e);
       } else {
         throw new TwitterConnectorException(e);
       }

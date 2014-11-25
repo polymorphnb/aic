@@ -31,7 +31,7 @@ public final class Pipeline implements Runnable {
     tasks.add(new TweetSearchTask(twitterConnector, topic));
     tasks.add(new UserLookUpTask(twitterConnector));
     tasks.add(new RelationshipBuilderTask(twitterConnector));
-    tasks.add(new WriteToFilesTask(topic.getSearchTerm()));
+    //    tasks.add(new WriteToFilesTask(topic.getSearchTerm()));
   }
 
   public static Pipeline newInstance(final TwitterConnector twitterConnector, final CountDownLatch latch,
@@ -41,8 +41,8 @@ public final class Pipeline implements Runnable {
 
   @Override
   public void run() {
-    final List<Tweet> tweets = new ArrayList<>();
-    final Set<User> users = new HashSet<>();
+    final List<Tweet> tweets = new ArrayList<>(16384);
+    final Set<User> users = new HashSet<>(16384);
 
     try {
       for (final Task task : tasks) {

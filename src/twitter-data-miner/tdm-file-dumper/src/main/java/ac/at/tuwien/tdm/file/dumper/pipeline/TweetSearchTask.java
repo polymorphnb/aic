@@ -1,6 +1,7 @@
 package ac.at.tuwien.tdm.file.dumper.pipeline;
 
 import ac.at.tuwien.tdm.file.dumper.TweetSearchTerm;
+import ac.at.tuwien.tdm.file.dumper.writer.TweetFileWriter;
 import ac.at.tuwien.tdm.twitter.connector.api.Tweet;
 import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnector;
 import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnectorException;
@@ -33,7 +34,21 @@ public final class TweetSearchTask extends TwitterTask {
         searchTerm.isSearchOnlyInHashTags());
 
     tweets.addAll(pendingResult.get());
+    writeAllTweetsToFile(tweets);
 
     LOGGER.info(String.format("Found %d tweets for search term %s", tweets.size(), searchTerm));
+  }
+
+  private void writeAllTweetsToFile(final List<Tweet> tweets) {
+    if (!tweets.isEmpty()) {
+      final TweetFileWriter tweetWriter = TweetFileWriter.getInstance();
+      try {
+        tweetWriter.appendToFile(searchTerm.getSearchTerm(), tweets);
+      } catch (final Exception e) {
+        // fail fast
+        throw new RuntimeException(e);
+      }
+
+    }
   }
 }

@@ -26,6 +26,8 @@ public final class FindFollowersJob extends AbstractJob<List<Long>> {
 
   private FindFollowersJobApproachEnum approach;
 
+  private FindFollowersJobApproachEnum whichApproachWasChecked;
+
   private FindFollowersJob(final Builder b) {
     this.userIdToLookUp = b.userIdToLookUp;
     this.followersCount = b.followersCount;
@@ -34,7 +36,7 @@ public final class FindFollowersJob extends AbstractJob<List<Long>> {
   @Override
   public List<Long> call() throws TwitterConnectorException {
 
-    final List<Long> userIds = new ArrayList<>(32);
+    final List<Long> userIds = new ArrayList<>(512);
 
     try {
 
@@ -43,12 +45,13 @@ public final class FindFollowersJob extends AbstractJob<List<Long>> {
           approach = determineApproach();
         } catch (final LimitReachedException e) {
           LOGGER.debug("Limit reached during determineApproach(), timestamp: " + e.getResetTimestamp()
-              + ", followersCount: " + followersCount + ", foundIds: " + userIds.size() + ", remaining: " + e.getRemaining());
-          approach = FindFollowersJobApproachEnum.LIST; // only for log message
+              + ", followersCount: " + followersCount + ", foundIds: " + userIds.size() + ", remaining: "
+              + e.getRemaining());
           handleReachedLimit(e.getResetTimestamp());
-          approach = null;
         } catch (final ConnectionException e) {
           handleConnectionError();
+        } catch (final HttpRetryProblemException e) {
+          handleHttpProblem(e.getResetTimestamp());
         }
       } while (approach == null);
 
@@ -60,15 +63,24 @@ public final class FindFollowersJob extends AbstractJob<List<Long>> {
           result = task.execute();
         } catch (final LimitReachedException e) {
           LOGGER.debug("Limit reached during first task execution, timestamp: " + e.getResetTimestamp()
-              + ", followersCount: " + followersCount + ", foundIds: " + userIds.size() + ", remaining: " + e.getRemaining());
+              + ", followersCount: " + followersCount + ", foundIds: " + userIds.size() + ", remaining: "
+              + e.getRemaining());
           handleReachedLimit(e.getResetTimestamp());
         } catch (final ConnectionException e) {
           handleConnectionError();
+        } catch (final HttpRetryProblemException e) {
+          handleHttpProblem(e.getResetTimestamp());
         }
       } while (result == null);
 
       userIds.addAll(result.getResult());
       LOGGER.debug("Executed first task, followersCount: " + followersCount + ", userIdsSize: " + userIds.size());
+
+      if (approach == FindFollowersJobApproachEnum.ID) {
+        // max 5000 ids, do not continue
+        return userIds;
+      }
+
       checkRateLimit(result);
 
       if (result.hasNextResultPage()) {
@@ -78,14 +90,18 @@ public final class FindFollowersJob extends AbstractJob<List<Long>> {
           try {
             result = task.execute();
             userIds.addAll(result.getResult());
-            LOGGER.debug("Executed continuing task, followersCount: " + followersCount + ", userIdsSize: " + userIds.size());
+            LOGGER.debug("Executed continuing task, followersCount: " + followersCount + ", userIdsSize: "
+                + userIds.size());
             checkRateLimit(result);
           } catch (final LimitReachedException e) {
             LOGGER.debug("Limit reached during continuing task execution, timestamp: " + e.getResetTimestamp()
-                + ", followersCount: " + followersCount + ", foundIds: " + userIds.size() + ", remaining: " + e.getRemaining());
+                + ", followersCount: " + followersCount + ", foundIds: " + userIds.size() + ", remaining: "
+                + e.getRemaining());
             handleReachedLimit(e.getResetTimestamp());
           } catch (final ConnectionException e) {
             handleConnectionError();
+          } catch (final HttpRetryProblemException e) {
+            handleHttpProblem(e.getResetTimestamp());
           }
         } while (result.hasNextResultPage());
       }
@@ -98,34 +114,31 @@ public final class FindFollowersJob extends AbstractJob<List<Long>> {
 
   @Override
   protected String getRequestType() {
-    return ("findFollowers, approach: " + approach);
+    return ("findFollowers, approach: " + (approach != null ? approach : whichApproachWasChecked));
   }
 
   private FindFollowersJobApproachEnum determineApproach() throws LimitReachedException, TwitterConnectorException,
-      ConnectionException {
+      ConnectionException, HttpRetryProblemException {
 
     final MapTaskResult<String, RateLimitStatus> taskResult = GetRateLimitTask.newInstance().execute();
     final Map<String, RateLimitStatus> rateLimits = taskResult.getResult();
-    final int remainingForIdRequest = rateLimits.get(FindFollowersJobApproachEnum.ID.getResourceName()).getRemaining();
 
-    if (followersCount > TwitterConnectorConstants.ID_LIST_APPROACH_THRESHOLD) {
-      if (remainingForIdRequest > 0) {
-        return FindFollowersJobApproachEnum.ID;
-      }
-
-      throw new LimitReachedException(
-          rateLimits.get(FindFollowersJob.FindFollowersJobApproachEnum.ID.getResourceName()));
-    } else {
+    if (followersCount <= TwitterConnectorConstants.ID_LIST_APPROACH_THRESHOLD) {
       final int remainingForListRequest = rateLimits.get(FindFollowersJobApproachEnum.LIST.getResourceName())
           .getRemaining();
 
       if (remainingForListRequest > 0) {
         return FindFollowersJobApproachEnum.LIST;
       }
-
-      throw new LimitReachedException(rateLimits.get(FindFollowersJob.FindFollowersJobApproachEnum.LIST
-          .getResourceName()));
     }
+
+    final int remainingForIdRequest = rateLimits.get(FindFollowersJobApproachEnum.ID.getResourceName()).getRemaining();
+    if (remainingForIdRequest > 0) {
+      return FindFollowersJobApproachEnum.ID;
+    }
+
+    whichApproachWasChecked = FindFollowersJobApproachEnum.ID;
+    throw new LimitReachedException(rateLimits.get(FindFollowersJob.FindFollowersJobApproachEnum.ID.getResourceName()));
   }
 
   public static class Builder {

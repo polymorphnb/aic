@@ -16,6 +16,11 @@ public abstract class AbstractJob<T> implements Job<T> {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(AbstractJob.class);
 
+  protected void handleHttpProblem(final long resetTimestamp) throws TwitterException {
+    // handle it like a reached limit for now
+    handleReachedLimit(resetTimestamp);
+  }
+
   protected void handleReachedLimit(final long resetTimestamp) throws TwitterException {
     LOGGER.info(String.format("Limit reached for '%s'", getRequestType()));
 

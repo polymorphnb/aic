@@ -19,5 +19,5 @@ public interface Task<T extends TaskResult> {
    * @throws LimitReachedException thrown if the twitter api limit (requests per 15 min window) is reached
    * @throws TwitterConnectorException some kind of request executing error
    */
-  T execute() throws LimitReachedException, TwitterConnectorException, ConnectionException;
+  T execute() throws LimitReachedException, TwitterConnectorException, ConnectionException, HttpRetryProblemException;
 }

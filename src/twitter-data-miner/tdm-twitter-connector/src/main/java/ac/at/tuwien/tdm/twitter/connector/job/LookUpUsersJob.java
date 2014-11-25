@@ -37,6 +37,8 @@ public class LookUpUsersJob extends AbstractJob<List<User>> {
           handleReachedLimit(e.getResetTimestamp());
         } catch (final ConnectionException e) {
           handleConnectionError();
+        } catch (final HttpRetryProblemException e) {
+          handleHttpProblem(e.getResetTimestamp());
         }
       } while (result == null);
 

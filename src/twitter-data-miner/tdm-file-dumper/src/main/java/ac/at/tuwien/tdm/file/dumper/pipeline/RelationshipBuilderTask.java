@@ -1,10 +1,12 @@
 package ac.at.tuwien.tdm.file.dumper.pipeline;
 
+import ac.at.tuwien.tdm.file.dumper.writer.UserFileWriter;
 import ac.at.tuwien.tdm.twitter.connector.api.Tweet;
 import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnector;
 import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnectorException;
 import ac.at.tuwien.tdm.twitter.connector.api.User;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
@@ -23,9 +25,11 @@ public final class RelationshipBuilderTask extends TwitterTask {
 
   @Override
   public void execute(final List<Tweet> tweets, final Set<User> users) throws Exception {
-    for (final User user : users) {
-      lookUpFollowers(user);
-      lookUpFriends(user);
+    for (final Tweet tweet : tweets) {
+      final User authorUser = tweet.getAuthorUser();
+      lookUpFollowers(authorUser);
+      lookUpFriends(authorUser);
+      writeUserToFile(tweet.getSearchTerm(), authorUser);
     }
   }
 
@@ -51,5 +55,14 @@ public final class RelationshipBuilderTask extends TwitterTask {
     LOGGER.info(String.format("Found %d friends user ids for user with id '%d'", friendsUserIds.size(), user.getId()));
 
     user.addFriendsUserIds(friendsUserIds);
+  }
+
+  private void writeUserToFile(final String searchTerm, final User user) {
+    final UserFileWriter userWriter = UserFileWriter.getInstance();
+    try {
+      userWriter.appendToFile(searchTerm, Arrays.asList(user));
+    } catch (final Exception e) {
+      LOGGER.error(String.format("Couldn't write user with id %d to file", user.getId()), e);
+    }
   }
 }

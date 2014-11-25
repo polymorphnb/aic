@@ -55,6 +55,8 @@ public final class SearchTweetsJob extends AbstractJob<List<Tweet>> {
           handleReachedLimit(e.getResetTimestamp());
         } catch (final ConnectionException e) {
           handleConnectionError();
+        } catch (final HttpRetryProblemException e) {
+          handleHttpProblem(e.getResetTimestamp());
         }
       } while (result == null);
 
@@ -86,6 +88,8 @@ public final class SearchTweetsJob extends AbstractJob<List<Tweet>> {
             handleReachedLimit(e.getResetTimestamp());
           } catch (final ConnectionException e) {
             handleConnectionError();
+          } catch (final HttpRetryProblemException e) {
+            handleHttpProblem(e.getResetTimestamp());
           }
         } while (nextQuery != null && allTweets.size() < maxResults);
       }

@@ -4,6 +4,7 @@ import ac.at.tuwien.tdm.twitter.connector.ConnectionException;
 import ac.at.tuwien.tdm.twitter.connector.DtoFactory;
 import ac.at.tuwien.tdm.twitter.connector.Maybe;
 import ac.at.tuwien.tdm.twitter.connector.TwitterAuthenticationService;
+import ac.at.tuwien.tdm.twitter.connector.TwitterConnectorConstants;
 import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnectorException;
 import ac.at.tuwien.tdm.twitter.connector.api.User;
 import ac.at.tuwien.tdm.twitter.connector.result.ListTaskResult;
@@ -34,7 +35,8 @@ public final class LookUpUsersTask implements Task<ListTaskResult<User>> {
   }
 
   @Override
-  public ListTaskResult<User> execute() throws LimitReachedException, TwitterConnectorException, ConnectionException {
+  public ListTaskResult<User> execute() throws LimitReachedException, TwitterConnectorException, ConnectionException,
+      HttpRetryProblemException {
 
     final List<User> users = new ArrayList<>(128);
     ResponseList<twitter4j.User> twitterUsers;
@@ -56,6 +58,8 @@ public final class LookUpUsersTask implements Task<ListTaskResult<User>> {
         throw new LimitReachedException(e, e.getRateLimitStatus());
       } else if (e.isCausedByNetworkIssue()) {
         throw new ConnectionException(e);
+      } else if (TwitterConnectorConstants.HTTP_RETRY_PROBLEMS.contains(e.getStatusCode())) {
+        throw new HttpRetryProblemException(e);
       } else {
         throw new TwitterConnectorException(e);
       }

@@ -1,8 +1,8 @@
 -- AIC999001
---oauth.consumerKey = PlWR8E5JqRNXSfnnr8fMAPZRb
---oauth.consumerSecret= 2IMEP0S8jgfVYNjV43Cu2kjKN28YUziB5Egql4cW1NvacHsBUf
---oauth.accessToken = 2890173483-TCfpkDXLhhaSplxomEm68XmH0JNm0scgZ4Jj6W9
---oauth.accessTokenSecret = gfd5hTfmsSDRZOVjK0KGtrCYA3SPVyxMTI0cxC2e8OhD2
+oauth.consumerKey = PlWR8E5JqRNXSfnnr8fMAPZRb
+oauth.consumerSecret= 2IMEP0S8jgfVYNjV43Cu2kjKN28YUziB5Egql4cW1NvacHsBUf
+oauth.accessToken = 2890173483-TCfpkDXLhhaSplxomEm68XmH0JNm0scgZ4Jj6W9
+oauth.accessTokenSecret = gfd5hTfmsSDRZOVjK0KGtrCYA3SPVyxMTI0cxC2e8OhD2
 
 oauth.consumerKey = JRalGP3yTvGIrlb2pBtI8LuBx
 oauth.consumerSecret= OEtRSu3NOKYrLidX5JGohz7vg4AlDCRXPrHmXP4Wv2LgkNHUYK

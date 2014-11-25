@@ -55,7 +55,8 @@ public final class SearchTweetsTask implements Task<TweetSearchResult> {
     return new SearchTweetsTask(searchTerm, false, query, tweetsPerPage);
   }
 
-  public TweetSearchResult execute() throws LimitReachedException, TwitterConnectorException, ConnectionException {
+  public TweetSearchResult execute() throws LimitReachedException, TwitterConnectorException, ConnectionException,
+      HttpRetryProblemException {
 
     final List<Tweet> tweets = new ArrayList<Tweet>(Integer.highestOneBit(tweetsPerPage) * 2);
     QueryResult result = null;
@@ -72,6 +73,8 @@ public final class SearchTweetsTask implements Task<TweetSearchResult> {
         throw new LimitReachedException(e, e.getRateLimitStatus());
       } else if (e.isCausedByNetworkIssue()) {
         throw new ConnectionException(e);
+      } else if (TwitterConnectorConstants.HTTP_RETRY_PROBLEMS.contains(e.getStatusCode())) {
+        throw new HttpRetryProblemException(e);
       } else {
         throw new TwitterConnectorException(e);
       }

@@ -25,6 +25,10 @@ public final class UserLookUpTask extends TwitterTask {
   @Override
   public void execute(final List<Tweet> tweets, final Set<User> users) throws Exception {
 
+    if(tweets.isEmpty()){
+      return;
+    }
+    
     transferAuthorUsers(tweets, users);
 
     final List<Long> userIds = retrieveUserIds(tweets);
