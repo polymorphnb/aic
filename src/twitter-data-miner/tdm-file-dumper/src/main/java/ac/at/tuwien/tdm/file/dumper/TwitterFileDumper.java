@@ -48,7 +48,7 @@ public final class TwitterFileDumper {
     TwitterFileDumper fileDumper = null;
 
     try {
-      final int amountWorkerThreads = 1; // ((maxMemoryInMb / 2) / 100);
+      final int amountWorkerThreads = FileDumperConstants.AMOUNT_OF_WORKER_THREADS; // ((maxMemoryInMb / 2) / 100);
       LOGGER.info(String.format("Using %d worker thread(s)", amountWorkerThreads));
       fileDumper = new TwitterFileDumper(amountWorkerThreads);
       fileDumper.collect(connector);

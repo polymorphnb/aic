@@ -20,7 +20,7 @@ public final class FileDumperConstants {
 
   public static final String SEARCH_TERMS_FILE_NAME = "searchTerms.txt";
   
-  // public static final int AMOUNT_OF_WORKER_THREADS = 2;
+  public static final int AMOUNT_OF_WORKER_THREADS = 1;
   
   public static final String LINE_ENDING = "\n";
   

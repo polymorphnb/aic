@@ -24,7 +24,7 @@ public final class TwitterConnectorConstants {
 
   public static final String TWEET_LANGUAGE = "en";
 
-  public static final int DEFAULT_MAX_RESULTS_PER_TWEET_SEARCH = 20000;
+  public static final int DEFAULT_MAX_RESULTS_PER_TWEET_SEARCH = 10000;
 
   // must be <= 100
   public static final int DEFAULT_AMOUNT_OF_TWEETS_PER_RESULT_PAGE = 100;
