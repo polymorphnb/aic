@@ -3,7 +3,10 @@ package ac.at.tuwien.tdm.docstore;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.UnknownHostException;
+import java.util.Arrays;
+import java.util.List;
 
+import com.mongodb.AggregationOutput;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
@@ -23,6 +26,7 @@ public class DocStoreConnectorImpl {
   private static final String ADS_FILE = "ads.json";
   private static final String TOPIC_COLLECTION = "topics";
   private static final String ADS_COLLECTION = "ads";
+  private static final String USER_TWEET_COLLECTION = "user_tweets";
   private DB db;
   
   public void connect() {
@@ -64,7 +68,8 @@ public class DocStoreConnectorImpl {
   }
   
   private String getContentFromFile(String file) {
-    try (BufferedReader br = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("/" + file)))) {
+    try {
+      BufferedReader br = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("/" + file)));
       //List<DBObject> dbObjects = new ArrayList<DBObject>();
       String content = "";
       String contentLine = null;
@@ -74,6 +79,7 @@ public class DocStoreConnectorImpl {
         //dbObjects.add((DBObject)JSON.parse(contentLine));
       }
       //return dbObjects;
+      br.close();
       return content;
     } catch (Exception e) {
       e.printStackTrace();
@@ -126,6 +132,17 @@ public class DocStoreConnectorImpl {
   
   public void dropDatabase() {
     this.db.dropDatabase();
+  }
+  
+  public void getInterestsForUsers(int interestThreshold) {
+	  DBCollection coll = db.getCollection(USER_TWEET_COLLECTION);
+	  DBObject groupFields = new BasicDBObject( "user", "$user");
+	  groupFields.put("cnt", new BasicDBObject( "$sum", "$topic"));
+	  DBObject group = new BasicDBObject("$group", groupFields);
+	  DBObject match = new BasicDBObject("$match", new BasicDBObject("cnt", new BasicDBObject("$gt",interestThreshold)));
+	  
+	  List<DBObject> pipeline = Arrays.asList(group, match);
+	  AggregationOutput output = coll.aggregate(pipeline);
   }
   
   public static void main(String[] args) {
