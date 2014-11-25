@@ -1,5 +1,6 @@
 package ac.at.tuwien.tdm.twitter.connector.job;
 
+import ac.at.tuwien.tdm.twitter.connector.ConnectionException;
 import ac.at.tuwien.tdm.twitter.connector.TwitterConnectorConstants;
 import ac.at.tuwien.tdm.twitter.connector.api.Tweet;
 import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnectorException;
@@ -52,6 +53,8 @@ public final class SearchTweetsJob extends AbstractJob<List<Tweet>> {
           result = task.execute();
         } catch (final LimitReachedException e) {
           handleReachedLimit(e.getResetTimestamp());
+        } catch (final ConnectionException e) {
+          handleConnectionError();
         }
       } while (result == null);
 
@@ -66,7 +69,7 @@ public final class SearchTweetsJob extends AbstractJob<List<Tweet>> {
           try {
             boolean isLastSearch = false;
 
-            if ((searchRuns + 1) * resultsPerPage >= maxResults && !isLastSearch) {
+            if (((searchRuns + 1) * resultsPerPage >= maxResults) && !isLastSearch) {
               isLastSearch = true;
               resultsPerPage = (maxResults - (searchRuns * resultsPerPage));
             }
@@ -81,8 +84,10 @@ public final class SearchTweetsJob extends AbstractJob<List<Tweet>> {
             checkRateLimit(result);
           } catch (final LimitReachedException e) {
             handleReachedLimit(e.getResetTimestamp());
+          } catch (final ConnectionException e) {
+            handleConnectionError();
           }
-        } while (nextQuery != null);
+        } while (nextQuery != null && allTweets.size() < maxResults);
       }
     } catch (final TwitterException e) {
       throw new TwitterConnectorException(e);

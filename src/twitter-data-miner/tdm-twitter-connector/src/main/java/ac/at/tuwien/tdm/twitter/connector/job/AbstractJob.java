@@ -28,8 +28,15 @@ public abstract class AbstractJob<T> implements Job<T> {
     }
 
     if (rateLimitStatus.getRemaining() == 0) {
-      handleReachedLimit(((long)rateLimitStatus.getResetTimeInSeconds()) * 1000l);
+      handleReachedLimit(((long) rateLimitStatus.getResetTimeInSeconds()) * 1000l);
     }
+  }
+
+  protected void handleConnectionError() {
+    LOGGER.warn("Detected connection problem");
+
+    final TwitterAuthenticationService authService = TwitterAuthenticationService.getInstance();
+    authService.handleConnectionError();
   }
 
   protected abstract String getRequestType();

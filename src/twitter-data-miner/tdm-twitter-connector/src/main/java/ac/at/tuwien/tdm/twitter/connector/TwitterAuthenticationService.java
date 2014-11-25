@@ -69,7 +69,7 @@ public final class TwitterAuthenticationService {
     scheduler.shutdownNow();
   }
 
-  public void invalidateCredentials(final long resetTimestamp) throws TwitterException {
+  public void invalidateCredentials(final long resetTimestamp) {
     credentialsInUse.invalidate(resetTimestamp);
     LOGGER.info(String.format("Invalidated credentials #%d until %s", credentialsInUse.getCredentialNumber(),
         Clock.dateForGivenTimeInLocalTimeZone(resetTimestamp)));
@@ -80,15 +80,40 @@ public final class TwitterAuthenticationService {
       try {
         nextCredentials = getNextCredentials();
       } catch (final LimitReachedException e) {
-        waitUntilLimitIsReset(e.getResetTimestamp());
+        waitUntil(
+            e.getResetTimestamp(),
+            String.format("No free credentials found, waiting until reset: %s",
+                Clock.dateForGivenTimeInLocalTimeZone(e.getResetTimestamp())));
       }
     } while (nextCredentials == null);
 
-    useCredentials(nextCredentials);
+    boolean done = false;
+
+    do {
+      try {
+        useCredentials(nextCredentials);
+        done = true;
+      } catch (final TwitterException e) {
+        if (e.isCausedByNetworkIssue()) {
+          LOGGER.warn("Detected connection problem");
+          handleConnectionError();
+        } else {
+          throw new RuntimeException(e);
+        }
+      }
+    } while (!done);
   }
 
   public Twitter getTwitter() {
     return twitter;
+  }
+
+  public void handleConnectionError() {
+    final Calendar calendar = Clock.currentTime();
+    calendar.add(Calendar.MINUTE, 2);
+    final long resetTimestamp = calendar.getTimeInMillis();
+    waitUntil(resetTimestamp,
+        String.format("Stopped operations until: %s", Clock.dateForGivenTimeInLocalTimeZone(resetTimestamp)));
   }
 
   private void useCredentials(final TwitterOAuthCredentials credentials) throws TwitterException {
@@ -145,7 +170,7 @@ public final class TwitterAuthenticationService {
     return (calculateWaitingTime(credentials.getRateLimitResetTimestamp()) < 0);
   }
 
-  private void waitUntilLimitIsReset(final long resetTimestamp) {
+  private void waitUntil(final long resetTimestamp, final String logMessage) {
     long waitingTime = calculateWaitingTime(resetTimestamp);
 
     if (waitingTime <= 0) {
@@ -157,8 +182,7 @@ public final class TwitterAuthenticationService {
         final ScheduledFuture<?> resetTaskFuture = scheduler.schedule(new ResetTimerTask(lock), waitingTime,
             TimeUnit.MILLISECONDS);
 
-        LOGGER.info(String.format("No free credentials found, waiting until reset: %s",
-            Clock.dateForGivenTimeInLocalTimeZone(resetTimestamp)));
+        LOGGER.info(logMessage);
 
         try {
           lock.wait();
@@ -179,7 +203,7 @@ public final class TwitterAuthenticationService {
     final Calendar currentTime = Clock.currentTime();
     final Calendar resetTime = Clock.givenTime(resetTimestamp);
 
-    return ((resetTime.getTimeInMillis() - currentTime.getTimeInMillis()) + 30000L);
+    return ((resetTime.getTimeInMillis() - currentTime.getTimeInMillis()) + 5000L);
   }
 
   private void loadCredentialsFromFile() {
@@ -198,7 +222,7 @@ public final class TwitterAuthenticationService {
       for (final String readLine : readLines) {
         final String line = readLine.trim();
 
-        if (line.isEmpty()) {
+        if (line.isEmpty() || line.contains("--")) {
           continue;
         }
 

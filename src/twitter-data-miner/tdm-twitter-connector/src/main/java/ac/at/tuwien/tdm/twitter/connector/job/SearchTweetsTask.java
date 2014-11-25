@@ -1,5 +1,6 @@
 package ac.at.tuwien.tdm.twitter.connector.job;
 
+import ac.at.tuwien.tdm.twitter.connector.ConnectionException;
 import ac.at.tuwien.tdm.twitter.connector.Defense;
 import ac.at.tuwien.tdm.twitter.connector.DtoFactory;
 import ac.at.tuwien.tdm.twitter.connector.Maybe;
@@ -54,7 +55,7 @@ public final class SearchTweetsTask implements Task<TweetSearchResult> {
     return new SearchTweetsTask(searchTerm, false, query, tweetsPerPage);
   }
 
-  public TweetSearchResult execute() throws LimitReachedException, TwitterConnectorException {
+  public TweetSearchResult execute() throws LimitReachedException, TwitterConnectorException, ConnectionException {
 
     final List<Tweet> tweets = new ArrayList<Tweet>(Integer.highestOneBit(tweetsPerPage) * 2);
     QueryResult result = null;
@@ -69,6 +70,8 @@ public final class SearchTweetsTask implements Task<TweetSearchResult> {
     } catch (final TwitterException e) {
       if (e.exceededRateLimitation()) {
         throw new LimitReachedException(e.getRateLimitStatus());
+      } else if (e.isCausedByNetworkIssue()) {
+        throw new ConnectionException(e);
       } else {
         throw new TwitterConnectorException(e);
       }

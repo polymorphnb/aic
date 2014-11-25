@@ -30,45 +30,36 @@ public abstract class TwitterFileWriter<T> {
 
   private BufferedOutputStream outputStream;
 
-  private long archivedEntryCount = 0;
+  private String currentSearchTerm;
 
   private long currentEntryCount = 0;
 
   protected TwitterFileWriter(final String fileName, final String fileExtension) {
     this.fileName = fileName;
     this.fileExtension = fileExtension;
-    this.filePath = buildNewFilePathForCurrentTime(fileName, fileExtension);
   }
 
-  public synchronized void appendToFile(final List<T> dataList) throws IOException {
-    final BufferedOutputStream outputStream = openFileAsStream();
+  public synchronized void appendToFile(final String searchTerm, final List<T> dataList) throws IOException {
+    final BufferedOutputStream outputStream = openFileAsStream(searchTerm);
 
     IOUtils.writeLines(dataList, FileDumperConstants.LINE_ENDING, outputStream, FileDumperConstants.ENCODING);
     outputStream.flush();
 
     LOGGER.info(String.format("Wrote %d data entries to %s", dataList.size(), filePath));
     currentEntryCount += dataList.size();
-
-    rollOverIfNecessary();
   }
 
-  private void rollOverIfNecessary() throws IOException {
-    if (currentEntryCount > FileDumperConstants.MAX_ENTRIES_PER_FILE) {
-      closeFileStream();
-      LOGGER.info(String.format("Closed file '%s', because of roll over to new file", filePath));
+  private BufferedOutputStream openFileAsStream(final String searchTerm) throws IOException {
+    if (!searchTerm.equals(currentSearchTerm)) {
+      currentSearchTerm = searchTerm;
 
-      archivedEntryCount += currentEntryCount;
-      currentEntryCount = 0;
-      filePath = buildNewFilePathForCurrentTime(fileName, fileExtension);
-      outputStream = null;
-      openFileAsStream();
-    }
-  }
+      if (outputStream != null) {
+        closeFileStream();
+      }
 
-  private BufferedOutputStream openFileAsStream() throws IOException {
-    if (outputStream == null) {
-      final File tweetFile = new File(filePath);
-      outputStream = new BufferedOutputStream(FileUtils.openOutputStream(tweetFile, true));
+      filePath = buildNewFilePathForCurrentTime(fileName, fileExtension, searchTerm);
+      final File twitterFile = new File(filePath);
+      outputStream = new BufferedOutputStream(FileUtils.openOutputStream(twitterFile, true));
       LOGGER.info(String.format("Opened file '%s'", filePath));
     }
 
@@ -86,10 +77,11 @@ public abstract class TwitterFileWriter<T> {
   }
 
   public long getTotalAmountOfEntries() {
-    return archivedEntryCount + currentEntryCount;
+    return currentEntryCount;
   }
 
-  private String buildNewFilePathForCurrentTime(final String fileName, final String fileExtension) {
-    return (fileName + Clock.currentTime().getTimeInMillis() + fileExtension);
+  private String buildNewFilePathForCurrentTime(final String fileName, final String fileExtension,
+      final String searchTerm) {
+    return (fileName + Clock.currentTime().getTimeInMillis() + "_" + searchTerm + fileExtension);
   }
 }

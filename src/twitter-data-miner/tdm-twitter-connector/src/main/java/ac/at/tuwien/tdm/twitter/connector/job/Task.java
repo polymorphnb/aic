@@ -1,5 +1,6 @@
 package ac.at.tuwien.tdm.twitter.connector.job;
 
+import ac.at.tuwien.tdm.twitter.connector.ConnectionException;
 import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnectorException;
 import ac.at.tuwien.tdm.twitter.connector.result.TaskResult;
 
@@ -18,5 +19,5 @@ public interface Task<T extends TaskResult> {
    * @throws LimitReachedException thrown if the twitter api limit (requests per 15 min window) is reached
    * @throws TwitterConnectorException some kind of request executing error
    */
-  T execute() throws LimitReachedException, TwitterConnectorException;
+  T execute() throws LimitReachedException, TwitterConnectorException, ConnectionException;
 }

@@ -1,5 +1,6 @@
 package ac.at.tuwien.tdm.twitter.connector.job;
 
+import ac.at.tuwien.tdm.twitter.connector.ConnectionException;
 import ac.at.tuwien.tdm.twitter.connector.TwitterConnectorConstants;
 import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnectorException;
 import ac.at.tuwien.tdm.twitter.connector.result.CursorListTaskResult;
@@ -38,6 +39,8 @@ public final class FindFriendsJob extends AbstractJob<List<Long>> {
           approach = FindFriendsJobApproachEnum.LIST; // only for log message
           handleReachedLimit(e.getResetTimestamp());
           approach = null;
+        } catch (final ConnectionException e) {
+          handleConnectionError();
         }
       } while (approach == null);
 
@@ -49,6 +52,8 @@ public final class FindFriendsJob extends AbstractJob<List<Long>> {
           result = task.execute();
         } catch (final LimitReachedException e) {
           handleReachedLimit(e.getResetTimestamp());
+        } catch (final ConnectionException e) {
+          handleConnectionError();
         }
       } while (result == null);
 
@@ -65,6 +70,8 @@ public final class FindFriendsJob extends AbstractJob<List<Long>> {
             checkRateLimit(result);
           } catch (final LimitReachedException e) {
             handleReachedLimit(e.getResetTimestamp());
+          } catch (final ConnectionException e) {
+            handleConnectionError();
           }
         } while (result.hasNextResultPage());
       }
@@ -80,7 +87,8 @@ public final class FindFriendsJob extends AbstractJob<List<Long>> {
     return ("findFriends, approach: " + approach);
   }
 
-  private FindFriendsJobApproachEnum determineApproach() throws LimitReachedException, TwitterConnectorException {
+  private FindFriendsJobApproachEnum determineApproach() throws LimitReachedException, TwitterConnectorException,
+      ConnectionException {
 
     final MapTaskResult<String, RateLimitStatus> taskResult = GetRateLimitTask.newInstance().execute();
     final Map<String, RateLimitStatus> rateLimits = taskResult.getResult();

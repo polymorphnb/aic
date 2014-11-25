@@ -1,5 +1,6 @@
 package ac.at.tuwien.tdm.twitter.connector.job;
 
+import ac.at.tuwien.tdm.twitter.connector.ConnectionException;
 import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnectorException;
 import ac.at.tuwien.tdm.twitter.connector.api.User;
 import ac.at.tuwien.tdm.twitter.connector.result.ListTaskResult;
@@ -34,6 +35,8 @@ public class LookUpUsersJob extends AbstractJob<List<User>> {
           result = task.execute();
         } catch (final LimitReachedException e) {
           handleReachedLimit(e.getResetTimestamp());
+        } catch (final ConnectionException e) {
+          handleConnectionError();
         }
       } while (result == null);
 
@@ -41,7 +44,7 @@ public class LookUpUsersJob extends AbstractJob<List<User>> {
     } catch (final TwitterException e) {
       throw new TwitterConnectorException(e);
     }
-    
+
     return result.getResult();
   }
 

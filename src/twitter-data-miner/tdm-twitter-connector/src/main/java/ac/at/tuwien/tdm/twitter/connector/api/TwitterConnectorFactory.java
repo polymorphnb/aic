@@ -16,7 +16,7 @@ public final class TwitterConnectorFactory {
     try {
       return new TwitterConnectorImpl();
     } catch (final Exception e) {
-      throw new RuntimeException("Couldn't build twitter connector");
+      throw new RuntimeException("Couldn't build twitter connector", e);
     }
   }
 }

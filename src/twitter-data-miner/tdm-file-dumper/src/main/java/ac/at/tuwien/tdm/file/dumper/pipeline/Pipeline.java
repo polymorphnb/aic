@@ -29,7 +29,7 @@ public final class Pipeline implements Runnable {
     tasks.add(new TweetSearchTask(twitterConnector, topic));
     tasks.add(new UserLookUpTask(twitterConnector));
     tasks.add(new RelationshipBuilderTask(twitterConnector));
-    tasks.add(new WriteToFilesTask());
+    tasks.add(new WriteToFilesTask(topic.getSearchTerm()));
   }
 
   public static Pipeline newInstance(final TwitterConnector twitterConnector, final CountDownLatch latch,

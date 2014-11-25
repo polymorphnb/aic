@@ -9,17 +9,23 @@ import java.util.List;
 
 public final class WriteToFilesTask implements Task {
 
+  private final String searchTerm;
+
+  public WriteToFilesTask(final String searchTerm) {
+    this.searchTerm = searchTerm;
+  }
+
   @Override
   public void execute(final List<Tweet> tweets, final List<User> users) throws Exception {
 
     if (!tweets.isEmpty()) {
       final TweetFileWriter tweetWriter = TweetFileWriter.getInstance();
-      tweetWriter.appendToFile(tweets);
+      tweetWriter.appendToFile(searchTerm, tweets);
     }
 
     if (!users.isEmpty()) {
       final UserFileWriter userWriter = UserFileWriter.getInstance();
-      userWriter.appendToFile(users);
+      userWriter.appendToFile(searchTerm, users);
     }
   }
 }

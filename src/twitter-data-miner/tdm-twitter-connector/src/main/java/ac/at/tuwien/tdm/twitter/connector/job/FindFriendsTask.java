@@ -1,5 +1,6 @@
 package ac.at.tuwien.tdm.twitter.connector.job;
 
+import ac.at.tuwien.tdm.twitter.connector.ConnectionException;
 import ac.at.tuwien.tdm.twitter.connector.TwitterAuthenticationService;
 import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnectorException;
 import ac.at.tuwien.tdm.twitter.connector.job.FindFriendsJob.FindFriendsJobApproachEnum;
@@ -32,7 +33,8 @@ public final class FindFriendsTask extends AbstractFriendsFollowersTask {
   }
 
   @Override
-  public CursorListTaskResult<Long> execute() throws LimitReachedException, TwitterConnectorException {
+  public CursorListTaskResult<Long> execute() throws LimitReachedException, TwitterConnectorException,
+      ConnectionException {
 
     final Twitter twitter = TwitterAuthenticationService.getInstance().getTwitter();
 
@@ -50,6 +52,8 @@ public final class FindFriendsTask extends AbstractFriendsFollowersTask {
     } catch (final TwitterException e) {
       if (e.exceededRateLimitation()) {
         throw new LimitReachedException(e.getRateLimitStatus());
+      } else if (e.isCausedByNetworkIssue()) {
+        throw new ConnectionException(e);
       } else {
         throw new TwitterConnectorException(e);
       }

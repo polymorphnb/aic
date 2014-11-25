@@ -1,9 +1,74 @@
-oauth.consumerKey = PlWR8E5JqRNXSfnnr8fMAPZRb
-oauth.consumerSecret= 2IMEP0S8jgfVYNjV43Cu2kjKN28YUziB5Egql4cW1NvacHsBUf
-oauth.accessToken = 2890173483-TCfpkDXLhhaSplxomEm68XmH0JNm0scgZ4Jj6W9
-oauth.accessTokenSecret = gfd5hTfmsSDRZOVjK0KGtrCYA3SPVyxMTI0cxC2e8OhD2
+-- AIC999001
+--oauth.consumerKey = PlWR8E5JqRNXSfnnr8fMAPZRb
+--oauth.consumerSecret= 2IMEP0S8jgfVYNjV43Cu2kjKN28YUziB5Egql4cW1NvacHsBUf
+--oauth.accessToken = 2890173483-TCfpkDXLhhaSplxomEm68XmH0JNm0scgZ4Jj6W9
+--oauth.accessTokenSecret = gfd5hTfmsSDRZOVjK0KGtrCYA3SPVyxMTI0cxC2e8OhD2
 
 oauth.consumerKey = JRalGP3yTvGIrlb2pBtI8LuBx
 oauth.consumerSecret= OEtRSu3NOKYrLidX5JGohz7vg4AlDCRXPrHmXP4Wv2LgkNHUYK
 oauth.accessToken = 2890173483-VtWL9TS7bP7qgBhxmuuxwy8q9leHFtXnNvfQ2NJ
 oauth.accessTokenSecret = 0kCHVQ7ywEWiGpdnLnlwkxbjSZeiEgNqe0g8joyBWgOEX
+
+-- AIC999002
+oauth.consumerKey = bDoB0wuojOWpQllfwtu6Ikmd0
+oauth.consumerSecret= qp51f7u9ifTAQEH8FE5kfutDcgmnkyV89mCKK52bdZbJUY3ORx
+oauth.accessToken = 2891233475-i0MTY2SXu65QTDtocotMTz8fHIaZcD8r6BIlvar
+oauth.accessTokenSecret = HDrNRvnm3fYE6pA05aFXyZYgsUWrwQMtVZm9X1PML9boG
+
+oauth.consumerKey = ESbyFlgS0ejFTjeq6T4FF8YMG
+oauth.consumerSecret= J8Y8TfvKQ0jBPma4dzOivtAd16Ma9Pm1f6ZUngWL6yfNJn4ySv
+oauth.accessToken = 2891233475-uclYNnF7YHqXLGe24s8ZkW1PoJzcoa0CeQWMBSn
+oauth.accessTokenSecret = JAy5H6IEDSWEYNPxCoswOAZAdehzlQx2ywatWSOXlOB7C
+
+oauth.consumerKey = ulSvkmFYNuY6ANJj1AIhFICPb
+oauth.consumerSecret= 0XBu4s4wae2RJxKrUeN0L03MBr6skknqi2KyXxLe0rUiuUF6Zk
+oauth.accessToken = 2891233475-FeGvMLv4lqQTGYiGcyahEqXhBLjFQm2CRqP0aq1
+oauth.accessTokenSecret = YdexqC0GpGCteHECymrhb7383AecxwkKsqHrrE6tJt153
+
+-- AIC999003
+oauth.consumerKey = VWipa1m7kUf0PvfxVzyvInjCi
+oauth.consumerSecret= e41j29z8XLCdLehtudedPQlQZN43R4o2NutLPbxDl4ktJHm23J
+oauth.accessToken = 2891273326-b5MON61Ufg3GM3jHmbAYwfFcApGePn5QSdh8rY5
+oauth.accessTokenSecret = 4TKDvYBzrWU6kUA708g265lgKcZ96hhxtWzRI7WEqf99t
+
+oauth.consumerKey = IotCHmbR2UwVQLUGd7RQSRAF5
+oauth.consumerSecret= 3t9MzdR57Cos8WRKmq95D92qSMHWlWDiZnD6EBCVClr7IqwZ5m
+oauth.accessToken =  2891273326-VGVXwEF3xpHLq0mKmEYoAPHApZtMEB4dTKgI2i9
+oauth.accessTokenSecret = CosIfInBvpdmTrNXci3ohOgIMhukEYgDdRFLbv9XjE5zt
+
+oauth.consumerKey = g1GwshhiNHigZuwHJzKfFZ2Qh
+oauth.consumerSecret= 5chp6e0MXpB7SToA7Kl0y39zONal39M1k05vTOmmFtQJ1HVTcn
+oauth.accessToken = 2891273326-1HXBezExjXiWoq07iYJCBuTtrAGms3rPcAnOHyw
+oauth.accessTokenSecret = 8nZGz5fAiGwywHZwRCCbot7wCNxUhz2uTvGrmVz1ONxaZ
+
+-- AIC999004
+oauth.consumerKey = 6H5w2YRP0RLE5KsjPxnBAzt7g
+oauth.consumerSecret= Ofu6wUrH9k9eRIJUh7a5K8byusVZlvuVCyrbGF33cspfOvcyj9
+oauth.accessToken = 2891241755-ypA7l2WejLDxF5uaSCe6t831oDsgpJ4oHlWPLka
+oauth.accessTokenSecret = 9gIfsSTZphP3gVarsDX7ZO3p7MQgFbq7mz66Ki6lgacbx
+
+oauth.consumerKey = OUuDSg9c52TiFYPwU3ACfvkOe
+oauth.consumerSecret= MfIraf1GicujIC9DJm5kHPbF31oTEHVM58ywuJQbrc8T1DBKRV
+oauth.accessToken =  2891241755-9sqX5SC6qPh9TqA6ltEHHSh6ujkx8pP9b7ebYpD
+oauth.accessTokenSecret = CZ3xTM6wowJGSCAZKPypxvWIMvyxsK2l3KpjGHXcGQbnr
+
+oauth.consumerKey = gCToAhjwH5HD4hDUlCHP5z7Il
+oauth.consumerSecret= zUdbu4fwSL2YTnM98eGeao79v8vYjU49SXtb5KmLLP7GLtaAxK
+oauth.accessToken = 2891241755-taEmSmIl0LUn2iS7fKZkwSiC1l8r5wABfSvhiaU
+oauth.accessTokenSecret = Sf7BDx8P6SEMgyfPaSCKxoh2QfpxH5T01U38i5E6SiKbL
+
+-- AIC999005
+oauth.consumerKey = yNM1lccwU1SmJzot9qtjCqbJt
+oauth.consumerSecret= ySZ9BB8skwCDG41GKDI0KGcXHQ76fX5pFZoDaCkbxEW4i2UuQA
+oauth.accessToken = 2891246243-nrHdvZoYXRLZcFhilRo3539URWMninUxFFE6H2Y
+oauth.accessTokenSecret = xehtQEUVS0bcLeYulkG7MZT4IyenHJwm8ADLPqXQWdEUv
+
+oauth.consumerKey = 3m3QAhj2kFvGebJEp9GZxw2QB
+oauth.consumerSecret= mGLHgGbJRd9nyekFr5MfjRjhDtekMIy24b1EYpuvduCLawfjpl
+oauth.accessToken = 2891246243-2SZLnzjMQlPz5iCI3omZh4pbvK94dYBdeQzwvzV
+oauth.accessTokenSecret = 01a3cwVNLBledu5rN6UbxSbQdTe6LV0hUAO1qxVMMsP2u
+
+oauth.consumerKey = B4YvgdaU9NkjiQmxxLfof0IXY
+oauth.consumerSecret= DDvsSls1GprWbkLdyjsnOuX8YYsXBUwN1v9Zmg3fmhCZk6ahCQ
+oauth.accessToken = 2891246243-QaSawrKE5k8UQQfgpkEyKGCMjRbhNdQRv7zV3MM
+oauth.accessTokenSecret = whwjEOcYaib1yC7GxHOLQTSGcfTyAKffUmdp7mZt6WMOZ

@@ -1,5 +1,2 @@
-reagan;false
-breschnew;false
-chrutschow;false
-tito;false
-kreisky;false
+fsinf;false
+tuwien;false

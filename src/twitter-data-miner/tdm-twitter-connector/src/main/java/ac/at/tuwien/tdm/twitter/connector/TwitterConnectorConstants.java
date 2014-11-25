@@ -29,5 +29,5 @@ public final class TwitterConnectorConstants {
   // must be <= 100
   public static final int DEFAULT_AMOUNT_OF_TWEETS_PER_RESULT_PAGE = 100;
   
-  public static final int ID_LIST_APPROACH_THRESHOLD = 60;
+  public static final int ID_LIST_APPROACH_THRESHOLD = 140;
 }

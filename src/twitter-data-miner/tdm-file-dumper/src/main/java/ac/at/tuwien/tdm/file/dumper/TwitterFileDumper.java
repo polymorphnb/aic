@@ -55,7 +55,7 @@ public final class TwitterFileDumper {
       connector.shutdownService();
     }
 
-    final long durationInMilliSeconds = (startUpTime - Clock.currentTime().getTimeInMillis());
+    final long durationInMilliSeconds = (Clock.currentTime().getTimeInMillis() - startUpTime);
     final long amountOfFoundTweets = TweetFileWriter.getInstance().getTotalAmountOfEntries();
     final long amountOfFoundUsers = UserFileWriter.getInstance().getTotalAmountOfEntries();
 
