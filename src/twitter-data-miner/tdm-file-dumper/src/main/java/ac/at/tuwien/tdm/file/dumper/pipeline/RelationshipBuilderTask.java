@@ -27,9 +27,14 @@ public final class RelationshipBuilderTask extends TwitterTask {
   public void execute(final List<Tweet> tweets, final Set<User> users) throws Exception {
     for (final Tweet tweet : tweets) {
       final User authorUser = tweet.getAuthorUser();
-      lookUpFollowers(authorUser);
-      lookUpFriends(authorUser);
-      writeUserToFile(tweet.getSearchTerm(), authorUser);
+      try {
+        lookUpFollowers(authorUser);
+        lookUpFriends(authorUser);
+        writeUserToFile(tweet.getSearchTerm(), authorUser);
+      } catch (final Exception e) {
+        LOGGER.error(String.format("Couldn't lookup followers/friends for user with id %d", authorUser.getId()), e);
+        // continue with next user
+      }
     }
   }
 
