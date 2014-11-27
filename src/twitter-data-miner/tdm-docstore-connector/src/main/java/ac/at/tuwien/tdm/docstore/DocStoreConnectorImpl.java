@@ -4,10 +4,13 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.UnknownHostException;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.mongodb.AggregationOutput;
 import com.mongodb.BasicDBObject;
+import com.mongodb.BasicDBObjectBuilder;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
@@ -27,6 +30,7 @@ public class DocStoreConnectorImpl {
   private static final String TOPIC_COLLECTION = "topics";
   private static final String ADS_COLLECTION = "ads";
   private static final String USER_TWEET_COLLECTION = "user_tweets";
+  private static final String USER_TWEET_FILE = "user_tweets.json";
   private DB db;
   
   public void connect() {
@@ -54,6 +58,18 @@ public class DocStoreConnectorImpl {
       }
     }
   }
+  
+  public void createUserTweetCollection() {
+	    if(this.db.collectionExists(DocStoreConnectorImpl.USER_TWEET_COLLECTION) == false) {
+	      DBCollection collection = this.db.getCollection(DocStoreConnectorImpl.USER_TWEET_COLLECTION);
+	      String content = this.getContentFromFile(DocStoreConnectorImpl.USER_TWEET_FILE);
+	      
+	      DBObject obj = (DBObject)JSON.parse(content);
+	      for(String key : obj.keySet()) {
+	        collection.insert((DBObject)(obj.get(key)));
+	      }
+	    }
+	  }
   
   public void createAdsCollection() {
     if(this.db.collectionExists(DocStoreConnectorImpl.ADS_COLLECTION) == false) {
@@ -136,28 +152,47 @@ public class DocStoreConnectorImpl {
   
   public void getInterestsForUsers(int interestThreshold) {
 	  DBCollection coll = db.getCollection(USER_TWEET_COLLECTION);
-	  DBObject groupFields = new BasicDBObject( "user", "$user");
-	  groupFields.put("cnt", new BasicDBObject( "$sum", "$topic"));
-	  DBObject group = new BasicDBObject("$group", groupFields);
-	  DBObject match = new BasicDBObject("$match", new BasicDBObject("cnt", new BasicDBObject("$gt",interestThreshold)));
+	  /*
+	  coll.insert(new BasicDBObjectBuilder().add("user","a").add("topic","topic1").get());
+	  coll.insert(new BasicDBObjectBuilder().add("user","a").add("topic","topic1").get());
+	  coll.insert(new BasicDBObjectBuilder().add("user","a").add("topic","topic1").get());
+	  coll.insert(new BasicDBObjectBuilder().add("user","a").add("topic","topic1").get());
+	  coll.insert(new BasicDBObjectBuilder().add("user","a").add("topic","topic2").get());
+	  */
+	  Map<String, Object> dbObjIdMap = new HashMap <String, Object>();
+	  dbObjIdMap.put("user", "$user");
+	  dbObjIdMap.put("topic", "$topic");
 	  
-	  List<DBObject> pipeline = Arrays.asList(group, match);
+	  DBObject groupFields = new BasicDBObject( "_id", new BasicDBObject(dbObjIdMap));
+	  groupFields.put("cnt", new BasicDBObject( "$sum", 1));
+	  DBObject group = new BasicDBObject("$group", groupFields);
+	  DBObject match = new BasicDBObject("$match", new BasicDBObject("cnt", new BasicDBObject("$gte",interestThreshold)));
+	  
+	  List<DBObject> pipeline = Arrays.asList(group,match);
 	  AggregationOutput output = coll.aggregate(pipeline);
+	  
+	  for(DBObject result : output.results()) {
+		  System.out.println(result);
+	  }
   }
   
   public static void main(String[] args) {
     DocStoreConnectorImpl docstore = new DocStoreConnectorImpl();
     docstore.connect();
     //docstore.dropDatabase();
-    docstore.createTopicCollection();
-    docstore.createAdsCollection();
+    //docstore.createTopicCollection();
+    //docstore.createAdsCollection();
     
-    docstore.retrieveAds();
-    docstore.retrieveTopics();
+    //docstore.retrieveAds();
+    //docstore.retrieveTopics();
     
-    docstore.getKeywordsForTopic(2);
+    //docstore.getKeywordsForTopic(2);
     
     // docstore.getTopicForID(2);
+    
+    
+    docstore.getInterestsForUsers(20);
+    System.out.println("end");
   }
 
 }
