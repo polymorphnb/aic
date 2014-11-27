@@ -72,3 +72,83 @@ oauth.consumerKey = B4YvgdaU9NkjiQmxxLfof0IXY
 oauth.consumerSecret= DDvsSls1GprWbkLdyjsnOuX8YYsXBUwN1v9Zmg3fmhCZk6ahCQ
 oauth.accessToken = 2891246243-QaSawrKE5k8UQQfgpkEyKGCMjRbhNdQRv7zV3MM
 oauth.accessTokenSecret = whwjEOcYaib1yC7GxHOLQTSGcfTyAKffUmdp7mZt6WMOZ
+
+-- AIC999006
+oauth.consumerKey = UzGpus51H1s4WEVben9PxE96w
+oauth.consumerSecret= VX7wHF2nMLWnde3qG41eeKXvM9CJ9D6hFA499SKvZwivGPGAZN
+oauth.accessToken = 2892020566-z5w5O8cjXNXjj26SOGzulFN4Nfwr8huNxPwKDgv
+oauth.accessTokenSecret = FncyJRr8oqExtpG1cL5uXrQOdDwVC3wmWzbLgn7WWPqEM
+
+oauth.consumerKey = 2rEOiHu1UfU6KTFge4PsTT0FQ
+oauth.consumerSecret= uBbKcc4HA1mcHv1bTDE1hlKMB15pwxvYB9P5rzktEd6Lsg4dAU
+oauth.accessToken = 2892020566-2BTMGsRVX85LxTNzj5ErPYlbaTroVSfXQp9i9j1
+oauth.accessTokenSecret = TlDT4U5uKNOE3XYsyrChlc0ES08i4t1io4LT0OQIN14X9
+
+oauth.consumerKey = xFpX8wz002GMlJnBU3B43J3mX
+oauth.consumerSecret= yijIGrfnH1B75JPoW0hhaGrZ4ib8urEA1Lh6HGGQ4EvuFgSIA9
+oauth.accessToken = 2892020566-TnbR8OxXhLf55fy8xcTquJcVWBs3Tq0Gs3yKgsA
+oauth.accessTokenSecret = mNq6DXDH8lkrvsvsGjU0APizZyMCbcSIucmjgHkrfFUp0
+
+-- AIC999007
+oauth.consumerKey = jRisvMGdh3otOAngoozq7eSTe
+oauth.consumerSecret= 4cYXue0xiRFlzwr0hDewnvD1LgpbnZDI2q8VI7IsncDdQ8Disw
+oauth.accessToken = 2891949587-9wEBP2vjGuAc2ZBK3mZ4YczCRZpbY8O29YeC57G
+oauth.accessTokenSecret = AD3HLh9kD8jNbLXYb4VfRxRwmSliOjPYmNBv7pGYRuYQc
+
+oauth.consumerKey = SCaY9mIDOQyPnBOC2Y2rinm2E
+oauth.consumerSecret= aRAWV7iSojqqUX3ap1WBFB2YY1ryrNBUTeXl63nanehoAmW7lS
+oauth.accessToken = 2891949587-KczQSqDOoeeG4BoWPpauRlTn0eNLBEO0yIXFJO0
+oauth.accessTokenSecret = R3YRKE6RCv0AkqZsawTnx6cSjPkcNoFf0CLAKHFgLndi1
+
+oauth.consumerKey = Q3GW8GVWIQnuJM3irEGlbBbFd
+oauth.consumerSecret= zI7E6DLUBoCpLYlcwfG54EqmENsfbCoJv4KuJ6ioXNQl5u4v3S
+oauth.accessToken = 2891949587-hHkmkHZEuwsK2F3C5vnPVl9QhhGaRuMUAGaFoUy
+oauth.accessTokenSecret = nd4SBZwIOkUcqjkWYE8cQmF2CFLvZkRmU36slX4e91JjR
+
+-- AIC999009
+oauth.consumerKey = rbCv6JdOJ6PNFYyfXONheFGwv
+oauth.consumerSecret= 0aY72XZ4fb97YbzuTwPE2r9ft5vYs7FetmCvGRP4YYYMSbDkc1
+oauth.accessToken = 2892226366-X8fZstjb5pokLv4yvSQ5kto0RNKDdoJQccp1g9O
+oauth.accessTokenSecret = AX76IeXlzUnzec5ZJU9Ii8ddWWslwPJ1qCB2vJ5yQuIR1
+
+oauth.consumerKey = 9d6CMCdlIdwcxsFa7Sutn5lhA
+oauth.consumerSecret= WzNUQTS2mN9pvxEDT94spiKns9UoFfoEcSL23ha70dxHI53oxC
+oauth.accessToken = 2892226366-ceRDpwo3gXQVMWi38NrjMAwv66rudZ8RGjM2KRa
+oauth.accessTokenSecret = 6gFmT7D9XGjSNaWTSv9LLLvkeAOKjE0kwYK6r58vECTzA
+
+oauth.consumerKey = 4GxQHsEYMSxuUBhOsanNUpwPc
+oauth.consumerSecret= MZ6HI3EhDCE7jBQmhaCR0w9O0YKPI8ZA75xnpwVtyNDvyA8tKg
+oauth.accessToken = 2892226366-iFa9QmO3SThEnnJGfctK2O6GBZOm73r0SQoF2z0
+oauth.accessTokenSecret = sNHCLlyiv5cI5P8SdVCGKkzggfOqsZxuW0Jb7navF7f3f
+
+-- aic999010
+oauth.consumerKey = BDBs1TqJAMqAq6fh5QGPQh6aM
+oauth.consumerSecret= Wb6VN2un2QCpNmbQu7GKleMiy6EiLNnoArPOgDhGKVOLWzfKqX
+oauth.accessToken = 2892725008-J7Sv3JaklYP9CVvlXLRh9FKs0q04Az7Qn5n9OhX
+oauth.accessTokenSecret = d4lZfh08H4BZDuM4EUrkTmjiTAtPI3zonQRqLYVlx8B0B
+
+oauth.consumerKey = c98W2Bt4PPnWMli4IbP2462AJ
+oauth.consumerSecret= rkaE1Q3YAJsQ6OD2jVFCC2P4quYJkefEu6bNxNOyfYOhyTfuWo
+oauth.accessToken = 2892725008-8d6TF6eJCMzaJRHrXW3waDsLWtZRV1UOLWAD8x1
+oauth.accessTokenSecret = XypqUHeUzgrUPYIK6vafGHQ0DPRGJF7EvJmh70xeF4MIB
+
+oauth.consumerKey = mBJiwnCZfCMxb8znlaxHTTtMU
+oauth.consumerSecret= 2ST03YmAD1gr0gR36fItaUbPEfeJYLWM5xX4h75R3MxoCTUfAa
+oauth.accessToken = 2892725008-A0H6RsrznxraMiZfs6s83urGoWB0LItitF36m5k
+oauth.accessTokenSecret = hc6Bg8fxCMxdBcNjjTlAxCfXNw8SprFvZrWmWWaqBZSG9
+
+-- aic999011
+oauth.consumerKey = RzfJigj0D7YRVi0oxE7iUfjto
+oauth.consumerSecret= COrtaf82RLTJdcqfNG1okoGexfGfxbmMtnb4TmcU5gBjQYQKVf
+oauth.accessToken = 2892731152-kbZPrb6pbSjJnMKhod43qOYhJ8KBwuchYti0zcp
+oauth.accessTokenSecret = EqvN6CibgzKYo3DSLaTEQwz4D2rx2TuOYRLeMFlSrxngE
+
+oauth.consumerKey = PDQ427nRKxjYltzeShc8ZQ4xj
+oauth.consumerSecret= lNVBswgT4vNdGUkYiYFVuyPylT9kAugiA80ljP22uSxALr5uuz
+oauth.accessToken = 2892731152-vBkJlKEiAyppdU53s5NCbBl5wPiLGWLFqpNe4T3
+oauth.accessTokenSecret = eyOx9ekoew9Tzv19XtdGph2cyuI7PiUsjzFLBqQVjDHvZ
+
+oauth.consumerKey = F7M9JruoQ5p4excXbJHXnVRuW
+oauth.consumerSecret= 14d7VLXRmUBaFXJ4yKUIAw0xpv6Ok56sSRLJimYan1G3zbYOvD
+oauth.accessToken =  2892731152-WHoOFhvjmcWh7ax2RYovern6cOHfJCEmiXMfJDs
+oauth.accessTokenSecret = xlNbRir0Rt9TQQQgSVuuIq5oKKBD2hJ8MBmQYcQxg4QpJ
