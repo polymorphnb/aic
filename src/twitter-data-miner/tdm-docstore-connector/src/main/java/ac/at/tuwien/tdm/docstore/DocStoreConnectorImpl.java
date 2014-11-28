@@ -133,6 +133,10 @@ public class DocStoreConnectorImpl implements DocStoreConnector {
     }
   }
   
+  public void addTopicToUser(String user, String topic) {
+	  return;
+  }
+  
   public String getKeywordsForTopic(int id) {
     DBCollection collection = this.db.getCollection(DocStoreConnectorImpl.TOPIC_COLLECTION);
     BasicDBObject whereQuery = new BasicDBObject();

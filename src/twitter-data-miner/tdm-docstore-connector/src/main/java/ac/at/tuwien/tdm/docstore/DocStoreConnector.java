@@ -4,6 +4,7 @@ import at.ac.tuwien.aic.Neo4JConnector;
 
 public interface DocStoreConnector {
 	public void connect();
+	public void addTopicToUser(String user, String topic);
 	public void createTopicCollection();
 	public void createUserTweetCollection();
 	public void createAdsCollection();
