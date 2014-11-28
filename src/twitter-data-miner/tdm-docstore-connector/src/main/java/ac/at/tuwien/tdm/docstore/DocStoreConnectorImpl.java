@@ -32,7 +32,6 @@ public class DocStoreConnectorImpl implements DocStoreConnector {
   private static final String TOPIC_COLLECTION = "topics";
   private static final String ADS_COLLECTION = "ads";
   private static final String USER_TWEET_COLLECTION = "user_tweets";
-  private static final String USER_TWEET_FILE = "user_tweets.json";
   private DB db;
   
   public void connect() {
@@ -66,14 +65,8 @@ public class DocStoreConnectorImpl implements DocStoreConnector {
   public void createUserTweetCollection() {
 	    if(this.db.collectionExists(DocStoreConnectorImpl.USER_TWEET_COLLECTION) == false) {
 	      DBCollection collection = this.db.getCollection(DocStoreConnectorImpl.USER_TWEET_COLLECTION);
-	      String content = this.getContentFromFile(DocStoreConnectorImpl.USER_TWEET_FILE);
-	      
-	      DBObject obj = (DBObject)JSON.parse(content);
-	      for(String key : obj.keySet()) {
-	        collection.insert((DBObject)(obj.get(key)));
-	      }
 	    }
-	  }
+  }
   
   public void createAdsCollection() {
     if(this.db.collectionExists(DocStoreConnectorImpl.ADS_COLLECTION) == false) {
@@ -134,7 +127,8 @@ public class DocStoreConnectorImpl implements DocStoreConnector {
   }
   
   public void addTopicToUser(String user, String topic) {
-	  return;
+	  DBCollection coll = db.getCollection(USER_TWEET_COLLECTION);
+	  coll.insert(new BasicDBObjectBuilder().add("user",user).add("topic",topic).get());
   }
   
   public String getKeywordsForTopic(int id) {
@@ -160,13 +154,7 @@ public class DocStoreConnectorImpl implements DocStoreConnector {
   
   public void getInterestsForUsers(int interestThreshold, Neo4JConnector neo4jdb) {
 	  DBCollection coll = db.getCollection(USER_TWEET_COLLECTION);
-	  /*
-	  coll.insert(new BasicDBObjectBuilder().add("user","a").add("topic","topic1").get());
-	  coll.insert(new BasicDBObjectBuilder().add("user","a").add("topic","topic1").get());
-	  coll.insert(new BasicDBObjectBuilder().add("user","a").add("topic","topic1").get());
-	  coll.insert(new BasicDBObjectBuilder().add("user","a").add("topic","topic1").get());
-	  coll.insert(new BasicDBObjectBuilder().add("user","a").add("topic","topic2").get());
-	  */
+	  
 	  Map<String, Object> dbObjIdMap = new HashMap <String, Object>();
 	  dbObjIdMap.put("user", "$user");
 	  dbObjIdMap.put("topic", "$topic");
@@ -180,7 +168,10 @@ public class DocStoreConnectorImpl implements DocStoreConnector {
 	  AggregationOutput output = coll.aggregate(pipeline);
 	  
 	  for(DBObject result : output.results()) {
-		  System.out.println(result);
+		  neo4jdb.addInterestedInRelationship(((String) ((DBObject)result.get("_id")).get("user")), 
+				                              ((String) ((DBObject)result.get("_id")).get("topic")), 
+				                               new Integer((String)result.get("cnt")).intValue()
+				                              );
 	  }
   }
   
@@ -199,8 +190,7 @@ public class DocStoreConnectorImpl implements DocStoreConnector {
     // docstore.getTopicForID(2);
     
     
-    //docstore.getInterestsForUsers(20);
-    //System.out.println("end");
+    docstore.getInterestsForUsers(20, null);
+    System.out.println("end");
   }
-
 }
