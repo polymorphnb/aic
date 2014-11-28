@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import at.ac.tuwien.aic.Neo4JConnector;
+
 import com.mongodb.AggregationOutput;
 import com.mongodb.BasicDBObject;
 import com.mongodb.BasicDBObjectBuilder;
@@ -152,7 +154,7 @@ public class DocStoreConnectorImpl implements DocStoreConnector {
     this.db.dropDatabase();
   }
   
-  public void getInterestsForUsers(int interestThreshold) {
+  public void getInterestsForUsers(int interestThreshold, Neo4JConnector neo4jdb) {
 	  DBCollection coll = db.getCollection(USER_TWEET_COLLECTION);
 	  /*
 	  coll.insert(new BasicDBObjectBuilder().add("user","a").add("topic","topic1").get());
@@ -193,8 +195,8 @@ public class DocStoreConnectorImpl implements DocStoreConnector {
     // docstore.getTopicForID(2);
     
     
-    docstore.getInterestsForUsers(20);
-    System.out.println("end");
+    //docstore.getInterestsForUsers(20);
+    //System.out.println("end");
   }
 
 }
