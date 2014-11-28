@@ -7,7 +7,8 @@ public enum TwitterRelationshipType implements RelationshipType {
   FOLLOWS(RelationshipTypeConstants.FOLLOWS),
   FRIEND(RelationshipTypeConstants.FRIEND),
   RETWEETS(RelationshipTypeConstants.RETWEETS),
-  REPLIES(RelationshipTypeConstants.REPLIES);
+  REPLIES(RelationshipTypeConstants.REPLIES),
+  INTERESTEDIN(RelationshipTypeConstants.INTERESTED_IN);
   
   
   private String value;

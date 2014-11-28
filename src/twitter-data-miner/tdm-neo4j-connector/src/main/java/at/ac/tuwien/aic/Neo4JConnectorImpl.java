@@ -67,6 +67,23 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
     
   }
   
+  private void addRelationshipInterested(String userID1, String topicID, String weight, TwitterRelationshipType type) {
+    Node user1 = this.getUser(userID1);
+    //TODO: get Topic Node user2 = this.getUser(userID2);
+    Node topic = null;
+    Relationship rel = this.getRelationship(user1, topic, type);
+    if(rel != null) {
+      Integer weightInt = (Integer)rel.getProperty(RelationshipTypeConstants.WEIGHT);
+      weightInt += Integer.valueOf(weight);
+      rel.setProperty(RelationshipTypeConstants.WEIGHT, weightInt);
+    }
+    else {
+      rel = user1.createRelationshipTo(topic, type);
+      rel.setProperty(RelationshipTypeConstants.WEIGHT, Integer.valueOf(weight));
+    }
+    
+  }
+  
   public void addFollowsRelationship(String userID1, String userID2) {
     this.addRelationship(userID1, userID2, TwitterRelationshipType.FOLLOWS);
   }
@@ -81,6 +98,10 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
   
   public void addRetweetsRelationship(String userID1, String userID2) {
     this.addRelationship(userID1, userID2, TwitterRelationshipType.RETWEETS);
+  }
+  
+  public void addInterestedInRelationship(String userID1, String topicID, String weight) {
+    this.addRelationshipInterested(userID1, topicID, weight, TwitterRelationshipType.INTERESTEDIN);
   }
   
   private Relationship getRelationship(Node user1, Node user2, TwitterRelationshipType type) {
