@@ -16,5 +16,7 @@ public interface Neo4JConnector {
   public void addRepliesRelationship(String userID1, String userID2);
   
   public void addRetweetsRelationship(String userID1, String userID2);
+  
+  public void addInterestedInRelationship(String userID1, String topicID, int weight);
 
 }
