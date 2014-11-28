@@ -20,7 +20,7 @@ import com.mongodb.MongoException;
 import com.mongodb.util.JSON;
 
 
-public class DocStoreConnectorImpl {
+public class DocStoreConnectorImpl implements DocStoreConnector {
   
   private static final String DB_NAME = "AIC";
   private static final String SERVER = "localhost";
@@ -45,6 +45,8 @@ public class DocStoreConnectorImpl {
       e.printStackTrace();
     }
   }
+  
+  //TODO disconnect?
   
   public void createTopicCollection() {
     if(this.db.collectionExists(DocStoreConnectorImpl.TOPIC_COLLECTION) == false) {
