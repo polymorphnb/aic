@@ -36,7 +36,7 @@ public final class SearchTweetsJob extends AbstractJob<List<Tweet>> {
   @Override
   public List<Tweet> call() throws TwitterConnectorException {
 
-    final List<Tweet> allTweets = new ArrayList<>(Integer.highestOneBit(maxResults) * 2);
+    final List<Tweet> allTweets = new ArrayList<Tweet>(Integer.highestOneBit(maxResults) * 2);
     int resultsPerPage = TwitterConnectorConstants.DEFAULT_AMOUNT_OF_TWEETS_PER_RESULT_PAGE;
 
     if (resultsPerPage < 1 || resultsPerPage > 100) {

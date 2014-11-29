@@ -13,17 +13,17 @@ import twitter4j.User;
 public abstract class AbstractFriendsFollowersTask implements Task<CursorListTaskResult<Long>> {
 
   protected CursorListTaskResult<Long> buildResult(final IDs ids) {
-    return new CursorListTaskResult<>(ids.getRateLimitStatus(), retrieveUserIds(ids), (ids.hasNext()
+    return new CursorListTaskResult<Long>(ids.getRateLimitStatus(), retrieveUserIds(ids), (ids.hasNext()
         ? ids.getNextCursor() : null));
   }
 
   protected CursorListTaskResult<Long> buildResult(final PagableResponseList<User> users) {
-    return new CursorListTaskResult<>(users.getRateLimitStatus(), retrieveUserIds(users), (users.hasNext()
+    return new CursorListTaskResult<Long>(users.getRateLimitStatus(), retrieveUserIds(users), (users.hasNext()
         ? users.getNextCursor() : null));
   }
 
   protected List<Long> retrieveUserIds(final IDs ids) {
-    final List<Long> userIds = new ArrayList<>(32);
+    final List<Long> userIds = new ArrayList<Long>(32);
 
     for (final long id : ids.getIDs()) {
       userIds.add(id);
@@ -33,7 +33,7 @@ public abstract class AbstractFriendsFollowersTask implements Task<CursorListTas
   }
 
   protected List<Long> retrieveUserIds(final PagableResponseList<User> users) {
-    final List<Long> userIds = new ArrayList<>(32);
+    final List<Long> userIds = new ArrayList<Long>(32);
 
     final Iterator<User> userIterator = users.iterator();
 

@@ -88,7 +88,7 @@ public final class TwitterFileDumper {
   }
 
   private List<TweetSearchTerm> readSearchTermsFromDefaultFile() {
-    final List<TweetSearchTerm> searchTerms = new ArrayList<>();
+    final List<TweetSearchTerm> searchTerms = new ArrayList<TweetSearchTerm>();
     final InputStream resource = ClassLoader.getSystemResourceAsStream(FileDumperConstants.SEARCH_TERMS_FILE_NAME);
 
     try {
@@ -106,10 +106,8 @@ public final class TwitterFileDumper {
 
         searchTerms.add(new TweetSearchTerm(searchTerm, onlyHashTags));
       }
-    } catch (final IOException e) {
-      throw new RuntimeException(e);
     } catch (final Exception e) {
-      throw e;
+      throw new RuntimeException(e);
     } finally {
       try {
         resource.close();

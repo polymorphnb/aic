@@ -235,21 +235,16 @@ public final class TwitterAuthenticationService {
         final String key = values[0].trim();
         final String value = values[1].trim();
 
-        switch (key) {
-          case "oauth.consumerKey":
-            consumerKey = value;
-            break;
-          case "oauth.consumerSecret":
-            consumerSecret = value;
-            break;
-          case "oauth.accessToken":
-            accessToken = value;
-            break;
-          case "oauth.accessTokenSecret":
-            accessTokenSecret = value;
-            break;
-          default:
-            throw new IllegalArgumentException("Illegal key for credentials file: " + key);
+        if (key.equals("oauth.consumerKey")) {
+          consumerKey = value;
+        } else if (key.equals("oauth.consumerSecret")) {
+          consumerSecret = value;
+        } else if (key.equals("oauth.accessToken")) {
+          accessToken = value;
+        } else if (key.equals("oauth.accessTokenSecret")) {
+          accessTokenSecret = value;
+        } else {
+          throw new IllegalArgumentException("Illegal key for credentials file: " + key);
         }
 
         if (consumerKey != null && consumerSecret != null && accessToken != null && accessTokenSecret != null) {
@@ -265,10 +260,8 @@ public final class TwitterAuthenticationService {
           throw new IllegalArgumentException("Credentials file is corrupt");
         }
       }
-    } catch (final IOException e) {
-      throw new RuntimeException(e);
     } catch (final Exception e) {
-      throw e;
+      throw new RuntimeException(e);
     } finally {
       try {
         resource.close();

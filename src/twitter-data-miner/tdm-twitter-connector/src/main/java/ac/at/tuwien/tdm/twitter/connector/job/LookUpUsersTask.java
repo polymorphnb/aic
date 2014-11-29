@@ -38,7 +38,7 @@ public final class LookUpUsersTask implements Task<ListTaskResult<User>> {
   public ListTaskResult<User> execute() throws LimitReachedException, TwitterConnectorException, ConnectionException,
       HttpRetryProblemException {
 
-    final List<User> users = new ArrayList<>(128);
+    final List<User> users = new ArrayList<User>(128);
     ResponseList<twitter4j.User> twitterUsers;
 
     try {
@@ -65,7 +65,7 @@ public final class LookUpUsersTask implements Task<ListTaskResult<User>> {
       }
     }
 
-    return new ListTaskResult<>(twitterUsers.getRateLimitStatus(), users);
+    return new ListTaskResult<User>(twitterUsers.getRateLimitStatus(), users);
   }
 
   private long[] toPrimitiveArray(final List<Long> list) {

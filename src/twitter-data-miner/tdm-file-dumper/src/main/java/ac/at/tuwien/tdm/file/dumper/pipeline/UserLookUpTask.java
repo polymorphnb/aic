@@ -25,10 +25,10 @@ public final class UserLookUpTask extends TwitterTask {
   @Override
   public void execute(final List<Tweet> tweets, final Set<User> users) throws Exception {
 
-    if(tweets.isEmpty()){
+    if (tweets.isEmpty()) {
       return;
     }
-    
+
     transferAuthorUsers(tweets, users);
 
     final List<Long> userIds = retrieveUserIds(tweets);
@@ -53,7 +53,7 @@ public final class UserLookUpTask extends TwitterTask {
   }
 
   private List<Long> retrieveUserIds(final List<Tweet> tweets) {
-    final List<Long> userIds = new ArrayList<>(tweets.size() * 2);
+    final List<Long> userIds = new ArrayList<Long>(tweets.size() * 2);
 
     for (final Tweet tweet : tweets) {
       if (tweet.getRepliedToUserId() != INVALID_VALUE) {
@@ -69,14 +69,15 @@ public final class UserLookUpTask extends TwitterTask {
   }
 
   private List<List<Long>> splitIntoListsOfOneHundredEntriesEach(final List<Long> userIds) {
-    final List<List<Long>> userIdLists = new ArrayList<>(Integer.highestOneBit((userIds.size() / 100) + 1) * 2);
+    final List<List<Long>> userIdLists = new ArrayList<List<Long>>(
+        Integer.highestOneBit((userIds.size() / 100) + 1) * 2);
 
-    List<Long> idList = new ArrayList<>(128);
+    List<Long> idList = new ArrayList<Long>(128);
 
     for (final Long userId : userIds) {
       if (idList.size() == 100) {
         userIdLists.add(idList);
-        idList = new ArrayList<>(128);
+        idList = new ArrayList<Long>(128);
       }
 
       idList.add(userId);

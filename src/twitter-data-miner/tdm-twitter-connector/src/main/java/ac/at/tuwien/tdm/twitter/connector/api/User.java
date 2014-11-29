@@ -43,10 +43,13 @@ public final class User {
   private List<Long> friendsUserIds; // approx. 1250 * 8 bytes
 
   public User() {
-    statusesCount = -1;
-    favoritesCount = -1;
-    followersCount = -1;
-    friendsCount = -1;
+    id = -1l;
+    statusesCount = 0;
+    favoritesCount = 0;
+    followersCount = 0;
+    friendsCount = 0;
+    followerUserIds = new ArrayList<Long>();
+    friendsUserIds = new ArrayList<Long>();
   }
 
   public User(final long id, final String screenName, final String name, final String location, final String language,
@@ -60,8 +63,7 @@ public final class User {
     this.favoritesCount = favoritesCount;
     this.followersCount = followersCount;
     this.friendsCount = friendsCount;
-    followerUserIds = new ArrayList<>();
-    friendsUserIds = new ArrayList<>();
+
   }
 
   public long getId() {

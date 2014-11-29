@@ -36,7 +36,7 @@ public final class FindFollowersJob extends AbstractJob<List<Long>> {
   @Override
   public List<Long> call() throws TwitterConnectorException {
 
-    final List<Long> userIds = new ArrayList<>(512);
+    final List<Long> userIds = new ArrayList<Long>(512);
 
     try {
 

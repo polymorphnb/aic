@@ -27,7 +27,7 @@ public final class Pipeline implements Runnable {
   private Pipeline(final TwitterConnector twitterConnector, final CountDownLatch latch, final TweetSearchTerm topic) {
     this.latch = latch;
 
-    tasks = new LinkedList<>();
+    tasks = new LinkedList<Task>();
     tasks.add(new TweetSearchTask(twitterConnector, topic));
     tasks.add(new UserLookUpTask(twitterConnector));
     tasks.add(new RelationshipBuilderTask(twitterConnector));
@@ -41,8 +41,8 @@ public final class Pipeline implements Runnable {
 
   @Override
   public void run() {
-    final List<Tweet> tweets = new ArrayList<>(16384);
-    final Set<User> users = new HashSet<>(16384);
+    final List<Tweet> tweets = new ArrayList<Tweet>(16384);
+    final Set<User> users = new HashSet<User>(16384);
 
     try {
       for (final Task task : tasks) {

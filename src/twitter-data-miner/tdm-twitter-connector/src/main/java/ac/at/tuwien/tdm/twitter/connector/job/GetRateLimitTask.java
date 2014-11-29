@@ -25,7 +25,7 @@ public final class GetRateLimitTask implements Task<MapTaskResult<String, RateLi
     final Twitter twitter = TwitterAuthenticationService.getInstance().getTwitter();
 
     try {
-      return new MapTaskResult<>(null, twitter.getRateLimitStatus());
+      return new MapTaskResult<String, RateLimitStatus>(null, twitter.getRateLimitStatus());
     } catch (final TwitterException e) {
       if (e.exceededRateLimitation()) {
         throw new LimitReachedException(e, e.getRateLimitStatus());

@@ -42,6 +42,6 @@ public final class TwitterConnectorConstants {
 
   private static final int HTTP_SERVICE_UNAVAILABLE = 503;
 
-  public static final Set<Integer> HTTP_RETRY_PROBLEMS = new HashSet<>(Arrays.asList(HTTP_UNAUTHORIZED, HTTP_FORBIDDEN,
-      HTTP_INTERNAL_SERVER_ERROR, HTTP_SERVICE_UNAVAILABLE));
+  public static final Set<Integer> HTTP_RETRY_PROBLEMS = new HashSet<Integer>(Arrays.asList(HTTP_UNAUTHORIZED,
+      HTTP_FORBIDDEN, HTTP_INTERNAL_SERVER_ERROR, HTTP_SERVICE_UNAVAILABLE));
 }
