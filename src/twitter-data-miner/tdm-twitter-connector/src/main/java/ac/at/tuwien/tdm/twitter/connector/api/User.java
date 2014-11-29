@@ -20,27 +20,34 @@ import java.util.List;
 public final class User {
 
   // unique and used for equals & hashCode
-  private final long id; // 8 bytes
+  private long id; // 8 bytes
 
-  private final String screenName; // approx. 12 * 2 bytes
+  private String screenName; // approx. 12 * 2 bytes
 
-  private final String name; // approx. 12 * 2 bytes
+  private String name; // approx. 12 * 2 bytes
 
-  private final String location; // approx. 12 * 2 bytes
+  private String location; // approx. 12 * 2 bytes
 
-  private final String language; // approx. 3 * 2 bytes
+  private String language; // approx. 3 * 2 bytes
 
-  private final int statusesCount; // 4 bytes
+  private int statusesCount; // 4 bytes
 
-  private final int favoritesCount; // 4 bytes
+  private int favoritesCount; // 4 bytes
 
-  private final int followersCount; // 4 bytes
+  private int followersCount; // 4 bytes
 
-  private final int friendsCount; // 4 bytes
+  private int friendsCount; // 4 bytes
 
-  private final List<Long> followerUserIds; // approx. 2500 * 8 bytes
+  private List<Long> followerUserIds; // approx. 2500 * 8 bytes
 
-  private final List<Long> friendsUserIds; // approx. 1250 * 8 bytes
+  private List<Long> friendsUserIds; // approx. 1250 * 8 bytes
+
+  public User() {
+    statusesCount = -1;
+    favoritesCount = -1;
+    followersCount = -1;
+    friendsCount = -1;
+  }
 
   public User(final long id, final String screenName, final String name, final String location, final String language,
       final int statusesCount, final int favoritesCount, final int followersCount, final int friendsCount) {
@@ -61,44 +68,88 @@ public final class User {
     return id;
   }
 
+  public void setId(long id) {
+    this.id = id;
+  }
+
   public String getScreenName() {
     return screenName;
+  }
+
+  public void setScreenName(String screenName) {
+    this.screenName = screenName;
   }
 
   public String getName() {
     return name;
   }
 
+  public void setName(String name) {
+    this.name = name;
+  }
+
   public String getLocation() {
     return location;
+  }
+
+  public void setLocation(String location) {
+    this.location = location;
   }
 
   public String getLanguage() {
     return language;
   }
 
+  public void setLanguage(String language) {
+    this.language = language;
+  }
+
   public int getStatusesCount() {
     return statusesCount;
+  }
+
+  public void setStatusesCount(int statusesCount) {
+    this.statusesCount = statusesCount;
   }
 
   public int getFavoritesCount() {
     return favoritesCount;
   }
 
+  public void setFavoritesCount(int favoritesCount) {
+    this.favoritesCount = favoritesCount;
+  }
+
   public int getFollowersCount() {
     return followersCount;
+  }
+
+  public void setFollowersCount(int followersCount) {
+    this.followersCount = followersCount;
   }
 
   public int getFriendsCount() {
     return friendsCount;
   }
 
+  public void setFriendsCount(int friendsCount) {
+    this.friendsCount = friendsCount;
+  }
+
   public List<Long> getFollowerUserIds() {
     return followerUserIds;
   }
 
+  public void setFollowerUserIds(List<Long> followerUserIds) {
+    this.followerUserIds = followerUserIds;
+  }
+
   public List<Long> getFriendsUserIds() {
     return friendsUserIds;
+  }
+
+  public void setFriendsUserIds(List<Long> friendsUserIds) {
+    this.friendsUserIds = friendsUserIds;
   }
 
   public void addFollowerUserIds(final List<Long> userIds) {

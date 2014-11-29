@@ -13,30 +13,21 @@
 	<artifactId>tdm-docstore-connector</artifactId>
 	<packaging>jar</packaging>
 
-	<properties>
-		<version.slf4j>1.7.7</version.slf4j>
-		<version.mongodb>2.12.4</version.mongodb>
-	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>at.ac.tuwien</groupId>
 			<artifactId>tdm-neo4j-connector</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-	
+
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>${version.slf4j}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.mongodb</groupId>
 			<artifactId>mongo-java-driver</artifactId>
-			<version>${version.mongodb}</version>
 		</dependency>
-		
 	</dependencies>
-
 </project>

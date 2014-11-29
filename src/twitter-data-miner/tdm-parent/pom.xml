@@ -14,12 +14,13 @@
 	<packaging>pom</packaging>
 
 	<properties>
-		<version.h2>1.4.177</version.h2>
+		<version.h2>1.4.182</version.h2>
 		<version.slf4j>1.7.7</version.slf4j>
 		<version.twitter>4.0.2</version.twitter>
 		<version.gson>2.3</version.gson>
 		<version.commons.io>2.4</version.commons.io>
 		<version.neo4j>2.1.5</version.neo4j>
+		<version.mongodb>2.12.4</version.mongodb>
 	</properties>
 
 	<dependencyManagement>
@@ -59,11 +60,17 @@
 				<artifactId>commons-io</artifactId>
 				<version>${version.commons.io}</version>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>org.neo4j</groupId>
 				<artifactId>neo4j</artifactId>
 				<version>${version.neo4j}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.mongodb</groupId>
+				<artifactId>mongo-java-driver</artifactId>
+				<version>${version.mongodb}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
