@@ -23,7 +23,8 @@ public final class Clock {
   }
 
   public static String dateForGivenTimeInLocalTimeZone(final long timestamp) {
-    final Calendar calendar = givenTime(timestamp);
+    final Calendar calendar = Calendar.getInstance();
+    calendar.setTimeInMillis(timestamp);
     return formatter.format(calendar.getTime());
   }
 }
