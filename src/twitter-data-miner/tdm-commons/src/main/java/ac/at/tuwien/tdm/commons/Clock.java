@@ -1,4 +1,4 @@
-package ac.at.tuwien.tdm.twitter.connector;
+package ac.at.tuwien.tdm.commons;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -23,9 +23,7 @@ public final class Clock {
   }
 
   public static String dateForGivenTimeInLocalTimeZone(final long timestamp) {
-    final Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-    calendar.setTimeInMillis(timestamp);
-    String s = formatter.format(calendar.getTime());
-    return s;
+    final Calendar calendar = givenTime(timestamp);
+    return formatter.format(calendar.getTime());
   }
 }

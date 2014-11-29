@@ -1,6 +1,6 @@
 package ac.at.tuwien.tdm.twitter.connector.result;
 
-import ac.at.tuwien.tdm.twitter.connector.api.Tweet;
+import ac.at.tuwien.tdm.commons.pojo.Tweet;
 
 import java.util.List;
 

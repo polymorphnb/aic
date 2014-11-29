@@ -1,6 +1,6 @@
-package ac.at.tuwien.tdm.twitter.connector.api;
+package ac.at.tuwien.tdm.commons.pojo;
 
-import ac.at.tuwien.tdm.twitter.connector.GsonInstance;
+import ac.at.tuwien.tdm.commons.GsonInstance;
 
 /**
  * DTO for tweet data.

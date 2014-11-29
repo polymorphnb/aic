@@ -1,9 +1,9 @@
 package ac.at.tuwien.tdm.file.dumper.pipeline;
 
+import ac.at.tuwien.tdm.commons.pojo.Tweet;
+import ac.at.tuwien.tdm.commons.pojo.User;
 import ac.at.tuwien.tdm.file.dumper.writer.TweetFileWriter;
 import ac.at.tuwien.tdm.file.dumper.writer.UserFileWriter;
-import ac.at.tuwien.tdm.twitter.connector.api.Tweet;
-import ac.at.tuwien.tdm.twitter.connector.api.User;
 
 import java.util.List;
 import java.util.Set;

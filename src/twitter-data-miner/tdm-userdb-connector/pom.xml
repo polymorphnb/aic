@@ -16,7 +16,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>at.ac.tuwien</groupId>
-			<artifactId>tdm-twitter-connector</artifactId>
+			<artifactId>tdm-commons</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 

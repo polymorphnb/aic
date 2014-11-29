@@ -1,6 +1,6 @@
 package ac.at.tuwien.tdm.twitter.connector.job;
 
-import ac.at.tuwien.tdm.twitter.connector.Clock;
+import ac.at.tuwien.tdm.commons.Clock;
 import ac.at.tuwien.tdm.twitter.connector.TwitterConnectorConstants;
 
 import java.util.Calendar;

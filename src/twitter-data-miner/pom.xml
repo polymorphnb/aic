@@ -22,5 +22,6 @@
 		<module>tdm-userdb-connector</module>
 		<module>tdm-neo4j-connector</module>
 		<module>tdm-docstore-connector</module>
+    <module>tdm-commons</module>
 	</modules>
 </project>

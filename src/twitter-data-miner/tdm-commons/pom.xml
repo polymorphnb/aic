@@ -10,39 +10,13 @@
 		<relativePath>../tdm-parent</relativePath>
 	</parent>
 
-	<artifactId>tdm-twitter-connector</artifactId>
+	<artifactId>tdm-commons</artifactId>
 	<packaging>jar</packaging>
 
 	<dependencies>
 		<dependency>
-			<groupId>at.ac.tuwien</groupId>
-			<artifactId>tdm-commons</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-	
-		<dependency>
-			<groupId>org.twitter4j</groupId>
-			<artifactId>twitter4j-core</artifactId>
-		</dependency>
-
-		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
 		</dependency>
 	</dependencies>
 </project>

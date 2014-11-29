@@ -1,7 +1,7 @@
 package ac.at.tuwien.tdm.file.dumper.writer;
 
+import ac.at.tuwien.tdm.commons.pojo.User;
 import ac.at.tuwien.tdm.file.dumper.FileDumperConstants;
-import ac.at.tuwien.tdm.twitter.connector.api.User;
 
 /**
  * A simple file writer for users (one user per line as json)

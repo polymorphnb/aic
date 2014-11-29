@@ -1,5 +1,6 @@
 package ac.at.tuwien.tdm.twitter.connector;
 
+import ac.at.tuwien.tdm.commons.Clock;
 import ac.at.tuwien.tdm.twitter.connector.job.LimitReachedException;
 
 import java.io.IOException;

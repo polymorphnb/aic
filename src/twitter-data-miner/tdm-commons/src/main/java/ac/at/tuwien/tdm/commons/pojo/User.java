@@ -1,6 +1,6 @@
-package ac.at.tuwien.tdm.twitter.connector.api;
+package ac.at.tuwien.tdm.commons.pojo;
 
-import ac.at.tuwien.tdm.twitter.connector.GsonInstance;
+import ac.at.tuwien.tdm.commons.GsonInstance;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +54,7 @@ public final class User {
 
   public User(final long id, final String screenName, final String name, final String location, final String language,
       final int statusesCount, final int favoritesCount, final int followersCount, final int friendsCount) {
+    this();
     this.id = id;
     this.screenName = screenName;
     this.name = name;

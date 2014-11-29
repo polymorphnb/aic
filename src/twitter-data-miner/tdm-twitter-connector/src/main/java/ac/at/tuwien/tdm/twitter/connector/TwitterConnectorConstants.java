@@ -1,6 +1,7 @@
 package ac.at.tuwien.tdm.twitter.connector;
 
-import java.nio.charset.Charset;
+import ac.at.tuwien.tdm.commons.Constants;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,17 +12,14 @@ import java.util.Set;
  * @author Irnes Okic (irnes.okic@student.tuwien.ac.at)
  * 
  */
-public final class TwitterConnectorConstants {
+public final class TwitterConnectorConstants extends Constants {
 
+  //hide constructor
   private TwitterConnectorConstants() {
-    //hide constructor
+    super();
   }
 
   public static final String CREDENTIALS_FILE_NAME = "twitterAuthentication.txt";
-
-  public static final Charset ENCODING = Charset.forName("UTF-8");
-
-  private static final int MINUTE_IN_SECONDS = 60;
 
   public static final int TIME_WINDOW_IN_SECONDS = (15 * MINUTE_IN_SECONDS);
 

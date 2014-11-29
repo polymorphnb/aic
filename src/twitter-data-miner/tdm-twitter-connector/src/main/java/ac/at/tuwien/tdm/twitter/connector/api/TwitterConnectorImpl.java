@@ -1,6 +1,8 @@
 package ac.at.tuwien.tdm.twitter.connector.api;
 
-import ac.at.tuwien.tdm.twitter.connector.Defense;
+import ac.at.tuwien.tdm.commons.Defense;
+import ac.at.tuwien.tdm.commons.pojo.Tweet;
+import ac.at.tuwien.tdm.commons.pojo.User;
 import ac.at.tuwien.tdm.twitter.connector.TwitterAuthenticationService;
 import ac.at.tuwien.tdm.twitter.connector.job.FindFollowersJob;
 import ac.at.tuwien.tdm.twitter.connector.job.FindFriendsJob;

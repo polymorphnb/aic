@@ -1,5 +1,7 @@
 package ac.at.tuwien.tdm.twitter.connector.api;
 
+import ac.at.tuwien.tdm.commons.pojo.Tweet;
+import ac.at.tuwien.tdm.commons.pojo.User;
 import ac.at.tuwien.tdm.twitter.connector.job.SearchTweetsJob;
 
 import java.util.List;

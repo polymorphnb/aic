@@ -1,6 +1,6 @@
 package ac.at.tuwien.tdm.userdb;
 
-import ac.at.tuwien.tdm.twitter.connector.api.User;
+import ac.at.tuwien.tdm.commons.pojo.User;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,8 +17,6 @@ import java.util.List;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.h2.tools.RunScript;
-
-import twitter4j.JSONException;
 
 import com.google.gson.Gson;
 
@@ -110,7 +108,7 @@ public class UserDBConnector {
     }
   }
 
-  public static void main(String[] args) throws IOException, JSONException {
+  public static void main(String[] args) throws IOException {
     Gson gson = new Gson();
 
     UserDBConnector connector = new UserDBConnector();

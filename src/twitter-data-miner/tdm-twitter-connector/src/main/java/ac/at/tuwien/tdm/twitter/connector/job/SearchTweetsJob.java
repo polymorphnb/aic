@@ -1,8 +1,8 @@
 package ac.at.tuwien.tdm.twitter.connector.job;
 
+import ac.at.tuwien.tdm.commons.pojo.Tweet;
 import ac.at.tuwien.tdm.twitter.connector.ConnectionException;
 import ac.at.tuwien.tdm.twitter.connector.TwitterConnectorConstants;
-import ac.at.tuwien.tdm.twitter.connector.api.Tweet;
 import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnectorException;
 import ac.at.tuwien.tdm.twitter.connector.result.TweetSearchResult;
 

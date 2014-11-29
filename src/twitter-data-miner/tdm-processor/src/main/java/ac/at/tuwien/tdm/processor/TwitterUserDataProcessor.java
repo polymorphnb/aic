@@ -1,7 +1,7 @@
 package ac.at.tuwien.tdm.processor;
 
+import ac.at.tuwien.tdm.commons.pojo.User;
 import ac.at.tuwien.tdm.processor.reader.ConfigConstants;
-import ac.at.tuwien.tdm.twitter.connector.api.User;
 
 import java.io.File;
 import java.util.Iterator;

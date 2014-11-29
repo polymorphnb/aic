@@ -1,4 +1,4 @@
-package ac.at.tuwien.tdm.twitter.connector;
+package ac.at.tuwien.tdm.commons;
 
 import java.util.List;
 

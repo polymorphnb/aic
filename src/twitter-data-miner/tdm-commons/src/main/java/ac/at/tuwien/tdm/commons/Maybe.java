@@ -1,4 +1,4 @@
-package ac.at.tuwien.tdm.twitter.connector;
+package ac.at.tuwien.tdm.commons;
 
 /**
  * Used for explicit handling of maybe not existing values (instead of null)

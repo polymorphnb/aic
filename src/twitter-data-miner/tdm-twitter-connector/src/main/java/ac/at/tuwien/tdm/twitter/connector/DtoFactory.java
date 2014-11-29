@@ -1,7 +1,10 @@
 package ac.at.tuwien.tdm.twitter.connector;
 
-import ac.at.tuwien.tdm.twitter.connector.api.Tweet;
-import ac.at.tuwien.tdm.twitter.connector.api.User;
+import ac.at.tuwien.tdm.commons.Defense;
+import ac.at.tuwien.tdm.commons.Maybe;
+import ac.at.tuwien.tdm.commons.Utils;
+import ac.at.tuwien.tdm.commons.pojo.Tweet;
+import ac.at.tuwien.tdm.commons.pojo.User;
 import twitter4j.Status;
 
 /**

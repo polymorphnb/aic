@@ -1,8 +1,8 @@
 package ac.at.tuwien.tdm.twitter.connector.job;
 
+import ac.at.tuwien.tdm.commons.pojo.User;
 import ac.at.tuwien.tdm.twitter.connector.ConnectionException;
 import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnectorException;
-import ac.at.tuwien.tdm.twitter.connector.api.User;
 import ac.at.tuwien.tdm.twitter.connector.result.ListTaskResult;
 
 import java.util.List;

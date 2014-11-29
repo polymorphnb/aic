@@ -1,6 +1,6 @@
 package ac.at.tuwien.tdm.file.dumper;
 
-import java.nio.charset.Charset;
+import ac.at.tuwien.tdm.commons.Constants;
 
 /**
  * File dumper constants
@@ -8,7 +8,12 @@ import java.nio.charset.Charset;
  * @author Irnes Okic (irnes.okic@student.tuwien.ac.at)
  * 
  */
-public final class FileDumperConstants {
+public final class FileDumperConstants extends Constants {
+
+  // hide constructor
+  private FileDumperConstants() {
+    super();
+  }
 
   private static final String DESTINATION_FOLDER = "./dist";
 
@@ -19,12 +24,8 @@ public final class FileDumperConstants {
   public static final String TEXT_FILE_EXTENSION = ".txt";
 
   public static final String SEARCH_TERMS_FILE_NAME = "searchTerms.txt";
-  
+
   public static final int AMOUNT_OF_WORKER_THREADS = 1;
-  
-  public static final String LINE_ENDING = "\n";
-  
-  public static final Charset ENCODING = Charset.forName("UTF-8");
-  
+
   // public static final long MAX_ENTRIES_PER_FILE = 1000;
 }
