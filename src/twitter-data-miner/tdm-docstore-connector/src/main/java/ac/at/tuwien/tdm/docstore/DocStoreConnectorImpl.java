@@ -168,8 +168,8 @@ public class DocStoreConnectorImpl implements DocStoreConnector {
 	  AggregationOutput output = coll.aggregate(pipeline);
 	  
 	  for(DBObject result : output.results()) {
-		  neo4jdb.addInterestedInRelationship(((String) ((DBObject)result.get("_id")).get("user")), 
-				                              ((String) ((DBObject)result.get("_id")).get("topic")), 
+		  neo4jdb.addInterestedInRelationship(((Long) ((DBObject)result.get("_id")).get("user")), 
+				                              ((Long) ((DBObject)result.get("_id")).get("topic")), 
 				                               new Integer((String)result.get("cnt")).intValue()
 				                              );
 	  }
