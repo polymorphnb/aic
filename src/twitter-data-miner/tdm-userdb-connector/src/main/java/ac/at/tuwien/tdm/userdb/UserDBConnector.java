@@ -32,6 +32,17 @@ public class UserDBConnector {
   private static final String PATH_TO_TABLE = "userTable.sql";
   private static final String INSERT_USER = "INSERT INTO  twitterUsers (userId, screenName, name, location, statusesCount, followersCount, language, favoritesCount, friendsCount) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
+  private static final UserDBConnector INSTANCE = new UserDBConnector();
+
+  private UserDBConnector() {
+    this.connect();
+    this.createUserTable();
+  }
+
+  public static UserDBConnector getInstance() {
+    return UserDBConnector.INSTANCE;
+  }
+
   public void connect() {
     try {
       this.conn = DriverManager.getConnection("jdbc:h2:" + PATH_TO_DB, "sa", "");
@@ -47,6 +58,14 @@ public class UserDBConnector {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+  }
+
+  public void insertUser(User user) {
+    if (this.getUser(user.getId()) == null) {
+      this.insertUser(user.getId(), user.getScreenName(), user.getName(), user.getLocation(), user.getStatusesCount(),
+          user.getFollowersCount(), user.getLanguage(), user.getFavoritesCount(), user.getFriendsCount());
+    }
+
   }
 
   public void insertUser(Long userId, String screenName, String name, String location, int statusesCount,
@@ -70,6 +89,23 @@ public class UserDBConnector {
 
   }
 
+  public User getUser(Long userID) {
+    String query = "SELECT * from twitterUsers where userId = " + userID;
+    User user = null;
+    try {
+      Statement stmt = this.conn.createStatement();
+
+      ResultSet rs = stmt.executeQuery(query);
+      while (rs.next()) {
+        user = this.getUserFromResultSet(rs);
+      }
+    } catch (SQLException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    return user;
+  }
+
   public void getUsers() {
     String query = "select * from twitterUsers";
     try {
@@ -77,27 +113,35 @@ public class UserDBConnector {
 
       ResultSet rs = stmt.executeQuery(query);
       while (rs.next()) {
-
-        Long userId = rs.getLong("userId");
-        String screenName = rs.getString("screenName");
-        String name = rs.getString("name");
-        String location = rs.getString("location");
-        String language = rs.getString("language");
-        Integer statusesCount = rs.getInt("statusesCount");
-        Integer followersCount = rs.getInt("followersCount");
-        Integer friendsCount = rs.getInt("friendsCount");
-        Integer favoritesCount = rs.getInt("favoritesCount");
-
-        User user = new User(userId, screenName, name, location, language, statusesCount, favoritesCount,
-            followersCount, friendsCount);
-
-        System.out.println(user);
+        User user = this.getUserFromResultSet(rs);
       }
     } catch (SQLException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
+  }
 
+  private User getUserFromResultSet(ResultSet rs) {
+    User user = null;
+    try {
+      Long userId = rs.getLong("userId");
+
+      String screenName = rs.getString("screenName");
+      String name = rs.getString("name");
+      String location = rs.getString("location");
+      String language = rs.getString("language");
+      Integer statusesCount = rs.getInt("statusesCount");
+      Integer followersCount = rs.getInt("followersCount");
+      Integer friendsCount = rs.getInt("friendsCount");
+      Integer favoritesCount = rs.getInt("favoritesCount");
+
+      user = new User(userId, screenName, name, location, language, statusesCount, favoritesCount, followersCount,
+          friendsCount);
+    } catch (SQLException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    return user;
   }
 
   public void disconnect() {
