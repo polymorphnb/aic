@@ -4,6 +4,7 @@ import org.neo4j.graphdb.DynamicLabel;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.Node;
 import org.neo4j.graphdb.Relationship;
+import org.neo4j.graphdb.Transaction;
 import org.neo4j.graphdb.factory.GraphDatabaseFactory;
 import org.neo4j.graphdb.index.ReadableIndex;
 
@@ -20,7 +21,7 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
   private GraphDatabaseService graphDb;
   
   private Neo4JConnectorImpl() {
-    
+    this.connect();
   }
   
   public static Neo4JConnector getInstance() {
@@ -37,12 +38,23 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
     this.graphDb.shutdown();
   }
   
+  private Transaction startTransaction() {
+    return this.graphDb.beginTx();
+  }
+  
+  private void closeTransaction(Transaction tx) {
+    tx.success();
+    tx.close();
+  }
+  
   public void addUserNode(String id) {
+    Transaction tx = this.startTransaction();
     Node user = this.getUser(id);
-    if(user != null) {
+    if(user == null) {
       user = this.graphDb.createNode(DynamicLabel.label(id));
       user.setProperty(USER_NODE_INDEX_NAME, id);
     }
+    this.closeTransaction(tx);
   }
   
   private Node getUser(String id) {
@@ -52,8 +64,14 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
   }
   
   private void addRelationship(String userID1, String userID2, TwitterRelationshipType type) {
+    Transaction tx = this.startTransaction();
     Node user1 = this.getUser(userID1);
     Node user2 = this.getUser(userID2);
+    if(user2 == null) {
+      user2 = this.graphDb.createNode(DynamicLabel.label(userID2));
+      user2.setProperty(USER_NODE_INDEX_NAME, userID2);
+    }
+    
     Relationship rel = this.getRelationship(user1, user2, type);
     if(rel != null) {
       Integer weight = (Integer)rel.getProperty(RelationshipTypeConstants.WEIGHT);
@@ -64,7 +82,7 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
       rel = user1.createRelationshipTo(user2, type);
       rel.setProperty(RelationshipTypeConstants.WEIGHT, 0);
     }
-    
+    this.closeTransaction(tx);
   }
   
   private void addRelationshipInterested(String userID1, String topicID, int weight, TwitterRelationshipType type) {
