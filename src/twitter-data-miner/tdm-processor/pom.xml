@@ -25,6 +25,18 @@
 			<artifactId>tdm-neo4j-connector</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>at.ac.tuwien</groupId>
+			<artifactId>tdm-userdb-connector</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>at.ac.tuwien</groupId>
+			<artifactId>tdm-docstore-connector</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>commons-io</groupId>

@@ -2,12 +2,14 @@ package ac.at.tuwien.tdm.processor;
 
 import ac.at.tuwien.tdm.commons.pojo.User;
 import ac.at.tuwien.tdm.processor.reader.ConfigConstants;
+import ac.at.tuwien.tdm.userdb.UserDBConnector;
 
 import java.io.File;
 import java.util.Iterator;
-import java.util.List;
 
 public class TwitterUserDataProcessor extends TwitterDataProcessor {
+  
+  protected final UserDBConnector userDB = UserDBConnector.getInstance();
   
   public TwitterUserDataProcessor() {
     
@@ -18,14 +20,28 @@ public class TwitterUserDataProcessor extends TwitterDataProcessor {
     Iterator<?> it = reader.getFiles(ConfigConstants.USER_FOLDER);
     while(it.hasNext()) {
       File file = (File)it.next();
-      final List<String> readLines = reader.getDataForFile(file);
-      for (final String readLine : readLines) {
+      
+      reader.loadFileContent(file);
+      String temp = "";
+      while((temp = reader.getNextLine()) != null) {
+        User user = gson.fromJson(temp, User.class);
         
-        User user = gson.fromJson(readLine, User.class);
-        
+        this.addUserToUserDB(user);
+        this.addUserToNeo4J(user);
         this.addUserFollowersRelationship(user);
         this.addUserFriendsRelationship(user);
+        System.out.println("User " + user.getId() + " processed");
       }
+      System.out.println("File " + file.getName() + " done!");
+      
+//      final List<String> readLines = reader.getDataForFile(file);
+//      for (final String readLine : readLines) {
+//        
+//        User user = gson.fromJson(readLine, User.class);
+//        
+//        this.addUserFollowersRelationship(user);
+//        this.addUserFriendsRelationship(user);
+//      }
     }
   }
   
@@ -41,5 +57,11 @@ public class TwitterUserDataProcessor extends TwitterDataProcessor {
     }
   }
   
-
+  private void addUserToUserDB(User user) {
+    this.userDB.insertUser(user);
+  }
+  
+  private void addUserToNeo4J(User user) {
+    this.neo4j.addUserNode(String.valueOf(user.getId()));
+  }
 }

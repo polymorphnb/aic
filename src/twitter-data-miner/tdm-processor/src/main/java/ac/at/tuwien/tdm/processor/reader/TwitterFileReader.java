@@ -16,6 +16,8 @@ public class TwitterFileReader {
   private static final Logger LOGGER = LoggerFactory.getLogger(TwitterFileReader.class);
   
   private static final TwitterFileReader INSTANCE = new TwitterFileReader();
+  
+  private Iterator<String> fileIt;
 
   private TwitterFileReader() {
   }
@@ -39,6 +41,21 @@ public class TwitterFileReader {
       LOGGER.error(e.getMessage());
     }
     return readLines;
+  }
+  
+  public void loadFileContent(File file) {
+    try {
+      fileIt = FileUtils.lineIterator(file, "UTF-8");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+  
+  public String getNextLine() {
+    if(fileIt.hasNext()) {
+      return fileIt.next();
+    }
+    return null;
   }
 
 }
