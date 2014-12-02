@@ -15,6 +15,12 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>at.ac.tuwien</groupId>
+			<artifactId>tdm-commons</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	
+		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 		</dependency>
