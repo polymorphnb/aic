@@ -12,10 +12,12 @@ public class TwitterUserDataProcessor extends TwitterDataProcessor {
   protected final UserDBConnector userDB = UserDBConnector.getInstance();
   
   public TwitterUserDataProcessor() {
-    
+    this.neo4j.connect();
   }
   
   public void process() {
+    
+    int i = 0;
     
     Iterator<?> it = reader.getFiles(ConfigConstants.USER_FOLDER);
     while(it.hasNext()) {
@@ -23,15 +25,21 @@ public class TwitterUserDataProcessor extends TwitterDataProcessor {
       
       reader.loadFileContent(file);
       String temp = "";
+      this.neo4j.startTransaction();
+      i = 0;
       while((temp = reader.getNextLine()) != null) {
         User user = gson.fromJson(temp, User.class);
         
         this.addUserToUserDB(user);
         this.addUserToNeo4J(user);
-        this.addUserFollowersRelationship(user);
-        this.addUserFriendsRelationship(user);
-        System.out.println("User " + user.getId() + " processed");
+        //System.out.println("User " + user.getId() + " processed");
+        i++;
+        
+        if(i%100 == 0) {
+          System.out.println(i + " User processed!");
+        }
       }
+      this.neo4j.closeTransaction();
       System.out.println("File " + file.getName() + " done!");
       
 //      final List<String> readLines = reader.getDataForFile(file);
@@ -45,23 +53,11 @@ public class TwitterUserDataProcessor extends TwitterDataProcessor {
     }
   }
   
-  private void addUserFollowersRelationship(User user) {
-    for(Long userID : user.getFollowerUserIds()) {
-      this.neo4j.addFollowsRelationship(String.valueOf(user.getId()), userID.toString());
-    }
-  }
-  
-  private void addUserFriendsRelationship(User user) {
-    for(Long userID : user.getFollowerUserIds()) {
-      this.neo4j.addFriendsRelationship(String.valueOf(user.getId()), userID.toString());
-    }
-  }
-  
   private void addUserToUserDB(User user) {
     this.userDB.insertUser(user);
   }
   
   private void addUserToNeo4J(User user) {
-    this.neo4j.addUserNode(String.valueOf(user.getId()));
+    this.neo4j.addUser(user, true);
   }
 }
