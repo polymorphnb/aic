@@ -121,7 +121,7 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
   private void insertUserBatch(Long userID) {
     Long nodeID = -1L;
     try {
-      Map<String, Object> properties = new HashMap<>();
+      Map<String, Object> properties = new HashMap<String, Object>();
       properties.put(USER_NODE_INDEX_NAME, userID);
       if (this.inserter.nodeExists(userID) == false) {
         this.inserter.createNode(userID, properties, USER_LABEL);
@@ -155,10 +155,10 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
     } else {
       Node user1 = this.getOrCreateUserWithUniqueFactory(userID1, true);
       Node user2 = this.getOrCreateUserWithUniqueFactory(userID2, false);
-      
-//      Relationship rel = user1.createRelationshipTo(user2, type);
-//      rel.setProperty(RelationshipTypeConstants.WEIGHT, 0);
-      
+
+      //      Relationship rel = user1.createRelationshipTo(user2, type);
+      //      rel.setProperty(RelationshipTypeConstants.WEIGHT, 0);
+
       Relationship rel = this.getRelationship(user1, user2, type);
       if (rel != null) {
         Integer weight = (Integer) rel.getProperty(RelationshipTypeConstants.WEIGHT);
