@@ -8,7 +8,13 @@ public class Constants {
     // hide constructor
   }
 
-  protected static final int MINUTE_IN_SECONDS = 60;
+  public static final long SECOND_IN_MILLISECONDS = 1000;
+
+  public static final long MINUTE_IN_MILLISECONDS = (60 * SECOND_IN_MILLISECONDS);
+
+  public static final long HOUR_IN_MILLISECONDS = (60 * MINUTE_IN_MILLISECONDS);
+
+  public static final long DAY_IN_MILLISECONDS = (24 * HOUR_IN_MILLISECONDS);
 
   public static final Charset ENCODING = Charset.forName("UTF-8");
 

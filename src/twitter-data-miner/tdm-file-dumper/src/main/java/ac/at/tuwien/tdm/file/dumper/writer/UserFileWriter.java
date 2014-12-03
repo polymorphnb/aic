@@ -14,7 +14,7 @@ public final class UserFileWriter extends TwitterFileWriter<User> {
   private static final UserFileWriter INSTANCE = new UserFileWriter();
 
   private UserFileWriter() {
-    super(FileDumperConstants.USER_FILE_NAME, FileDumperConstants.TEXT_FILE_EXTENSION);
+    super(FileDumperConstants.USER_FILE_NAME, FileDumperConstants.TEXT_FILE_EXTENSION, true);
   }
 
   public static UserFileWriter getInstance() {

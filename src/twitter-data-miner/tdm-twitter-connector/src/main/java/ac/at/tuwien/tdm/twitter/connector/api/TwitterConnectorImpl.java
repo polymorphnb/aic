@@ -6,6 +6,7 @@ import ac.at.tuwien.tdm.commons.pojo.User;
 import ac.at.tuwien.tdm.twitter.connector.TwitterAuthenticationService;
 import ac.at.tuwien.tdm.twitter.connector.job.FindFollowersJob;
 import ac.at.tuwien.tdm.twitter.connector.job.FindFriendsJob;
+import ac.at.tuwien.tdm.twitter.connector.job.FindTweetsForUserJob;
 import ac.at.tuwien.tdm.twitter.connector.job.JobBuilder;
 import ac.at.tuwien.tdm.twitter.connector.job.LimitReachedException;
 import ac.at.tuwien.tdm.twitter.connector.job.LookUpUsersJob;
@@ -97,6 +98,18 @@ public final class TwitterConnectorImpl implements TwitterConnector {
           .build();
     
     return requestExecutor.submit(findFriendsJob);
+  }
+
+  @Override
+  public Future<List<Tweet>> findTweetsForUserId(final Long userIdToLookUp) {
+    Defense.notNull("userIdToLookUp", userIdToLookUp);
+    
+    final FindTweetsForUserJob findTweetsForUserJob =
+        JobBuilder
+          .FindTweetsForUserJob(userIdToLookUp)
+          .build();
+    
+    return requestExecutor.submit(findTweetsForUserJob);
   }
   
   @Override

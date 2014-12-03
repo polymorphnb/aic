@@ -20,9 +20,9 @@ public final class FindFriendsJob extends AbstractJob<List<Long>> {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(FindFriendsJob.class);
 
-  private final Long userIdToLookUp;
+  private final long userIdToLookUp;
 
-  private final Integer friendsCount;
+  private final int friendsCount;
 
   private FindFriendsJobApproachEnum approach;
 
@@ -142,12 +142,12 @@ public final class FindFriendsJob extends AbstractJob<List<Long>> {
 
   public static class Builder {
 
-    private final Long userIdToLookUp;
+    private final long userIdToLookUp;
 
     // optional
-    private Integer friendsCount = 20;
+    private int friendsCount = 20;
 
-    public Builder(final Long userIdToLookUp) {
+    public Builder(final long userIdToLookUp) {
       this.userIdToLookUp = userIdToLookUp;
     }
 

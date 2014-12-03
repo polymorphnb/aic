@@ -13,23 +13,23 @@ public final class FindFriendsTask extends AbstractFriendsFollowersTask {
 
   private final FindFriendsJobApproachEnum approach;
 
-  private final Long userId;
+  private final long userId;
 
-  private final Long cursorId;
+  private final long cursorId;
 
-  private FindFriendsTask(final FindFriendsJobApproachEnum approach, final Long userId, final Long cursorId) {
+  private FindFriendsTask(final FindFriendsJobApproachEnum approach, final long userId, final long cursorId) {
     this.approach = approach;
     this.userId = userId;
     this.cursorId = cursorId;
   }
 
   public static FindFriendsTask newInstanceForFirstRetrieval(final FindFriendsJobApproachEnum approach,
-      final Long userId) {
+      final long userId) {
     return new FindFriendsTask(approach, userId, -1l);
   }
 
   public static FindFriendsTask newInstanceForContinuedSearch(final FindFriendsJobApproachEnum approach,
-      final Long userId, final Long cursorId) {
+      final long userId, final long cursorId) {
     return new FindFriendsTask(approach, userId, cursorId);
   }
 

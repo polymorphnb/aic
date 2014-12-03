@@ -10,14 +10,13 @@ import java.util.List;
  * 
  * <ul>
  * <li>Encapsulated objects may be null</li>
- * <li>Encapsulated objects are immutable</li>
  * </ul>
  * 
  * @author Irnes Okic (irnes.okic@student.tuwien.ac.at)
  * 
  */
 // approx. 30008 bytes
-public final class User {
+public final class User implements Comparable<User> {
 
   // unique and used for equals & hashCode
   private long id; // 8 bytes
@@ -192,6 +191,21 @@ public final class User {
     }
 
     return true;
+  }
+
+  @Override
+  public int compareTo(final User otherUser) {
+    if (otherUser == null) {
+      return -1;
+    }
+
+    if (this.id < otherUser.id) {
+      return -1;
+    } else if (this.id > otherUser.id) {
+      return 1;
+    } else {
+      return 0;
+    }
   }
 
   @Override

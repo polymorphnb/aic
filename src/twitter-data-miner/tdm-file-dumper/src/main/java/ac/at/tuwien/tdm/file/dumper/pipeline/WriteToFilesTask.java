@@ -2,7 +2,7 @@ package ac.at.tuwien.tdm.file.dumper.pipeline;
 
 import ac.at.tuwien.tdm.commons.pojo.Tweet;
 import ac.at.tuwien.tdm.commons.pojo.User;
-import ac.at.tuwien.tdm.file.dumper.writer.TweetFileWriter;
+import ac.at.tuwien.tdm.file.dumper.writer.SearchTweetFileWriter;
 import ac.at.tuwien.tdm.file.dumper.writer.UserFileWriter;
 
 import java.util.List;
@@ -20,13 +20,13 @@ public final class WriteToFilesTask implements Task {
   public void execute(final List<Tweet> tweets, final Set<User> users) throws Exception {
 
     if (!tweets.isEmpty()) {
-      final TweetFileWriter tweetWriter = TweetFileWriter.getInstance();
-      tweetWriter.appendToFile(searchTerm, tweets);
+      final SearchTweetFileWriter tweetWriter = SearchTweetFileWriter.getInstance();
+      tweetWriter.writeToFile(searchTerm, tweets);
     }
 
     if (!users.isEmpty()) {
       final UserFileWriter userWriter = UserFileWriter.getInstance();
-      userWriter.appendToFile(searchTerm, users);
+      userWriter.writeToFile(searchTerm, users);
     }
   }
 }

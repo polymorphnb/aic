@@ -62,6 +62,8 @@ public interface TwitterConnector {
 
   Future<List<Long>> findFriendIdsForUserId(Long userIdToLookUp, int friendsCount);
 
+  Future<List<Tweet>> findTweetsForUserId(Long userIdToLookUp);
+
   /**
    * Shuts the connector down (stopping 'running' threads)
    */

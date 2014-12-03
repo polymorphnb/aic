@@ -22,11 +22,15 @@ public final class JobBuilder {
     return new LookUpUsersJob.Builder(userIdsToLookUp);
   }
 
-  public static FindFollowersJob.Builder FindFollowersJob(final Long userIdToLookUp) {
+  public static FindFollowersJob.Builder FindFollowersJob(final long userIdToLookUp) {
     return new FindFollowersJob.Builder(userIdToLookUp);
   }
 
-  public static FindFriendsJob.Builder FindFriendsJob(final Long userIdToLookUp) {
+  public static FindFriendsJob.Builder FindFriendsJob(final long userIdToLookUp) {
     return new FindFriendsJob.Builder(userIdToLookUp);
+  }
+
+  public static FindTweetsForUserJob.Builder FindTweetsForUserJob(final long userIdToLookUp) {
+    return new FindTweetsForUserJob.Builder(userIdToLookUp);
   }
 }

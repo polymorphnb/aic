@@ -21,6 +21,8 @@ import twitter4j.TwitterException;
  */
 public final class SearchTweetsJob extends AbstractJob<List<Tweet>> {
 
+  private static final int DEFAULT_AMOUNT_OF_TWEETS_PER_RESULT_PAGE = 100;
+
   private final String searchTerm;
 
   private final boolean searchOnlyInHashTags;
@@ -37,7 +39,7 @@ public final class SearchTweetsJob extends AbstractJob<List<Tweet>> {
   public List<Tweet> call() throws TwitterConnectorException {
 
     final List<Tweet> allTweets = new ArrayList<Tweet>(Integer.highestOneBit(maxResults) * 2);
-    int resultsPerPage = TwitterConnectorConstants.DEFAULT_AMOUNT_OF_TWEETS_PER_RESULT_PAGE;
+    int resultsPerPage = DEFAULT_AMOUNT_OF_TWEETS_PER_RESULT_PAGE;
 
     if (resultsPerPage < 1 || resultsPerPage > 100) {
       throw new IllegalArgumentException(String.format("ResultsPerPage must be between 1 and 100. Actual value: %d",

@@ -65,7 +65,7 @@ public final class RelationshipBuilderTask extends TwitterTask {
   private void writeUserToFile(final String searchTerm, final User user) {
     final UserFileWriter userWriter = UserFileWriter.getInstance();
     try {
-      userWriter.appendToFile(searchTerm, Arrays.asList(user));
+      userWriter.writeToFile(searchTerm, Arrays.asList(user));
     } catch (final Exception e) {
       LOGGER.error(String.format("Couldn't write user with id %d to file", user.getId()), e);
     }

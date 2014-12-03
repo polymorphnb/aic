@@ -7,15 +7,14 @@ import ac.at.tuwien.tdm.commons.GsonInstance;
  * 
  * <ul>
  * <li>Encapsulated objects may be null</li>
- * <li>Encapsulated objects are immutable</li>
- * <li>non-valid primitive number references are -1</li>
+ * <li>invalid primitive number references are -1</li>
  * </ul>
  * 
  * @author Irnes Okic (irnes.okic@student.tuwien.ac.at)
  * 
  */
 // approx. 588 bytes 
-public final class Tweet {
+public final class Tweet implements Comparable<Tweet> {
 
   // unique and used for equals & hashCode
   private long id; // 8 bytes
@@ -182,6 +181,21 @@ public final class Tweet {
     }
 
     return true;
+  }
+
+  @Override
+  public int compareTo(final Tweet otherTweet) {
+    if (otherTweet == null) {
+      return -1;
+    }
+
+    if (this.id < otherTweet.id) {
+      return -1;
+    } else if (this.id > otherTweet.id) {
+      return 1;
+    } else {
+      return 0;
+    }
   }
 
   @Override

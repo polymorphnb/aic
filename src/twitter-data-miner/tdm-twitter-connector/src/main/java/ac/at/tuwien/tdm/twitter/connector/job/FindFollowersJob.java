@@ -20,9 +20,9 @@ public final class FindFollowersJob extends AbstractJob<List<Long>> {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(FindFollowersJob.class);
 
-  private final Long userIdToLookUp;
+  private final long userIdToLookUp;
 
-  private final Integer followersCount;
+  private final int followersCount;
 
   private FindFollowersJobApproachEnum approach;
 
@@ -143,12 +143,12 @@ public final class FindFollowersJob extends AbstractJob<List<Long>> {
 
   public static class Builder {
 
-    private final Long userIdToLookUp;
+    private final long userIdToLookUp;
 
     // optional
-    private Integer followersCount = 20;
+    private int followersCount = 20;
 
-    public Builder(final Long userIdToLookUp) {
+    public Builder(final long userIdToLookUp) {
       this.userIdToLookUp = userIdToLookUp;
     }
 

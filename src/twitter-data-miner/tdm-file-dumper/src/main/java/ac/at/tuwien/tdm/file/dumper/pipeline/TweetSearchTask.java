@@ -3,7 +3,7 @@ package ac.at.tuwien.tdm.file.dumper.pipeline;
 import ac.at.tuwien.tdm.commons.pojo.Tweet;
 import ac.at.tuwien.tdm.commons.pojo.User;
 import ac.at.tuwien.tdm.file.dumper.TweetSearchTerm;
-import ac.at.tuwien.tdm.file.dumper.writer.TweetFileWriter;
+import ac.at.tuwien.tdm.file.dumper.writer.SearchTweetFileWriter;
 import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnector;
 import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnectorException;
 
@@ -41,14 +41,13 @@ public final class TweetSearchTask extends TwitterTask {
 
   private void writeAllTweetsToFile(final List<Tweet> tweets) {
     if (!tweets.isEmpty()) {
-      final TweetFileWriter tweetWriter = TweetFileWriter.getInstance();
+      final SearchTweetFileWriter tweetWriter = SearchTweetFileWriter.getInstance();
       try {
-        tweetWriter.appendToFile(searchTerm.getSearchTerm(), tweets);
+        tweetWriter.writeToFile(searchTerm.getSearchTerm(), tweets);
       } catch (final Exception e) {
         // fail fast
         throw new RuntimeException(e);
       }
-
     }
   }
 }

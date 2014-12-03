@@ -1,6 +1,6 @@
 package ac.at.tuwien.tdm.file.dumper.writer;
 
-import ac.at.tuwien.tdm.file.dumper.Clock;
+import ac.at.tuwien.tdm.commons.Clock;
 import ac.at.tuwien.tdm.file.dumper.FileDumperConstants;
 
 import java.io.BufferedOutputStream;
@@ -26,6 +26,8 @@ public abstract class TwitterFileWriter<T> {
 
   private final String fileExtension;
 
+  private final boolean appendToFile;
+
   private String filePath;
 
   private BufferedOutputStream outputStream;
@@ -34,12 +36,13 @@ public abstract class TwitterFileWriter<T> {
 
   private long currentEntryCount = 0;
 
-  protected TwitterFileWriter(final String fileName, final String fileExtension) {
+  protected TwitterFileWriter(final String fileName, final String fileExtension, final boolean appendToFile) {
     this.fileName = fileName;
     this.fileExtension = fileExtension;
+    this.appendToFile = appendToFile;
   }
 
-  public synchronized void appendToFile(final String searchTerm, final Collection<T> dataList) throws IOException {
+  public synchronized void writeToFile(final String searchTerm, final Collection<T> dataList) throws IOException {
     final BufferedOutputStream outputStream = openFileAsStream(searchTerm);
 
     IOUtils.writeLines(dataList, FileDumperConstants.LINE_ENDING, outputStream, FileDumperConstants.ENCODING);
@@ -59,7 +62,7 @@ public abstract class TwitterFileWriter<T> {
 
       filePath = buildNewFilePathForCurrentTime(fileName, fileExtension, searchTerm);
       final File twitterFile = new File(filePath);
-      outputStream = new BufferedOutputStream(FileUtils.openOutputStream(twitterFile, true));
+      outputStream = new BufferedOutputStream(FileUtils.openOutputStream(twitterFile, appendToFile));
       LOGGER.info(String.format("Opened file '%s'", filePath));
     }
 

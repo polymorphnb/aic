@@ -21,18 +21,17 @@ public final class TwitterConnectorConstants extends Constants {
 
   public static final String CREDENTIALS_FILE_NAME = "twitterAuthentication.txt";
 
-  public static final int TIME_WINDOW_IN_SECONDS = (15 * MINUTE_IN_SECONDS);
+  public static final int TIME_WINDOW_IN_SECONDS = (15 * 60);
 
   public static final String TWEET_LANGUAGE = "en";
 
   public static final int DEFAULT_MAX_RESULTS_PER_TWEET_SEARCH = 10000;
 
-  // must be <= 100
-  public static final int DEFAULT_AMOUNT_OF_TWEETS_PER_RESULT_PAGE = 100;
+  public static final int DEFAULT_MAX_TWEETS_PER_USER_SEARCH = 1000; // 3200
 
   public static final int ID_LIST_APPROACH_THRESHOLD = 160;
 
-  private static final int HTTP_UNAUTHORIZED = 401;
+  public static final int HTTP_UNAUTHORIZED = 401;
 
   private static final int HTTP_FORBIDDEN = 403;
 
