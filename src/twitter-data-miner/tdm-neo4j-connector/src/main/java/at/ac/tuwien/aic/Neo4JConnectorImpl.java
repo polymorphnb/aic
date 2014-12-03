@@ -183,7 +183,7 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
 
   private Long insertUserBatch(Long userID) {
     try {
-      Map<String, Object> properties = new HashMap<>();
+      Map<String, Object> properties = new HashMap<String, Object>();
       properties.put(USER_NODE_INDEX_NAME, userID);
       return this.inserter.createNode(properties, USER_LABEL);
     } catch (Exception ex) {
@@ -194,7 +194,7 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
 
   private void insertRelationshipBatch(Long node1, Long node2, Long userID1, Long userID2, TwitterRelationshipType type) {
     try {
-      Map<String, Object> properties = new HashMap<>();
+      Map<String, Object> properties = new HashMap<String, Object>();
       properties.put(type.getValue(), userID1 + " " + userID2);
       Long id = this.inserter.createRelationship(node1, node2, type, properties);
       if(type.equals(TwitterRelationshipType.FOLLOWS)) {
@@ -255,7 +255,7 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
       UniqueEntity<Relationship> rel = this.getOrCreateRelationshipWithUniqueFactory(user1.entity(), user2.entity(),
           type);
       if (rel.wasCreated() == false) {
-        int weight = (int) rel.entity().getProperty(RelationshipTypeConstants.WEIGHT);
+        int weight = ((Integer) rel.entity().getProperty(RelationshipTypeConstants.WEIGHT)).intValue();
         weight++;
         rel.entity().setProperty(RelationshipTypeConstants.WEIGHT, weight);
       }
