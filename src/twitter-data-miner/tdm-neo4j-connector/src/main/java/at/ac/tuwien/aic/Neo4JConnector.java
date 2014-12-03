@@ -9,9 +9,13 @@ public interface Neo4JConnector {
   
   public void disconnectBatchInsert();
   
-  public void connect();
+  public void connect(boolean batchInsert);
   
   public void disconnect();
+  
+  public String getUserViaCypher(Long userID);
+  
+  public String getUserAsString(Long userID);
   
   public void addUserNode(Long id);
   

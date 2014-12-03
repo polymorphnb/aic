@@ -7,6 +7,8 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.neo4j.cypher.javacompat.ExecutionEngine;
+import org.neo4j.cypher.javacompat.ExecutionResult;
 import org.neo4j.graphdb.DynamicLabel;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.Label;
@@ -16,8 +18,14 @@ import org.neo4j.graphdb.Transaction;
 import org.neo4j.graphdb.factory.GraphDatabaseFactory;
 import org.neo4j.graphdb.index.ReadableIndex;
 import org.neo4j.graphdb.index.UniqueFactory;
+import org.neo4j.graphdb.index.UniqueFactory.UniqueEntity;
+import org.neo4j.graphdb.schema.ConstraintDefinition;
+import org.neo4j.graphdb.schema.IndexDefinition;
 import org.neo4j.helpers.collection.MapUtil;
+import org.neo4j.index.lucene.unsafe.batchinsert.LuceneBatchInserterIndexProvider;
 import org.neo4j.unsafe.batchinsert.BatchInserter;
+import org.neo4j.unsafe.batchinsert.BatchInserterIndex;
+import org.neo4j.unsafe.batchinsert.BatchInserterIndexProvider;
 import org.neo4j.unsafe.batchinsert.BatchInserters;
 
 public class Neo4JConnectorImpl implements Neo4JConnector {
@@ -38,6 +46,8 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
   private Transaction currentTransaction;
 
   private BatchInserter inserter;
+  private BatchInserterIndex friendsIndex;
+  private BatchInserterIndex followsIndex;
 
   private boolean batchInsert = false;
 
@@ -59,7 +69,14 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
     }
 
     inserter = BatchInserters.inserter(Neo4JConnectorImpl.STORE_DIR, config);
-    inserter.createDeferredSchemaIndex(USER_LABEL).on("user").create();
+    ConstraintDefinition cdf = inserter.createDeferredConstraint(USER_LABEL).assertPropertyIsUnique(USER_NODE_INDEX_NAME).create();
+    IndexDefinition idx = inserter.createDeferredSchemaIndex(USER_LABEL).on(USER_NODE_INDEX_NAME).create();
+    System.out.println(idx.isConstraintIndex());
+    
+    BatchInserterIndexProvider indexProvider = new LuceneBatchInserterIndexProvider(inserter);
+    followsIndex = indexProvider.relationshipIndex(RelationshipTypeConstants.FOLLOWS, MapUtil.stringMap("type", "exact"));
+    friendsIndex = indexProvider.relationshipIndex(RelationshipTypeConstants.FRIEND, MapUtil.stringMap("type", "exact"));
+    
     batchInsert = true;
   }
 
@@ -67,24 +84,68 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
     inserter.shutdown();
   }
 
-  public void connect() {
-    this.graphDb = new GraphDatabaseFactory().newEmbeddedDatabaseBuilder(Neo4JConnectorImpl.STORE_DIR)
-        .loadPropertiesFromURL(this.getClass().getResource("/" + Neo4JConnectorImpl.NEO4J_PROPERTIES_PATH))
-        .newGraphDatabase();
-    autoNodeIndex = graphDb.index().getNodeAutoIndexer().getAutoIndex();
+  public void connect(boolean batchInsert) {
+    if (batchInsert == true) {
+      InputStream in = this.getClass().getResourceAsStream("/" + Neo4JConnectorImpl.NEO4JBATCHINSERT_PROPERTIES_PATH);
+      Map<String, String> config = null;
+      try {
+        config = MapUtil.load(in);
+      } catch (IOException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+      this.batchInsert = true;
+      this.graphDb = BatchInserters.batchDatabase(Neo4JConnectorImpl.STORE_DIR, config);
+    } else {
+      this.graphDb = new GraphDatabaseFactory().newEmbeddedDatabaseBuilder(Neo4JConnectorImpl.STORE_DIR)
+          .loadPropertiesFromURL(this.getClass().getResource("/" + Neo4JConnectorImpl.NEO4J_PROPERTIES_PATH))
+          .newGraphDatabase();
+      autoNodeIndex = graphDb.index().getNodeAutoIndexer().getAutoIndex();
+    }
+
   }
 
   public void disconnect() {
-    this.graphDb.shutdown();
+    if (batchInsert == true) {
+      if(this.graphDb != null) {
+        this.graphDb.shutdown();
+      }
+      else {
+        this.inserter.shutdown();
+      }
+    } else {
+      this.graphDb.shutdown();
+    }
   }
 
   public void startTransaction() {
-    currentTransaction = this.graphDb.beginTx();
+    if(this.batchInsert == false) {
+      currentTransaction = this.graphDb.beginTx();
+    }
   }
 
   public void closeTransaction() {
-    currentTransaction.success();
-    currentTransaction.close();
+    if(this.batchInsert == false) {
+      currentTransaction.success();
+      currentTransaction.close();
+    }
+  }
+
+  public String getUserViaCypher(Long userID) {
+    ExecutionEngine engine = new ExecutionEngine(graphDb);
+    for(String indexname : graphDb.index().nodeIndexNames()) {
+      System.out.println(indexname);
+    }
+    System.out.println(graphDb.index().getNodeAutoIndexer().getAutoIndex().getName());
+
+    ExecutionResult result = engine.execute( "match (n {user: " + userID + "}) return n, n.user" );
+    
+    return result.dumpToString();
+    
+  }
+  
+  public String getUserAsString(Long userID) {
+    return this.autoNodeIndex.get(USER_NODE_INDEX_NAME, userID).getSingle().toString();
   }
 
   public void addUserNode(Long id) {
@@ -97,15 +158,17 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
 
   public void addUser(User user, boolean fullUser) {
     if (this.batchInsert == true) {
-      this.insertUserBatch(user.getId());
+      Long node1 = this.insertUserBatch(user.getId());
 
       for (Long userID : user.getFollowerUserIds()) {
-        this.insertUserBatch(userID);
-        this.addFollowsRelationship(user.getId(), userID);
+        Long node2 = this.insertUserBatch(userID);
+        this.insertRelationshipBatch(node1, node2, user.getId(), userID, TwitterRelationshipType.FOLLOWS);
+        //this.addFollowsRelationship(user.getId(), userID);
       }
       for (Long userID : user.getFriendsUserIds()) {
-        this.insertUserBatch(userID);
-        this.addFriendsRelationship(user.getId(), userID);
+        Long node2 = this.insertUserBatch(userID);
+        this.insertRelationshipBatch(node1, node2, user.getId(), userID, TwitterRelationshipType.FRIEND);
+        // this.addFriendsRelationship(user.getId(), userID);
       }
     } else {
       this.getOrCreateUserWithUniqueFactory(user.getId(), fullUser);
@@ -118,30 +181,60 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
     }
   }
 
-  private void insertUserBatch(Long userID) {
-    Long nodeID = -1L;
+  private Long insertUserBatch(Long userID) {
     try {
-      Map<String, Object> properties = new HashMap<String, Object>();
+      Map<String, Object> properties = new HashMap<>();
       properties.put(USER_NODE_INDEX_NAME, userID);
-      if (this.inserter.nodeExists(userID) == false) {
-        this.inserter.createNode(userID, properties, USER_LABEL);
+      return this.inserter.createNode(properties, USER_LABEL);
+    } catch (Exception ex) {
+      ex.printStackTrace();
+    }
+    return (long) -1;
+  }
+
+  private void insertRelationshipBatch(Long node1, Long node2, Long userID1, Long userID2, TwitterRelationshipType type) {
+    try {
+      Map<String, Object> properties = new HashMap<>();
+      properties.put(type.getValue(), userID1 + " " + userID2);
+      Long id = this.inserter.createRelationship(node1, node2, type, properties);
+      if(type.equals(TwitterRelationshipType.FOLLOWS)) {
+        this.followsIndex.add(id, properties);
+      }
+      else if(type.equals(TwitterRelationshipType.FRIEND)) {
+        this.friendsIndex.add(id, properties);
       }
     } catch (Exception ex) {
-
+      ex.printStackTrace();
     }
   }
 
-  public Node getOrCreateUserWithUniqueFactory(Long id, final boolean fullUser) {
+  public UniqueEntity<Node> getOrCreateUserWithUniqueFactory(Long id, final boolean fullUser) {
     UniqueFactory<Node> factory = new UniqueFactory.UniqueNodeFactory(graphDb, "user") {
 
       @Override
       protected void initialize(Node created, Map<String, Object> properties) {
         created.setProperty(USER_NODE_INDEX_NAME, properties.get(USER_NODE_INDEX_NAME));
-        created.setProperty("fullUser", fullUser);
       }
     };
 
-    return factory.getOrCreate(USER_NODE_INDEX_NAME, id);
+    return factory.getOrCreateWithOutcome(USER_NODE_INDEX_NAME, id);
+  }
+
+  public UniqueEntity<Relationship> getOrCreateRelationshipWithUniqueFactory(final Node user1, final Node user2,
+      final TwitterRelationshipType type) {
+    UniqueFactory<Relationship> factory = new UniqueFactory.UniqueRelationshipFactory(graphDb, type.getValue()) {
+
+      @Override
+      protected Relationship create(Map<String, Object> properties) {
+        Relationship rel = user1.createRelationshipTo(user2, type);
+        rel.setProperty(type.getValue(), properties.get(type.getValue()));
+        rel.setProperty(RelationshipTypeConstants.WEIGHT, 0);
+        return rel;
+      }
+    };
+
+    return factory.getOrCreateWithOutcome(type.getValue(),
+        user1.getProperty(USER_NODE_INDEX_NAME) + "_" + user2.getProperty(USER_NODE_INDEX_NAME));
   }
 
   private Node getUser(Long id) {
@@ -151,23 +244,30 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
 
   private void addRelationship(Long userID1, Long userID2, TwitterRelationshipType type) {
     if (this.batchInsert == true) {
-      inserter.createRelationship(userID1, userID2, type, null);
+      //inserter.insertRelationshipBatch(userID1, userID2, type);
     } else {
-      Node user1 = this.getOrCreateUserWithUniqueFactory(userID1, true);
-      Node user2 = this.getOrCreateUserWithUniqueFactory(userID2, false);
+      UniqueEntity<Node> user1 = this.getOrCreateUserWithUniqueFactory(userID1, true);
+      UniqueEntity<Node> user2 = this.getOrCreateUserWithUniqueFactory(userID2, false);
 
       //      Relationship rel = user1.createRelationshipTo(user2, type);
       //      rel.setProperty(RelationshipTypeConstants.WEIGHT, 0);
 
-      Relationship rel = this.getRelationship(user1, user2, type);
-      if (rel != null) {
-        Integer weight = (Integer) rel.getProperty(RelationshipTypeConstants.WEIGHT);
+      UniqueEntity<Relationship> rel = this.getOrCreateRelationshipWithUniqueFactory(user1.entity(), user2.entity(),
+          type);
+      if (rel.wasCreated() == false) {
+        int weight = (int) rel.entity().getProperty(RelationshipTypeConstants.WEIGHT);
         weight++;
-        rel.setProperty(RelationshipTypeConstants.WEIGHT, weight);
-      } else {
-        rel = user1.createRelationshipTo(user2, type);
-        rel.setProperty(RelationshipTypeConstants.WEIGHT, 0);
+        rel.entity().setProperty(RelationshipTypeConstants.WEIGHT, weight);
       }
+      //      Relationship rel = this.getRelationship(user1, user2, type);
+      //      if (rel != null) {
+      //        Integer weight = (Integer) rel.getProperty(RelationshipTypeConstants.WEIGHT);
+      //        weight++;
+      //        rel.setProperty(RelationshipTypeConstants.WEIGHT, weight);
+      //      } else {
+      //        rel = user1.createRelationshipTo(user2, type);
+      //        rel.setProperty(RelationshipTypeConstants.WEIGHT, 0);
+      //      }
     }
   }
 
@@ -218,5 +318,4 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
     return null;
 
   }
-
 }
