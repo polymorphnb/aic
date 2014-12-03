@@ -11,6 +11,7 @@ public class TwitterProcessor {
     TwitterUserDataProcessor userDataProcessor = new TwitterUserDataProcessor();
 
     userDataProcessor.process();
+    //userDataProcessor.getUser(2298476980L);
     
   }
 

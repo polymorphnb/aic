@@ -12,7 +12,8 @@ public class TwitterUserDataProcessor extends TwitterDataProcessor {
   protected final UserDBConnector userDB = UserDBConnector.getInstance();
   
   public TwitterUserDataProcessor() {
-    this.neo4j.connect();
+    //this.neo4j.connect(false);
+    this.neo4j.connectBatchInsert();
   }
   
   public void process() {
@@ -32,7 +33,7 @@ public class TwitterUserDataProcessor extends TwitterDataProcessor {
         
         this.addUserToUserDB(user);
         this.addUserToNeo4J(user);
-        //System.out.println("User " + user.getId() + " processed");
+        System.out.println("User " + user.getId() + " processed");
         i++;
         
         if(i%100 == 0) {
@@ -51,6 +52,7 @@ public class TwitterUserDataProcessor extends TwitterDataProcessor {
 //        this.addUserFriendsRelationship(user);
 //      }
     }
+    this.neo4j.disconnect();
   }
   
   private void addUserToUserDB(User user) {
@@ -59,5 +61,12 @@ public class TwitterUserDataProcessor extends TwitterDataProcessor {
   
   private void addUserToNeo4J(User user) {
     this.neo4j.addUser(user, true);
+  }
+  
+  public void getUser(Long userID) {
+    this.neo4j.startTransaction();
+    System.out.println(this.neo4j.getUserViaCypher(userID));
+    System.out.println(this.neo4j.getUserAsString(userID));
+    this.neo4j.closeTransaction();
   }
 }
