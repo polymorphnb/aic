@@ -14,4 +14,5 @@ public abstract class TwitterDataProcessor {
   
   protected final Gson gson = new Gson();
 
+  public abstract void process();
 }
