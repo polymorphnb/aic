@@ -1,1 +1,31 @@
-Java;false
+arduino;false
+raspberry pi;false
+beagleboard;false
+ethernut;false
+pandaboard;false
+tinkerforge;false
+cubieboard;false
+atmega;false
+Diecimila;false
+Duemilanove;false
+Mega2560;false
+Mega ADK;false
+xbee;false
+raspbian;false
+gcc;false
+ARMv1;false
+ARMv2;false
+ARMv3;false
+ARMv4;false
+ARMv5;false
+ARMv6;false
+ARMv7;false
+ARMv8;false
+llvm;false
+debian;false
+gentoo;false
+ubuntu;false
+arch linux;false
+suse;false
+fedora;false
+microcontroller;false
