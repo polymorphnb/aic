@@ -12,8 +12,6 @@ public class TwitterUserDataProcessor extends TwitterDataProcessor {
   protected final UserDBConnector userDB = UserDBConnector.getInstance();
   
   public TwitterUserDataProcessor() {
-    //this.neo4j.connect(false);
-    this.neo4j.connectBatchInsert();
   }
   
   public void process() {
@@ -52,7 +50,6 @@ public class TwitterUserDataProcessor extends TwitterDataProcessor {
 //        this.addUserFriendsRelationship(user);
 //      }
     }
-    this.neo4j.disconnect();
   }
   
   private void addUserToUserDB(User user) {

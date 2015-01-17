@@ -8,10 +8,19 @@ public class TwitterProcessor {
 
   public static void main(String[] args) {
     
+    
+    
     TwitterUserDataProcessor userDataProcessor = new TwitterUserDataProcessor();
-
-    userDataProcessor.process();
-    //userDataProcessor.getUser(2298476980L);
+    userDataProcessor.connectNeo4J();
+    //userDataProcessor.process();
+    userDataProcessor.getUser(1360718155L);
+    userDataProcessor.disconnectNeo4J();
+    
+    TwitterTweetDataProcessor twitterDataProcessor = new TwitterTweetDataProcessor();
+    twitterDataProcessor.connectNeo4J();
+    twitterDataProcessor.process();
+    
+    twitterDataProcessor.disconnectNeo4J();
     
   }
 
