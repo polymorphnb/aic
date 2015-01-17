@@ -6,6 +6,7 @@ import ac.at.tuwien.tdm.file.dumper.writer.UserFileWriter;
 import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnector;
 import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnectorException;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
@@ -42,8 +43,9 @@ public final class RelationshipBuilderTask extends TwitterTask {
       ExecutionException {
     final Future<List<Long>> pendingResult = twitterConnector.findFollowerIdsForUserId(user.getId(),
         user.getFollowersCount());
-    final List<Long> followerUserIds = pendingResult.get();
+    //final List<Long> followerUserIds = pendingResult.get();
 
+    final List<Long> followerUserIds = new ArrayList<Long>();
     LOGGER
         .info(String.format("Found %d follower user ids for user with id '%d'", followerUserIds.size(), user.getId()));
 
@@ -55,7 +57,8 @@ public final class RelationshipBuilderTask extends TwitterTask {
       ExecutionException {
     final Future<List<Long>> pendingResult = twitterConnector.findFriendIdsForUserId(user.getId(),
         user.getFriendsCount());
-    final List<Long> friendsUserIds = pendingResult.get();
+    //final List<Long> friendsUserIds = pendingResult.get();
+    final List<Long> friendsUserIds = new ArrayList<Long>();
 
     LOGGER.info(String.format("Found %d friends user ids for user with id '%d'", friendsUserIds.size(), user.getId()));
 
