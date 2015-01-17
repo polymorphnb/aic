@@ -4,6 +4,8 @@ import ac.at.tuwien.tdm.commons.pojo.Tweet;
 import ac.at.tuwien.tdm.processor.reader.ConfigConstants;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.StandardCopyOption;
 import java.util.Iterator;
 
 
@@ -29,7 +31,7 @@ public class TwitterTweetDataProcessor extends TwitterDataProcessor {
                 
         this.addTopicInterestsUser(tweet);
         this.addInteractsWithUser(tweet);
-        System.out.println("Tweet " + tweet.getId() + " processed");
+        // System.out.println("Tweet " + tweet.getId() + " processed");
         i++;
         
         if(i%100 == 0) {
@@ -37,6 +39,14 @@ public class TwitterTweetDataProcessor extends TwitterDataProcessor {
         }
       }
       this.neo4j.closeTransaction();
+      
+      reader.closeLineIterator();
+      try {
+        java.nio.file.Files.move(file.toPath(), new File(ConfigConstants.TWEETS_FOLDER_PROCESSED + file.getName()).toPath(), StandardCopyOption.ATOMIC_MOVE);
+      } catch (IOException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
       System.out.println("File " + file.getName() + " done!");
       
 //      final List<String> readLines = reader.getDataForFile(file);

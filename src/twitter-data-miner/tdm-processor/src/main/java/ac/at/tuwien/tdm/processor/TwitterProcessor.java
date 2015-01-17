@@ -12,8 +12,7 @@ public class TwitterProcessor {
     
     TwitterUserDataProcessor userDataProcessor = new TwitterUserDataProcessor();
     userDataProcessor.connectNeo4J();
-    //userDataProcessor.process();
-    userDataProcessor.getUser(1360718155L);
+    userDataProcessor.process();
     userDataProcessor.disconnectNeo4J();
     
     TwitterTweetDataProcessor twitterDataProcessor = new TwitterTweetDataProcessor();

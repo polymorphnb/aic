@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.LineIterator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,7 +18,7 @@ public class TwitterFileReader {
   
   private static final TwitterFileReader INSTANCE = new TwitterFileReader();
   
-  private Iterator<String> fileIt;
+  private LineIterator fileIt;
 
   private TwitterFileReader() {
   }
@@ -56,6 +57,10 @@ public class TwitterFileReader {
       return fileIt.next();
     }
     return null;
+  }
+  
+  public void closeLineIterator() {
+    fileIt.close();
   }
 
 }
