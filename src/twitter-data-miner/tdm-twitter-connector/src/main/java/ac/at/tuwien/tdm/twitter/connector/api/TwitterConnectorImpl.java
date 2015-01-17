@@ -78,26 +78,28 @@ public final class TwitterConnectorImpl implements TwitterConnector {
   public Future<List<Long>> findFollowerIdsForUserId(final Long userIdToLookUp, int followersCount) {
     Defense.notNull("userIdToLookUp", userIdToLookUp);
     
-    final FindFollowersJob findFollowersJob = 
-        JobBuilder
-          .FindFollowersJob(userIdToLookUp)
-          .withFollowersCount(followersCount)
-          .build();
-    
-    return requestExecutor.submit(findFollowersJob);
+//    final FindFollowersJob findFollowersJob = 
+//        JobBuilder
+//          .FindFollowersJob(userIdToLookUp)
+//          .withFollowersCount(followersCount)
+//          .build();
+//    
+//    return requestExecutor.submit(findFollowersJob);
+    return null;
   }
 
   @Override
   public Future<List<Long>> findFriendIdsForUserId(final Long userIdToLookUp, int friendsCount) {
     Defense.notNull("userIdToLookUp", userIdToLookUp);
     
-    final FindFriendsJob findFriendsJob = 
-        JobBuilder
-          .FindFriendsJob(userIdToLookUp)
-          .withFriendsCount(friendsCount)
-          .build();
-    
-    return requestExecutor.submit(findFriendsJob);
+//    final FindFriendsJob findFriendsJob = 
+//        JobBuilder
+//          .FindFriendsJob(userIdToLookUp)
+//          .withFriendsCount(friendsCount)
+//          .build();
+//    
+//    return requestExecutor.submit(findFriendsJob);
+    return null;
   }
 
   @Override
