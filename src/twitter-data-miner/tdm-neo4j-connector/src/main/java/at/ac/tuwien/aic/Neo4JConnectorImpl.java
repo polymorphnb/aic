@@ -35,8 +35,10 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
   private static final String NEO4JBATCHINSERT_PROPERTIES_PATH = "neo4jBatchInsert.properties";
 
   private static final String USER_NODE_INDEX_NAME = "user";
+  private static final String TOPIC_NODE_INDEX_NAME = "topic";
 
   private static final Label USER_LABEL = DynamicLabel.label("user");
+  private static final Label TOPIC_LABEL = DynamicLabel.label("topic");
 
   private static final Neo4JConnector INSTANCE = new Neo4JConnectorImpl();
 
@@ -48,6 +50,7 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
   private BatchInserter inserter;
   private BatchInserterIndex friendsIndex;
   private BatchInserterIndex followsIndex;
+  private BatchInserterIndex interactsWithIndex;
 
   private boolean batchInsert = false;
 
@@ -76,6 +79,7 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
     BatchInserterIndexProvider indexProvider = new LuceneBatchInserterIndexProvider(inserter);
     followsIndex = indexProvider.relationshipIndex(RelationshipTypeConstants.FOLLOWS, MapUtil.stringMap("type", "exact"));
     friendsIndex = indexProvider.relationshipIndex(RelationshipTypeConstants.FRIEND, MapUtil.stringMap("type", "exact"));
+    interactsWithIndex = indexProvider.relationshipIndex(RelationshipTypeConstants.INTERACTS_WITH, MapUtil.stringMap("type", "exact"));
     
     batchInsert = true;
   }
@@ -96,7 +100,8 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
       }
       this.batchInsert = true;
       this.graphDb = BatchInserters.batchDatabase(Neo4JConnectorImpl.STORE_DIR, config);
-    } else {
+    } 
+    else {
       this.graphDb = new GraphDatabaseFactory().newEmbeddedDatabaseBuilder(Neo4JConnectorImpl.STORE_DIR)
           .loadPropertiesFromURL(this.getClass().getResource("/" + Neo4JConnectorImpl.NEO4J_PROPERTIES_PATH))
           .newGraphDatabase();
@@ -142,6 +147,14 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
     
     return result.dumpToString();
     
+  }
+  
+  public void addTopic(Long topicID) {
+    Node topic = this.getUser(topicID);
+    if(topic == null) {
+      topic = this.graphDb.createNode(TOPIC_LABEL);
+      topic.setProperty(TOPIC_NODE_INDEX_NAME, topicID);
+    }
   }
   
   public String getUserAsString(Long userID) {
@@ -203,6 +216,9 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
       else if(type.equals(TwitterRelationshipType.FRIEND)) {
         this.friendsIndex.add(id, properties);
       }
+      else if(type.equals(TwitterRelationshipType.INTERACTS_WITH)) {
+        this.interactsWithIndex.add(id, properties);
+      }
     } catch (Exception ex) {
       ex.printStackTrace();
     }
@@ -218,6 +234,18 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
     };
 
     return factory.getOrCreateWithOutcome(USER_NODE_INDEX_NAME, id);
+  }
+  
+  public UniqueEntity<Node> getOrCreateTopicWithUniqueFactory(Long id) {
+    UniqueFactory<Node> factory = new UniqueFactory.UniqueNodeFactory(graphDb, "topic") {
+
+      @Override
+      protected void initialize(Node created, Map<String, Object> properties) {
+        created.setProperty(TOPIC_NODE_INDEX_NAME, properties.get(TOPIC_NODE_INDEX_NAME));
+      }
+    };
+
+    return factory.getOrCreateWithOutcome(TOPIC_NODE_INDEX_NAME, id);
   }
 
   public UniqueEntity<Relationship> getOrCreateRelationshipWithUniqueFactory(final Node user1, final Node user2,
@@ -236,6 +264,11 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
     return factory.getOrCreateWithOutcome(type.getValue(),
         user1.getProperty(USER_NODE_INDEX_NAME) + "_" + user2.getProperty(USER_NODE_INDEX_NAME));
   }
+  
+  private Node getTopic(Long id) {
+    Node topic = autoNodeIndex.get(TOPIC_NODE_INDEX_NAME, id).getSingle();
+    return topic;
+  }
 
   private Node getUser(Long id) {
     Node user = autoNodeIndex.get(USER_NODE_INDEX_NAME, id).getSingle();
@@ -246,14 +279,21 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
     if (this.batchInsert == true) {
       //inserter.insertRelationshipBatch(userID1, userID2, type);
     } else {
-      UniqueEntity<Node> user1 = this.getOrCreateUserWithUniqueFactory(userID1, true);
-      UniqueEntity<Node> user2 = this.getOrCreateUserWithUniqueFactory(userID2, false);
-
+      //UniqueEntity<Node> user1 = this.getOrCreateUserWithUniqueFactory(userID1, true);
+      //UniqueEntity<Node> user2 = this.getOrCreateUserWithUniqueFactory(userID2, false);
+      Node user1 = this.getUser(userID1);
+      Node user2 = this.getUser(userID2);
+      
+      // TODO: Better way to process User, if we dont have a user then we just skip the relationship
+      if(user2 == null) {
+        return;
+      }
+      
+      
       //      Relationship rel = user1.createRelationshipTo(user2, type);
       //      rel.setProperty(RelationshipTypeConstants.WEIGHT, 0);
 
-      UniqueEntity<Relationship> rel = this.getOrCreateRelationshipWithUniqueFactory(user1.entity(), user2.entity(),
-          type);
+      UniqueEntity<Relationship> rel = this.getOrCreateRelationshipWithUniqueFactory(user1, user2, type);
       if (rel.wasCreated() == false) {
         int weight = ((Integer) rel.entity().getProperty(RelationshipTypeConstants.WEIGHT)).intValue();
         weight++;
@@ -273,15 +313,14 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
 
   private void addRelationshipInterested(Long userID1, Long topicID, int weight, TwitterRelationshipType type) {
     Node user1 = this.getUser(userID1);
-    //TODO: get Topic Node user2 = this.getUser(userID2);
-    Node topic = null;
-    Relationship rel = this.getRelationship(user1, topic, type);
+    UniqueEntity<Node> topic = this.getOrCreateTopicWithUniqueFactory(topicID);
+    Relationship rel = this.getRelationship(user1, topic.entity(), type);
     if (rel != null) {
       Integer weightInt = (Integer) rel.getProperty(RelationshipTypeConstants.WEIGHT);
       weightInt += Integer.valueOf(weight);
       rel.setProperty(RelationshipTypeConstants.WEIGHT, weightInt);
     } else {
-      rel = user1.createRelationshipTo(topic, type);
+      rel = user1.createRelationshipTo(topic.entity(), type);
       rel.setProperty(RelationshipTypeConstants.WEIGHT, Integer.valueOf(weight));
     }
 
@@ -301,6 +340,10 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
 
   public void addRetweetsRelationship(Long userID1, Long userID2) {
     this.addRelationship(userID1, userID2, TwitterRelationshipType.RETWEETS);
+  }
+  
+  public void addInteractsWithRelationship(Long userID1, Long userID2) {
+    this.addRelationship(userID1, userID2, TwitterRelationshipType.INTERACTS_WITH);
   }
 
   public void addInterestedInRelationship(Long userID1, Long topicID, int weight) {

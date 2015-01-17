@@ -13,6 +13,8 @@ public final class RelationshipTypeConstants {
   
   public final static String INTERESTED_IN = "interestedIn";
   
+  public final static String INTERACTS_WITH = "interacts-with";
+  
   public final static String WEIGHT = "weight";
 
 }
