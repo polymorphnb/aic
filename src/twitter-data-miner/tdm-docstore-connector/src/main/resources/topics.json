@@ -1,4 +1,9 @@
 {
-	"Topic1":	{"id": 1, "name": "kennedy", "keywords":[{"keyword":"democrat"}]},
+	"Hardware":	{"id": 1, "name": "hardware", "keywords":[{"keyword":"arduino"},{"keyword":"raspberry pi"},{"keyword":"beagleboard"},{"keyword":"ethernut"},
+	{"keyword":"pandaboard"},{"keyword":"tinkerforge"},{"keyword":"cubieboard"},{"keyword":"atmega"},{"keyword":"atmega"},{"keyword":"Diecimila"},
+	{"keyword":"Duemilanove"},{"keyword":"Mega2560"},{"keyword":"Mega ADK"},{"keyword":"xbee"},{"keyword":"raspbian"},{"keyword":"gcc"},
+	{"keyword":"ARMv1"},{"keyword":"ARMv2"},{"keyword":"ARMv3"},{"keyword":"ARMv4"},{"keyword":"ARMv5"},{"keyword":"ARMv6"},
+	{"keyword":"ARMv7"},{"keyword":"ARMv8"},{"keyword":"llvm"},{"keyword":"debian"},{"keyword":"gentoo"},{"keyword":"ubuntu"},
+	{"keyword":"arch linux"},{"keyword":"suse"},{"keyword":"fedora"},{"keyword":"microcontroller"}]},
 	"Topic2":	{"id": 2, "name": "reagan", "keywords":[{"keyword":"republican"},{"keyword":"conservative"}]}
 }

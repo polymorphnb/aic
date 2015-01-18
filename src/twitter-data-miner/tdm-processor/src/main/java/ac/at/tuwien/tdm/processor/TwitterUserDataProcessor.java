@@ -5,6 +5,8 @@ import ac.at.tuwien.tdm.processor.reader.ConfigConstants;
 import ac.at.tuwien.tdm.userdb.UserDBConnector;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.StandardCopyOption;
 import java.util.Iterator;
 
 public class TwitterUserDataProcessor extends TwitterDataProcessor {
@@ -12,8 +14,6 @@ public class TwitterUserDataProcessor extends TwitterDataProcessor {
   protected final UserDBConnector userDB = UserDBConnector.getInstance();
   
   public TwitterUserDataProcessor() {
-    //this.neo4j.connect(false);
-    this.neo4j.connectBatchInsert();
   }
   
   public void process() {
@@ -33,7 +33,7 @@ public class TwitterUserDataProcessor extends TwitterDataProcessor {
         
         this.addUserToUserDB(user);
         this.addUserToNeo4J(user);
-        System.out.println("User " + user.getId() + " processed");
+        // System.out.println("User " + user.getId() + " processed");
         i++;
         
         if(i%100 == 0) {
@@ -41,6 +41,15 @@ public class TwitterUserDataProcessor extends TwitterDataProcessor {
         }
       }
       this.neo4j.closeTransaction();
+      
+      reader.closeLineIterator();
+      try {
+        java.nio.file.Files.move(file.toPath(), new File(ConfigConstants.USER_FOLDER_PROCESSED + file.getName()).toPath(), StandardCopyOption.ATOMIC_MOVE);
+      } catch (IOException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+      
       System.out.println("File " + file.getName() + " done!");
       
 //      final List<String> readLines = reader.getDataForFile(file);
@@ -52,7 +61,6 @@ public class TwitterUserDataProcessor extends TwitterDataProcessor {
 //        this.addUserFriendsRelationship(user);
 //      }
     }
-    this.neo4j.disconnect();
   }
   
   private void addUserToUserDB(User user) {

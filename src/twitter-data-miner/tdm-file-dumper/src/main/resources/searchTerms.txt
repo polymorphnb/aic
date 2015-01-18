@@ -1,1 +1,58 @@
-Java;false
+arduino;false
+raspberry pi;false
+beagleboard;false
+ethernut;false
+pandaboard;false
+tinkerforge;false
+cubieboard;false
+atmega;false
+Diecimila;false
+Duemilanove;false
+Mega2560;false
+Mega ADK;false
+xbee;false
+raspbian;false
+gcc;false
+ARMv1;false
+ARMv2;false
+ARMv3;false
+ARMv4;false
+ARMv5;false
+ARMv6;false
+ARMv7;false
+ARMv8;false
+llvm;false
+debian;false
+gentoo;false
+ubuntu;false
+arch linux;false
+suse;false
+fedora;false
+microcontroller;false
+portage;false
+aptitude;false
+apt-get;false
+ubuntu;false
+XFCE;false
+Gnome;false
+KDE;false
+onion routing;false
+deep web; false
+tor;false
+gpg;false
+ssh;false
+Printrbot;false
+Ultimaker;false
+Formlabs;false
+MakerGeeks;false
+MakerBot;false
+thingiverse;false
+openbazaar;false
+bitcoin;false
+litecoin;false
+block-chain;false
+bittorrent sync;false
+syncthing;false
+python;false
+scipy;false
+numpy;false

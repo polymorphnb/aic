@@ -1,14 +1,15 @@
 package ac.at.tuwien.tdm.docstore;
 
+import at.ac.tuwien.aic.Neo4JConnector;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import at.ac.tuwien.aic.Neo4JConnector;
 
 import com.mongodb.AggregationOutput;
 import com.mongodb.BasicDBObject;
@@ -33,6 +34,11 @@ public class DocStoreConnectorImpl implements DocStoreConnector {
   private static final String ADS_COLLECTION = "ads";
   private static final String USER_TWEET_COLLECTION = "user_tweets";
   private DB db;
+  
+  
+  public DocStoreConnectorImpl() {
+    this.connect();
+  }
   
   public void connect() {
     try {
@@ -100,12 +106,14 @@ public class DocStoreConnectorImpl implements DocStoreConnector {
     return null;
   }
   
-  public void retrieveTopics() {
+  public List<Long> retrieveTopics() {
     DBCollection collection = this.db.getCollection(DocStoreConnectorImpl.TOPIC_COLLECTION);
     DBCursor cursorDoc = collection.find();
+    List<Long> topicIDs = new ArrayList<Long>();
     while (cursorDoc.hasNext()) {
-      System.out.println(cursorDoc.next());
+      topicIDs.add(Long.valueOf(cursorDoc.next().get("id").toString()));
     }
+    return topicIDs;
   }
   
   public void retrieveAds() {
@@ -114,6 +122,18 @@ public class DocStoreConnectorImpl implements DocStoreConnector {
     while (cursorDoc.hasNext()) {
       System.out.println(cursorDoc.next());
     }
+  }
+  
+  public Long getTopicIDForKeyword(String keyword) {
+    DBCollection collection = this.db.getCollection(DocStoreConnectorImpl.TOPIC_COLLECTION);
+    BasicDBObject whereQuery = new BasicDBObject();
+    whereQuery.put("keywords.keyword", keyword);
+    DBCursor cursor = collection.find(whereQuery);
+    Long resultID = -1L;
+    while(cursor.hasNext()) {
+      resultID = Long.valueOf(cursor.next().get("id").toString());
+    }
+    return resultID;
   }
   
   public void getTopicForID(int id) {
@@ -178,19 +198,20 @@ public class DocStoreConnectorImpl implements DocStoreConnector {
   public static void main(String[] args) {
     DocStoreConnectorImpl docstore = new DocStoreConnectorImpl();
     docstore.connect();
-    //docstore.dropDatabase();
-    //docstore.createTopicCollection();
-    //docstore.createAdsCollection();
+    docstore.dropDatabase();
+    docstore.createTopicCollection();
+    docstore.createAdsCollection();
     
     //docstore.retrieveAds();
-    //docstore.retrieveTopics();
+    System.out.println(docstore.retrieveTopics());
+    System.out.println(docstore.getTopicIDForKeyword("ubuntu"));
     
     //docstore.getKeywordsForTopic(2);
     
     // docstore.getTopicForID(2);
     
     
-    docstore.getInterestsForUsers(20, null);
-    System.out.println("end");
+    //docstore.getInterestsForUsers(20, null);
+    //System.out.println("end");
   }
 }
