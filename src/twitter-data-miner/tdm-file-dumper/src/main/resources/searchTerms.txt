@@ -37,7 +37,7 @@ XFCE;false
 Gnome;false
 KDE;false
 onion routing;false
-deep web; false
+deep web;false
 tor;false
 gpg;false
 ssh;false
@@ -86,3 +86,17 @@ opengl;false
 gtk;false
 wayland;false
 X11;false
+c++;false
+javafx;false
+ejb;false
+ruby;false
+aws;false
+scala;false
+gwt;false
+cfx;false
+cms;false
+struts;false
+jsf;false
+vaadin;false
+mvc;false
+grails;false
