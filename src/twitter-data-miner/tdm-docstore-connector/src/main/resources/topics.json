@@ -1,5 +1,5 @@
 {
-"hardware hacking": {"id": 1, "name": "hardware hacking", "keywords":[{
+"hardware hacking": {"id": 1, "name": "hardware hacking", "keywords":[
     {"keyword":"arduino"},
     {"keyword":"atmega"},
     {"keyword":"Diecimila"},
@@ -9,7 +9,7 @@
     {"keyword":"xbee"},
     {"keyword":"microcontroller"}
 ]},
-"mini computer": {"id": 2, "name": "mini computer", "keywords":[{
+"mini computer": {"id": 2, "name": "mini computer", "keywords":[
     {"keyword":"raspberry pi"},
     {"keyword":"beagleboard"},
     {"keyword":"ethernut"},
@@ -26,11 +26,11 @@
     {"keyword":"ARMv7"},
     {"keyword":"ARMv8"}
 ]},
-"compilers": {"id": 3, "name": "compilers", "keywords":[{
+"compilers": {"id": 3, "name": "compilers", "keywords":[
     {"keyword":"gcc"},
     {"keyword":"llvm"}
 ]},
-"linux": {"id": 4, "name": "linux", "keywords":[{
+"linux": {"id": 4, "name": "linux", "keywords":[
     {"keyword":"debian"},
     {"keyword":"gentoo"},
     {"keyword":"ubuntu"},
@@ -51,13 +51,13 @@
     {"keyword":"wayland"},
     {"keyword":"X11"}
 ]},
-"privacy": {"id": 5, "name": "privacy", "keywords":[{
+"privacy": {"id": 5, "name": "privacy", "keywords":[
     {"keyword":"onion routing"},
     {"keyword":"deep web"},
     {"keyword":"tor"},
     {"keyword":"gpg"}
 ]},
-"3d printing": {"id": 6, "name": "3d printing", "keywords":[{
+"3d printing": {"id": 6, "name": "3d printing", "keywords":[
     {"keyword":"Printrbot"},
     {"keyword":"Ultimaker"},
     {"keyword":"Formlabs"},
@@ -65,27 +65,27 @@
     {"keyword":"MakerBot"},
     {"keyword":"thingiverse"}
 ]},
-"bitcoin": {"id": 7, "name": "bitcoin", "keywords":[{
+"bitcoin": {"id": 7, "name": "bitcoin", "keywords":[
     {"keyword":"openbazaar"},
     {"keyword":"bitcoin"},
     {"keyword":"litecoin"},
     {"keyword":"block-chain"}
 ]},
-"file sync": {"id": 8, "name": "file sync", "keywords":[{
+"file sync": {"id": 8, "name": "file sync", "keywords":[
     {"keyword":"bittorrent sync"},
     {"keyword":"syncthing"}
 ]},
-"python": {"id": 9, "name": "python", "keywords":[{
+"python": {"id": 9, "name": "python", "keywords":[
     {"keyword":"python"},
     {"keyword":"scipy"},
     {"keyword":"numpy"}
 ]},
-"IDE": {"id": 10, "name": "IDE", "keywords":[{
+"IDE": {"id": 10, "name": "IDE", "keywords":[
     {"keyword":"eclipse"},
     {"keyword":"IDE"},
     {"keyword":"netbeans"}
 ]},
-"java": {"id": 11, "name": "java", "keywords":[{
+"java": {"id": 11, "name": "java", "keywords":[
     {"keyword":"java"},
     {"keyword":"api"},
     {"keyword":"intellj"},
@@ -111,17 +111,17 @@
     {"keyword":"ejb"},
     {"keyword":"gwt"}
 ]},
-"source control": {"id": 12, "name": "source control", "keywords":[{
+"source control": {"id": 12, "name": "source control", "keywords":[
     {"keyword":"git"},
     {"keyword":"svn"}
 ]},
-"DB": {"id": 13, "name": "DB", "keywords":[{
+"DB": {"id": 13, "name": "DB", "keywords":[
     {"keyword":"neo4j"},
     {"keyword":"mongodb"},
     {"keyword":"sqlite"},
     {"keyword":"h2"}
 ]},
-"programming": {"id": 14, "name": "programming", "keywords":[{
+"programming": {"id": 14, "name": "programming", "keywords":[
     {"keyword":"c++"},
     {"keyword":"QT"},
     {"keyword":"opengl"},
