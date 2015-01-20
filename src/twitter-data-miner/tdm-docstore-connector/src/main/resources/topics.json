@@ -119,7 +119,10 @@
     {"keyword":"neo4j"},
     {"keyword":"mongodb"},
     {"keyword":"sqlite"},
-    {"keyword":"h2"}
+    {"keyword":"h2"},
+    {"keyword":"mysql"},
+    {"keyword":"db2"},
+    {"keyword":"oracle"}
 ]},
 "programming": {"id": 14, "name": "programming", "keywords":[
     {"keyword":"c++"},

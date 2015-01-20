@@ -100,3 +100,6 @@ jsf;false
 vaadin;false
 mvc;false
 grails;false
+mysql;false
+db2;false
+oracle;false
