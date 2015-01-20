@@ -38,5 +38,7 @@ public interface Neo4JConnector {
   public void startTransaction();
   
   public void closeTransaction();
+  
+  public void getDirectInterestsForUser(Long userId, int interestThreshold);
 
 }

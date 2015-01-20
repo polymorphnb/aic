@@ -361,4 +361,16 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
     return null;
 
   }
+  
+  public void getDirectInterestsForUser(Long userId, int interestThreshold) {
+	  //TODO return type and sort by weight
+	  Node u = this.getUser(userId);
+	  Iterable<Relationship> itRel = u.getRelationships(TwitterRelationshipType.INTERESTEDIN);
+	  while(itRel.iterator().hasNext()) {
+		  Relationship tmp = itRel.iterator().next();
+		  if(((Integer)tmp.getProperty(RelationshipTypeConstants.WEIGHT)).intValue() >= interestThreshold) {
+			  System.out.println(tmp.getEndNode());
+		  }
+	  }
+  }
 }
