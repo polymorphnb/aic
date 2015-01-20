@@ -24,7 +24,6 @@ ARMv8;false
 llvm;false
 debian;false
 gentoo;false
-ubuntu;false
 arch linux;false
 suse;false
 fedora;false
