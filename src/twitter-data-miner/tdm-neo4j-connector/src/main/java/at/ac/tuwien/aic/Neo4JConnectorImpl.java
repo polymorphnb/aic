@@ -13,6 +13,7 @@ import org.neo4j.graphdb.DynamicLabel;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.Label;
 import org.neo4j.graphdb.Node;
+import org.neo4j.graphdb.Path;
 import org.neo4j.graphdb.Relationship;
 import org.neo4j.graphdb.Transaction;
 import org.neo4j.graphdb.factory.GraphDatabaseFactory;
@@ -21,6 +22,7 @@ import org.neo4j.graphdb.index.UniqueFactory;
 import org.neo4j.graphdb.index.UniqueFactory.UniqueEntity;
 import org.neo4j.graphdb.schema.ConstraintDefinition;
 import org.neo4j.graphdb.schema.IndexDefinition;
+import org.neo4j.graphdb.traversal.Evaluators;
 import org.neo4j.helpers.collection.MapUtil;
 import org.neo4j.index.lucene.unsafe.batchinsert.LuceneBatchInserterIndexProvider;
 import org.neo4j.unsafe.batchinsert.BatchInserter;
@@ -363,7 +365,6 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
   }
   
   public void getDirectInterestsForUser(Long userId, int interestThreshold) {
-	  //TODO return type and sort by weight
 	  Node u = this.getUser(userId);
 	  Iterable<Relationship> itRel = u.getRelationships(TwitterRelationshipType.INTERESTEDIN);
 	  while(itRel.iterator().hasNext()) {
@@ -371,6 +372,19 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
 		  if(((Integer)tmp.getProperty(RelationshipTypeConstants.WEIGHT)).intValue() >= interestThreshold) {
 			  System.out.println(tmp.getEndNode());
 		  }
+	  }
+  }
+  
+  public void getIndirectInterestsForUser(Long userId, int maxDepth, int interestThreshold) {
+	  //TODO return type and sort by weight, remove duplicate interests
+	  for( Path position : this.graphDb.traversalDescription()
+			               .breadthFirst()
+			               .relationships(TwitterRelationshipType.INTERACTS_WITH)
+			               .evaluator(Evaluators.toDepth(maxDepth))
+			               .traverse(this.getUser(userId))
+			  
+	  ) {
+		 this.getDirectInterestsForUser(((Long)position.endNode().getProperty(USER_NODE_INDEX_NAME)).longValue(), interestThreshold);
 	  }
   }
 }
