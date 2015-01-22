@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head></h:head>
+<h:body>
+	<f:view>
+		<h2>Most Influental User</h2>
+
+		<h:form id="searchMostInfluentalUsers">
+    	Maximum of Users: <p:inputText id="countInfluentalUsers" rendered="true"
+				style="width:200px;" value="#{user.countInfluentalUser}" /> 
+			<p:commandButton value="Suchen" ajax="true"
+				action="#{user.searchMostInfluentalUser}"
+				update="searchMostInfluentalUsers">
+			</p:commandButton>
+			<p:dataTable var="u" value="#{user.influentalUsers}">
+				<p:column headerText="Id">
+					<h:outputText value="#{u.id}" />
+				</p:column>
+
+				<p:column headerText="Name">
+					<h:outputText value="#{u.name}" />
+				</p:column>
+
+				<p:column headerText="FriendCount">
+					<h:outputText value="#{u.followersCount}" />
+				</p:column>
+
+			</p:dataTable>
+		</h:form>
+		
+		
+		<h2>Most Frequenced Users</h2>
+
+		<h:form id="searchMostFrequencedUsers">
+    	Maximum of Users: <p:inputText id="countFrequencedUsers" rendered="true"
+				style="width:200px;" value="#{user.countFrequencedUser}" /> 
+			<p:commandButton value="Suchen" ajax="true"
+				action="#{user.searchMostFrequencedUser}"
+				update="searchMostFrequencedUsers">
+			</p:commandButton>
+			<p:dataTable var="u" value="#{user.frequencedUsers}">
+				<p:column headerText="Id">
+					<h:outputText value="#{u.id}" />
+				</p:column>
+
+				<p:column headerText="Name">
+					<h:outputText value="#{u.name}" />
+				</p:column>
+
+				<p:column headerText="FriendCount">
+					<h:outputText value="#{u.followersCount}" />
+				</p:column>
+
+			</p:dataTable>
+		</h:form>
+		
+		<h2>Existing Interests of User</h2>
+
+		<h:form id="existingInterests">
+    	User: <p:inputText id="userExistingInterests" rendered="true"
+				style="width:200px;" value="#{user.userExistingInterests}" /> 
+		Maximal Interests: <p:inputText id="amountExistingInterests" rendered="true"
+				style="width:200px;" value="#{user.maximalExistingInterests}" /> 
+			<p:commandButton value="Suchen" ajax="true"
+				action="#{user.searchExistingInterests}"
+				update="existingInterests">
+			</p:commandButton>
+			<p:dataTable var="interest" value="#{user.existingInterests}">
+				<p:column headerText="Brand">
+					<h:outputText value="#{interest.brand}" />
+				</p:column>
+
+				<p:column headerText="Product">
+					<h:outputText value="#{interest.product}" />
+				</p:column>
+
+				<p:column headerText="Website">
+					<h:outputText value="#{interest.website}" />
+				</p:column>
+
+			</p:dataTable>
+		</h:form>
+		
+		<h2>Potential Interests of User</h2>
+		
+		<h:form id="potentialInterests">
+    	User: <p:inputText id="userPotentialInterests" rendered="true"
+				style="width:200px;" value="#{user.userPotentialInterests}" /> 
+		Maximal Interests: <p:inputText id="amountPotentialInterests" rendered="true"
+				style="width:200px;" value="#{user.maximalPotentialInterests}" /> 
+			<p:commandButton value="Suchen" ajax="true"
+				action="#{user.searchPotentialInterests}"
+				update="potentialInterests">
+			</p:commandButton>
+			<p:dataTable var="interest" value="#{user.potentialInterests}">
+				<p:column headerText="Brand">
+					<h:outputText value="#{interest.brand}" />
+				</p:column>
+
+				<p:column headerText="Product">
+					<h:outputText value="#{interest.product}" />
+				</p:column>
+
+				<p:column headerText="Website">
+					<h:outputText value="#{interest.website}" />
+				</p:column>
+
+			</p:dataTable>
+		</h:form>
+	</f:view>
+</h:body>
+
+</html>
