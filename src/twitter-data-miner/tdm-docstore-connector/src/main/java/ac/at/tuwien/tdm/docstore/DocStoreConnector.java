@@ -14,4 +14,5 @@ public interface DocStoreConnector {
 	public void getInterestsForUsers(int interestThreshold, Neo4JConnector neo4jdb);
 	public List<Long> retrieveTopics();
 	public Long getTopicIDForKeyword(String keyword);
+	public double calc_tf_idf_UserTopic(String user, String Topic);
 }
