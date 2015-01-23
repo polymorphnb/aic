@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS twitterUsers (
 	followersCount INTEGER,
 	language VARCHAR(255),
 	favoritesCount INTEGER,
+	retweetsCount INTEGER,
 	friendsCount INTEGER,
 	PRIMARY KEY(userId)
 )
