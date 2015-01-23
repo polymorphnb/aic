@@ -42,7 +42,7 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
   private static final Label USER_LABEL = DynamicLabel.label("user");
   private static final Label TOPIC_LABEL = DynamicLabel.label("topic");
 
-  private static final Neo4JConnector INSTANCE = new Neo4JConnectorImpl();
+  //private static final Neo4JConnector INSTANCE = new Neo4JConnectorImpl();
 
   private GraphDatabaseService graphDb;
   private ReadableIndex<Node> autoNodeIndex;
@@ -55,17 +55,10 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
   private BatchInserterIndex interactsWithIndex;
 
   private boolean batchInsert = false;
-
-  private Neo4JConnectorImpl() {
-  }
   
   public Neo4JConnectorImpl(String store_dir, String prop_path) {
 	  this.STORE_DIR = store_dir;
 	  this.NEO4J_PROPERTIES_PATH = prop_path;
-  }
-
-  public static Neo4JConnector getInstance() {
-    return Neo4JConnectorImpl.INSTANCE;
   }
 
   public void connectBatchInsert() {
