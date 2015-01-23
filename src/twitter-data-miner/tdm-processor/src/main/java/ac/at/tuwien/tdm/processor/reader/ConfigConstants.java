@@ -4,8 +4,8 @@ import java.nio.charset.Charset;
 
 public final class ConfigConstants {
 
-  private static final String DESTINATION_FOLDER = "../tdm-file-dumper/dist";
-
+  private static final String DESTINATION_FOLDER = "./dist";
+  
   public static final String TWEETS_FOLDER = DESTINATION_FOLDER + "/tweets/";
   
   public static final String TWEETS_FOLDER_PROCESSED = DESTINATION_FOLDER + "/tweets/processed/";

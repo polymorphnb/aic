@@ -28,8 +28,14 @@ public class TwitterFileReader {
   }
   
   public Iterator<?> getFiles(String folder) {
-    Iterator<?> it = FileUtils.iterateFiles(new File(folder), new String[] {ConfigConstants.TEXT_FILE_EXTENSION}, false);
-    return it;
+    try {
+      Iterator<?> it = FileUtils.iterateFiles(new File(folder), new String[] {ConfigConstants.TEXT_FILE_EXTENSION}, false);
+      return it;
+    } catch (Exception ex) {
+      LOGGER.error("Couldn't find files in folder '%s'", folder);
+      return null;
+    }
+   
   }
   
   public List<String> getDataForFile(File file) {

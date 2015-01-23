@@ -13,12 +13,18 @@ public class TwitterTweetDataProcessor extends TwitterDataProcessor {
   
   
   public TwitterTweetDataProcessor() {
+    super(ConfigConstants.TWEETS_FOLDER, ConfigConstants.TWEETS_FOLDER_PROCESSED);
   }
   
   public void process() {
     int i = 0;
     
-    Iterator<?> it = reader.getFiles(ConfigConstants.TWEETS_FOLDER);
+    Iterator<?> it = reader.getFiles(this.fileFolder);
+    
+    if(it == null) {
+      return;
+    }
+    
     while(it.hasNext()) {
       File file = (File)it.next();
       
@@ -42,7 +48,7 @@ public class TwitterTweetDataProcessor extends TwitterDataProcessor {
       
       reader.closeLineIterator();
       try {
-        java.nio.file.Files.move(file.toPath(), new File(ConfigConstants.TWEETS_FOLDER_PROCESSED + file.getName()).toPath(), StandardCopyOption.ATOMIC_MOVE);
+        java.nio.file.Files.move(file.toPath(), new File(this.folderProcessed + file.getName()).toPath(), StandardCopyOption.ATOMIC_MOVE);
       } catch (IOException e) {
         // TODO Auto-generated catch block
         e.printStackTrace();
