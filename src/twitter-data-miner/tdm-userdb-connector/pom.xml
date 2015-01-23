@@ -40,4 +40,20 @@
 			<artifactId>commons-io</artifactId>
 		</dependency>
 	</dependencies>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+				  <!-- DO NOT include log4j.properties file in your Jar -->
+				  <excludes>
+					<exclude>**/userDB</exclude>
+				  </excludes>
+				</configuration>
+			</plugin>
+ 
+		</plugins>
+	</build>
 </project>

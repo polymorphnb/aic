@@ -2,9 +2,6 @@ package ac.at.tuwien.tdm.userdb;
 
 import ac.at.tuwien.tdm.commons.pojo.User;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,19 +9,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
 import org.h2.tools.RunScript;
 
-import com.google.gson.Gson;
-
-/**
- * 
- * @author Carola Gabriel
- * 
- */
 public class UserDBConnector {
 
   private Connection conn;
@@ -106,15 +95,31 @@ public class UserDBConnector {
     return user;
   }
 
-  public void getUsers() {
+  public List<User> getUsers() {
     String query = "select * from twitterUsers";
+    List<User> users = new ArrayList<User>();
     try {
       Statement stmt = this.conn.createStatement();
 
       ResultSet rs = stmt.executeQuery(query);
+      
       while (rs.next()) {
         User user = this.getUserFromResultSet(rs);
+        users.add(user);
       }
+    } catch (SQLException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    return users;
+  }
+  
+  public void dropTableTwitterUsers() {
+    String query = "DROP TABLE twitterUsers;";
+    Statement stmt;
+    try {
+      stmt = this.conn.createStatement();
+      stmt.executeUpdate(query);
     } catch (SQLException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
@@ -150,34 +155,5 @@ public class UserDBConnector {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-  }
-
-  public static void main(String[] args) throws IOException {
-    Gson gson = new Gson();
-
-    UserDBConnector connector = new UserDBConnector();
-    connector.connect();
-    connector.createUserTable();
-
-    File folder = new File("./src/main/resources/user");
-    for (File file : folder.listFiles()) {
-      if (file.isFile()) {
-        InputStream in = FileUtils.openInputStream(file);
-        List<String> lines = IOUtils.readLines(in);
-
-        for (String line : lines) {
-          User user = gson.fromJson(line, User.class);
-
-          connector.insertUser(user.getId(), user.getScreenName(), user.getName(), user.getLocation(),
-              user.getStatusesCount(), user.getFollowersCount(), user.getLanguage(), user.getFavoritesCount(),
-              user.getFriendsCount());
-        }
-
-        in.close();
-      }
-    }
-
-    //connector.insertUser(1L, "Test", "test", "bla", 0, 0);
-    connector.getUsers();
   }
 }
