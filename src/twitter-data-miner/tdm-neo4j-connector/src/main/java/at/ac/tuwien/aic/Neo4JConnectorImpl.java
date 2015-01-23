@@ -1,10 +1,14 @@
 package at.ac.tuwien.aic;
 
 import ac.at.tuwien.tdm.commons.pojo.User;
+import ac.at.tuwien.tdm.docstore.DocStoreConnector;
+import ac.at.tuwien.tdm.results.DirectInterestResult;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import org.neo4j.cypher.javacompat.ExecutionEngine;
@@ -362,19 +366,26 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
 
   }
   
-  public void getDirectInterestsForUser(Long userId, int interestThreshold) {
+  public List<DirectInterestResult> getDirectInterestsForUser(Long userId, int interestThreshold, DocStoreConnector docstore) {
+	  LinkedList<DirectInterestResult> ret = new LinkedList<DirectInterestResult>();
 	  Node u = this.getUser(userId);
 	  Iterable<Relationship> itRel = u.getRelationships(TwitterRelationshipType.INTERESTEDIN);
 	  while(itRel.iterator().hasNext()) {
 		  Relationship tmp = itRel.iterator().next();
 		  if(((Integer)tmp.getProperty(RelationshipTypeConstants.WEIGHT)).intValue() >= interestThreshold) {
-			  System.out.println(tmp.getEndNode().getProperty(TOPIC_NODE_INDEX_NAME));
+			  ret.addLast(new DirectInterestResult(
+					     ((Integer)tmp.getProperty(RelationshipTypeConstants.WEIGHT)).intValue(),
+					     docstore.getTopicForID((Long)tmp.getEndNode().getProperty(TOPIC_NODE_INDEX_NAME)),
+					     (Long)tmp.getEndNode().getProperty(TOPIC_NODE_INDEX_NAME)
+					  ));
 		  }
 	  }
+	  return ret;
   }
   
   public void getIndirectInterestsForUser(Long userId, int maxDepth, int interestThreshold) {
 	  //TODO return type and sort by weight, remove duplicate interests
+	  /*
 	  for( Path position : this.graphDb.traversalDescription()
 			               .breadthFirst()
 			               .relationships(TwitterRelationshipType.INTERACTS_WITH)
@@ -383,7 +394,7 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
 			  
 	  ) {
 		 this.getDirectInterestsForUser(((Long)position.endNode().getProperty(USER_NODE_INDEX_NAME)).longValue(), interestThreshold);
-	  }
+	  }*/
   }
   
   public static void main (String[] args) {
@@ -399,7 +410,7 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
 	  db.addInterestedInRelationship(new Long(1), new Long(1111), 1);
 	  db.addInterestedInRelationship(new Long(2), new Long(2222), 1);
 	  db.addInterestedInRelationship(new Long(3), new Long(3333), 5);
-	  db.getDirectInterestsForUser(new Long(1), 2);
+	  //db.getDirectInterestsForUser(new Long(1), 2);
 	  System.out.println("indirect");
 	  db.getIndirectInterestsForUser(new Long(1), 3,2);
 	  db.closeTransaction();

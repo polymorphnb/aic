@@ -138,14 +138,12 @@ public class DocStoreConnectorImpl implements DocStoreConnector {
     return resultID;
   }
   
-  public void getTopicForID(int id) {
-    DBCollection collection = this.db.getCollection(DocStoreConnectorImpl.TOPIC_COLLECTION);
-    BasicDBObject whereQuery = new BasicDBObject();
-    whereQuery.put("id", id);
-    DBCursor cursor = collection.find(whereQuery);
-    while(cursor.hasNext()) {
-        System.out.println(cursor.next());
-    }
+  public String getTopicForID(Long id) {
+	    DBCollection collection = this.db.getCollection(DocStoreConnectorImpl.TOPIC_COLLECTION);
+	    BasicDBObject whereQuery = new BasicDBObject();
+	    whereQuery.put("id", id);
+	    DBCursor cursor = collection.find(whereQuery);
+	    return (String)cursor.next().get("Topic");
   }
   
   public void addTopicToUser(String user, String topic) {
