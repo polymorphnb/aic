@@ -1,6 +1,7 @@
 package ac.at.tuwien.tdm.userdb;
 
 import ac.at.tuwien.tdm.commons.pojo.User;
+import ac.at.tuwien.tdm.results.InfluenceResult;
 
 import java.io.InputStreamReader;
 import java.sql.Connection;
@@ -10,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.h2.tools.RunScript;
@@ -23,7 +25,7 @@ public class UserDBConnector {
 
   //private static final UserDBConnector INSTANCE = new UserDBConnector();
 
-  private UserDBConnector(String path) {
+  public UserDBConnector(String path) {
 	this.PATH_TO_DB = path;
     this.connect();
     this.createUserTable();
@@ -94,23 +96,32 @@ public class UserDBConnector {
 	  return u.getFollowersCount() * followersWeight + u.getRetweetsCount() * retweetsWeight + u.getFavoritesCount() * favouritesWeight;
   }
   
-  public void calcInfluenceAll(int followersWeight, int retweetsWeight, int favouritesWeight) {
+  public List<InfluenceResult> calcInfluenceAll(int followersWeight, int retweetsWeight, int favouritesWeight, int maxResults) {
 	  String sum = "followersCount * " + followersWeight + " + favoritesCount * " + favouritesWeight + "+ retweetsCount *" + retweetsWeight;
 	  String query = "SELECT screenName, followersCount, favoritesCount, retweetsCount, " + sum +" as influence_score";
 	  query = query + " from twitterUsers order by " + sum + " desc";
 	  
+	  LinkedList<InfluenceResult> ret = new LinkedList<InfluenceResult>();
+	  
+	  int tmp = 0;
 	  try {
 	      Statement stmt = this.conn.createStatement();
-	      //System.out.println(query);
 	      ResultSet rs = stmt.executeQuery(query);
-	      //ResultSet rs = stmt.executeQuery("SELECT * from twitterUsers");
-	      //while (!rs.isLast()) {
-	          System.out.println(rs);
-	        //}
+	      while (rs.next() && tmp < maxResults) {
+	    	  tmp += 1;
+	    	  ret.addLast(new InfluenceResult(
+	    			     rs.getString("screenName"),
+	    				 rs.getInt("followersCount"),
+	    				 rs.getInt("favoritesCount"),
+	    				 rs.getInt("retweetsCount"),
+	    				 rs.getInt("influence_score")
+	    			  ));
+	      }
 	    } catch (SQLException e) {
 	      // TODO Auto-generated catch block
 	      e.printStackTrace();
 	    }
+	   return ret;
   }
 
   public User getUser(Long userID) {
@@ -196,12 +207,13 @@ public class UserDBConnector {
   public static void main(String[] args) {
 	  UserDBConnector db = new UserDBConnector("/tmp/userdb.h2");
 	  db.connect();
-	  //db.dropTableTwitterUsers();
-	  //db.createUserTable();
-	  //db.insertUser(new Long(1), "1", "", "", 1, 1, "", 1, 1, 1);
-	  //db.insertUser(new Long(2), "2", "", "", 2, 2, "", 2, 2, 2);
-	  //db.insertUser(new Long(3), "3", "", "", 3, 3, "", 3, 3, 3);
-	  db.calcInfluenceAll(2, 2, 2);
+	  db.dropTableTwitterUsers();
+	  db.createUserTable();
+	  db.insertUser(new Long(1), "1", "", "", 1, 1, "", 1, 1, 1);
+	  db.insertUser(new Long(2), "2", "", "", 2, 2, "", 2, 2, 2);
+	  db.insertUser(new Long(3), "3", "", "", 3, 3, "", 3, 3, 3);
+	  List<InfluenceResult> ret = db.calcInfluenceAll(2, 2, 2,3);
+	  System.out.println(ret.get(0).getScreenName());
 	  db.disconnect();
   }
 }
