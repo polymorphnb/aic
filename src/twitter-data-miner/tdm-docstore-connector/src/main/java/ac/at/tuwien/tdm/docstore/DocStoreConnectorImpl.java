@@ -38,6 +38,8 @@ public class DocStoreConnectorImpl implements DocStoreConnector {
   
   public DocStoreConnectorImpl() {
     this.connect();
+    this.createTopicCollection();
+    this.createAdsCollection();
   }
   
   public void connect() {
