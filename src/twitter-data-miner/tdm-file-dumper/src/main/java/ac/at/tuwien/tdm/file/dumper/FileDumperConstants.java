@@ -44,4 +44,6 @@ public final class FileDumperConstants extends Constants {
   public static final int ASSUMPTION_AMOUNT_CREDENTIALS = 29;
 
   public static final int ASSUMPTION_TIME_WINDOW_IN_MINUTES = 17;
+  
+  public static final int GET_TWEETS_FOR_SEARCHTERMS_MODE = 11;
 }

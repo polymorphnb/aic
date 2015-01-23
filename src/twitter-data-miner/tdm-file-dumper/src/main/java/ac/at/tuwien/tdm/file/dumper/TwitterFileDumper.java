@@ -14,6 +14,8 @@ import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnector;
 import ac.at.tuwien.tdm.twitter.connector.api.TwitterConnectorFactory;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -61,13 +63,16 @@ public final class TwitterFileDumper {
     OperationMode mode = null;
     Properties config = null;
 
-    try {
-      config = readConfig();
-      mode = readUserDecision(config.getProperty(FileDumperConstants.USER_FILE_FOLDER_KEY));
-    } catch (final Exception e) {
-      LOGGER.error("Unexpected exception", e);
-      return;
-    }
+    // Config is not needed anymore
+//    String userFolder = null;
+//    try {
+//      config = readConfig();
+//      userFolder = config.getProperty(FileDumperConstants.USER_FILE_FOLDER_KEY);
+//    } catch (final Exception e) {
+//      LOGGER.error("No configuratin File found, using default");
+//    }
+    
+    mode = OperationMode.getByChoice(FileDumperConstants.GET_TWEETS_FOR_SEARCHTERMS_MODE);
 
     final long startUpTime = Clock.currentTime().getTimeInMillis();
 
@@ -106,6 +111,7 @@ public final class TwitterFileDumper {
     }
   }
 
+  @SuppressWarnings("unused")
   private static Properties readConfig() throws IOException {
     final Properties config = new Properties();
     config.load(ClassLoader.getSystemResourceAsStream(FileDumperConstants.CONFIG_PROPERTIES_FILE_NAME));
@@ -113,9 +119,10 @@ public final class TwitterFileDumper {
     return config;
   }
 
+  @SuppressWarnings("unused")
   private static OperationMode readUserDecision(final String folderPath) {
 
-    System.out.println("Used folder: " + folderPath);
+    // System.out.println("Used folder: " + folderPath);
     System.out.println("Choose operation mode:");
 
     System.out.println(" 11) Search tweets for given search terms");
@@ -419,7 +426,16 @@ public final class TwitterFileDumper {
 
   private List<TweetSearchTerm> readSearchTermsFromDefaultFile() {
     final List<TweetSearchTerm> searchTerms = new ArrayList<TweetSearchTerm>();
-    final InputStream resource = ClassLoader.getSystemResourceAsStream(FileDumperConstants.SEARCH_TERMS_FILE_NAME);
+    InputStream resource = ClassLoader.getSystemResourceAsStream(FileDumperConstants.SEARCH_TERMS_FILE_NAME);
+    try {
+      if(resource == null) {
+        resource = new FileInputStream("./" + FileDumperConstants.SEARCH_TERMS_FILE_NAME);
+      }
+    } catch (FileNotFoundException e) {
+        LOGGER.error(
+          String.format("Could not find searchterm file '%s'", FileDumperConstants.SEARCH_TERMS_FILE_NAME), e);
+        throw new RuntimeException(e);
+    }
 
     try {
       final List<String> readLines = IOUtils.readLines(resource, FileDumperConstants.ENCODING);
