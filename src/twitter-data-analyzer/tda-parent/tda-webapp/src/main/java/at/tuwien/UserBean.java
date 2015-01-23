@@ -1,5 +1,7 @@
 package at.tuwien;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,7 +16,6 @@ import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
 import ac.at.tuwien.tdm.commons.pojo.User;
-import at.ac.tuwien.aic.Neo4JConnector;
 import at.ac.tuwien.aic.Neo4JConnectorImpl;
 
 
@@ -38,27 +39,24 @@ public class UserBean{
 		BasicConfigurator.configure();
 		
 		Properties prop = new Properties();
-		String propFileName = "config.properties";
+		String propFileName = System.getProperty("config.filepath");
  
-		InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
+		InputStream inputStream = new FileInputStream(new File(propFileName));
  
-		if (inputStream != null) {
-			prop.load(inputStream);
-		} else {
-			throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
-		}
+		prop.load(inputStream);
 		
 		String neoPath = prop.getProperty("neo4j.path");
 		String neoProp = prop.getProperty("neo4j.properties");
 		
 //		Neo4JConnectorImpl.getInstance().getUserViaCypher(12323940L);
+//		Neo4JConnectorImpl neo = new Neo4JConnectorImpl("C:\\Users\\Georg\\Carola\\aic\\test_dbs\\graphdb", "C:\\Users\\Georg\\Carola\\aic\\test_dbs\\neo4j.properties");
 		Neo4JConnectorImpl neo = new Neo4JConnectorImpl(neoPath, neoProp);
-//		neo.connect(false);
-//		neo.startTransaction();
-//		neo.addUser(new User(1, "", "", "", "",1, 1, 1, 1), true);
-		logger.debug(neo.getUserAsString(1L));;
-//		neo.closeTransaction();
-//		neo.disconnect();
+		neo.connect(false);
+		neo.startTransaction();
+		String userViaCypher = neo.getUserViaCypher(1L);
+		logger.info("--- " + userViaCypher);
+		neo.closeTransaction();
+		neo.disconnect();
 		logger.info("search most influental user");
 //		if(null==influentalUsers){
 			influentalUsers = new ArrayList<ac.at.tuwien.tdm.commons.pojo.User>();
