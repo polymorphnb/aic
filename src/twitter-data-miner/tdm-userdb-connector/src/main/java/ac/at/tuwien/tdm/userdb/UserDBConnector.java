@@ -77,6 +77,11 @@ public class UserDBConnector {
     }
 
   }
+  
+  public int calcInfluence(Long userID, int followersWeight, int retweetsWeight, int favouritesWeight) {
+	  User u = this.getUser(userID);
+	  return u.getFollowersCount() * followersWeight + u.getRetweetsCount() * retweetsWeight + u.getFavoritesCount() * favouritesWeight;
+  }
 
   public User getUser(Long userID) {
     String query = "SELECT * from twitterUsers where userId = " + userID;
@@ -139,9 +144,10 @@ public class UserDBConnector {
       Integer followersCount = rs.getInt("followersCount");
       Integer friendsCount = rs.getInt("friendsCount");
       Integer favoritesCount = rs.getInt("favoritesCount");
+      Integer retweetsCount = rs.getInt("retweetsCount");
 
       user = new User(userId, screenName, name, location, language, statusesCount, favoritesCount, followersCount,
-          friendsCount);
+          friendsCount, retweetsCount);
     } catch (SQLException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();

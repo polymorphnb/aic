@@ -36,6 +36,8 @@ public final class User implements Comparable<User> {
   private int followersCount; // 4 bytes
 
   private int friendsCount; // 4 bytes
+  
+  private int retweetsCount;
 
   private List<Long> followerUserIds; // approx. 2500 * 8 bytes
 
@@ -65,6 +67,21 @@ public final class User implements Comparable<User> {
     this.friendsCount = friendsCount;
 
   }
+  
+  public User(final long id, final String screenName, final String name, final String location, final String language,
+	      final int statusesCount, final int favoritesCount, final int followersCount, final int friendsCount, final int retweetsCount) {
+	    this();
+	    this.id = id;
+	    this.screenName = screenName;
+	    this.name = name;
+	    this.location = location;
+	    this.language = language;
+	    this.statusesCount = statusesCount;
+	    this.favoritesCount = favoritesCount;
+	    this.followersCount = followersCount;
+	    this.friendsCount = friendsCount;
+	    this.retweetsCount = retweetsCount;
+	  }
 
   public long getId() {
     return id;
@@ -160,6 +177,10 @@ public final class User implements Comparable<User> {
 
   public void addFriendsUserIds(final List<Long> userIds) {
     friendsUserIds.addAll(userIds);
+  }
+  
+  public int getRetweetsCount() {
+	  return this.retweetsCount;
   }
 
   @Override
