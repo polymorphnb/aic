@@ -6,8 +6,29 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
-<h:head></h:head>
+<h:head>
+<script src="resources/js/sigma.min.js"></script>
+	<script src="resources/js/plugins/sigma.parsers.json.min.js"></script>
+	<style type="text/css">
+  #container {
+    max-width: 400px;
+    height: 400px;
+    margin: auto;
+  }
+</style>
+</h:head>
 <h:body>
+	
+	<div id="container"></div>
+	
+	<script>
+	  sigma.parsers.json('resources/data/data.json', {
+	    container: 'container',
+	    settings: {
+	      defaultNodeColor: '#ec5148'
+	    }
+	  });
+	</script>
 	<f:view>
 		<h2>Most Influental User</h2>
 
@@ -18,7 +39,11 @@
 				action="#{user.searchMostInfluentalUser}"
 				update="searchMostInfluentalUsers">
 			</p:commandButton>
-			<p:dataTable var="u" value="#{user.influentalUsers}">
+			<p:commandButton value="Suche Löschen" ajax="true"
+				action="#{user.deleteMostInfluentalUsers}"
+				update="searchMostInfluentalUsers">
+			</p:commandButton>
+			<p:dataTable var="u" value="#{user.influentalUsers}" rendered="#{not empty user.influentalUsers}">
 				<p:column headerText="Id">
 					<h:outputText value="#{u.id}" />
 				</p:column>
@@ -44,7 +69,11 @@
 				action="#{user.searchMostFrequencedUser}"
 				update="searchMostFrequencedUsers">
 			</p:commandButton>
-			<p:dataTable var="u" value="#{user.frequencedUsers}">
+			<p:commandButton value="Suche Löschen" ajax="true"
+				action="#{user.deleteMostFrequencedUsers}"
+				update="searchMostFrequencedUsers">
+			</p:commandButton>
+			<p:dataTable var="u" value="#{user.frequencedUsers}" rendered="#{not empty user.frequencedUsers}">
 				<p:column headerText="Id">
 					<h:outputText value="#{u.id}" />
 				</p:column>
@@ -71,7 +100,11 @@
 				action="#{user.searchExistingInterests}"
 				update="existingInterests">
 			</p:commandButton>
-			<p:dataTable var="interest" value="#{user.existingInterests}">
+			<p:commandButton value="Suche löschen" ajax="true"
+				action="#{user.deleteExistingInterests}"
+				update="existingInterests">
+			</p:commandButton>
+			<p:dataTable var="interest" value="#{user.existingInterests}" rendered="#{not empty user.existingInterests}">
 				<p:column headerText="Brand">
 					<h:outputText value="#{interest.brand}" />
 				</p:column>
@@ -98,7 +131,11 @@
 				action="#{user.searchPotentialInterests}"
 				update="potentialInterests">
 			</p:commandButton>
-			<p:dataTable var="interest" value="#{user.potentialInterests}">
+			<p:commandButton value="Suche löschen" ajax="true"
+				action="#{user.deletePotentialInterests}"
+				update="potentialInterests">
+			</p:commandButton>
+			<p:dataTable var="interest" value="#{user.potentialInterests}" rendered="#{not empty user.potentialInterests}">
 				<p:column headerText="Brand">
 					<h:outputText value="#{interest.brand}" />
 				</p:column>

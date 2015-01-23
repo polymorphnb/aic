@@ -6,27 +6,39 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Logger;
+
+import at.ac.tuwien.aic.Neo4JConnector;
+import at.ac.tuwien.aic.Neo4JConnectorImpl;
+
 
 @ManagedBean(name="user")
 @SessionScoped
 public class UserBean{
 	
+	static final Logger logger = Logger.getLogger(UserBean.class);
+	
 	private String name;
 	private String user;
 	
+	ac.at.tuwien.tdm.commons.pojo.User user1;
+	
 	private Integer countInfluentalUser;
-	private List<User> influentalUsers;
+	private List<ac.at.tuwien.tdm.commons.pojo.User> influentalUsers;
 	
 	//Parameter countInfluentalUser
 	public void searchMostInfluentalUser(){
-		
+		BasicConfigurator.configure();
+//		Neo4JConnectorImpl.getInstance().getUserViaCypher(12323940L);
+		logger.info("search most influental user");
 //		if(null==influentalUsers){
-			influentalUsers = new ArrayList<User>();
-			influentalUsers.add(new User(1, "user1", "user1", "Vienna", "German", 100, 100, 100, 100));
-			influentalUsers.add(new User(1, "user2", "user2", "Vienna", "German", 100, 100, 100, 100));
-			influentalUsers.add(new User(1, "user3", "user3", "Vienna", "German", 100, 100, 100, 100));
-			influentalUsers.add(new User(1, "user4", "user4", "Vienna", "German", 100, 100, 100, 100));
-			influentalUsers.add(new User(1, "user5", "user5", "Vienna", "German", 100, 100, 100, 100));
+			influentalUsers = new ArrayList<ac.at.tuwien.tdm.commons.pojo.User>();
+			influentalUsers.add(new ac.at.tuwien.tdm.commons.pojo.User(1, "user1", "user1", "Vienna", "German", 100, 100, 100, 100));
+			influentalUsers.add(new ac.at.tuwien.tdm.commons.pojo.User(1, "user2", "user2", "Vienna", "German", 100, 100, 100, 100));
+			influentalUsers.add(new ac.at.tuwien.tdm.commons.pojo.User(1, "user3", "user3", "Vienna", "German", 100, 100, 100, 100));
+			influentalUsers.add(new ac.at.tuwien.tdm.commons.pojo.User(1, "user4", "user4", "Vienna", "German", 100, 100, 100, 100));
+			influentalUsers.add(new ac.at.tuwien.tdm.commons.pojo.User(1, "user5", "user5", "Vienna", "German", 100, 100, 100, 100));
 
 //		}
 		
@@ -38,12 +50,18 @@ public class UserBean{
 		
 	}
 	
+	public void deleteMostInfluentalUsers(){
+		influentalUsers = new ArrayList<ac.at.tuwien.tdm.commons.pojo.User>();
+		countInfluentalUser = null;
+	}
+	
+	
 	private Integer countFrequencedUser;
 	private List<User> frequencedUsers;
 	
 	//Parameter countInfluentalUser
 	public void searchMostFrequencedUser(){
-		
+		BasicConfigurator.configure();
 //		if(null==influentalUsers){
 		frequencedUsers = new ArrayList<User>();
 		frequencedUsers.add(new User(1, "user1", "user1", "Vienna", "German", 100, 100, 100, 100));
@@ -60,13 +78,18 @@ public class UserBean{
 		}
 	}
 	
+	public void deleteMostFrequencedUsers(){
+		frequencedUsers = new ArrayList<User>();
+		countFrequencedUser = null;
+	}
+	
 	private String userExistingInterests;
 	private Integer maximalExistingInterests;
 	private List<Ad> existingInterests;
 	
 	//Parameter countInfluentalUser
 	public void searchExistingInterests(){
-		
+		BasicConfigurator.configure();
 //		if(null==influentalUsers){
 		setExistingInterests(new ArrayList<Ad>());
 		getExistingInterests().add(new Ad("user1", "Oracle", "Java", "http://www.oracle.com"));
@@ -87,13 +110,19 @@ public class UserBean{
 		}
 	}
 	
+	public void deleteExistingInterests(){
+		existingInterests = new ArrayList<Ad>();
+		maximalExistingInterests = null;
+		userExistingInterests = "";
+	}
+	
 	private String userPotentialInterests;
 	private Integer maximalPotentialInterests;
 	private List<Ad> potentialInterests;
 	
 	//Parameter countInfluentalUser
 	public void searchPotentialInterests(){
-		
+		BasicConfigurator.configure();
 //		if(null==influentalUsers){
 		setPotentialInterests(new ArrayList<Ad>());
 		getPotentialInterests().add(new Ad("user1", "Oracle", "Java", "http://www.oracle.com"));
@@ -112,6 +141,12 @@ public class UserBean{
 		if(potentialInterests.size()>maximalPotentialInterests){
 			potentialInterests = potentialInterests.subList(0, maximalPotentialInterests);
 		}
+	}
+	
+	public void deletePotentialInterests(){
+		potentialInterests = new ArrayList<Ad>();
+		maximalPotentialInterests = null;
+		userPotentialInterests = "";
 	}
 	
 	public String getUser() {
@@ -135,13 +170,13 @@ public class UserBean{
 		this.countInfluentalUser = countInfluentalUser;
 	}
 
-	public List<User> getInfluentalUsers() {
+	public List<ac.at.tuwien.tdm.commons.pojo.User> getInfluentalUsers() {
 		return influentalUsers;
 	}
 
-	public void setInfluentalUsers(List<User> influentalUsers) {
+	public void setInfluentalUsers(List<ac.at.tuwien.tdm.commons.pojo.User> influentalUsers) {
 		if(null==influentalUsers){
-			influentalUsers = new ArrayList<User>();
+			influentalUsers = new ArrayList<ac.at.tuwien.tdm.commons.pojo.User>();
 		}
 		this.influentalUsers = influentalUsers;
 	}
