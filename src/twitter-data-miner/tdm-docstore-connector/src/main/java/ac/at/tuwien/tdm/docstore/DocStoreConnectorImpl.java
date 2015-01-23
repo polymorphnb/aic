@@ -199,20 +199,20 @@ public class DocStoreConnectorImpl implements DocStoreConnector {
   /*calculate term frequency inverse document frequence*/
   /*using boolean frequencies for terms in documents*/
   /*denominator is adjusted by 1 to avoid division by zero*/
-  public double calc_tf_idf_UserTopic(String user, String topic) {
-	  return Math.log(this.countAllTweetsForUser(user)/(1+this.countTopicTweetsForUser(user, topic)));
+  public double calc_tf_idf_UserTopic(Long userID, String topic) {
+	  return Math.log(this.countAllTweetsForUser(userID)/(1+this.countTopicTweetsForUser(userID, topic)));
   }
   
-  public int countTopicTweetsForUser(String user, String topic) {
+  public int countTopicTweetsForUser(Long userID, String topic) {
 	  DBCollection collection = this.db.getCollection(DocStoreConnectorImpl.TOPIC_COLLECTION);
-	  BasicDBObject query = new BasicDBObject("user", user);
+	  BasicDBObject query = new BasicDBObject("user", userID);
 	  query.append("topic", topic);
 	  return collection.find(query).count();
   }
   
-  public int countAllTweetsForUser(String user) {	  
+  public int countAllTweetsForUser(Long userID) {	  
 	  DBCollection collection = this.db.getCollection(DocStoreConnectorImpl.TOPIC_COLLECTION);
-	  BasicDBObject query = new BasicDBObject("user", user);
+	  BasicDBObject query = new BasicDBObject("user", userID);
 	  return collection.find(query).count();
   }
   
