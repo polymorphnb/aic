@@ -59,7 +59,7 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
   private Neo4JConnectorImpl() {
   }
   
-  private Neo4JConnectorImpl(String store_dir, String prop_path) {
+  public Neo4JConnectorImpl(String store_dir, String prop_path) {
 	  this.STORE_DIR = store_dir;
 	  this.NEO4J_PROPERTIES_PATH = prop_path;
   }
