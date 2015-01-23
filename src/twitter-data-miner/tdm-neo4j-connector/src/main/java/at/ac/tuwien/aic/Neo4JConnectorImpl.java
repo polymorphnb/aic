@@ -370,7 +370,7 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
 	  while(itRel.iterator().hasNext()) {
 		  Relationship tmp = itRel.iterator().next();
 		  if(((Integer)tmp.getProperty(RelationshipTypeConstants.WEIGHT)).intValue() >= interestThreshold) {
-			  System.out.println(tmp.getEndNode());
+			  System.out.println(tmp.getEndNode().getProperty(TOPIC_NODE_INDEX_NAME));
 		  }
 	  }
   }
@@ -386,5 +386,25 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
 	  ) {
 		 this.getDirectInterestsForUser(((Long)position.endNode().getProperty(USER_NODE_INDEX_NAME)).longValue(), interestThreshold);
 	  }
+  }
+  
+  public static void main (String[] args) {
+	  Neo4JConnectorImpl db = new Neo4JConnectorImpl();
+	  db.connect(false);
+	  db.startTransaction();
+	  db.addUser(new User(1, "", "", "", "",1, 1, 1, 1), true);
+	  db.addUser(new User(2, "", "", "", "",1, 1, 1, 1), true);
+	  db.addUser(new User(3, "", "", "", "",1, 1, 1, 1), true);
+	  db.addInteractsWithRelationship(new Long(1), new Long(2));
+	  db.addInteractsWithRelationship(new Long(2), new Long(3));
+	  db.addInteractsWithRelationship(new Long(1), new Long(3));
+	  db.addInterestedInRelationship(new Long(1), new Long(1111), 1);
+	  db.addInterestedInRelationship(new Long(2), new Long(2222), 1);
+	  db.addInterestedInRelationship(new Long(3), new Long(3333), 1);
+	  db.getDirectInterestsForUser(new Long(1), 1);
+	  System.out.println("indirect");
+	  db.getIndirectInterestsForUser(new Long(1), 3,1);
+	  db.closeTransaction();
+	  db.disconnect();
   }
 }
