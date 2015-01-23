@@ -17,20 +17,21 @@ import org.h2.tools.RunScript;
 public class UserDBConnector {
 
   private Connection conn;
-  private static final String PATH_TO_DB = "./userDB/users";
+  private String PATH_TO_DB = "./userDB/users";
   private static final String PATH_TO_TABLE = "userTable.sql";
   private static final String INSERT_USER = "INSERT INTO  twitterUsers (userId, screenName, name, location, statusesCount, followersCount, language, favoritesCount, friendsCount, retweetsCount) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-  private static final UserDBConnector INSTANCE = new UserDBConnector();
+  //private static final UserDBConnector INSTANCE = new UserDBConnector();
 
-  private UserDBConnector() {
+  private UserDBConnector(String path) {
+	this.PATH_TO_DB = path;
     this.connect();
     this.createUserTable();
   }
 
-  public static UserDBConnector getInstance() {
-    return UserDBConnector.INSTANCE;
-  }
+  //public static UserDBConnector getInstance() {
+  //  return UserDBConnector.INSTANCE;
+  //}
 
   public void connect() {
     try {
@@ -193,7 +194,7 @@ public class UserDBConnector {
   }
   
   public static void main(String[] args) {
-	  UserDBConnector db = new UserDBConnector();
+	  UserDBConnector db = new UserDBConnector("/tmp/userdb.h2");
 	  db.connect();
 	  //db.dropTableTwitterUsers();
 	  //db.createUserTable();
