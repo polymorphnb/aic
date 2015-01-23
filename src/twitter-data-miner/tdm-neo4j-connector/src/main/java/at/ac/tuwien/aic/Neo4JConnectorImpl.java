@@ -410,7 +410,7 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
 	  db.addInterestedInRelationship(new Long(1), new Long(1111), 1);
 	  db.addInterestedInRelationship(new Long(2), new Long(2222), 1);
 	  db.addInterestedInRelationship(new Long(3), new Long(3333), 5);
-	  db.getDirectInterestsForUser(new Long(1), 2);
+	  //db.getDirectInterestsForUser(new Long(1), 2);
 	  System.out.println("indirect");
 	  db.getIndirectInterestsForUser(new Long(1), 3,2);
 	  db.closeTransaction();
