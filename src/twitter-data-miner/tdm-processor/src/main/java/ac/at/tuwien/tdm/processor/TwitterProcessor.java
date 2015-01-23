@@ -20,7 +20,8 @@ public class TwitterProcessor {
         docStore.createTopicCollection();
         docStore.createAdsCollection();
         
-        UserDBConnector userDB = UserDBConnector.getInstance();
+        //UserDBConnector userDB = UserDBConnector.getInstance();
+        UserDBConnector userDB = new UserDBConnector("TODO");
         userDB.connect();
         userDB.dropTableTwitterUsers();
         userDB.createUserTable();

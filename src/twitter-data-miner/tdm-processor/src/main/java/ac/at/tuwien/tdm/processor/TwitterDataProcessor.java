@@ -16,7 +16,8 @@ import com.google.gson.Gson;
 
 public abstract class TwitterDataProcessor {
   protected final TwitterFileReader reader = TwitterFileReader.getInstance();
-  protected final Neo4JConnector neo4j = Neo4JConnectorImpl.getInstance();
+  //protected final Neo4JConnector neo4j = Neo4JConnectorImpl.getInstance();
+  protected final Neo4JConnector neo4j = new Neo4JConnectorImpl("TODO", "TODO");
   protected final DocStoreConnector docStore = new DocStoreConnectorImpl();
   protected String fileFolder = null;
   protected String folderProcessed = null;

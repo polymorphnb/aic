@@ -11,7 +11,8 @@ import java.util.Iterator;
 
 public class TwitterUserDataProcessor extends TwitterDataProcessor {
   
-  protected final UserDBConnector userDB = UserDBConnector.getInstance();
+  //protected final UserDBConnector userDB = UserDBConnector.getInstance();
+	protected final UserDBConnector userDB = new UserDBConnector("TODO");
   
   public TwitterUserDataProcessor() {
     super(ConfigConstants.USER_FOLDER, ConfigConstants.USER_FOLDER_PROCESSED);
