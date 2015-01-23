@@ -21,7 +21,7 @@ We assume you are running a current version of ubuntu.
    echo 'deb http://debian.neo4j.org/repo stable/' > /etc/apt/sources.list.d/neo4j.list
    add-apt-repository ppa:webupd8team/java
    apt-get update
-   apt-get install oracle-java8-installer neo4j mongodb maven
+   apt-get install oracle-java8-installer neo4j mongodb maven tomcat7
 
 3. compile via maven
    cd $HOME/src/aic/src/twitter-data-miner

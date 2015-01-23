@@ -32,8 +32,8 @@ import org.neo4j.unsafe.batchinsert.BatchInserters;
 
 public class Neo4JConnectorImpl implements Neo4JConnector {
 
-  private static final String STORE_DIR = "graphDB";
-  private static final String NEO4J_PROPERTIES_PATH = "neo4j.properties";
+  private String STORE_DIR = "graphDB";
+  private String NEO4J_PROPERTIES_PATH = "neo4j.properties";
   private static final String NEO4JBATCHINSERT_PROPERTIES_PATH = "neo4jBatchInsert.properties";
 
   private static final String USER_NODE_INDEX_NAME = "user";
@@ -58,6 +58,11 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
 
   private Neo4JConnectorImpl() {
   }
+  
+  private Neo4JConnectorImpl(String store_dir, String prop_path) {
+	  this.STORE_DIR = store_dir;
+	  this.NEO4J_PROPERTIES_PATH = prop_path;
+  }
 
   public static Neo4JConnector getInstance() {
     return Neo4JConnectorImpl.INSTANCE;
@@ -73,7 +78,7 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
       e.printStackTrace();
     }
 
-    inserter = BatchInserters.inserter(Neo4JConnectorImpl.STORE_DIR, config);
+    inserter = BatchInserters.inserter(this.STORE_DIR, config);
     ConstraintDefinition cdf = inserter.createDeferredConstraint(USER_LABEL).assertPropertyIsUnique(USER_NODE_INDEX_NAME).create();
     IndexDefinition idx = inserter.createDeferredSchemaIndex(USER_LABEL).on(USER_NODE_INDEX_NAME).create();
     System.out.println(idx.isConstraintIndex());
@@ -101,11 +106,11 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
         e.printStackTrace();
       }
       this.batchInsert = true;
-      this.graphDb = BatchInserters.batchDatabase(Neo4JConnectorImpl.STORE_DIR, config);
+      this.graphDb = BatchInserters.batchDatabase(this.STORE_DIR, config);
     } 
     else {
-      this.graphDb = new GraphDatabaseFactory().newEmbeddedDatabaseBuilder(Neo4JConnectorImpl.STORE_DIR)
-          .loadPropertiesFromURL(this.getClass().getResource("/" + Neo4JConnectorImpl.NEO4J_PROPERTIES_PATH))
+      this.graphDb = new GraphDatabaseFactory().newEmbeddedDatabaseBuilder(this.STORE_DIR)
+    	  .loadPropertiesFromFile(this.NEO4J_PROPERTIES_PATH)
           .newGraphDatabase();
       autoNodeIndex = graphDb.index().getNodeAutoIndexer().getAutoIndex();
     }
@@ -389,10 +394,10 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
   }
   
   public static void main (String[] args) {
-	  Neo4JConnectorImpl db = new Neo4JConnectorImpl();
+	  Neo4JConnectorImpl db = new Neo4JConnectorImpl("/tmp/graphdb", "/tmp/neo4j.properties");
 	  db.connect(false);
 	  db.startTransaction();
-	  db.addUser(new User(1, "", "", "", "",1, 1, 1, 1), true);
+	  db.addUser(new User(1, "test", "test", "test", "test",1, 1, 1, 1), true);
 	  db.addUser(new User(2, "", "", "", "",1, 1, 1, 1), true);
 	  db.addUser(new User(3, "", "", "", "",1, 1, 1, 1), true);
 	  db.addInteractsWithRelationship(new Long(1), new Long(2));
@@ -400,10 +405,10 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
 	  db.addInteractsWithRelationship(new Long(1), new Long(3));
 	  db.addInterestedInRelationship(new Long(1), new Long(1111), 1);
 	  db.addInterestedInRelationship(new Long(2), new Long(2222), 1);
-	  db.addInterestedInRelationship(new Long(3), new Long(3333), 1);
-	  db.getDirectInterestsForUser(new Long(1), 1);
+	  db.addInterestedInRelationship(new Long(3), new Long(3333), 5);
+	  db.getDirectInterestsForUser(new Long(1), 2);
 	  System.out.println("indirect");
-	  db.getIndirectInterestsForUser(new Long(1), 3,1);
+	  db.getIndirectInterestsForUser(new Long(1), 3,2);
 	  db.closeTransaction();
 	  db.disconnect();
   }
