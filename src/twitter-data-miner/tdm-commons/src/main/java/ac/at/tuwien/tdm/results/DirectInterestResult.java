@@ -1,32 +1,23 @@
 package ac.at.tuwien.tdm.results;
 
 public class DirectInterestResult {
-	private String user;
-	private Long userID;
+	int interest;
 	private String topic;
-	private long topicID;
+	private Long topicID;
 	
-	public DirectInterestResult(String user, Long userID, String topic, long topicID) {
-		this.user = user;
-		this.userID = userID;
+	public DirectInterestResult(int interest, String topic, long topicID) {
+		this.interest = interest;
 		this.topic = topic;
 		this.topicID = topicID;
 	}
 
-	public void setUser(String user) {
-		this.user = user;
+
+	public String getTopic() {
+		return this.topic;
 	}
 
-	public void setUserID(Long userID) {
-		this.userID = userID;
-	}
-
-	public void setTopic(String topic) {
-		this.topic = topic;
-	}
-
-	public void setTopicID(long topicID) {
-		this.topicID = topicID;
+	public Long getTopicID() {
+		return this.topicID;
 	}
 	
 	

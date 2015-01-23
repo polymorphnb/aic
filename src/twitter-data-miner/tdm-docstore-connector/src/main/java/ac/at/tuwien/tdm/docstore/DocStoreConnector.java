@@ -15,4 +15,5 @@ public interface DocStoreConnector {
 	public List<Long> retrieveTopics();
 	public Long getTopicIDForKeyword(String keyword);
 	public double calc_tf_idf_UserTopic(Long userID, String Topic);
+	public String getTopicForID(Long id);
 }
