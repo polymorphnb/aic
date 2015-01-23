@@ -195,11 +195,11 @@ public class UserDBConnector {
   public static void main(String[] args) {
 	  UserDBConnector db = new UserDBConnector();
 	  db.connect();
-	  db.dropTableTwitterUsers();
-	  db.createUserTable();
-	  db.insertUser(new Long(1), "1", "", "", 1, 1, "", 1, 1, 1);
-	  db.insertUser(new Long(2), "2", "", "", 2, 2, "", 2, 2, 2);
-	  db.insertUser(new Long(3), "3", "", "", 3, 3, "", 3, 3, 3);
+	  //db.dropTableTwitterUsers();
+	  //db.createUserTable();
+	  //db.insertUser(new Long(1), "1", "", "", 1, 1, "", 1, 1, 1);
+	  //db.insertUser(new Long(2), "2", "", "", 2, 2, "", 2, 2, 2);
+	  //db.insertUser(new Long(3), "3", "", "", 3, 3, "", 3, 3, 3);
 	  db.calcInfluenceAll(2, 2, 2);
 	  db.disconnect();
   }
