@@ -24,7 +24,7 @@ public class TwitterProcessor {
         userDB.connect();
         userDB.dropTableTwitterUsers();
         userDB.createUserTable();
-        
+        System.out.println("RESET ALL DATABASES");
       }
     }
     
