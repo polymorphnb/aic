@@ -1,0 +1,168 @@
+01-23 16:31:36 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Column "SCREENNAME" not found; SQL statement:
+SELECT screenName, followersCount, favoritesCount, retweetsCount, followersCount * 1 + favoritesCount * 1+ retweetsCount *1 as influence_score [42122-182]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:147)
+	at org.h2.command.dml.Select.prepare(Select.java:829)
+	at org.h2.command.Parser.prepareCommand(Parser.java:247)
+	at org.h2.engine.Session.prepareLocal(Session.java:446)
+	at org.h2.engine.Session.prepareCommand(Session.java:388)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1190)
+	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:73)
+	at ac.at.tuwien.tdm.userdb.UserDBConnector.calcInfluenceAll(UserDBConnector.java:95)
+	at ac.at.tuwien.tdm.userdb.UserDBConnector.main(UserDBConnector.java:189)
+01-23 16:32:01 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Column "SCREENNAME" not found; SQL statement:
+SELECT screenName, followersCount, favoritesCount, retweetsCount, followersCount * 1 + favoritesCount * 1+ retweetsCount *1 as influence_score [42122-182]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:147)
+	at org.h2.command.dml.Select.prepare(Select.java:829)
+	at org.h2.command.Parser.prepareCommand(Parser.java:247)
+	at org.h2.engine.Session.prepareLocal(Session.java:446)
+	at org.h2.engine.Session.prepareCommand(Session.java:388)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1190)
+	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:73)
+	at ac.at.tuwien.tdm.userdb.UserDBConnector.calcInfluenceAll(UserDBConnector.java:95)
+	at ac.at.tuwien.tdm.userdb.UserDBConnector.main(UserDBConnector.java:190)
+01-23 16:32:40 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Column "SCREENNAME" not found; SQL statement:
+SELECT screenName, followersCount, favoritesCount, retweetsCount, followersCount * 1 + favoritesCount * 1+ retweetsCount *1 as influence_score [42122-182]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:147)
+	at org.h2.command.dml.Select.prepare(Select.java:829)
+	at org.h2.command.Parser.prepareCommand(Parser.java:247)
+	at org.h2.engine.Session.prepareLocal(Session.java:446)
+	at org.h2.engine.Session.prepareCommand(Session.java:388)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1190)
+	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:73)
+	at ac.at.tuwien.tdm.userdb.UserDBConnector.calcInfluenceAll(UserDBConnector.java:95)
+	at ac.at.tuwien.tdm.userdb.UserDBConnector.main(UserDBConnector.java:189)
+01-23 16:32:54 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Column "SCREENNAME" not found; SQL statement:
+SELECT screenName, followersCount, favoritesCount, retweetsCount, followersCount * 1 + favoritesCount * 1+ retweetsCount *1 as influence_score [42122-182]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:147)
+	at org.h2.command.dml.Select.prepare(Select.java:829)
+	at org.h2.command.Parser.prepareCommand(Parser.java:247)
+	at org.h2.engine.Session.prepareLocal(Session.java:446)
+	at org.h2.engine.Session.prepareCommand(Session.java:388)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1190)
+	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:73)
+	at ac.at.tuwien.tdm.userdb.UserDBConnector.calcInfluenceAll(UserDBConnector.java:95)
+	at ac.at.tuwien.tdm.userdb.UserDBConnector.main(UserDBConnector.java:189)
+01-23 16:33:14 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Table "A" not found; SQL statement:
+SELECT a.*, followersCount, favoritesCount, retweetsCount, followersCount * 1 + favoritesCount * 1+ retweetsCount *1 as influence_score [42102-182]
+01-23 16:33:28 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Column "FOLLOWERSCOUNT" not found; SQL statement:
+SELECT *, followersCount, favoritesCount, retweetsCount, followersCount * 1 + favoritesCount * 1+ retweetsCount *1 as influence_score [42122-182]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:147)
+	at org.h2.command.dml.Select.prepare(Select.java:829)
+	at org.h2.command.Parser.prepareCommand(Parser.java:247)
+	at org.h2.engine.Session.prepareLocal(Session.java:446)
+	at org.h2.engine.Session.prepareCommand(Session.java:388)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1190)
+	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:73)
+	at ac.at.tuwien.tdm.userdb.UserDBConnector.calcInfluenceAll(UserDBConnector.java:95)
+	at ac.at.tuwien.tdm.userdb.UserDBConnector.main(UserDBConnector.java:189)
+01-23 16:36:47 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Column "FOLLOWERSCOUNT" not found; SQL statement:
+SELECT followersCount, favoritesCount, retweetsCount, followersCount * 1 + favoritesCount * 1+ retweetsCount *1 as influence_score [42122-182]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:147)
+	at org.h2.command.dml.Select.prepare(Select.java:829)
+	at org.h2.command.Parser.prepareCommand(Parser.java:247)
+	at org.h2.engine.Session.prepareLocal(Session.java:446)
+	at org.h2.engine.Session.prepareCommand(Session.java:388)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1190)
+	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:73)
+	at ac.at.tuwien.tdm.userdb.UserDBConnector.calcInfluenceAll(UserDBConnector.java:95)
+	at ac.at.tuwien.tdm.userdb.UserDBConnector.main(UserDBConnector.java:192)
+01-23 16:37:48 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Column "FOLLOWERSCOUNT" not found; SQL statement:
+SELECT followersCount, favoritesCount, retweetsCount, followersCount * 1 + favoritesCount * 1+ retweetsCount *1 as influence_score [42122-182]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:147)
+	at org.h2.command.dml.Select.prepare(Select.java:829)
+	at org.h2.command.Parser.prepareCommand(Parser.java:247)
+	at org.h2.engine.Session.prepareLocal(Session.java:446)
+	at org.h2.engine.Session.prepareCommand(Session.java:388)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1190)
+	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:73)
+	at ac.at.tuwien.tdm.userdb.UserDBConnector.calcInfluenceAll(UserDBConnector.java:95)
+	at ac.at.tuwien.tdm.userdb.UserDBConnector.main(UserDBConnector.java:194)
+01-23 16:40:13 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Column "SCREENNAME" not found; SQL statement:
+SELECT screenName, followersCount, favoritesCount, retweetsCount, followersCount * 1 + favoritesCount * 1+ retweetsCount *1 as influence_score [42122-182]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:147)
+	at org.h2.command.dml.Select.prepare(Select.java:829)
+	at org.h2.command.Parser.prepareCommand(Parser.java:247)
+	at org.h2.engine.Session.prepareLocal(Session.java:446)
+	at org.h2.engine.Session.prepareCommand(Session.java:388)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1190)
+	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:73)
+	at ac.at.tuwien.tdm.userdb.UserDBConnector.calcInfluenceAll(UserDBConnector.java:96)
+	at ac.at.tuwien.tdm.userdb.UserDBConnector.main(UserDBConnector.java:195)
+01-23 16:40:34 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Column "SCREENNAME" not found; SQL statement:
+SELECT screenName, followersCount, favoritesCount, retweetsCount, followersCount * 1 + favoritesCount * 1+ retweetsCount *1 as influence_score [42122-182]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:147)
+	at org.h2.command.dml.Select.prepare(Select.java:829)
+	at org.h2.command.Parser.prepareCommand(Parser.java:247)
+	at org.h2.engine.Session.prepareLocal(Session.java:446)
+	at org.h2.engine.Session.prepareCommand(Session.java:388)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1190)
+	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:73)
+	at ac.at.tuwien.tdm.userdb.UserDBConnector.calcInfluenceAll(UserDBConnector.java:96)
+	at ac.at.tuwien.tdm.userdb.UserDBConnector.main(UserDBConnector.java:195)
+01-23 16:48:28 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Column "SCREENNAME" not found; SQL statement:
+SELECT screenName, followersCount, favoritesCount, retweetsCount, followersCount * 1 + favoritesCount * 1+ retweetsCount *1 as influence_score [42122-182]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:147)
+	at org.h2.command.dml.Select.prepare(Select.java:829)
+	at org.h2.command.Parser.prepareCommand(Parser.java:247)
+	at org.h2.engine.Session.prepareLocal(Session.java:446)
+	at org.h2.engine.Session.prepareCommand(Session.java:388)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1190)
+	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:73)
+	at ac.at.tuwien.tdm.userdb.UserDBConnector.calcInfluenceAll(UserDBConnector.java:104)
+	at ac.at.tuwien.tdm.userdb.UserDBConnector.main(UserDBConnector.java:203)
+01-23 16:49:11 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Column "SCREENNAME" not found; SQL statement:
+SELECT screenName, followersCount, favoritesCount, retweetsCount, followersCount * 1 + favoritesCount * 1+ retweetsCount *1 as influence_score [42122-182]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:147)
+	at org.h2.command.dml.Select.prepare(Select.java:829)
+	at org.h2.command.Parser.prepareCommand(Parser.java:247)
+	at org.h2.engine.Session.prepareLocal(Session.java:446)
+	at org.h2.engine.Session.prepareCommand(Session.java:388)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1190)
+	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:73)
+	at ac.at.tuwien.tdm.userdb.UserDBConnector.calcInfluenceAll(UserDBConnector.java:104)
+	at ac.at.tuwien.tdm.userdb.UserDBConnector.main(UserDBConnector.java:203)
