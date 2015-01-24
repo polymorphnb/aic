@@ -31,7 +31,7 @@ public abstract class TwitterDataProcessor {
     this.fileFolder = fileFolder;
     this.folderProcessed = folderProcessed;
     this.neo4j = new Neo4JConnectorImpl(neo4jDBPath, neo4jPropertiesPath);
-    this.userDB = new UserDBConnector(userDBPath, userDBTablePath);
+    this.userDB = new UserDBConnector(userDBPath, userDBTablePath, true);
   }
   
   public void connectNeo4J() {
