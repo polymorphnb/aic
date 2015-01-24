@@ -19,6 +19,12 @@
 			<artifactId>tdm-commons</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+
+		<dependency>
+                        <groupId>at.ac.tuwien</groupId>
+                        <artifactId>tdm-docstore-connector</artifactId>
+                        <version>${project.version}</version>
+                </dependency>
 	
 		<dependency>
 			<groupId>org.slf4j</groupId>
