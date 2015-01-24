@@ -78,9 +78,12 @@
 					</descriptorRefs>
 					<!-- MainClass in mainfest make a executable jar -->
 					<archive>
-					  <manifest>
-						<mainClass>ac.at.tuwien.tdm.processor.TwitterProcessor</mainClass>
-					  </manifest>
+					  	<manifest>
+							<mainClass>ac.at.tuwien.tdm.processor.TwitterProcessor</mainClass>
+					  	</manifest>
+					 	<manifestEntries>
+          					<Class-Path>.</Class-Path>
+       					</manifestEntries>
 					</archive>
  
 				</configuration>
