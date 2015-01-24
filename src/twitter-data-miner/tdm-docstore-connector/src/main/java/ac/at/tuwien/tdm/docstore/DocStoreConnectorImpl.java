@@ -103,7 +103,7 @@ public class DocStoreConnectorImpl implements DocStoreConnector {
       br.close();
       return content;
     } catch (Exception e) {
-      LOGGER.error("Could not load content from File '%s': " + e.getMessage(), file);
+      LOGGER.error(String.format("Could not load content from File '%s': " + e.getMessage(), file));
     }
     return null;
   }
