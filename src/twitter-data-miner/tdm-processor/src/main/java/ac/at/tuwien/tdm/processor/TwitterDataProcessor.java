@@ -10,24 +10,28 @@ import java.nio.file.Paths;
 import ac.at.tuwien.tdm.docstore.DocStoreConnector;
 import ac.at.tuwien.tdm.docstore.DocStoreConnectorImpl;
 import ac.at.tuwien.tdm.processor.reader.TwitterFileReader;
+import ac.at.tuwien.tdm.userdb.UserDBConnector;
 
 import com.google.gson.Gson;
 
 
 public abstract class TwitterDataProcessor {
+  
   protected final TwitterFileReader reader = TwitterFileReader.getInstance();
   //protected final Neo4JConnector neo4j = Neo4JConnectorImpl.getInstance();
   protected Neo4JConnector neo4j = null;
+  protected UserDBConnector userDB = null;
   protected final DocStoreConnector docStore = new DocStoreConnectorImpl();
   protected String fileFolder = null;
   protected String folderProcessed = null;
   
   protected final Gson gson = new Gson();
   
-  public TwitterDataProcessor(String fileFolder, String folderProcessed, String neo4jDBPath, String neo4jPropertiesPath) {
+  public TwitterDataProcessor(String fileFolder, String folderProcessed, String neo4jDBPath, String neo4jPropertiesPath, String userDBPath, String userDBTablePath) {
     this.fileFolder = fileFolder;
     this.folderProcessed = folderProcessed;
     this.neo4j = new Neo4JConnectorImpl(neo4jDBPath, neo4jPropertiesPath);
+    this.userDB = new UserDBConnector(userDBPath, userDBTablePath);
   }
   
   public void connectNeo4J() {

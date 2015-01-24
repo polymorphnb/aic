@@ -2,7 +2,6 @@ package ac.at.tuwien.tdm.processor;
 
 import ac.at.tuwien.tdm.commons.pojo.User;
 import ac.at.tuwien.tdm.processor.reader.ConfigConstants;
-import ac.at.tuwien.tdm.userdb.UserDBConnector;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,14 +9,15 @@ import java.io.IOException;
 import java.nio.file.StandardCopyOption;
 import java.util.Iterator;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class TwitterUserDataProcessor extends TwitterDataProcessor {
   
-  //protected final UserDBConnector userDB = UserDBConnector.getInstance();
-	protected UserDBConnector userDB = null;
+  private static final Logger LOGGER = LoggerFactory.getLogger(TwitterUserDataProcessor.class);
   
-  public TwitterUserDataProcessor(String neo4jDBPath, String neo4jPropertiesPath, String userDBPath) throws FileNotFoundException {
-    super(ConfigConstants.USER_FOLDER, ConfigConstants.USER_FOLDER_PROCESSED, neo4jDBPath, neo4jPropertiesPath);
-    this.userDB = new UserDBConnector(userDBPath);
+  public TwitterUserDataProcessor(String neo4jDBPath, String neo4jPropertiesPath, String userDBPath, String userDBTablePath) throws FileNotFoundException {
+    super(ConfigConstants.USER_FOLDER, ConfigConstants.USER_FOLDER_PROCESSED, neo4jDBPath, neo4jPropertiesPath, userDBPath, userDBTablePath);
   }
   
   public void process() {
@@ -45,7 +45,7 @@ public class TwitterUserDataProcessor extends TwitterDataProcessor {
         i++;
         
         if(i%100 == 0) {
-          System.out.println(i + " User processed!");
+          LOGGER.info(i + " User processed from file " + file.getName() + "!");
         }
       }
       this.neo4j.closeTransaction();
@@ -54,11 +54,10 @@ public class TwitterUserDataProcessor extends TwitterDataProcessor {
       try {
         java.nio.file.Files.move(file.toPath(), new File(this.folderProcessed + file.getName()).toPath(), StandardCopyOption.ATOMIC_MOVE);
       } catch (IOException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
+        LOGGER.info("Could not move file " + file.getName() + " to " + this.folderProcessed + file.getName() + "!");
       }
       
-      System.out.println("File " + file.getName() + " done!");
+      LOGGER.info("File " + file.getName() + " done!");
       
 //      final List<String> readLines = reader.getDataForFile(file);
 //      for (final String readLine : readLines) {
@@ -77,12 +76,5 @@ public class TwitterUserDataProcessor extends TwitterDataProcessor {
   
   private void addUserToNeo4J(User user) {
     this.neo4j.addUser(user, true);
-  }
-  
-  public void getUser(Long userID) {
-    this.neo4j.startTransaction();
-    System.out.println(this.neo4j.getUserViaCypher(userID));
-    System.out.println(this.neo4j.getUserAsString(userID));
-    this.neo4j.closeTransaction();
   }
 }

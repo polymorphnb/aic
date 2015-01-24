@@ -8,12 +8,16 @@ import java.io.IOException;
 import java.nio.file.StandardCopyOption;
 import java.util.Iterator;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 public class TwitterTweetDataProcessor extends TwitterDataProcessor {
   
+  private static final Logger LOGGER = LoggerFactory.getLogger(TwitterTweetDataProcessor.class);
   
-  public TwitterTweetDataProcessor(String neo4jDBPath, String neo4jPropertiesPath) {
-    super(ConfigConstants.TWEETS_FOLDER, ConfigConstants.TWEETS_FOLDER_PROCESSED, neo4jDBPath, neo4jPropertiesPath);
+  public TwitterTweetDataProcessor(String neo4jDBPath, String neo4jPropertiesPath, String userDBPath, String userDBTablePath) {
+    super(ConfigConstants.TWEETS_FOLDER, ConfigConstants.TWEETS_FOLDER_PROCESSED, neo4jDBPath, neo4jPropertiesPath, userDBPath, userDBTablePath);
   }
   
   public void process() {
@@ -37,11 +41,12 @@ public class TwitterTweetDataProcessor extends TwitterDataProcessor {
                 
         this.addTopicInterestsUser(tweet);
         this.addInteractsWithUser(tweet);
+        this.addRetweetCountToUser(tweet);
         // System.out.println("Tweet " + tweet.getId() + " processed");
         i++;
         
         if(i%100 == 0) {
-          System.out.println(i + " Tweet processed!");
+          LOGGER.info(i + " Tweets processed from file " + file.getName() + "!");
         }
       }
       this.neo4j.closeTransaction();
@@ -50,10 +55,9 @@ public class TwitterTweetDataProcessor extends TwitterDataProcessor {
       try {
         java.nio.file.Files.move(file.toPath(), new File(this.folderProcessed + file.getName()).toPath(), StandardCopyOption.ATOMIC_MOVE);
       } catch (IOException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
+        LOGGER.info("Could not move file " + file.getName() + " to " + this.folderProcessed + file.getName() + "!");
       }
-      System.out.println("File " + file.getName() + " done!");
+      LOGGER.info("File " + file.getName() + " done!");
       
 //      final List<String> readLines = reader.getDataForFile(file);
 //      for (final String readLine : readLines) {
@@ -63,6 +67,12 @@ public class TwitterTweetDataProcessor extends TwitterDataProcessor {
 //        this.addUserFollowersRelationship(user);
 //        this.addUserFriendsRelationship(user);
 //      }
+    }
+  }
+  
+  private void addRetweetCountToUser(Tweet tweet) {
+    if(tweet.getRetweetedCount() > 0) {
+      this.userDB.updateRetweetCountForUser(tweet.getAuthorUserId(), tweet.getRetweetedCount());
     }
   }
 
