@@ -17,16 +17,17 @@ import com.google.gson.Gson;
 public abstract class TwitterDataProcessor {
   protected final TwitterFileReader reader = TwitterFileReader.getInstance();
   //protected final Neo4JConnector neo4j = Neo4JConnectorImpl.getInstance();
-  protected final Neo4JConnector neo4j = new Neo4JConnectorImpl("TODO", "TODO");
+  protected Neo4JConnector neo4j = null;
   protected final DocStoreConnector docStore = new DocStoreConnectorImpl();
   protected String fileFolder = null;
   protected String folderProcessed = null;
   
   protected final Gson gson = new Gson();
   
-  public TwitterDataProcessor(String fileFolder, String folderProcessed) {
+  public TwitterDataProcessor(String fileFolder, String folderProcessed, String neo4jDBPath, String neo4jPropertiesPath) {
     this.fileFolder = fileFolder;
     this.folderProcessed = folderProcessed;
+    this.neo4j = new Neo4JConnectorImpl(neo4jDBPath, neo4jPropertiesPath);
   }
   
   public void connectNeo4J() {

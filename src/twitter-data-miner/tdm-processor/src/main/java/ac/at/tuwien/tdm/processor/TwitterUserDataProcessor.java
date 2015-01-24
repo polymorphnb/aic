@@ -12,10 +12,11 @@ import java.util.Iterator;
 public class TwitterUserDataProcessor extends TwitterDataProcessor {
   
   //protected final UserDBConnector userDB = UserDBConnector.getInstance();
-	protected final UserDBConnector userDB = new UserDBConnector("TODO");
+	protected UserDBConnector userDB = null;
   
-  public TwitterUserDataProcessor() {
-    super(ConfigConstants.USER_FOLDER, ConfigConstants.USER_FOLDER_PROCESSED);
+  public TwitterUserDataProcessor(String neo4jDBPath, String neo4jPropertiesPath, String userDBPath) {
+    super(ConfigConstants.USER_FOLDER, ConfigConstants.USER_FOLDER_PROCESSED, neo4jDBPath, neo4jPropertiesPath);
+    this.userDB = new UserDBConnector(userDBPath);
   }
   
   public void process() {

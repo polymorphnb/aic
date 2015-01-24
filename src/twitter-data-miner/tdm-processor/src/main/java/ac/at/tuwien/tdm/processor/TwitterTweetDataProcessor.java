@@ -12,8 +12,8 @@ import java.util.Iterator;
 public class TwitterTweetDataProcessor extends TwitterDataProcessor {
   
   
-  public TwitterTweetDataProcessor() {
-    super(ConfigConstants.TWEETS_FOLDER, ConfigConstants.TWEETS_FOLDER_PROCESSED);
+  public TwitterTweetDataProcessor(String neo4jDBPath, String neo4jPropertiesPath) {
+    super(ConfigConstants.TWEETS_FOLDER, ConfigConstants.TWEETS_FOLDER_PROCESSED, neo4jDBPath, neo4jPropertiesPath);
   }
   
   public void process() {
