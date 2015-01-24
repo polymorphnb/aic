@@ -1,18 +1,17 @@
 package ac.at.tuwien.tdm.docstore;
 
+import ac.at.tuwien.tdm.commons.pojo.Ad;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
-import ac.at.tuwien.tdm.commons.pojo.Ad;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import com.mongodb.AggregationOutput;
 import com.mongodb.BasicDBObject;
 import com.mongodb.BasicDBObjectBuilder;
 import com.mongodb.DB;
@@ -25,6 +24,8 @@ import com.mongodb.util.JSON;
 
 
 public class DocStoreConnectorImpl implements DocStoreConnector {
+  
+  private static final Logger LOGGER = LoggerFactory.getLogger(DocStoreConnectorImpl.class);
   
   private static final String DB_NAME = "AIC";
   private static final String SERVER = "localhost";
@@ -50,14 +51,12 @@ public class DocStoreConnectorImpl implements DocStoreConnector {
       this.db = mongoClient.getDB(DocStoreConnectorImpl.DB_NAME);
  
     } catch (UnknownHostException e) {
-      e.printStackTrace();
+      LOGGER.error("Could not connect to mongoDB server: " + e.getMessage());
     } catch (MongoException e) {
-      e.printStackTrace();
+      LOGGER.error("Could not connect to mongoDB server: " + e.getMessage());
     }
   }
-  
-  //TODO disconnect?
-  
+    
   public void createTopicCollection() {
     if(this.db.collectionExists(DocStoreConnectorImpl.TOPIC_COLLECTION) == false) {
       DBCollection collection = this.db.getCollection(DocStoreConnectorImpl.TOPIC_COLLECTION);
@@ -73,7 +72,7 @@ public class DocStoreConnectorImpl implements DocStoreConnector {
   
   public void createUserTweetCollection() {
 	    if(this.db.collectionExists(DocStoreConnectorImpl.USER_TWEET_COLLECTION) == false) {
-	      DBCollection collection = this.db.getCollection(DocStoreConnectorImpl.USER_TWEET_COLLECTION);
+	      this.db.getCollection(DocStoreConnectorImpl.USER_TWEET_COLLECTION);
 	    }
   }
   
@@ -104,7 +103,7 @@ public class DocStoreConnectorImpl implements DocStoreConnector {
       br.close();
       return content;
     } catch (Exception e) {
-      e.printStackTrace();
+      LOGGER.error("Could not load content from File '%s': " + e.getMessage(), file);
     }
     return null;
   }
