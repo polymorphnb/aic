@@ -6,8 +6,11 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+
+import ac.at.tuwien.tdm.commons.pojo.Ad;
 
 import com.mongodb.AggregationOutput;
 import com.mongodb.BasicDBObject;
@@ -116,12 +119,21 @@ public class DocStoreConnectorImpl implements DocStoreConnector {
     return topicIDs;
   }
   
-  public void retrieveAds() {
+  public List<Ad> retrieveAds() {
+	LinkedList<Ad> ret = new LinkedList<Ad>();
     DBCollection collection = this.db.getCollection(DocStoreConnectorImpl.ADS_COLLECTION);
     DBCursor cursorDoc = collection.find();
     while (cursorDoc.hasNext()) {
-      System.out.println(cursorDoc.next());
+      DBObject o = cursorDoc.next();
+      ret.addFirst(new Ad(((Integer)o.get("id")).intValue(),
+    		  			  ((Integer)o.get("topic_id")).intValue(), 
+    		  			  o.get("name").toString(), 
+    		  			  o.get("content").toString()
+      ));
+      //System.out.println(cursorDoc.next());
     }
+    
+    return ret;
   }
   
   public Long getTopicIDForKeyword(String keyword) {
