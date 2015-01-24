@@ -5,6 +5,7 @@ import java.util.List;
 import ac.at.tuwien.tdm.commons.pojo.User;
 import ac.at.tuwien.tdm.docstore.DocStoreConnector;
 import ac.at.tuwien.tdm.results.DirectInterestResult;
+import ac.at.tuwien.tdm.results.IndirectInterestResult;
 
 
 public interface Neo4JConnector {
@@ -53,6 +54,6 @@ public interface Neo4JConnector {
   
   public List<DirectInterestResult> getDirectInterestsForUser(Long userId, int interestThreshold, DocStoreConnector docstore);
   
-  public void getIndirectInterestsForUser(Long userId, int maxDepth, int interestThreshold);
+  public List<IndirectInterestResult> getIndirectInterestsForUser(Long userId, int maxDepth, int interestThreshold, DocStoreConnector docstore );
 
 }

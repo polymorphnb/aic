@@ -3,6 +3,7 @@ package at.ac.tuwien.aic;
 import ac.at.tuwien.tdm.commons.pojo.User;
 import ac.at.tuwien.tdm.docstore.DocStoreConnector;
 import ac.at.tuwien.tdm.results.DirectInterestResult;
+import ac.at.tuwien.tdm.results.IndirectInterestResult;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -383,9 +384,9 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
 	  return ret;
   }
   
-  public void getIndirectInterestsForUser(Long userId, int maxDepth, int interestThreshold) {
+  public List<IndirectInterestResult> getIndirectInterestsForUser(Long userId, int maxDepth, int interestThreshold, DocStoreConnector docstore ) {
 	  //TODO return type and sort by weight, remove duplicate interests
-	  /*
+	  LinkedList<IndirectInterestResult> ret = new LinkedList<IndirectInterestResult>();
 	  for( Path position : this.graphDb.traversalDescription()
 			               .breadthFirst()
 			               .relationships(TwitterRelationshipType.INTERACTS_WITH)
@@ -393,8 +394,26 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
 			               .traverse(this.getUser(userId))
 			  
 	  ) {
-		 this.getDirectInterestsForUser(((Long)position.endNode().getProperty(USER_NODE_INDEX_NAME)).longValue(), interestThreshold);
-	  }*/
+		 for(DirectInterestResult x : 
+			   this.getDirectInterestsForUser(((Long)position.endNode().getProperty(USER_NODE_INDEX_NAME)).longValue(), interestThreshold, docstore))
+		 {
+			 ret.addLast(
+			    new IndirectInterestResult(
+			    		x.getInterest(), 
+			    		x.getTopic(), 
+			    		x.getTopicID(), 
+			    		position.length()
+			    )		 
+			 );
+		 }
+		 //ret.addLast(
+		 //	new IndirectInterestResult(int interest, String topic, long topicID, int depth)	 
+		 //);
+		
+		 //this.getDirectInterestsForUser(((Long)position.endNode().getProperty(USER_NODE_INDEX_NAME)).longValue(), interestThreshold);
+	  }
+	  
+	  return ret;
   }
   
   public static void main (String[] args) {
@@ -411,8 +430,8 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
 	  db.addInterestedInRelationship(new Long(2), new Long(2222), 1);
 	  db.addInterestedInRelationship(new Long(3), new Long(3333), 5);
 	  //db.getDirectInterestsForUser(new Long(1), 2);
-	  System.out.println("indirect");
-	  db.getIndirectInterestsForUser(new Long(1), 3,2);
+	  //System.out.println("indirect");
+	  //db.getIndirectInterestsForUser(new Long(1), 3,2);
 	  db.closeTransaction();
 	  db.disconnect();
   }
