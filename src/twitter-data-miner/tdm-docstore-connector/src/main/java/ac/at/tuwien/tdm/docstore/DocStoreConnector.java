@@ -1,7 +1,5 @@
 package ac.at.tuwien.tdm.docstore;
 
-import at.ac.tuwien.aic.Neo4JConnector;
-
 import java.util.List;
 
 public interface DocStoreConnector {

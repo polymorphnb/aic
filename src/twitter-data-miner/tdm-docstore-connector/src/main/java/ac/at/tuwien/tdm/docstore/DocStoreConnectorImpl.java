@@ -1,7 +1,5 @@
 package ac.at.tuwien.tdm.docstore;
 
-import at.ac.tuwien.aic.Neo4JConnector;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.UnknownHostException;
