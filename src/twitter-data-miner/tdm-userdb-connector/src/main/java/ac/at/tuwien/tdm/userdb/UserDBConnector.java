@@ -1,8 +1,8 @@
 package ac.at.tuwien.tdm.userdb;
 
-import ac.at.tuwien.tdm.commons.pojo.User;
-import ac.at.tuwien.tdm.results.InfluenceResult;
-
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,22 +16,32 @@ import java.util.List;
 
 import org.h2.tools.RunScript;
 
+import ac.at.tuwien.tdm.commons.pojo.User;
+import ac.at.tuwien.tdm.results.InfluenceResult;
+
 public class UserDBConnector {
 
   private Connection conn;
   public static final String PATH_TO_DB_DEFAULT = "./userDB/users";
   private String pathToDB = UserDBConnector.PATH_TO_DB_DEFAULT;
-  private static final String PATH_TO_TABLE = "userTable.sql";
+  private String pathToTable = "userTable.sql";
   private static final String INSERT_USER = "INSERT INTO  twitterUsers (userId, screenName, name, location, statusesCount, followersCount, language, favoritesCount, friendsCount, retweetsCount) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
   public static final String PATH_USERDB_KEY = "userdb.path";
   //private static final UserDBConnector INSTANCE = new UserDBConnector();
 
-  public UserDBConnector(String path) {
+  public UserDBConnector(String path, String pathToTable) throws FileNotFoundException {
+	this.pathToTable = pathToTable;
 	this.pathToDB = path;
     this.connect();
     this.createUserTable();
   }
+  
+  public UserDBConnector(String path) throws FileNotFoundException {
+		this.pathToDB = path;
+	    this.connect();
+	    this.createUserTable();
+	  }
 
   //public static UserDBConnector getInstance() {
   //  return UserDBConnector.INSTANCE;
@@ -54,10 +64,10 @@ public class UserDBConnector {
     }
   }
   
-  public void createUserTable() {
+  public void createUserTable() throws FileNotFoundException {
 	    try {
 	      RunScript.execute(conn,
-	          new InputStreamReader(this.getClass().getResourceAsStream("/" + UserDBConnector.PATH_TO_TABLE)));
+	          new InputStreamReader(new FileInputStream(new File(pathToTable))));
 	    } catch (SQLException e) {
 	      e.printStackTrace();
 	    }
@@ -206,7 +216,7 @@ public class UserDBConnector {
     }
   }
   
-  public static void main(String[] args) {
+  public static void main(String[] args) throws FileNotFoundException {
 	  UserDBConnector db = new UserDBConnector("/tmp/userdb.h2");
 	  db.connect();
 	  db.dropTableTwitterUsers();

@@ -46,15 +46,43 @@
 			<version>1.2.12</version>
 		</dependency>
 		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+		</dependency>
+		<dependency>
 				<groupId>org.neo4j</groupId>
 				<artifactId>neo4j</artifactId>
 				<version>2.1.5</version>
 			</dependency>
 		<dependency>
 			<groupId>at.ac.tuwien</groupId>
-			<artifactId>tdm-parent</artifactId>
+			<artifactId>tdm-commons</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
-			<type>pom</type>
+		</dependency>
+		<dependency>
+			<groupId>at.ac.tuwien</groupId>
+			<artifactId>tdm-docstore-connector</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>at.ac.tuwien</groupId>
+			<artifactId>tdm-neo4j-connector</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>at.ac.tuwien</groupId>
+			<artifactId>tdm-userdb-connector</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>at.ac.tuwien</groupId>
+			<artifactId>tdm-file-dumper</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>at.ac.tuwien</groupId>
+			<artifactId>tdm-processor</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
   </dependencies>
   

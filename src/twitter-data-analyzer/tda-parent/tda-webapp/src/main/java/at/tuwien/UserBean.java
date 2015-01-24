@@ -16,6 +16,11 @@ import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
 import ac.at.tuwien.tdm.commons.pojo.User;
+import ac.at.tuwien.tdm.docstore.DocStoreConnectorImpl;
+import ac.at.tuwien.tdm.results.DirectInterestResult;
+import ac.at.tuwien.tdm.results.InfluenceResult;
+import ac.at.tuwien.tdm.userdb.UserDBConnector;
+import at.ac.tuwien.aic.Neo4JConnector;
 import at.ac.tuwien.aic.Neo4JConnectorImpl;
 
 
@@ -32,52 +37,32 @@ public class UserBean{
 	ac.at.tuwien.tdm.commons.pojo.User user1;
 	
 	private Integer countInfluentalUser;
-	private List<ac.at.tuwien.tdm.commons.pojo.User> influentalUsers;
+	private List<InfluenceResult> influentalUsers;
 	
 	//Parameter countInfluentalUser
 	public void searchMostInfluentalUser() throws IOException{
+		//Initialize Logger
 		BasicConfigurator.configure();
 		
-		Properties prop = new Properties();
-		String propFileName = System.getProperty("config.filepath");
- 
-		InputStream inputStream = new FileInputStream(new File(propFileName));
- 
-		prop.load(inputStream);
-		
-		String neoPath = prop.getProperty("neo4j.path");
-		String neoProp = prop.getProperty("neo4j.properties");
-		
-//		Neo4JConnectorImpl.getInstance().getUserViaCypher(12323940L);
-//		Neo4JConnectorImpl neo = new Neo4JConnectorImpl("C:\\Users\\Georg\\Carola\\aic\\test_dbs\\graphdb", "C:\\Users\\Georg\\Carola\\aic\\test_dbs\\neo4j.properties");
-		Neo4JConnectorImpl neo = new Neo4JConnectorImpl(neoPath, neoProp);
-		neo.connect(false);
-		neo.startTransaction();
-		String userViaCypher = neo.getUserViaCypher(1L);
-		logger.info("--- " + userViaCypher);
-		neo.closeTransaction();
-		neo.disconnect();
 		logger.info("search most influental user");
-//		if(null==influentalUsers){
-			influentalUsers = new ArrayList<ac.at.tuwien.tdm.commons.pojo.User>();
-			influentalUsers.add(new ac.at.tuwien.tdm.commons.pojo.User(1, "user1", "user1", "Vienna", "German", 100, 100, 100, 100));
-			influentalUsers.add(new ac.at.tuwien.tdm.commons.pojo.User(1, "user2", "user2", "Vienna", "German", 100, 100, 100, 100));
-			influentalUsers.add(new ac.at.tuwien.tdm.commons.pojo.User(1, "user3", "user3", "Vienna", "German", 100, 100, 100, 100));
-			influentalUsers.add(new ac.at.tuwien.tdm.commons.pojo.User(1, "user4", "user4", "Vienna", "German", 100, 100, 100, 100));
-			influentalUsers.add(new ac.at.tuwien.tdm.commons.pojo.User(1, "user5", "user5", "Vienna", "German", 100, 100, 100, 100));
-
-//		}
+		
+		UserDBConnector userdb = new UserDBConnector(loadProperties().getProperty("userdb.path"), loadProperties().getProperty("userdb.table"));
+		List<InfluenceResult> users = userdb.calcInfluenceAll(1, 1, 1, countInfluentalUser);
+		
+		if(null!=users){
+			logger.info(users.size());
+			influentalUsers = users;
+		}
 		
 		//show only given amount
 		if(influentalUsers.size()>countInfluentalUser){
 			influentalUsers = influentalUsers.subList(0, countInfluentalUser);
 		}
 		
-		
 	}
 	
 	public void deleteMostInfluentalUsers(){
-		influentalUsers = new ArrayList<ac.at.tuwien.tdm.commons.pojo.User>();
+		influentalUsers = new ArrayList<InfluenceResult>();
 		countInfluentalUser = null;
 	}
 	
@@ -114,14 +99,32 @@ public class UserBean{
 	private List<Ad> existingInterests;
 	
 	//Parameter countInfluentalUser
-	public void searchExistingInterests(){
+	public void searchExistingInterests() throws IOException{
+//		Initialize Logger
 		BasicConfigurator.configure();
-//		if(null==influentalUsers){
+		
+		Neo4JConnectorImpl neo = createNeo4J();
+		neo.connect(false);
+		neo.startTransaction();
+		DocStoreConnectorImpl docstore = new DocStoreConnectorImpl();
+		List<DirectInterestResult> directInterestsForUser = neo.getDirectInterestsForUser(Long.parseLong(userExistingInterests), maximalExistingInterests, docstore);
+		neo.closeTransaction();
+		neo.disconnect();
 		setExistingInterests(new ArrayList<Ad>());
+		
+		docstore.retrieveAds();
+		
+//		if(null!=directInterestsForUser){
+//			for (DirectInterestResult di : directInterestsForUser) {
+//				docstore.g
+//				getExistingInterests().add(new Ad)
+//			}
+//		}
+		
+		
 		getExistingInterests().add(new Ad("user1", "Oracle", "Java", "http://www.oracle.com"));
 		getExistingInterests().add(new Ad("user1", "Redhat", "Jboss", "http://www.jboss.org"));
 		getExistingInterests().add(new Ad("user2", "Apache", "Tomcat", "http://www.apache.org"));
-//		}
 		
 		List<Ad> adListUser = new ArrayList<Ad>();
 		for (Ad ad : existingInterests) {
@@ -196,13 +199,13 @@ public class UserBean{
 		this.countInfluentalUser = countInfluentalUser;
 	}
 
-	public List<ac.at.tuwien.tdm.commons.pojo.User> getInfluentalUsers() {
+	public List<InfluenceResult> getInfluentalUsers() {
 		return influentalUsers;
 	}
 
-	public void setInfluentalUsers(List<ac.at.tuwien.tdm.commons.pojo.User> influentalUsers) {
+	public void setInfluentalUsers(List<InfluenceResult> influentalUsers) {
 		if(null==influentalUsers){
-			influentalUsers = new ArrayList<ac.at.tuwien.tdm.commons.pojo.User>();
+			influentalUsers = new ArrayList<InfluenceResult>();
 		}
 		this.influentalUsers = influentalUsers;
 	}
@@ -280,6 +283,25 @@ public class UserBean{
 		this.userPotentialInterests = userPotentialInterests;
 	}
 
+	public Properties loadProperties() throws IOException{
+		Properties prop = new Properties();
+		String propFileName = System.getProperty("config.filepath");
+ 
+		InputStream inputStream = new FileInputStream(new File(propFileName));
+ 
+		prop.load(inputStream);
+		
+		return prop;
+	}
 	
-	
+	public Neo4JConnectorImpl createNeo4J() throws IOException{
+		
+		Properties prop = loadProperties();
+		String neoPath = prop.getProperty("neo4j.path");
+		String neoProp = prop.getProperty("neo4j.properties");
+		
+//		Neo4JConnectorImpl.getInstance().getUserViaCypher(12323940L);
+//		Neo4JConnectorImpl neo = new Neo4JConnectorImpl("C:\\Users\\Georg\\Carola\\aic\\test_dbs\\graphdb", "C:\\Users\\Georg\\Carola\\aic\\test_dbs\\neo4j.properties");
+		return new Neo4JConnectorImpl(neoPath, neoProp);
+	}
 }

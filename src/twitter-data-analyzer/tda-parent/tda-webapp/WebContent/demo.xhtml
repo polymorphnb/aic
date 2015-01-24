@@ -44,18 +44,25 @@
 				update="searchMostInfluentalUsers">
 			</p:commandButton>
 			<p:dataTable var="u" value="#{user.influentalUsers}" rendered="#{not empty user.influentalUsers}">
-				<p:column headerText="Id">
-					<h:outputText value="#{u.id}" />
+				<p:column headerText="Username">
+					<h:outputText value="#{u.screenName}" />
 				</p:column>
 
-				<p:column headerText="Name">
-					<h:outputText value="#{u.name}" />
-				</p:column>
-
-				<p:column headerText="FriendCount">
+				<p:column headerText="Amount of Followers">
 					<h:outputText value="#{u.followersCount}" />
 				</p:column>
+				
+				<p:column headerText="Amount of Favourites">
+					<h:outputText value="#{u.favouritesCount}" />
+				</p:column>
+				
+				<p:column headerText="Amount of Retweets">
+					<h:outputText value="#{u.retweetsCount}" />
+				</p:column>
 
+				<p:column headerText="Influence Score">
+					<h:outputText value="#{u.influenceScore}" />
+				</p:column>
 			</p:dataTable>
 		</h:form>
 		
