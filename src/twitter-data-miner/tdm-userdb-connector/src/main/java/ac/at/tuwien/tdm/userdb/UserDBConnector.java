@@ -19,14 +19,16 @@ import org.h2.tools.RunScript;
 public class UserDBConnector {
 
   private Connection conn;
-  private String PATH_TO_DB = "./userDB/users";
+  public static final String PATH_TO_DB_DEFAULT = "./userDB/users";
+  private String pathToDB = UserDBConnector.PATH_TO_DB_DEFAULT;
   private static final String PATH_TO_TABLE = "userTable.sql";
   private static final String INSERT_USER = "INSERT INTO  twitterUsers (userId, screenName, name, location, statusesCount, followersCount, language, favoritesCount, friendsCount, retweetsCount) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
+  public static final String PATH_USERDB_KEY = "userdb.path";
   //private static final UserDBConnector INSTANCE = new UserDBConnector();
 
   public UserDBConnector(String path) {
-	this.PATH_TO_DB = path;
+	this.pathToDB = path;
     this.connect();
     this.createUserTable();
   }
@@ -37,7 +39,7 @@ public class UserDBConnector {
 
   public void connect() {
     try {
-      this.conn = DriverManager.getConnection("jdbc:h2:" + PATH_TO_DB, "sa", "");
+      this.conn = DriverManager.getConnection("jdbc:h2:" + pathToDB, "sa", "");
     } catch (SQLException e) {
       e.printStackTrace();
     }
