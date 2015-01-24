@@ -171,7 +171,7 @@ public class DocStoreConnectorImpl implements DocStoreConnector {
   public void dropDatabase() {
     this.db.dropDatabase();
   }
-  
+  /*
   public void getInterestsForUsers(int interestThreshold, Neo4JConnector neo4jdb) {
 	  DBCollection coll = db.getCollection(USER_TWEET_COLLECTION);
 	  
@@ -193,7 +193,7 @@ public class DocStoreConnectorImpl implements DocStoreConnector {
 				                               new Integer((String)result.get("cnt")).intValue()
 				                              );
 	  }
-  }
+  }*/
   /*calculate term frequency inverse document frequence*/
   /*using boolean frequencies for terms in documents*/
   /*denominator is adjusted by 1 to avoid division by zero*/
