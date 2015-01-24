@@ -15,9 +15,11 @@ import javax.faces.bean.SessionScoped;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
+import ac.at.tuwien.tdm.commons.pojo.Ad;
 import ac.at.tuwien.tdm.commons.pojo.User;
 import ac.at.tuwien.tdm.docstore.DocStoreConnectorImpl;
 import ac.at.tuwien.tdm.results.DirectInterestResult;
+import ac.at.tuwien.tdm.results.IndirectInterestResult;
 import ac.at.tuwien.tdm.results.InfluenceResult;
 import ac.at.tuwien.tdm.userdb.UserDBConnector;
 import at.ac.tuwien.aic.Neo4JConnector;
@@ -46,7 +48,7 @@ public class UserBean{
 		
 		logger.info("search most influental user");
 		
-		UserDBConnector userdb = new UserDBConnector(loadProperties().getProperty("userdb.path"), loadProperties().getProperty("userdb.table"));
+		UserDBConnector userdb = new UserDBConnector();//loadProperties().getProperty("userdb.path"), loadProperties().getProperty("userdb.table"));
 		List<InfluenceResult> users = userdb.calcInfluenceAll(1, 1, 1, countInfluentalUser);
 		
 		if(null!=users){
@@ -112,27 +114,18 @@ public class UserBean{
 		neo.disconnect();
 		setExistingInterests(new ArrayList<Ad>());
 		
-		docstore.retrieveAds();
+		List<ac.at.tuwien.tdm.commons.pojo.Ad> retrieveAds = docstore.retrieveAds();
 		
-//		if(null!=directInterestsForUser){
-//			for (DirectInterestResult di : directInterestsForUser) {
-//				docstore.g
-//				getExistingInterests().add(new Ad)
-//			}
-//		}
-		
-		
-		getExistingInterests().add(new Ad("user1", "Oracle", "Java", "http://www.oracle.com"));
-		getExistingInterests().add(new Ad("user1", "Redhat", "Jboss", "http://www.jboss.org"));
-		getExistingInterests().add(new Ad("user2", "Apache", "Tomcat", "http://www.apache.org"));
-		
-		List<Ad> adListUser = new ArrayList<Ad>();
-		for (Ad ad : existingInterests) {
-			if (ad.getUser().equals(userExistingInterests)) {
-				adListUser.add(ad);
+		if(null!=directInterestsForUser){
+			for (DirectInterestResult di : directInterestsForUser) {
+				for (Ad ad : retrieveAds) {
+					if(ad.getTopicID() == di.getTopicID().intValue()){
+						existingInterests.add(ad);
+					}
+				}
 			}
 		}
-		existingInterests = adListUser;
+		
 		//show only given amount
 		if(existingInterests.size()>maximalExistingInterests){
 			existingInterests = existingInterests.subList(0, maximalExistingInterests);
@@ -150,22 +143,29 @@ public class UserBean{
 	private List<Ad> potentialInterests;
 	
 	//Parameter countInfluentalUser
-	public void searchPotentialInterests(){
+	public void searchPotentialInterests() throws IOException{
 		BasicConfigurator.configure();
 //		if(null==influentalUsers){
-		setPotentialInterests(new ArrayList<Ad>());
-		getPotentialInterests().add(new Ad("user1", "Oracle", "Java", "http://www.oracle.com"));
-		getPotentialInterests().add(new Ad("user1", "Redhat", "Jboss", "http://www.jboss.org"));
-		getPotentialInterests().add(new Ad("user2", "Apache", "Tomcat", "http://www.apache.org"));
-//		}
+		Neo4JConnectorImpl neo = createNeo4J();
+		neo.connect(false);
+		neo.startTransaction();
+		DocStoreConnectorImpl docstore = new DocStoreConnectorImpl();
+		List<IndirectInterestResult> directInterestsForUser = neo.getIndirectInterestsForUser(Long.parseLong(userPotentialInterests), 5, maximalPotentialInterests, docstore);
+		neo.closeTransaction();
+		neo.disconnect();
+		setExistingInterests(new ArrayList<Ad>());
 		
-		List<Ad> adListUser = new ArrayList<Ad>();
-		for (Ad ad : potentialInterests) {
-			if (ad.getUser().equals(getUserPotentialInterests())) {
-				adListUser.add(ad);
+		List<ac.at.tuwien.tdm.commons.pojo.Ad> retrieveAds = docstore.retrieveAds();
+		
+		if(null!=directInterestsForUser){
+			for (IndirectInterestResult di : directInterestsForUser) {
+				for (Ad ad : retrieveAds) {
+					if(ad.getTopicID() == di.getTopicID().intValue()){
+						potentialInterests.add(ad);
+					}
+				}
 			}
 		}
-		potentialInterests = adListUser;
 		//show only given amount
 		if(potentialInterests.size()>maximalPotentialInterests){
 			potentialInterests = potentialInterests.subList(0, maximalPotentialInterests);

@@ -34,13 +34,18 @@ public class UserDBConnector {
 	this.pathToTable = pathToTable;
 	this.pathToDB = path;
     this.connect();
-    this.createUserTable();
+//    this.createUserTable();
   }
   
   public UserDBConnector(String path) throws FileNotFoundException {
 		this.pathToDB = path;
 	    this.connect();
-	    this.createUserTable();
+//	    this.createUserTable();
+	  }
+  
+  public UserDBConnector() throws FileNotFoundException {
+	    this.connect();
+//	    this.createUserTable();
 	  }
 
   //public static UserDBConnector getInstance() {
@@ -66,8 +71,7 @@ public class UserDBConnector {
   
   public void createUserTable() throws FileNotFoundException {
 	    try {
-	      RunScript.execute(conn,
-	          new InputStreamReader(new FileInputStream(new File(pathToTable))));
+	      RunScript.execute(conn, new InputStreamReader(new FileInputStream(new File(pathToTable))));
 	    } catch (SQLException e) {
 	      e.printStackTrace();
 	    }
