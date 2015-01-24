@@ -36,8 +36,8 @@ import org.neo4j.unsafe.batchinsert.BatchInserters;
 
 public class Neo4JConnectorImpl implements Neo4JConnector {
 
-  private String STORE_DIR = "graphDB";
-  private String NEO4J_PROPERTIES_PATH = "neo4j.properties";
+  private String graphDBLocation = Neo4JConnector.STORE_DIR_DEFAULT;
+  private String neo4JPropertiesLocation = Neo4JConnector.NEO4J_PROPERTIES_PATH_DEFAULT;
   private static final String NEO4JBATCHINSERT_PROPERTIES_PATH = "neo4jBatchInsert.properties";
 
   private static final String USER_NODE_INDEX_NAME = "user";
@@ -61,8 +61,8 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
   private boolean batchInsert = false;
   
   public Neo4JConnectorImpl(String store_dir, String prop_path) {
-	  this.STORE_DIR = store_dir;
-	  this.NEO4J_PROPERTIES_PATH = prop_path;
+	  this.graphDBLocation = store_dir;
+	  this.neo4JPropertiesLocation = prop_path;
   }
 
   public void connectBatchInsert() {
@@ -75,7 +75,7 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
       e.printStackTrace();
     }
 
-    inserter = BatchInserters.inserter(this.STORE_DIR, config);
+    inserter = BatchInserters.inserter(this.graphDBLocation, config);
     ConstraintDefinition cdf = inserter.createDeferredConstraint(USER_LABEL).assertPropertyIsUnique(USER_NODE_INDEX_NAME).create();
     IndexDefinition idx = inserter.createDeferredSchemaIndex(USER_LABEL).on(USER_NODE_INDEX_NAME).create();
     System.out.println(idx.isConstraintIndex());
@@ -103,11 +103,11 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
         e.printStackTrace();
       }
       this.batchInsert = true;
-      this.graphDb = BatchInserters.batchDatabase(this.STORE_DIR, config);
+      this.graphDb = BatchInserters.batchDatabase(this.graphDBLocation, config);
     } 
     else {
-      this.graphDb = new GraphDatabaseFactory().newEmbeddedDatabaseBuilder(this.STORE_DIR)
-    	  .loadPropertiesFromFile(this.NEO4J_PROPERTIES_PATH)
+      this.graphDb = new GraphDatabaseFactory().newEmbeddedDatabaseBuilder(this.graphDBLocation)
+    	  .loadPropertiesFromFile(this.neo4JPropertiesLocation)
           .newGraphDatabase();
       autoNodeIndex = graphDb.index().getNodeAutoIndexer().getAutoIndex();
     }

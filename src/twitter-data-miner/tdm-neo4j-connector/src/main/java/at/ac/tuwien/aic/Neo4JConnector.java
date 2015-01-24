@@ -9,6 +9,14 @@ import ac.at.tuwien.tdm.results.DirectInterestResult;
 
 public interface Neo4JConnector {
   
+  public static final String NEO4J_PATH_KEY = "neo4j.path";
+  
+  public static final String NEO4J_PATH_PROPERTIES_KEY = "neo4j.properties";
+  
+  public static final String STORE_DIR_DEFAULT = "graphDB";
+  
+  public static final String NEO4J_PROPERTIES_PATH_DEFAULT = "neo4j.properties";
+  
   public void connectBatchInsert();
   
   public void disconnectBatchInsert();
