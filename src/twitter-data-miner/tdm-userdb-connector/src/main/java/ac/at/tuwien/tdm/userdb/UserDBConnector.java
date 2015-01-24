@@ -39,8 +39,9 @@ public class UserDBConnector {
 
   public void connect() {
     try {
+      Class.forName("org.h2.Driver");
       this.conn = DriverManager.getConnection("jdbc:h2:" + pathToDB, "sa", "");
-    } catch (SQLException e) {
+    } catch (Exception e) {
       e.printStackTrace();
     }
   }
@@ -207,7 +208,7 @@ public class UserDBConnector {
   }
   
   public static void main(String[] args) {
-	  UserDBConnector db = new UserDBConnector("/tmp/userdb.h2");
+	  UserDBConnector db = new UserDBConnector("/tmp/userdb");
 	  db.connect();
 	  db.dropTableTwitterUsers();
 	  db.createUserTable();
