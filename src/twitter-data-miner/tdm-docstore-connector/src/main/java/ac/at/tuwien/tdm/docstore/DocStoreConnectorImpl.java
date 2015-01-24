@@ -231,7 +231,10 @@ public class DocStoreConnectorImpl implements DocStoreConnector {
     docstore.createTopicCollection();
     docstore.createAdsCollection();
     
-    //docstore.retrieveAds();
+    for(Ad x : docstore.retrieveAds()) {
+    	System.out.println(x.getID());
+    	System.out.println(x.getName());
+    }
     System.out.println(docstore.retrieveTopics());
     System.out.println(docstore.getTopicIDForKeyword("ubuntu"));
     
