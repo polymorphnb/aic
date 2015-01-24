@@ -48,7 +48,7 @@ public class UserBean{
 		
 		logger.info("search most influental user");
 		
-		UserDBConnector userdb = new UserDBConnector();//loadProperties().getProperty("userdb.path"), loadProperties().getProperty("userdb.table"));
+		UserDBConnector userdb = new UserDBConnector(loadProperties().getProperty("userdb.path"), loadProperties().getProperty("userdb.table"));
 		List<InfluenceResult> users = userdb.calcInfluenceAll(1, 1, 1, countInfluentalUser);
 		
 		if(null!=users){

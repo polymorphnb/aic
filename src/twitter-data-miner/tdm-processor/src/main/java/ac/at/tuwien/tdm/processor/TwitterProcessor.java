@@ -1,12 +1,12 @@
 package ac.at.tuwien.tdm.processor;
 
 import at.ac.tuwien.aic.Neo4JConnector;
-
 import ac.at.tuwien.tdm.docstore.DocStoreConnector;
 import ac.at.tuwien.tdm.docstore.DocStoreConnectorImpl;
 import ac.at.tuwien.tdm.userdb.UserDBConnector;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Properties;
 
@@ -20,7 +20,7 @@ public class TwitterProcessor {
     this.addShutdownHook();
   }
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws FileNotFoundException {
     
     Properties propNeo4j = TwitterProcessor.loadNeo4JConfig();
     String neoPath = Neo4JConnector.STORE_DIR_DEFAULT;

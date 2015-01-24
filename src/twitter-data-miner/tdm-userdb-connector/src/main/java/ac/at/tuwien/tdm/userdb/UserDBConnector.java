@@ -34,18 +34,18 @@ public class UserDBConnector {
 	this.pathToTable = pathToTable;
 	this.pathToDB = path;
     this.connect();
-//    this.createUserTable();
+    this.createUserTable();
   }
   
   public UserDBConnector(String path) throws FileNotFoundException {
 		this.pathToDB = path;
 	    this.connect();
-//	    this.createUserTable();
+	    this.createUserTable();
 	  }
   
   public UserDBConnector() throws FileNotFoundException {
 	    this.connect();
-//	    this.createUserTable();
+	    this.createUserTable();
 	  }
 
   //public static UserDBConnector getInstance() {

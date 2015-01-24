@@ -5,6 +5,7 @@ import ac.at.tuwien.tdm.processor.reader.ConfigConstants;
 import ac.at.tuwien.tdm.userdb.UserDBConnector;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.StandardCopyOption;
 import java.util.Iterator;
@@ -14,7 +15,7 @@ public class TwitterUserDataProcessor extends TwitterDataProcessor {
   //protected final UserDBConnector userDB = UserDBConnector.getInstance();
 	protected UserDBConnector userDB = null;
   
-  public TwitterUserDataProcessor(String neo4jDBPath, String neo4jPropertiesPath, String userDBPath) {
+  public TwitterUserDataProcessor(String neo4jDBPath, String neo4jPropertiesPath, String userDBPath) throws FileNotFoundException {
     super(ConfigConstants.USER_FOLDER, ConfigConstants.USER_FOLDER_PROCESSED, neo4jDBPath, neo4jPropertiesPath);
     this.userDB = new UserDBConnector(userDBPath);
   }
