@@ -21,6 +21,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>at.ac.tuwien</groupId>
+			<artifactId>tdm-commons</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.mongodb</groupId>
 			<artifactId>mongo-java-driver</artifactId>
 		</dependency>

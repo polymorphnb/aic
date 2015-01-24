@@ -119,7 +119,7 @@ public class DocStoreConnectorImpl implements DocStoreConnector {
     return topicIDs;
   }
   
-  public List<Ad> retrieveads() {
+  public List<Ad> retrieveAds() {
 	LinkedList<Ad> ret = new LinkedList<Ad>();
     DBCollection collection = this.db.getCollection(DocStoreConnectorImpl.ADS_COLLECTION);
     DBCursor cursorDoc = collection.find();
