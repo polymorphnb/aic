@@ -26,7 +26,8 @@ public class UserDBConnector {
   private static final Logger LOGGER = LoggerFactory.getLogger(UserDBConnector.class);
 
   private Connection conn;
-  public static final String PATH_TO_DB_DEFAULT = "./userDB/users";
+  private static final String DB_NAME = "users";
+  public static final String PATH_TO_DB_DEFAULT = "./userDB/";
   public static final String PATH_TO_TABLE_DEFAULT = "userTable.sql";
   private String pathToDB = UserDBConnector.PATH_TO_DB_DEFAULT;
   private String pathToTable = UserDBConnector.PATH_TO_TABLE_DEFAULT;
@@ -36,22 +37,28 @@ public class UserDBConnector {
   public static final String PATH_USERTABLE_KEY = "userdb.table";
   //private static final UserDBConnector INSTANCE = new UserDBConnector();
 
-  public UserDBConnector(String path, String pathToTable) {
+  public UserDBConnector(String path, String pathToTable, boolean createTable) {
     this.pathToTable = pathToTable;
     this.pathToDB = path;
     this.connect();
-    this.createUserTable();
+    if(createTable == true) {
+      this.createUserTable();
+    }
   }
   
-  public UserDBConnector(String path) {
+  public UserDBConnector(String path, boolean createTable) {
 		  this.pathToDB = path;
 	    this.connect();
-	    this.createUserTable();
+	    if(createTable == true) {
+	      this.createUserTable();
+      }
 	  }
   
-  public UserDBConnector() {
+  public UserDBConnector(boolean createTable) {
 	    this.connect();
-	    this.createUserTable();
+	    if(createTable == true) {
+	      this.createUserTable();
+	    }
 	  }
 
   //public static UserDBConnector getInstance() {
@@ -59,11 +66,15 @@ public class UserDBConnector {
   //}
 
   public void connect() {
+    if(this.pathToDB.endsWith("/") == false) {
+      this.pathToDB += "/";
+    }
+    final String fullDBPath = this.pathToDB + UserDBConnector.DB_NAME;
     try {
       Class.forName("org.h2.Driver");
-      this.conn = DriverManager.getConnection("jdbc:h2:" + pathToDB, "sa", "");
+      this.conn = DriverManager.getConnection("jdbc:h2:" + fullDBPath, "sa", "");
     } catch (Exception e) {
-      LOGGER.error("Could not connect to database '%s': " + e.getMessage(), pathToDB);
+      LOGGER.error(String.format("Could not connect to database '%s': " + e.getMessage(), fullDBPath));
     }
   }
 
@@ -72,24 +83,24 @@ public class UserDBConnector {
       RunScript.execute(conn,
       new InputStreamReader(this.getClass().getResourceAsStream("/tmp/userTable.sql")));
     } catch (SQLException e) {
-      LOGGER.error("Could not connect to database '%s': " + e.getMessage(), "/tmp/userTable.sql");
+      LOGGER.error(String.format("Could not connect to database '%s': " + e.getMessage(), "/tmp/userTable.sql"));
     }
   }
   
-  public void createUserTable() {
+  public void createUserTable() {;
     try {
-      RunScript.execute(conn, new InputStreamReader(this.getClass().getResourceAsStream(pathToTable)));
+      RunScript.execute(conn, new InputStreamReader(this.getClass().getResourceAsStream("/" + pathToTable)));
       return;
     } catch (SQLException e) {
-      LOGGER.info("Could not find UserTable '%s' as resource, trying filesystem", pathToTable);
+      LOGGER.info(String.format("Could not find UserTable '%s' as resource, trying filesystem", "/" + pathToTable));
     }
     
 	  try {
         RunScript.execute(conn, new InputStreamReader(new FileInputStream(new File(pathToTable))));
 	    } catch (SQLException e) {
-	      LOGGER.error("Error creating UserTable '%s'", pathToTable);
+	      LOGGER.error(String.format("Error creating UserTable '%s'", pathToTable));
       } catch (FileNotFoundException e) {
-        LOGGER.error("Error creating UserTable '%s'. Could not find table file.", pathToTable);
+        LOGGER.error(String.format("Error creating UserTable '%s'. Could not find table file.", pathToTable));
       }
 
 	  }
@@ -167,7 +178,7 @@ public class UserDBConnector {
         user = this.getUserFromResultSet(rs);
       }
     } catch (SQLException e) {
-      LOGGER.error("Could not retrieve User '%s': " + e.getMessage(), userID);
+      LOGGER.error(String.format("Could not retrieve User '%s': " + e.getMessage(), userID));
     }
     return user;
   }
@@ -209,7 +220,7 @@ public class UserDBConnector {
       updateRetweet.setLong(2, userID);
       this.conn.commit();
     } catch (SQLException ex) {
-      LOGGER.error("Couldn't update retweet count for user '%s'", userID);
+      LOGGER.error(String.format("Couldn't update retweet count for user '%s'", userID));
     }
   }
 
@@ -245,7 +256,7 @@ public class UserDBConnector {
   }
   
   public static void main(String[] args) throws FileNotFoundException {
-	  UserDBConnector db = new UserDBConnector("/tmp/userdb");
+	  UserDBConnector db = new UserDBConnector("/tmp/userdb", true);
 	  db.connect();
 	  db.dropTableTwitterUsers();
 	  db.createUserTable();
