@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 
@@ -24,6 +23,7 @@ import ac.at.tuwien.tdm.results.DirectInterestResult;
 import ac.at.tuwien.tdm.results.IndirectInterestResult;
 import ac.at.tuwien.tdm.results.InfluenceResult;
 import ac.at.tuwien.tdm.userdb.UserDBConnector;
+
 import at.ac.tuwien.aic.Neo4JConnector;
 import at.ac.tuwien.aic.Neo4JConnectorImpl;
 
@@ -32,13 +32,10 @@ import at.ac.tuwien.aic.Neo4JConnectorImpl;
 @SessionScoped
 public class UserBean{
 	
-	
 	static final Logger logger = Logger.getLogger(UserBean.class);
 	
 	private String name;
 	private String user;
-	
-	ac.at.tuwien.tdm.commons.pojo.User user1;
 	
 	private Integer countInfluentalUser;
 	private List<InfluenceResult> influentalUsers;
@@ -50,7 +47,7 @@ public class UserBean{
 		
 		logger.info("search most influental user");
 		
-		UserDBConnector userdb = new UserDBConnector(loadProperties().getProperty("userdb.path"), loadProperties().getProperty("userdb.table"));
+		UserDBConnector userdb = new UserDBConnector(loadProperties().getProperty(UserDBConnector.PATH_USERDB_KEY), false);
 		List<InfluenceResult> users = userdb.calcInfluenceAll(1, 1, 1, countInfluentalUser);
 		userdb.disconnect();
 		
@@ -83,7 +80,7 @@ public class UserBean{
 		//For Logger
 		BasicConfigurator.configure();
 		
-		UserDBConnector userdb = new UserDBConnector(loadProperties().getProperty("userdb.path"), loadProperties().getProperty("userdb.table"));
+		UserDBConnector userdb = new UserDBConnector(loadProperties().getProperty(UserDBConnector.PATH_USERDB_KEY), false);
 		List<User> users = userdb.getUsers();
 		userdb.disconnect();
 		
@@ -317,8 +314,8 @@ public class UserBean{
 	public Neo4JConnectorImpl createNeo4J() throws IOException{
 		
 		Properties prop = loadProperties();
-		String neoPath = prop.getProperty("neo4j.path");
-		String neoProp = prop.getProperty("neo4j.properties");
+		String neoPath = prop.getProperty(Neo4JConnector.NEO4J_PATH_KEY);
+		String neoProp = prop.getProperty(Neo4JConnector.NEO4J_PATH_PROPERTIES_KEY);
 		
 //		Neo4JConnectorImpl.getInstance().getUserViaCypher(12323940L);
 //		Neo4JConnectorImpl neo = new Neo4JConnectorImpl("C:\\Users\\Georg\\Carola\\aic\\test_dbs\\graphdb", "C:\\Users\\Georg\\Carola\\aic\\test_dbs\\neo4j.properties");
