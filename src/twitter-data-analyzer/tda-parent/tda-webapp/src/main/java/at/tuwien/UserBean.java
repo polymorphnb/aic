@@ -1,20 +1,5 @@
 package at.tuwien;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
-
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-
-import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.Logger;
-
 import ac.at.tuwien.tdm.commons.pojo.Ad;
 import ac.at.tuwien.tdm.commons.pojo.User;
 import ac.at.tuwien.tdm.commons.pojo.UserFrequency;
@@ -27,12 +12,24 @@ import ac.at.tuwien.tdm.userdb.UserDBConnector;
 import at.ac.tuwien.aic.Neo4JConnector;
 import at.ac.tuwien.aic.Neo4JConnectorImpl;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Logger;
+
 
 @ManagedBean(name="user")
 @SessionScoped
 public class UserBean{
 	
-	static final Logger logger = Logger.getLogger(UserBean.class);
+	static final Logger LOGGER = Logger.getLogger(UserBean.class);
 	
 	private String name;
 	private String user;
@@ -45,14 +42,14 @@ public class UserBean{
 		//Initialize Logger
 		BasicConfigurator.configure();
 		
-		logger.info("search most influental user");
+		LOGGER.info("search most influental user");
 		
 		UserDBConnector userdb = new UserDBConnector(loadProperties().getProperty(UserDBConnector.PATH_USERDB_KEY), false);
 		List<InfluenceResult> users = userdb.calcInfluenceAll(1, 1, 1, countInfluentalUser);
 		userdb.disconnect();
 		
 		if(null!=users){
-			logger.info(users.size());
+			LOGGER.info(users.size());
 			influentalUsers = users;
 		}
 		
@@ -302,11 +299,8 @@ public class UserBean{
 
 	public Properties loadProperties() throws IOException{
 		Properties prop = new Properties();
-		String propFileName = System.getProperty("config.filepath");
  
-		InputStream inputStream = new FileInputStream(new File(propFileName));
- 
-		prop.load(inputStream);
+		prop.load(this.getClass().getResourceAsStream("/" + ac.at.tuwien.tdm.commons.Constants.CONFIG_FILE_NAME));
 		
 		return prop;
 	}
