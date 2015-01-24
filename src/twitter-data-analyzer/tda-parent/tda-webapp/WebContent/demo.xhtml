@@ -21,14 +21,14 @@
 	
 	<div id="container"></div>
 	
-	<script>
+	<!-- <script>
 	  sigma.parsers.json('resources/data/data.json', {
 	    container: 'container',
 	    settings: {
 	      defaultNodeColor: '#ec5148'
 	    }
 	  });
-	</script>
+	</script> -->
 	<f:view>
 		<h2>Most Influental User</h2>
 
@@ -67,7 +67,7 @@
 		</h:form>
 		
 		
-		<h2>Most Frequenced Users</h2>
+		<h2>User Frequency</h2>
 
 		<h:form id="searchMostFrequencedUsers">
     	Maximum of Users: <p:inputText id="countFrequencedUsers" rendered="true"
@@ -86,11 +86,11 @@
 				</p:column>
 
 				<p:column headerText="Name">
-					<h:outputText value="#{u.name}" />
+					<h:outputText value="#{u.username}" />
 				</p:column>
 
-				<p:column headerText="FriendCount">
-					<h:outputText value="#{u.followersCount}" />
+				<p:column headerText="User Freuquence" sortBy="#{u.frequence}">
+					<h:outputText value="#{u.frequence}" />
 				</p:column>
 
 			</p:dataTable>

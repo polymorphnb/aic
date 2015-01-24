@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 
@@ -17,6 +18,7 @@ import org.apache.log4j.Logger;
 
 import ac.at.tuwien.tdm.commons.pojo.Ad;
 import ac.at.tuwien.tdm.commons.pojo.User;
+import ac.at.tuwien.tdm.commons.pojo.UserFrequency;
 import ac.at.tuwien.tdm.docstore.DocStoreConnectorImpl;
 import ac.at.tuwien.tdm.results.DirectInterestResult;
 import ac.at.tuwien.tdm.results.IndirectInterestResult;
@@ -50,6 +52,7 @@ public class UserBean{
 		
 		UserDBConnector userdb = new UserDBConnector(loadProperties().getProperty("userdb.path"), loadProperties().getProperty("userdb.table"));
 		List<InfluenceResult> users = userdb.calcInfluenceAll(1, 1, 1, countInfluentalUser);
+		userdb.disconnect();
 		
 		if(null!=users){
 			logger.info(users.size());
@@ -61,6 +64,9 @@ public class UserBean{
 			influentalUsers = influentalUsers.subList(0, countInfluentalUser);
 		}
 		
+		//For Logger
+		BasicConfigurator.resetConfiguration();
+		
 	}
 	
 	public void deleteMostInfluentalUsers(){
@@ -70,29 +76,39 @@ public class UserBean{
 	
 	
 	private Integer countFrequencedUser;
-	private List<User> frequencedUsers;
+	private List<UserFrequency> frequencedUsers;
 	
 	//Parameter countInfluentalUser
-	public void searchMostFrequencedUser(){
+	public void searchMostFrequencedUser() throws FileNotFoundException, IOException{
+		//For Logger
 		BasicConfigurator.configure();
-//		if(null==influentalUsers){
-		frequencedUsers = new ArrayList<User>();
-		frequencedUsers.add(new User(1, "user1", "user1", "Vienna", "German", 100, 100, 100, 100));
-		frequencedUsers.add(new User(1, "user2", "user2", "Vienna", "German", 100, 100, 100, 100));
-		frequencedUsers.add(new User(1, "user3", "user3", "Vienna", "German", 100, 100, 100, 100));
-		frequencedUsers.add(new User(1, "user4", "user4", "Vienna", "German", 100, 100, 100, 100));
-		frequencedUsers.add(new User(1, "user5", "user5", "Vienna", "German", 100, 100, 100, 100));
-
-//		}
+		
+		UserDBConnector userdb = new UserDBConnector(loadProperties().getProperty("userdb.path"), loadProperties().getProperty("userdb.table"));
+		List<User> users = userdb.getUsers();
+		userdb.disconnect();
+		
+		DocStoreConnectorImpl docstore = new DocStoreConnectorImpl();
+		frequencedUsers = new ArrayList<UserFrequency>();
+		for (int i = 0; i < countFrequencedUser; i++) {
+			User user = users.get(i);
+			double calc_tf_idf_UserTopic = docstore.calc_tf_idf_UserTopic(user.getId(), "1");
+			UserFrequency uf = new UserFrequency();
+			uf.setUsername(user.getScreenName());
+			uf.setId(user.getId());
+			uf.setFrequence(calc_tf_idf_UserTopic);
+			frequencedUsers.add(uf);
+		}
 		
 		//show only given amount
 		if(frequencedUsers.size()>countFrequencedUser){
 			frequencedUsers = frequencedUsers.subList(0, countFrequencedUser);
 		}
+		
+		BasicConfigurator.resetConfiguration();
 	}
 	
 	public void deleteMostFrequencedUsers(){
-		frequencedUsers = new ArrayList<User>();
+		frequencedUsers = new ArrayList<UserFrequency>();
 		countFrequencedUser = null;
 	}
 	
@@ -130,6 +146,8 @@ public class UserBean{
 		if(existingInterests.size()>maximalExistingInterests){
 			existingInterests = existingInterests.subList(0, maximalExistingInterests);
 		}
+		
+		BasicConfigurator.resetConfiguration();
 	}
 	
 	public void deleteExistingInterests(){
@@ -170,6 +188,8 @@ public class UserBean{
 		if(potentialInterests.size()>maximalPotentialInterests){
 			potentialInterests = potentialInterests.subList(0, maximalPotentialInterests);
 		}
+		
+		BasicConfigurator.resetConfiguration();
 	}
 	
 	public void deletePotentialInterests(){
@@ -218,13 +238,13 @@ public class UserBean{
 		this.countFrequencedUser = countFrequencedUser;
 	}
 
-	public List<User> getFrequencedUsers() {
+	public List<UserFrequency> getFrequencedUsers() {
 		return frequencedUsers;
 	}
 
-	public void setFrequencedUsers(List<User> frequencedUsers) {
+	public void setFrequencedUsers(List<UserFrequency> frequencedUsers) {
 		if(null==frequencedUsers){
-			frequencedUsers = new ArrayList<User>();
+			frequencedUsers = new ArrayList<UserFrequency>();
 		}
 		this.frequencedUsers = frequencedUsers;
 	}
