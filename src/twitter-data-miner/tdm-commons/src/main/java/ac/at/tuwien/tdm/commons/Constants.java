@@ -19,4 +19,6 @@ public class Constants {
   public static final Charset ENCODING = Charset.forName("UTF-8");
 
   public static final String LINE_ENDING = "\n";
+  
+  public static final String CONFIG_FILE_NAME = "config.properties";
 }
