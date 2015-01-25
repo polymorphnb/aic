@@ -167,33 +167,77 @@ The following sections will describe some applications in graph databases.
 
 Source: http://jmlr.org/proceedings/papers/v36/kessl14.pdf
 Frequent graph mining describes the search of reoccuring sub patterns 
-in a graph. Among various applications this technique can be used to
+in a set of graphs. Among various applications this technique can be used to
 find similar communities within social networks TODO source.
-TODO bild subgraph
-As this problem has shown to be NP-complete TODO source it is especially important to
+Figure ~\ref{fig:subgraphs} shows a pattern $P$ that occurs in $G1$ and $G2$
+
+As this problem has been shown to be NP-complete TODO source it is especially important to
 find scalable algorithms to deal with this problem.
 The GPU-based graph mining algorithm combines concepts from gSpan TODO source
-and DMTL TODO source. In order to achieve good performance it is necessary 
+and DMTL TODO source. 
+For the effecient pruning of duplicate subgraphs the DFS-code from gSpan is used.
+Parts of DMTL are used to store all isomorphisms for each pattern, which allows 
+a fast computation for how many graphs in a graph database contain a certain subgraph.
+In order to achieve good performance it is necessary 
 to change the data structure of the graph in main memory. Hashmaps or linked lists
-are not well suited for GPUs as data is not cached and therefore access locality becomes 
-a performance consideration. 
-For various benchmarks the usage of GPUs has lead to a significant speedup.
-TODO Benchmark bild
-This work can also be extended to different graph algorithms like closed graph,
+are not well suited for GPUs as data is not cached and therefore access locality 
+must be considered for performance reasons. 
+The memory layout has to happen in a way that the id and neighborhood can be quickly looked up.
+To achieve this goal the combined neighborhoods of all vertices, edges and vertices are stored 
+in seperate arrays. A fourth array is introduced which holds offsets to speedup the lookup between arrays.
+This memory layout including the implications of how data is looked up by gSpan and DMTL allow
+for a very effecient parallelization on GPUs.
+For various benchmarks this technique led to significant speedups. Figure ~\ref{fig:gpuperf}
+shows the performance comparison between a GPU and a sequential implementation 
+for frequent graph mining on multiple datasets.
+The principles of this research can also be extended to additional graph algorithms like closed graph,
 maximal graph and temporal graph mining.
+
+\begin{figure}
+\centering
+\epsfig{file=subgraphs.png, width=4in}
+\caption{Graphs and pattern P}
+\label{fig:subgraphs}
+\end{figure}
+
+\begin{figure*}
+\centering
+\epsfig{file=gpuperf.png, width=7in}
+\caption{GPU Benchmarks}
+\label{fig:gpuperf}
+\end{figure*}
 
 \section{Differential Queries}
 http://ceur-ws.org/Vol-1133/paper-34.pdf
 http://download.springer.com/static/pdf/593/chp%253A10.1007%252F978-3-319-10933-6_9.pdf?auth66=1422138244_54c98542c3346ab3b48752871f074418&ext=.pdf
+
 Abandoning the rigid predefined schema of traditional database systems is one of the 
 key features of NoSQL. While offering more flexibility in terms of development,
 users have a hard time gaining deep knowledge of the data and its structure.
 This mostly manifests in queries giving unexpected or empty result sets.
+The research provided by TODO cite gives an idea of how mitigate this problem.
+Diff-queries provide users with the information about which part of a query actually
+matches data in the graph and which parts lead to an empty result set.
 A query in a graph database can be understood as a pattern that has to match parts of the graph.
-To help the user understand why he does not get the expected result subgraphs between the
-query and the dataset are calculated, so it can be shown which part of the query leads to an empty result set.
-Using algorithms to detect maximum common connected subgraphs, nodes in the query can be 
-partitioned into discovered and undiscovered conditions.
+These pattern can be modeled as graphs themselfes. 
+In order to be able to determine which parts of a query provide a match
+and which parts will finally lead to an empty result, a common connected subgraph algorithm is
+applied to the query and the graph data intself.
+The resulting common subgraph can then further be used to partition 
+constraints in a query into matching and non-matching conditions.
+
+Figure Figure ~\ref{fig:diffquery} visualizes the basic idea of
+differential queries. Assume a query that searches for two soccer 
+players that play for the same club and are in the same national team.
+
+\begin{figure}
+\centering
+\epsfig{file=diffquery.png, width=4in}
+\caption{Differential graph for data and query}
+\label{fig:diffquery}
+\end{figure}
+
+
 Due to the nature of these operations are large number of intermediate results 
 may lead to performance problems.
 This problem may be mitigated by introducing Top-K differential queries. 
@@ -239,17 +283,15 @@ Todo zahlen und benchmark bilder
 %http://delivery.acm.org/10.1145/2690000/2689677/p1-dayarathna.pdf?ip=128.131.237.61&id=2689677&acc=ACTIVE%20SERVICE&key=9074CF143665B1C6.97709C79A94C9E0F.4D4702B0C3E38B35.4D4702B0C3E38B35&CFID=621086552&CFTOKEN=17755639&__acm__=1422145282_da483414101f63310da71f6d768c3e23
 Current graph databases are mainly inteded to run on a single instance and therefore
 face performance and availability problems. TODO Zitat aus paper 
+Acadia is a distributed graph database intented to run in hybrid cloud settings.
+By utilizing graph partitioning and a Master-Worker pattern it is well fit to 
+operate in an environment with less than 100 workers.
+Each distributed process has an associated local data store with an assigned storage quota.
+When adding a new graph the partitioning happens via Hadoop and Metis and the subgraphs are then inserted into local
+Neo4j instances.
 
 \section{Conclusions}
-This paragraph will end the body of this sample document.
-Remember that you might still have Acknowledgments or
-Appendices; brief samples of these
-follow.  There is still the Bibliography to deal with; and
-we will make a disclaimer about that here: with the exception
-of the reference to the \LaTeX\ book, the citations in
-this paper are to articles which have nothing to
-do with the present subject and are used as
-examples only.
+TODO
 %\end{document}  % This is where a 'short' article might terminate
 
 
@@ -266,53 +308,6 @@ examples only.
 %
 % ACM needs 'a single self-contained file'!
 %
-%APPENDICES are optional
-%\balancecolumns
-\appendix
-%Appendix A
-\section{Headings in Appendices}
-The rules about hierarchical headings discussed above for
-the body of the article are different in the appendices.
-In the \textbf{appendix} environment, the command
-\textbf{section} is used to
-indicate the start of each Appendix, with alphabetic order
-designation (i.e. the first is A, the second B, etc.) and
-a title (if you include one).  So, if you need
-hierarchical structure
-\textit{within} an Appendix, start with \textbf{subsection} as the
-highest level. Here is an outline of the body of this
-document in Appendix-appropriate form:
-\subsection{Introduction}
-\subsection{The Body of the Paper}
-\subsubsection{Type Changes and  Special Characters}
-\subsubsection{Math Equations}
-\paragraph{Inline (In-text) Equations}
-\paragraph{Display Equations}
-\subsubsection{Citations}
-\subsubsection{Tables}
-\subsubsection{Figures}
-\subsubsection{Theorem-like Constructs}
-\subsubsection*{A Caveat for the \TeX\ Expert}
-\subsection{Conclusions}
-\subsection{Acknowledgments}
-\subsection{Additional Authors}
-This section is inserted by \LaTeX; you do not insert it.
-You just add the names and information in the
-\texttt{{\char'134}additionalauthors} command at the start
-of the document.
-\subsection{References}
-Generated by bibtex from your ~.bib file.  Run latex,
-then bibtex, then latex twice (to resolve references)
-to create the ~.bbl file.  Insert that ~.bbl file into
-the .tex source file and comment out
-the command \texttt{{\char'134}thebibliography}.
-% This next section command marks the start of
-% Appendix B, and does not continue the present hierarchy
-\section{More Help for the Hardy}
-The sig-alternate.cls file itself is chock-full of succinct
-and helpful comments.  If you consider yourself a moderately
-experienced to expert user of \LaTeX, you may find reading
-it useful but please remember not to change it.
 %\balancecolumns % GM June 2007
 % That's all folks!
 \end{document}
