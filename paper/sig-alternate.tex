@@ -148,7 +148,9 @@ the inner workings of graph databases.
 \section{GPU based frequent graph mining}
 With the availability of CUDA and open-cl GPUs have become
 a source of cheap computation power for significantly less money 
-than general purpose CPUs. While not applicable to all types
+than general purpose CPUs. 
+
+While not applicable to all types
 of computational loads, there are various fields which benefit 
 immensely from a high parallelization degree.
 Especially loads without the need of communication between the 
@@ -282,7 +284,7 @@ Figure ~\ref{fig:slqlearning} shows the basics of this learning process.
 \centering
 \epsfig{file=slqlearning.png, width=3in}
 \caption{SLQ: graph querying framework \cite{yang2014schemaless}}
-\label{fig:slqlearning }
+\label{fig:slqlearning}
 \end{figure}
 
 Figure ~\ref{fig:slqexample} gives an example for three possible queries and their final results.
@@ -293,8 +295,31 @@ the node Missouri the user specifies that it may be somehow related to the first
 \centering
 \epsfig{file=slqexample.png, width=3in}
 \caption{SLQ query examples \cite{yang2014schemaless}}
-\label{fig:slqexample }
+\label{fig:slqexample}
 \end{figure}
+
+\section{Interactive Path Query Specification}
+In addition to the techniques above \cite{bonifati2015interactive} specifies another
+way to enable users who are not familiar with any formal syntax to specify queries.
+GPS is a system for interactively specifying graph path queries.
+The basic idea is to let the user define nodes of interests and nodes that should be 
+excluded from the result in a graphical environment. This process happens iteratively 
+while the systems gives feedback and helps to remove unnecessary conditions from the query.
+The iteration may either stop when there exists exactly one query or the user is satisfied with the 
+results.
+
+Additional nodes are proposed on the basis of strategy functions which take the existing graph and the provided sample nodes.
+While a node itself may not contain enough information for the user to decide if it is interesting or not, GPS shows the 
+neighborhood to help the user with his decision.
+
+Figure ~\ref{fig:interactive} shows the interactions with the user when constructing a query.
+
+\begin{figure*}
+\centering
+\epsfig{file=interactive.png, width=6in}
+\caption{Example of GPS interaction with user \cite{bonifati2015interactive}}
+\label{fig:interactive}
+\end{figure*}
 
 \section{Parallel Adjacency Lists}
 %http://arxiv.org/pdf/1403.0701.pdf

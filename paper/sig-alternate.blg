@@ -3,47 +3,48 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: sig-alternate.aux
 The style file: abbrv.bst
 Database file #1: sigproc.bib
+Warning--empty booktitle in bonifati2015interactive
 Warning--can't use both volume and number fields in gonzalez2012powergraph
 Warning--empty journal in yang2014slq
-You've used 14 entries,
+You've used 15 entries,
             2118 wiz_defined-function locations,
-            574 strings with 6205 characters,
-and the built_in function-call counts, 5468 in all, are:
-= -- 542
-> -- 266
+            579 strings with 6349 characters,
+and the built_in function-call counts, 5769 in all, are:
+= -- 568
+> -- 284
 < -- 9
-+ -- 106
-- -- 90
-* -- 362
-:= -- 874
-add.period$ -- 46
-call.type$ -- 14
-change.case$ -- 87
++ -- 113
+- -- 96
+* -- 380
+:= -- 925
+add.period$ -- 49
+call.type$ -- 15
+change.case$ -- 93
 chr.to.int$ -- 0
-cite$ -- 16
-duplicate$ -- 225
-empty$ -- 414
-format.name$ -- 90
-if$ -- 1179
+cite$ -- 18
+duplicate$ -- 238
+empty$ -- 440
+format.name$ -- 96
+if$ -- 1242
 int.to.chr$ -- 0
-int.to.str$ -- 14
-missing$ -- 14
-newline$ -- 73
-num.names$ -- 28
-pop$ -- 103
+int.to.str$ -- 15
+missing$ -- 15
+newline$ -- 78
+num.names$ -- 30
+pop$ -- 114
 preamble$ -- 1
-purify$ -- 73
+purify$ -- 78
 quote$ -- 0
-skip$ -- 172
+skip$ -- 178
 stack$ -- 0
-substring$ -- 300
-swap$ -- 76
+substring$ -- 305
+swap$ -- 77
 text.length$ -- 9
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 56
-warning$ -- 2
-while$ -- 54
-width$ -- 16
-write$ -- 157
-(There were 2 warnings)
+type$ -- 60
+warning$ -- 3
+while$ -- 56
+width$ -- 17
+write$ -- 167
+(There were 3 warnings)

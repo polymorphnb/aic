@@ -1,5 +1,10 @@
 \begin{thebibliography}{10}
 
+\bibitem{bonifati2015interactive}
+A.~Bonifati, R.~Ciucanu, and A.~Lemay.
+\newblock Interactive path query specification on graph databases.
+\newblock EDBT, 2015.
+
 \bibitem{chaoji2008integrated}
 V.~Chaoji, M.~Al~Hasan, S.~Salem, and M.~J. Zaki.
 \newblock An integrated, generic approach to pattern mining: data mining

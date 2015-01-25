@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2015.1.24)  25 JAN 2015 18:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2015.1.24)  25 JAN 2015 18:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -288,13 +288,13 @@ File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 <subgraphs.png, id=1, 1606.0pt x 359.3425pt>
 File: subgraphs.png Graphic file (type png)
  <use subgraphs.png>
-Package pdftex.def Info: subgraphs.png used on input line 166.
+Package pdftex.def Info: subgraphs.png used on input line 168.
 (pdftex.def)             Requested size: 216.81pt x 48.50914pt.
 
 <gpuperf.png, id=3, 1653.17625pt x 381.425pt>
 File: gpuperf.png Graphic file (type png)
  <use gpuperf.png>
-Package pdftex.def Info: gpuperf.png used on input line 199.
+Package pdftex.def Info: gpuperf.png used on input line 201.
 (pdftex.def)             Requested size: 433.62pt x 100.04117pt.
  [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
@@ -303,74 +303,67 @@ Package pdftex.def Info: gpuperf.png used on input line 199.
 <diffquery.png, id=16, 1728.4575pt x 457.71pt>
 File: diffquery.png Graphic file (type png)
  <use diffquery.png>
-Package pdftex.def Info: diffquery.png used on input line 234.
+Package pdftex.def Info: diffquery.png used on input line 236.
 (pdftex.def)             Requested size: 216.81pt x 57.40916pt.
-
-
-LaTeX Warning: Reference `fig:slqlearning' on page \thepage  undefined on input
- line 279.
 
 <slqlearning.png, id=17, 1154.3125pt x 773.89125pt>
 File: slqlearning.png Graphic file (type png)
  <use slqlearning.png>
-Package pdftex.def Info: slqlearning.png used on input line 283.
+Package pdftex.def Info: slqlearning.png used on input line 285.
 (pdftex.def)             Requested size: 216.81pt x 145.35223pt.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [2 <./gpuperf.png> <./diffquery.png>]
-
-LaTeX Warning: Reference `fig:slqexample' on page \thepage  undefined on input 
-line 288.
-
-<slqexample.png, id=23, 762.85pt x 393.47pt>
+[2 <./gpuperf.png> <./diffquery.png> <./slqlearning.png>]
+<slqexample.png, id=24, 762.85pt x 393.47pt>
 File: slqexample.png Graphic file (type png)
  <use slqexample.png>
-Package pdftex.def Info: slqexample.png used on input line 294.
+Package pdftex.def Info: slqexample.png used on input line 296.
 (pdftex.def)             Requested size: 216.81pt x 111.82791pt.
 
-Overfull \hbox (9.67317pt too wide) in paragraph at lines 328--333
+<interactive.png, id=25, 1205.50375pt x 511.9125pt>
+File: interactive.png Graphic file (type png)
+ <use interactive.png>
+Package pdftex.def Info: interactive.png used on input line 319.
+(pdftex.def)             Requested size: 433.62pt x 184.13214pt.
+
+Overfull \hbox (9.67317pt too wide) in paragraph at lines 353--358
 []\T1/aer/m/n/9 While com-par-ing per-for-mance for di-rected un-weighted short
 -
  []
 
-<distgraph.png, id=24, 839.135pt x 521.95pt>
+<distgraph.png, id=26, 839.135pt x 521.95pt>
 File: distgraph.png Graphic file (type png)
  <use distgraph.png>
-Package pdftex.def Info: distgraph.png used on input line 359.
+Package pdftex.def Info: distgraph.png used on input line 384.
 (pdftex.def)             Requested size: 216.81pt x 134.85161pt.
-
-<distgraphperf.png, id=25, 840.13875pt x 477.785pt>
+ [3 <./slqexample.png> <./distgraph.png>] <distgraphperf.png, id=32, 840.13875p
+t x 477.785pt>
 File: distgraphperf.png Graphic file (type png)
- <use distgraphperf.png>
-Package pdftex.def Info: distgraphperf.png used on input line 369.
+
+<use distgraphperf.png>
+Package pdftex.def Info: distgraphperf.png used on input line 394.
 (pdftex.def)             Requested size: 216.81pt x 123.29529pt.
-
-[3 <./slqlearning.png> <./slqexample.png> <./distgraph.png>]
-(./sig-alternate.bbl) [4 <./distgraphperf.png>] (./sig-alternate.aux)
-
-LaTeX Warning: There were undefined references.
-
- ) 
+ (./sig-alternate.bbl) [4 <./interactive.png> <./distgraphperf.png>] (./sig-alt
+ernate.aux) ) 
 Here is how much of TeX's memory you used:
- 2889 strings out of 493105
- 36701 string characters out of 6137072
- 100199 words of memory out of 5000000
- 6279 multiletter control sequences out of 15000+600000
+ 2894 strings out of 493105
+ 36802 string characters out of 6137072
+ 101211 words of memory out of 5000000
+ 6283 multiletter control sequences out of 15000+600000
  46161 words of font info for 63 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,10n,28p,292b,240s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf
--dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmti9.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/
-helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhv
-r8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>
-Output written on sig-alternate.pdf (4 pages, 533354 bytes).
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/h
+elvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.
+pfb>
+Output written on sig-alternate.pdf (4 pages, 656108 bytes).
 PDF statistics:
- 61 PDF objects out of 1000 (max. 8388607)
+ 63 PDF objects out of 1000 (max. 8388607)
  33 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 36 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 41 words of extra memory for PDF output out of 10000 (max. 10000000)
 
