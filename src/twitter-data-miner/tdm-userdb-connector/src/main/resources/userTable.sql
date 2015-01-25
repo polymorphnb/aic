@@ -9,5 +9,6 @@ CREATE TABLE IF NOT EXISTS twitterUsers (
 	favoritesCount INTEGER,
 	retweetsCount INTEGER,
 	friendsCount INTEGER,
+	collectedTweetsCount INTEGER,
 	PRIMARY KEY(userId)
 )
