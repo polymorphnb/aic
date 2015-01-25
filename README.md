@@ -15,7 +15,8 @@ We assume you are running a current version of ubuntu.
     git clone https://github.com/polymorphnb/aic.git
 
 2. Install dependencies
-   #new repository for Java 8 and neo4j
+   add new repository for Java 8 and neo4j
+   
    sudo su
    wget -O - http://debian.neo4j.org/neotechnology.gpg.key | apt-key add -
    echo 'deb http://debian.neo4j.org/repo stable/' > /etc/apt/sources.list.d/neo4j.list
