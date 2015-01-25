@@ -55,7 +55,7 @@
 %\crdata{0-12345-67-8/90/01}  % Allows default copyright data (0-89791-88-6/97/05) to be over-ridden - IF NEED BE.
 % --- End of Author Metadata ---
 
-\title{Advanced Internet Computing: Group 5 Topic Analysing Big Data}
+\title{Advanced Internet Computing: Group 5 Topic Analyzing Big Data}
 %
 % You need the command \numberofauthors to handle the 'placement
 % and alignment' of the authors beneath the title.
@@ -122,7 +122,7 @@ to suggest ads to users based on statistics derived from historical data,
 modern approaches try to make use of big data.
 This paper tries to give a short overview of current scientific trends 
 in NoSQL and big data management. As graph databases are especially fitting for 
-modelling social interactions, this paper puts an emphasis on this type of NoSql.
+modeling social interactions, this paper puts an emphasis on this type of NoSql.
 \end{abstract}
 
 \keywords{Big Data, targeted advertising, NoSQL, graph database}
@@ -134,9 +134,9 @@ Big data as a concept for handling this amount of information
 has become a huge field for scientific research and 
 business models alike. One of the cornerstones of the technical
 implementation of such systems is the usage of NoSQL databases.
-While these are available in many different flavours, graph based approaches
+While these are available in many different flavors, graph based approaches
 are the one that differ the most from traditional database systems.
-Modelling social interactions as graphs and extracting various information
+Modeling social interactions as graphs and extracting various information
 is, among other applications, one of todays key techniques for targeted advertising. TODO cite http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=1579567
 While the usage of such graph databases makes for a natural abstraction
 of some real life observations, the technical implementations
@@ -146,17 +146,17 @@ The following sections will summarize some recent research concerning
 the inner workings of graph databases.
 
 \section{GPU based frequent graph mining}
-With the availability of CUDA and opencl GPUs have become
-a source of cheap computation power for significantlly less money 
+With the availability of CUDA and open-cl GPUs have become
+a source of cheap computation power for significantly less money 
 than general purpose CPUs. While not applicable to all types
 of computational loads, there are various fields which benefit 
-immensly from a high parallelization degree TODO source.
+immensely from a high parallelization degree TODO source.
 Especially loads without the need of communication between the 
 threads are well suited for GPU architectures TODO source.
 The following sections will describe some applications in graph databases.
 
 Source: http://jmlr.org/proceedings/papers/v36/kessl14.pdf
-Frequent graph mining describes the search of reoccuring sub patterns 
+Frequent graph mining describes the search of reoccurring sub patterns 
 in a set of graphs. Among various applications this technique can be used to
 find similar communities within social networks TODO source.
 Figure ~\ref{fig:subgraphs} shows a pattern $P$ that occurs in $G1$ and $G2$
@@ -165,7 +165,7 @@ As this problem has been shown to be NP-complete TODO source it is especially im
 find scalable algorithms to deal with this problem.
 The GPU-based graph mining algorithm combines concepts from gSpan TODO source
 and DMTL TODO source. 
-For the effecient pruning of duplicate subgraphs the DFS-code from gSpan is used.
+For the efficient pruning of duplicate subgraphs the DFS-code from gSpan is used.
 Parts of DMTL are used to store all isomorphisms for each pattern, which allows 
 a fast computation for how many graphs in a graph database contain a certain subgraph.
 In order to achieve good performance it is necessary 
@@ -174,9 +174,9 @@ are not well suited for GPUs as data is not cached and therefore access locality
 must be considered for performance reasons. 
 The memory layout has to happen in a way that the id and neighborhood can be quickly looked up.
 To achieve this goal the combined neighborhoods of all vertices, edges and vertices are stored 
-in seperate arrays. A fourth array is introduced which holds offsets to speedup the lookup between arrays.
+in separate arrays. A fourth array is introduced which holds offsets to speedup the lookup between arrays.
 This memory layout including the implications of how data is looked up by gSpan and DMTL allow
-for a very effecient parallelization on GPUs.
+for a very efficient parallelization on GPUs.
 For various benchmarks this technique led to significant speedups. Figure ~\ref{fig:gpuperf}
 shows the performance comparison between a GPU and a sequential implementation 
 for frequent graph mining on multiple datasets.
@@ -209,10 +209,10 @@ The research provided by TODO cite gives an idea of how mitigate this problem.
 Diff-queries provide users with the information about which part of a query actually
 matches data in the graph and which parts lead to an empty result set.
 A query in a graph database can be understood as a pattern that has to match parts of the graph.
-These pattern can be modeled as graphs themselfes. 
+These pattern can be modeled as graphs themselves. 
 In order to be able to determine which parts of a query provide a match
 and which parts will finally lead to an empty result, a common connected subgraph algorithm is
-applied to the query and the graph data intself.
+applied to the query and the graph data itself.
 The resulting common subgraph can then further be used to partition 
 constraints in a query into matching and non-matching conditions.
 
@@ -221,20 +221,20 @@ differential queries. Assume a query that searches for two soccer
 players that play for the same club and are in the same national team.
 If the graph database has a player that matches parts of the query conditions,
 namely playing for a national team and a club, but there is no second player with the 
-same attributes, the resulting differnece graph will contain the non matching conditions.
+same attributes, the resulting difference graph will contain the non matching conditions.
 
-\begin{figure*}
+\begin{figure}
 \centering
-\epsfig{file=diffquery.png, width=6in}
+\epsfig{file=diffquery.png, width=3in}
 \caption{Differential graph for data and query}
 \label{fig:diffquery}
-\end{figure*}
+\end{figure}
 
 
 Due to the nature of these operations are large number of intermediate results 
 may lead to performance problems.
 This problem may be mitigated by introducing Top-K differential queries. 
-While modelling the query of a graph the user is given the option to weight 
+While modeling the query of a graph the user is given the option to weight 
 certain edges, vertices or subgraphs according to his preferences.
 By using a new algorithm called relevance flooding, the specified weights are 
 attached to the data in the graph database.
@@ -289,7 +289,7 @@ the node Missouri the user specifies that it may be somehow related to the first
 
 \section{Parallel Adjacency Lists}
 http://arxiv.org/pdf/1403.0701.pdf
-Modelling social networks like Twitter has some particular challenges
+Modeling social networks like Twitter has some particular challenges
 for graph DB which come from the uneven distribution of edges between nodes.
 Such graphs have the tendency to have a small number of nodes with a high number of edges
 and a high number of nodes with a small number of edges. TODO zitat aus Paper 11
@@ -298,12 +298,12 @@ a scenario with such uneven edge distribution this becomes extremely challenging
 
 Partitioned Adjaceny Lists PAL tries to reduce the number of random accesses while minimizing the storage
 space required. Edges are stored as pairs of vertices and are partitioned by a range of destination
-vertices and are ordered by the source ID. These partitiones do not necessarily be of equal length, but should 
+vertices and are ordered by the source ID. These partitions do not necessarily be of equal length, but should 
 be chosen such that a partition can fit into main memory. Note that this may theoretically limit the number of
 incoming edges a vertex may have.
 As the graph connectivity is fully represented 
-by the edge partitions, vertex data can be stored seperately and is partitioned 
-based on the edge partitions. Retrieving vertex data can be achieved by sipmly calculating an offset from
+by the edge partitions, vertex data can be stored separately and is partitioned 
+based on the edge partitions. Retrieving vertex data can be achieved by simply calculating an offset from
 the edge partitions.
 Edge partitions are immutable data structures and do not allow for direct insertion of edges. 
 To counter this problem new edges a stored in a buffer and inserted if their number exceeds a certain threshold.
@@ -314,17 +314,17 @@ for a given node may be present in all partitions their retrieval is more expens
 in existing implementations. On the other hand the PAL structure gives improved performance in other access and writing operations.
 
 While comparing performance for directed unweighted shortest path algorithms it has been shown that while Neo4J
-is up to 50 times faster than GraphChi-DB it should be notet that huge dataset, that follow the uneven distribution 
+is up to 50 times faster than GraphChi-DB it should be noted that huge dataset, that follow the uneven distribution 
 of incoming edges, Neo4J was not able to finish the query due to memory restrictions.
-While not directly meassured it is expected that Neo4J in similar systems will outperform 
+While not directly measured it is expected that Neo4J in similar systems will outperform 
 GraphChi-DB but as shown in the benchmark are not fit for natural graphs.
 
 \section{Distributed Graph Database}
 %https://dl.acm.org/citation.cfm?id=2689677
 %http://delivery.acm.org/10.1145/2690000/2689677/p1-dayarathna.pdf?ip=128.131.237.61&id=2689677&acc=ACTIVE%20SERVICE&key=9074CF143665B1C6.97709C79A94C9E0F.4D4702B0C3E38B35.4D4702B0C3E38B35&CFID=621086552&CFTOKEN=17755639&__acm__=1422145282_da483414101f63310da71f6d768c3e23
-Current graph databases are mainly inteded to run on a single instance and therefore
+Current graph databases are mainly intended to run on a single instance and therefore
 face performance and availability problems when employed in large scale settings. TODO Zitat aus paper 
-Acacia is a distributed graph database intented to run in hybrid cloud configurations.
+Acacia is a distributed graph database intended to run in hybrid cloud configurations.
 Hybrid clouds a characterized by running mainly in a private network and only
 some time are available to the public to ensure good performance.
 The basic system design relies on a combination of a Master-Worker pattern 
@@ -336,12 +336,12 @@ The number of partitions corresponds to the number of workers.
 
 Each distributed process has an associated local data store with an assigned storage quota.
 When adding a new graph the partitioning happens via Hadoop and Metis and the subgraphs are then inserted into local
-Neo4j instances. Figure ~\ref{fig:distgraph} shows the underlying design of Acacia, note that Hadoop and Metis 
+Neo4J instances. Figure ~\ref{fig:distgraph} shows the underlying design of Acacia, note that Hadoop and Metis 
 are only relevant for graph partitioning and are not used during other 
 activities.
 
 Among other implemented algorithms a benchmark for the average degree distribution was run on 4 workers.
-Figure ~\ref{fig:distgraphperf} shows the elapsed time in comparison to the numer of edges in a graph.
+Figure ~\ref{fig:distgraphperf} shows the elapsed time in comparison to the number of edges in a graph.
 
 The paper concludes that Acacia is able to handle medium size graph data, but the loading process and 
 the included graph partitioning are the limiting factors.
@@ -361,8 +361,8 @@ the included graph partitioning are the limiting factors.
 \end{figure}
 
 
-\section{Conclusions}
-TODO
+%\section{Conclusions}
+%TODO
 %\end{document}  % This is where a 'short' article might terminate
 
 
