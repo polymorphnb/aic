@@ -2,13 +2,121 @@
 	"Ad1": { 
 		"id" : 1, 
 		"topic_id": 1, 
-		"name": "kennedy_ad", 
-		"content": "democrat" 
+		"name": "Arduino Mega ADK", 
+		"content": "http://arduino.cc/en/Main/ArduinoBoardMegaADK?from=Main.ArduinoBoardADK" 
 	},
 	"Ad2": { 
 		"id" : 2, 
+		"topic_id": 1, 
+		"name": "Xbee", 
+		"content": "http://www.digi.com/xbee/" 
+	},
+	"Ad3": { 
+		"id" : 3, 
 		"topic_id": 2, 
-		"name": "reagan_ad", 
-		"content": "republican" 
+		"name": "Rasperry Pi", 
+		"content": "http://www.amazon.de/Raspberry-Pi-RBCA000-Mainboard-1176JZF-S/dp/B008PT4GGC" 
+	},
+	"Ad4": { 
+		"id" : 4, 
+		"topic_id": 2, 
+		"name": "ARM", 
+		"content": "http://www.arm.com/products/processors/armv8-architecture.php" 
+	},
+	"Ad5": { 
+		"id" : 5, 
+		"topic_id": 3, 
+		"name": "LLVM", 
+		"content": "http://llvm.org/" 
+	},
+	"Ad6": { 
+		"id" : 6, 
+		"topic_id": 3, 
+		"name": "GCC", 
+		"content": "https://gcc.gnu.org/" 
+	},
+	"Ad7": { 
+		"id" : 7, 
+		"topic_id": 4, 
+		"name": "Ubuntu", 
+		"content": "http://www.ubuntu-austria.at/" 
+	},
+	"Ad8": { 
+		"id" : 8, 
+		"topic_id": 4, 
+		"name": "gnome", 
+		"content": "http://www.gnome.org/" 
+	},
+	"Ad9": { 
+		"id" : 9, 
+		"topic_id": 5, 
+		"name": "tor", 
+		"content": "https://www.torproject.org/" 
+	},
+	"Ad10": { 
+		"id" : 10, 
+		"topic_id": 6, 
+		"name": "MakerBot", 
+		"content": "http://www.makerbot.com/" 
+	},
+	"Ad11": { 
+		"id" : 11, 
+		"topic_id": 7, 
+		"name": "bitcoin", 
+		"content": "https://www.bitcoin.de/de" 
+	},
+	"Ad12": { 
+		"id" : 12, 
+		"topic_id": 8, 
+		"name": "Bittorrent Sync", 
+		"content": "http://www.getsync.com/intl/de/" 
+	},
+	"Ad13": { 
+		"id" : 13, 
+		"topic_id": 9, 
+		"name": "numpy", 
+		"content": "http://www.numpy.org/" 
+	},
+	"Ad14": { 
+		"id" : 14, 
+		"topic_id": 10, 
+		"name": "Eclipse Luna", 
+		"content": "https://eclipse.org/" 
+	},
+	"Ad15": { 
+		"id" : 15, 
+		"topic_id": 11, 
+		"name": "Java", 
+		"content": "https://www.java.com/de/download/" 
+	},
+	"Ad16": { 
+		"id" : 16, 
+		"topic_id": 11, 
+		"name": "Apache Tomcat", 
+		"content": "http://tomcat.apache.org/" 
+	},
+	"Ad17": { 
+		"id" : 17, 
+		"topic_id": 12, 
+		"name": "GIT", 
+		"content": "http://github.com/" 
+	},
+	"Ad18": { 
+		"id" : 18, 
+		"topic_id": 13, 
+		"name": "Neo4J", 
+		"content": "http://neo4j.com/" 
+	},
+	"Ad19": { 
+		"id" : 19, 
+		"topic_id": 14, 
+		"name": "OpenGL", 
+		"content": "http://de.wikipedia.org/wiki/OpenGL" 
+	},
+	"Ad20": { 
+		"id" : 20, 
+		"topic_id": 14, 
+		"name": "Ruby", 
+		"content": "https://www.ruby-lang.org/de/" 
 	}
 }
