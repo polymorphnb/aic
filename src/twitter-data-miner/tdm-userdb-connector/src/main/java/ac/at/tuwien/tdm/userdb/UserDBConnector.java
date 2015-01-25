@@ -31,7 +31,7 @@ public class UserDBConnector {
   public static final String PATH_TO_TABLE_DEFAULT = "userTable.sql";
   private String pathToDB = UserDBConnector.PATH_TO_DB_DEFAULT;
   private String pathToTable = UserDBConnector.PATH_TO_TABLE_DEFAULT;
-  private static final String INSERT_USER = "INSERT INTO  twitterUsers (userId, screenName, name, location, statusesCount, followersCount, language, favoritesCount, friendsCount, retweetsCount, collectedTweetsCount) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+  private static final String INSERT_USER = "INSERT INTO  twitterUsers (userId, screenName, name, location, statusesCount, followersCount, language, favoritesCount, friendsCount, retweetsCount, collectedTweetsCount, favoritedCount) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
   public static final String PATH_USERDB_KEY = "userdb.path";
   public static final String PATH_USERTABLE_KEY = "userdb.table";
@@ -128,7 +128,8 @@ public class UserDBConnector {
       p.setInt(9, friendsCount);
       p.setInt(10, retweetsCount);
       p.setInt(11, 0);
-
+      p.setInt(12, 0);
+      
       p.execute();
     } catch (SQLException e) {
       LOGGER.error("Could not insert user into UserDB: " + e.getMessage());
@@ -236,6 +237,31 @@ public class UserDBConnector {
       LOGGER.error(String.format("Couldn't update retweet count for user '%s'", userID));
     }
   }
+  
+  public void updateFavoritedCountForUser(Long userID, int favoritedCount) {
+    String updateString = "update twitterUsers set favoritedCount = favoritedCount + ? where userID = ?";
+    try {
+      PreparedStatement updateRetweet = this.conn.prepareStatement(updateString);
+      updateRetweet.setInt(1, favoritedCount);
+      updateRetweet.setLong(2, userID);
+      this.conn.commit();
+    } catch (SQLException ex) {
+      LOGGER.error(String.format("Couldn't update retweet count for user '%s'", userID));
+    }
+  }
+  
+  public void updateFavoritedCountTweetCountRetweetCountForUser(Long userID, int retweetCount, int favoritedCount) {
+    String updateString = "update twitterUsers set favoritedCount = favoritedCount + ?, collectedTweetsCount = collectedTweetsCount + 1, retweetsCount = retweetsCount + ? where userID = ?";
+    try {
+      PreparedStatement updateRetweet = this.conn.prepareStatement(updateString);
+      updateRetweet.setInt(1, favoritedCount);
+      updateRetweet.setInt(2, retweetCount);
+      updateRetweet.setLong(3, userID);
+      this.conn.commit();
+    } catch (SQLException ex) {
+      LOGGER.error(String.format("Couldn't update retweet count for user '%s'", userID));
+    }
+  }
 
   private User getUserFromResultSet(ResultSet rs) {
     User user = null;
@@ -251,9 +277,11 @@ public class UserDBConnector {
       Integer friendsCount = rs.getInt("friendsCount");
       Integer favoritesCount = rs.getInt("favoritesCount");
       Integer retweetsCount = rs.getInt("retweetsCount");
+      Integer collectedTweetsCount = rs.getInt("collectedTweetsCount");
+      Integer favoritedCount = rs.getInt("favoritedCount");
 
       user = new User(userId, screenName, name, location, language, statusesCount, favoritesCount, followersCount,
-          friendsCount, retweetsCount);
+          friendsCount, retweetsCount, collectedTweetsCount, favoritedCount);
     } catch (SQLException e) {
       LOGGER.error("Couldn't get User from ResultSet: " + e.getMessage());
     }
