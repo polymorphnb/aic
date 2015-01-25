@@ -137,7 +137,7 @@ implementation of such systems is the usage of NoSQL databases.
 While these are available in many different flavors, graph based approaches
 are the one that differ the most from traditional database systems.
 Modeling social interactions as graphs and extracting various information
-is, among other applications, one of todays key techniques for targeted advertising. TODO cite http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=1579567
+is, among other applications, one of todays key techniques for targeted advertising \cite{dia2006mining}.
 While the usage of such graph databases makes for a natural abstraction
 of some real life observations, the technical implementations
 of the graph database itself becomes more challenging than those of
@@ -150,21 +150,22 @@ With the availability of CUDA and open-cl GPUs have become
 a source of cheap computation power for significantly less money 
 than general purpose CPUs. While not applicable to all types
 of computational loads, there are various fields which benefit 
-immensely from a high parallelization degree TODO source.
+immensely from a high parallelization degree.
 Especially loads without the need of communication between the 
-threads are well suited for GPU architectures TODO source.
-The following sections will describe some applications in graph databases.
+threads are well suited for GPU architectures.
+The following sections will describe the approach of \cite{kessl2014parallel}
+to introduce GPUs in graph databases.
 
-Source: http://jmlr.org/proceedings/papers/v36/kessl14.pdf
 Frequent graph mining describes the search of reoccurring sub patterns 
 in a set of graphs. Among various applications this technique can be used to
-find similar communities within social networks TODO source.
+find similar communities within social networks.
 Figure ~\ref{fig:subgraphs} shows a pattern $P$ that occurs in $G1$ and $G2$
 
-As this problem has been shown to be NP-complete TODO source it is especially important to
+As this problem has been shown to be NP-complete \cite{ullmann1976algorithm} it is especially important to
 find scalable algorithms to deal with this problem.
-The GPU-based graph mining algorithm combines concepts from gSpan TODO source
-and DMTL TODO source. 
+The GPU-based graph mining algorithm combines concepts from gSpan \cite{yan2002gspan}
+and DMTL \cite{chaoji2008integrated}.
+
 For the efficient pruning of duplicate subgraphs the DFS-code from gSpan is used.
 Parts of DMTL are used to store all isomorphisms for each pattern, which allows 
 a fast computation for how many graphs in a graph database contain a certain subgraph.
@@ -172,14 +173,17 @@ In order to achieve good performance it is necessary
 to change the data structure of the graph in main memory. Hashmaps or linked lists
 are not well suited for GPUs as data is not cached and therefore access locality 
 must be considered for performance reasons. 
+
 The memory layout has to happen in a way that the id and neighborhood can be quickly looked up.
 To achieve this goal the combined neighborhoods of all vertices, edges and vertices are stored 
 in separate arrays. A fourth array is introduced which holds offsets to speedup the lookup between arrays.
+
 This memory layout including the implications of how data is looked up by gSpan and DMTL allow
 for a very efficient parallelization on GPUs.
 For various benchmarks this technique led to significant speedups. Figure ~\ref{fig:gpuperf}
 shows the performance comparison between a GPU and a sequential implementation 
 for frequent graph mining on multiple datasets.
+
 The principles of this research can also be extended to additional graph algorithms like closed graph,
 maximal graph and temporal graph mining.
 
@@ -198,16 +202,18 @@ maximal graph and temporal graph mining.
 \end{figure*}
 
 \section{Differential Queries}
-http://ceur-ws.org/Vol-1133/paper-34.pdf
-http://download.springer.com/static/pdf/593/chp%253A10.1007%252F978-3-319-10933-6_9.pdf?auth66=1422138244_54c98542c3346ab3b48752871f074418&ext=.pdf
+%http://ceur-ws.org/Vol-1133/paper-34.pdf
+%http://download.springer.com/static/pdf/593/chp%253A10.1007%252F978-3-319-10933-6_9.pdf?auth66=1422138244_54c98542c3346ab3b48752871f074418&ext=.pdf
 
 Abandoning the rigid predefined schema of traditional database systems is one of the 
 key features of NoSQL. While offering more flexibility in terms of development,
 users have a hard time gaining deep knowledge of the data and its structure.
 This mostly manifests in queries giving unexpected or empty result sets.
-The research provided by TODO cite gives an idea of how mitigate this problem.
+
+The research provided by \cite{vasilyeva2014graphmcs} describes an approach to mitigate this problem.
 Diff-queries provide users with the information about which part of a query actually
 matches data in the graph and which parts lead to an empty result set.
+
 A query in a graph database can be understood as a pattern that has to match parts of the graph.
 These pattern can be modeled as graphs themselves. 
 In order to be able to determine which parts of a query provide a match
@@ -233,7 +239,9 @@ same attributes, the resulting difference graph will contain the non matching co
 
 Due to the nature of these operations are large number of intermediate results 
 may lead to performance problems.
-This problem may be mitigated by introducing Top-K differential queries. 
+
+
+This problem may be mitigated by introducing Top-K differential queries \cite{vasilyeva2014top}. 
 While modeling the query of a graph the user is given the option to weight 
 certain edges, vertices or subgraphs according to his preferences.
 By using a new algorithm called relevance flooding, the specified weights are 
@@ -245,10 +253,12 @@ vertices is maximized, but the score resulting from the weights given by the use
 %https://www.cs.ucsb.edu/~xyan/papers/sigmod14_slq_demo.pdf
 %http://www.vldb.org/pvldb/vol7/p565-yang.pdf
 Another approach of easing the writing of graph database queries for non
-professional users is the SLQ language. 
+professional users is the SLQ language \cite{yang2014schemaless} \cite{yang2014slq}. 
+
 A property graph model is used for formulating queries. Aside
 from having nodes and edges there are key value pairs associated with
 each node. These key value pairs will be further treated as keywords.
+
 Queries are then further transformed using a library $L$ consisting of transformations
 functions. Those may include simple string replacements, semantic transformations,
 numerical and topological transformations.
@@ -288,26 +298,29 @@ the node Missouri the user specifies that it may be somehow related to the first
 \end{figure}
 
 \section{Parallel Adjacency Lists}
-http://arxiv.org/pdf/1403.0701.pdf
+%http://arxiv.org/pdf/1403.0701.pdf
 Modeling social networks like Twitter has some particular challenges
 for graph DB which come from the uneven distribution of edges between nodes.
 Such graphs have the tendency to have a small number of nodes with a high number of edges
-and a high number of nodes with a small number of edges. TODO zitat aus Paper 11
+and a high number of nodes with a small number of edges \cite{gonzalez2012powergraph}.
 A a standard procedure for partitioning is to cut the graph, but in 
 a scenario with such uneven edge distribution this becomes extremely challenging.
 
-Partitioned Adjaceny Lists PAL tries to reduce the number of random accesses while minimizing the storage
+Partitioned Adjaceny Lists PAL \cite{kyrola2014graphchi} tries to reduce the number of random accesses while minimizing the storage
 space required. Edges are stored as pairs of vertices and are partitioned by a range of destination
 vertices and are ordered by the source ID. These partitions do not necessarily be of equal length, but should 
 be chosen such that a partition can fit into main memory. Note that this may theoretically limit the number of
 incoming edges a vertex may have.
+
 As the graph connectivity is fully represented 
 by the edge partitions, vertex data can be stored separately and is partitioned 
 based on the edge partitions. Retrieving vertex data can be achieved by simply calculating an offset from
 the edge partitions.
+
 Edge partitions are immutable data structures and do not allow for direct insertion of edges. 
 To counter this problem new edges a stored in a buffer and inserted if their number exceeds a certain threshold.
 During search operations these buffers are also considered.
+
 Queries are built on top of primitive operations that return in or out edges of a vertex.
 Finding in-edges is straight forward due to the partitioning. Due to the fact that out-edges
 for a given node may be present in all partitions their retrieval is more expensive than
@@ -323,8 +336,10 @@ GraphChi-DB but as shown in the benchmark are not fit for natural graphs.
 %https://dl.acm.org/citation.cfm?id=2689677
 %http://delivery.acm.org/10.1145/2690000/2689677/p1-dayarathna.pdf?ip=128.131.237.61&id=2689677&acc=ACTIVE%20SERVICE&key=9074CF143665B1C6.97709C79A94C9E0F.4D4702B0C3E38B35.4D4702B0C3E38B35&CFID=621086552&CFTOKEN=17755639&__acm__=1422145282_da483414101f63310da71f6d768c3e23
 Current graph databases are mainly intended to run on a single instance and therefore
-face performance and availability problems when employed in large scale settings. TODO Zitat aus paper 
-Acacia is a distributed graph database intended to run in hybrid cloud configurations.
+face performance and availability problems when employed in large scale settings \cite{dayarathna2012xgdbench} 
+\cite{dayarathna2013graph}.
+
+Acacia \cite{dayarathna2014towards} is a distributed graph database intended to run in hybrid cloud configurations.
 Hybrid clouds a characterized by running mainly in a private network and only
 some time are available to the public to ensure good performance.
 The basic system design relies on a combination of a Master-Worker pattern 
@@ -361,10 +376,10 @@ the included graph partitioning are the limiting factors.
 \end{figure}
 
 
+
 %\section{Conclusions}
 %TODO
 %\end{document}  % This is where a 'short' article might terminate
-
 
 %
 % The following two commands are all you need in the

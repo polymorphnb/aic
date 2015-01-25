@@ -1,0 +1,83 @@
+\begin{thebibliography}{10}
+
+\bibitem{chaoji2008integrated}
+V.~Chaoji, M.~Al~Hasan, S.~Salem, and M.~J. Zaki.
+\newblock An integrated, generic approach to pattern mining: data mining
+  template library.
+\newblock {\em Data Mining and Knowledge Discovery}, 17(3):457--495, 2008.
+
+\bibitem{dayarathna2012xgdbench}
+M.~Dayarathna and T.~Suzumura.
+\newblock Xgdbench: A benchmarking platform for graph stores in exascale
+  clouds.
+\newblock In {\em Proceedings of the 2012 IEEE 4th International Conference on
+  Cloud Computing Technology and Science (CloudCom)}, pages 363--370. IEEE
+  Computer Society, 2012.
+
+\bibitem{dayarathna2013graph}
+M.~Dayarathna and T.~Suzumura.
+\newblock Graph database benchmarking on cloud environments with xgdbench.
+\newblock {\em Automated Software Engineering}, pages 1--25, 2013.
+
+\bibitem{dayarathna2014towards}
+M.~Dayarathna and T.~Suzumura.
+\newblock Towards scalable distributed graph database engine for hybrid clouds.
+\newblock In {\em Proceedings of the 5th International Workshop on
+  Data-Intensive Computing in the Clouds}, pages 1--8. IEEE Press, 2014.
+
+\bibitem{dia2006mining}
+W.-S. Y. J.-B. Dia and H.-C. C. H.-T. Lin.
+\newblock mining social networks for targeted advertising.
+\newblock {\em System}, 2006.
+
+\bibitem{gonzalez2012powergraph}
+J.~E. Gonzalez, Y.~Low, H.~Gu, D.~Bickson, and C.~Guestrin.
+\newblock Powergraph: Distributed graph-parallel computation on natural graphs.
+\newblock In {\em OSDI}, volume~12, page~2, 2012.
+
+\bibitem{kessl2014parallel}
+R.~Kessl, N.~Talukder, P.~Anchuri, and M.~J. Zaki.
+\newblock Parallel graph mining with gpus.
+\newblock In {\em Proceedings of the 3rd International Workshop on Big Data,
+  Streams and Heterogeneous Source Mining: Algorithms, Systems, Programming
+  Models and Applications}, pages 1--16, 2014.
+
+\bibitem{kyrola2014graphchi}
+A.~Kyrola and C.~Guestrin.
+\newblock Graphchi-db: Simple design for a scalable graph database system--on
+  just a pc.
+\newblock {\em arXiv preprint arXiv:1403.0701}, 2014.
+
+\bibitem{ullmann1976algorithm}
+J.~R. Ullmann.
+\newblock An algorithm for subgraph isomorphism.
+\newblock {\em Journal of the ACM (JACM)}, 23(1):31--42, 1976.
+
+\bibitem{vasilyeva2014graphmcs}
+E.~Vasilyeva, M.~Thiele, C.~Bornh{\"o}vd, and W.~Lehner.
+\newblock Graphmcs: Discover the unknown in large data graphs.
+\newblock In {\em EDBT/ICDT Workshops}, pages 200--207, 2014.
+
+\bibitem{vasilyeva2014top}
+E.~Vasilyeva, M.~Thiele, C.~Bornh{\"o}vd, and W.~Lehner.
+\newblock Top-k differential queries in graph databases.
+\newblock In {\em Advances in Databases and Information Systems}, pages
+  112--125. Springer, 2014.
+
+\bibitem{yan2002gspan}
+X.~Yan and J.~Han.
+\newblock gspan: Graph-based substructure pattern mining.
+\newblock In {\em Data Mining, 2002. ICDM 2003. Proceedings. 2002 IEEE
+  International Conference on}, pages 721--724. IEEE, 2002.
+
+\bibitem{yang2014schemaless}
+S.~Yang, Y.~Wu, H.~Sun, and X.~Yan.
+\newblock Schemaless and structureless graph querying.
+\newblock {\em Proceedings of the VLDB Endowment}, 7(7), 2014.
+
+\bibitem{yang2014slq}
+S.~Yang, Y.~Xie, Y.~Wu, T.~Wu, H.~Sun, J.~Wu, and X.~Yan.
+\newblock Slq: A user-friendly graph querying system.
+\newblock 2014.
+
+\end{thebibliography}

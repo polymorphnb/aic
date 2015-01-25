@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2015/dev/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: sig-alternate.aux
+The style file: abbrv.bst
+Database file #1: sigproc.bib
+Warning--can't use both volume and number fields in gonzalez2012powergraph
+Warning--empty journal in yang2014slq
+You've used 14 entries,
+            2118 wiz_defined-function locations,
+            574 strings with 6205 characters,
+and the built_in function-call counts, 5468 in all, are:
+= -- 542
+> -- 266
+< -- 9
++ -- 106
+- -- 90
+* -- 362
+:= -- 874
+add.period$ -- 46
+call.type$ -- 14
+change.case$ -- 87
+chr.to.int$ -- 0
+cite$ -- 16
+duplicate$ -- 225
+empty$ -- 414
+format.name$ -- 90
+if$ -- 1179
+int.to.chr$ -- 0
+int.to.str$ -- 14
+missing$ -- 14
+newline$ -- 73
+num.names$ -- 28
+pop$ -- 103
+preamble$ -- 1
+purify$ -- 73
+quote$ -- 0
+skip$ -- 172
+stack$ -- 0
+substring$ -- 300
+swap$ -- 76
+text.length$ -- 9
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 56
+warning$ -- 2
+while$ -- 54
+width$ -- 16
+write$ -- 157
+(There were 2 warnings)
