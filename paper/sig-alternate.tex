@@ -237,22 +237,58 @@ same attributes, the resulting differnece graph will contain the non matching co
 Due to the nature of these operations are large number of intermediate results 
 may lead to performance problems.
 This problem may be mitigated by introducing Top-K differential queries. 
-Such queries are still modeled as graphs but have additional properties allowing for ranking
-the intermediate results by relevance. These weights are given by user and can be either maximized or minimized.
+While modelling the query of a graph the user is given the option to weight 
+certain edges, vertices or subgraphs according to his preferences.
+By using a new algorithm called relevance flooding, the specified weights are 
+attached to the data in the graph database.
+When calculating the maximum common subgraph, not the number matching edges and
+vertices is maximized, but the score resulting from the weights given by the user.
 
 \section{SLQ}
 %https://www.cs.ucsb.edu/~xyan/papers/sigmod14_slq_demo.pdf
+%http://www.vldb.org/pvldb/vol7/p565-yang.pdf
 Another approach of easing the writing of graph database queries for non
-professional users is SLQ language. SLQ interprets queries based on 
-keywords which are then further mapped to onthologies. 
-While a strict replacing of words would lead to high number of queries,
-the mapping of keywords is based on their semantical closenes.
-To get the most relevant results the generated queries and their transformations
-are weighted. By using used feedback and query logs SLQ is able to
-learn how to apply a reasonable weighting.
-To create a SLQ query the user specifies it by drawing a graph
-and attaching the keywords.
-TODO BILD
+professional users is the SLQ language. 
+A property graph model is used for formulating queries. Aside
+from having nodes and edges there are key value pairs associated with
+each node. These key value pairs will be further treated as keywords.
+Queries are then further transformed using a library $L$ consisting of transformations
+functions. Those may include simple string replacements, semantic transformations,
+numerical and topological transformations.
+These functions allow for the compensation of spelling errors or the
+usage of synonyms.
+
+In an SLQ query a match in the data is derived from the mapping
+of a query, including possible transformation, to the data itself. It is therefore necessary 
+to define a weight for such transformations to only show the most relevant results.
+As equal or predefined weighting for all transformations may not lead to an optimal 
+query outcome, SLQ is able to learn and further improve the relevance of its transformations.
+
+The first possibility is to use existing query logs of real users during an offline learning stage.
+As a high quality pair of queries and their results may not always be available an online learning approach
+is added. During the online operation, users can specify a number $k$ which will then be used
+to display the most relevant results after applying a set of transformation. Be receiving 
+feedback from the user SLQ is able to further improve the rankings of the transformations.
+
+Figure ~\ref{fig:slqlearning} shows the basics of this learning process.
+
+Figure ~\ref{fig:slqexample} gives an example for three possible queries and their final results.
+The second query tries to find a person serving in the union army and was in a battle. By introducing 
+the node Missouri the user specifies that it may be somehow related to the first conditions.
+
+\begin{figure}
+\centering
+\epsfig{file=slqlearning.png, width=3in}
+\caption{SLQ: graph querying framework}
+\label{fig:slqlearning}
+\end{figure}
+
+\begin{figure}
+\centering
+\epsfig{file=slqexample.png, width=3in}
+\caption{SLQ query examples}
+\label{fig:slqexample}
+\end{figure}
 
 \section{Parallel Adjacency Lists}
 http://arxiv.org/pdf/1403.0701.pdf

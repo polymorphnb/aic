@@ -56,14 +56,7 @@
 % --- End of Author Metadata ---
 
 \title{Alternate {\ttlit ACM} SIG Proceedings Paper in LaTeX
-Format\titlenote{(Produces the permission block, and
-copyright information). For use with
-SIG-ALTERNATE.CLS. Supported by ACM.}}
-\subtitle{[Extended Abstract]
-\titlenote{A full version of this paper is available as
-\textit{Author's Guide to Preparing ACM SIG Proceedings Using
-\LaTeX$2_\epsilon$\ and BibTeX} at
-\texttt{www.acm.org/eaddress.htm}}}
+Format}
 %
 % You need the command \numberofauthors to handle the 'placement
 % and alignment' of the authors beneath the title.
@@ -195,14 +188,14 @@ maximal graph and temporal graph mining.
 
 \begin{figure}
 \centering
-\epsfig{file=subgraphs.png, width=4in}
+\epsfig{file=subgraphs.png, width=3in}
 \caption{Graphs and pattern P}
 \label{fig:subgraphs}
 \end{figure}
 
 \begin{figure*}
 \centering
-\epsfig{file=gpuperf.png, width=7in}
+\epsfig{file=gpuperf.png, width=6in}
 \caption{GPU Benchmarks}
 \label{fig:gpuperf}
 \end{figure*}
@@ -226,37 +219,65 @@ applied to the query and the graph data intself.
 The resulting common subgraph can then further be used to partition 
 constraints in a query into matching and non-matching conditions.
 
-Figure Figure ~\ref{fig:diffquery} visualizes the basic idea of
+Figure ~\ref{fig:diffquery} visualizes the basic idea of
 differential queries. Assume a query that searches for two soccer 
 players that play for the same club and are in the same national team.
+If the graph database has a player that matches parts of the query conditions,
+namely playing for a national team and a club, but there is no second player with the 
+same attributes, the resulting differnece graph will contain the non matching conditions.
 
-\begin{figure}
+\begin{figure*}
 \centering
-\epsfig{file=diffquery.png, width=4in}
+\epsfig{file=diffquery.png, width=6in}
 \caption{Differential graph for data and query}
 \label{fig:diffquery}
-\end{figure}
+\end{figure*}
 
 
 Due to the nature of these operations are large number of intermediate results 
 may lead to performance problems.
 This problem may be mitigated by introducing Top-K differential queries. 
-Such queries are still modeled as graphs but have additional properties allowing for ranking
-the intermediate results by relevance. These weights are given by user and can be either maximized or minimized.
+While modelling the query of a graph the user is given the option to weight 
+certain edges, vertices or subgraphs according to his preferences.
+By using a new algorithm called relevance flooding, the specified weights are 
+attached to the data in the graph database.
+When calculating the maximum common subgraph, not the number matching edges and
+vertices is maximized, but the score resulting from the weights given by the user.
 
 \section{SLQ}
 %https://www.cs.ucsb.edu/~xyan/papers/sigmod14_slq_demo.pdf
+%http://www.vldb.org/pvldb/vol7/p565-yang.pdf
 Another approach of easing the writing of graph database queries for non
-professional users is SLQ language. SLQ interprets queries based on 
-keywords which are then further mapped to onthologies. 
-While a strict replacing of words would lead to high number of queries,
-the mapping of keywords is based on their semantical closenes.
-To get the most relevant results the generated queries and their transformations
-are weighted. By using used feedback and query logs SLQ is able to
-learn how to apply a reasonable weighting.
-To create a SLQ query the user specifies it by drawing a graph
-and attaching the keywords.
-TODO BILD
+professional users is the SLQ language. 
+A property graph model is used for formulating queries. Aside
+from having nodes and edges there are key value pairs associated with
+each node. These key value pairs will be further treated as keywords.
+Queries are then further transformed using a library $L$ consisting of transformations
+functions. Those may include simple string replacements, semantic transformations,
+numerical and topological transformations.
+These functions allow for the compensation of spelling errors or the
+usage of synonyms.
+
+In an SLQ query a match in the data is derived from the mapping
+of a query, including possible transformation, to the data itself. It is therefore necessary 
+to define a weight for such transformations to only show the most relevant results.
+As equal or predefined weighting for all transformations may not lead to an optimal 
+query outcome, SLQ is able to learn and further improve the relevance of its transformations.
+
+The first possibility is to use existing query logs of real users during an offline learning stage.
+As a high quality pair of queries and their results may not always be available an online learning approach
+is added. During the online operation, users can specify a number $k$ which will then be used
+to display the most relevant results after applying a set of transformation. Be receiving 
+feedback from the user SLQ is able to further improve the rankings of the transformations.
+
+Figure ~\ref{fig:slqlearning} shows the basics of this learning process.
+
+\begin{figure}
+\centering
+\epsfig{file=slqlearning.png, width=3in}
+\caption{SLQ: graph querying framework}
+\label{fig:slqlearning}
+\end{figure}
 
 \section{Parallel Adjacency Lists}
 http://arxiv.org/pdf/1403.0701.pdf

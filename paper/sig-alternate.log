@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2015.1.24)  25 JAN 2015 12:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2015.1.24)  25 JAN 2015 14:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -327,30 +327,42 @@ File: diffquery.png Graphic file (type png)
 Package pdftex.def Info: diffquery.png used on input line 231.
 (pdftex.def)             Requested size: 433.62pt x 114.8253pt.
 
+<slqlearning.png, id=18, 1154.3125pt x 773.89125pt>
+File: slqlearning.png Graphic file (type png)
+ <use slqlearning.png>
+Package pdftex.def Info: slqlearning.png used on input line 281.
+(pdftex.def)             Requested size: 216.81pt x 145.35223pt.
+
+<slqexample.png, id=19, 762.85pt x 393.47pt>
+File: slqexample.png Graphic file (type png)
+ <use slqexample.png>
+Package pdftex.def Info: slqexample.png used on input line 288.
+(pdftex.def)             Requested size: 216.81pt x 111.82791pt.
+ [2 <./gpuperf.png> <./subgraphs.png> <./slqlearning.png>]
 No file sig-alternate.bbl.
-[2 <./gpuperf.png> <./subgraphs.png>] [3 <./diffquery.png>]
-(./sig-alternate.aux) ) 
+[3 <./diffquery.png> <./slqexample.png>] (./sig-alternate.aux) ) 
 Here is how much of TeX's memory you used:
- 2784 strings out of 493105
- 35092 string characters out of 6137072
- 102217 words of memory out of 5000000
- 6184 multiletter control sequences out of 15000+600000
+ 2796 strings out of 493105
+ 35308 string characters out of 6137072
+ 102233 words of memory out of 5000000
+ 6194 multiletter control sequences out of 15000+600000
  47052 words of font info for 63 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,10n,28p,454b,240s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.e
-nc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive
-/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/u
-tmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr
-/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on sig-alternate.pdf (3 pages, 322562 bytes).
+{/usr/share/tex
+live/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/u
+hvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvbo8a.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+urw/times/utmri8a.pfb>
+Output written on sig-alternate.pdf (3 pages, 465304 bytes).
 PDF statistics:
- 58 PDF objects out of 1000 (max. 8388607)
+ 62 PDF objects out of 1000 (max. 8388607)
  37 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 26 words of extra memory for PDF output out of 10000 (max. 10000000)
 
