@@ -6,6 +6,7 @@ public class Ad {
 	private String name;
 	private String content;
 	private String topicName;
+	private String indirectDepth;
 	
 	public Ad(int iD, int topicID, String name, String content) {
 		this.ID = iD;
@@ -41,5 +42,13 @@ public class Ad {
 
 	public void setTopicName(String topicName) {
 		this.topicName = topicName;
+	}
+
+	public String getIndirectDepth() {
+		return indirectDepth;
+	}
+
+	public void setIndirectDepth(String indirectDepth) {
+		this.indirectDepth = indirectDepth;
 	}
 }
