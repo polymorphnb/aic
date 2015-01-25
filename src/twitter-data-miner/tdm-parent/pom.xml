@@ -22,6 +22,7 @@
 		<version.commons.collections>4.0</version.commons.collections>
 		<version.neo4j>2.1.5</version.neo4j>
 		<version.mongodb>2.12.4</version.mongodb>
+		<version.junit>4.11</version.junit>
 	</properties>
 
 	<dependencyManagement>
@@ -78,6 +79,12 @@
 				<groupId>org.mongodb</groupId>
 				<artifactId>mongo-java-driver</artifactId>
 				<version>${version.mongodb}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${version.junit}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
