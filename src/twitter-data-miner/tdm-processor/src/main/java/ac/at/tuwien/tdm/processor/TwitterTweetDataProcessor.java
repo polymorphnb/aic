@@ -41,9 +41,10 @@ public class TwitterTweetDataProcessor extends TwitterDataProcessor {
                 
         this.addTopicInterestsUser(tweet);
         this.addInteractsWithUser(tweet);
-        this.addRetweetCountToUser(tweet);
-        this.updateTweetCountForUser(tweet);
-        // System.out.println("Tweet " + tweet.getId() + " processed");
+        this.updateUserInUserDB(tweet);
+//        this.addRetweetCountToUser(tweet);
+//        this.updateTweetCountForUser(tweet);
+//        this.updateFavoritesCountForUser(tweet);
         i++;
         
         if(i%100 == 0) {
@@ -59,22 +60,26 @@ public class TwitterTweetDataProcessor extends TwitterDataProcessor {
         LOGGER.info("Could not move file " + file.getName() + " to " + this.folderProcessed + file.getName() + "!");
       }
       LOGGER.info("File " + file.getName() + " done!");
-      
-//      final List<String> readLines = reader.getDataForFile(file);
-//      for (final String readLine : readLines) {
-//        
-//        User user = gson.fromJson(readLine, User.class);
-//        
-//        this.addUserFollowersRelationship(user);
-//        this.addUserFriendsRelationship(user);
-//      }
     }
   }
   
+  private void updateUserInUserDB(Tweet tweet) {
+    this.userDB.updateFavoritedCountTweetCountRetweetCountForUser(tweet.getAuthorUserId(), tweet.getRetweetedCount(), tweet.getFavoritedCount());
+  }
+  
+  @SuppressWarnings("unused")
+  private void updateFavoritesCountForUser(Tweet tweet) {
+    if(tweet.getFavoritedCount() > 0) {
+      this.userDB.updateFavoritedCountForUser(tweet.getAuthorUserId(), tweet.getFavoritedCount());
+    }
+  }
+  
+  @SuppressWarnings("unused")
   private void updateTweetCountForUser(Tweet tweet) {
     this.userDB.updateTweetCountForUser(tweet.getAuthorUserId());
   }
   
+  @SuppressWarnings("unused")
   private void addRetweetCountToUser(Tweet tweet) {
     if(tweet.getRetweetedCount() > 0) {
       this.userDB.updateRetweetCountForUser(tweet.getAuthorUserId(), tweet.getRetweetedCount());
@@ -84,7 +89,7 @@ public class TwitterTweetDataProcessor extends TwitterDataProcessor {
   private void addTopicInterestsUser(Tweet tweet) {
     Long topicID = this.docStore.getTopicIDForKeyword(tweet.getSearchTerm());
     this.neo4j.addInterestedInRelationship(tweet.getAuthorUserId(), topicID);
-    this.docStore.addTopicToUser(tweet.getAuthorUserId(), topicID);
+    //this.docStore.addTopicToUser(tweet.getAuthorUserId(), topicID);
   }
   
   private void addInteractsWithUser(Tweet tweet) {
