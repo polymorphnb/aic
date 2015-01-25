@@ -170,7 +170,8 @@ public class UserBean {
   private String userExistingInterests;
   private Integer maximalExistingInterests;
   private List<Ad> existingInterests;
-
+  private String tresholdDirect;
+  
   //Parameter countInfluentalUser
   public void searchExistingInterests() throws IOException {
     //		Initialize Logger
@@ -180,15 +181,15 @@ public class UserBean {
     this.neo4j.startTransaction();
     DocStoreConnectorImpl docstore = new DocStoreConnectorImpl();
     List<DirectInterestResult> directInterestsForUser =  this.neo4j.getDirectInterestsForUser(
-        Long.parseLong(userExistingInterests), maximalExistingInterests, docstore);
+        Long.parseLong(userExistingInterests), Integer.parseInt(tresholdDirect), docstore);
     LOGGER.info(directInterestsForUser.size());
     this.neo4j.closeTransaction();
     setExistingInterests(new ArrayList<Ad>());
     
-    //show only given amount of interests
-    if (directInterestsForUser.size() > maximalExistingInterests) {
-    	directInterestsForUser = directInterestsForUser.subList(0, maximalExistingInterests);
-    }
+//    //show only given amount of interests
+//    if (directInterestsForUser.size() > maximalExistingInterests) {
+//    	directInterestsForUser = directInterestsForUser.subList(0, maximalExistingInterests);
+//    }
 
     List<Ad> retrieveAds = docstore.retrieveAds();
 
@@ -216,6 +217,8 @@ public class UserBean {
   private String userPotentialInterests;
   private Integer maximalPotentialInterests;
   private List<Ad> potentialInterests;
+  private String depthIndirect;
+  private String tresholdIndirect;
 
   //Parameter countInfluentalUser
   public void searchPotentialInterests() throws IOException {
@@ -226,14 +229,14 @@ public class UserBean {
     this.neo4j.startTransaction();
     DocStoreConnectorImpl docstore = new DocStoreConnectorImpl();
     List<IndirectInterestResult> indirectInterestsForUser =  this.neo4j.getIndirectInterestsForUser(
-        Long.parseLong(userPotentialInterests), 5, maximalPotentialInterests, docstore);
+        Long.parseLong(userPotentialInterests), Integer.parseInt(depthIndirect), Integer.parseInt(tresholdIndirect), docstore);
     this.neo4j.closeTransaction();
     setPotentialInterests(new ArrayList<Ad>());
     LOGGER.info("indirectInterests: " + indirectInterestsForUser.size());
   //show only given amount
-    if (indirectInterestsForUser.size() > maximalPotentialInterests) {
-    	indirectInterestsForUser = indirectInterestsForUser.subList(0, maximalPotentialInterests);
-    }
+//    if (indirectInterestsForUser.size() > maximalPotentialInterests) {
+//    	indirectInterestsForUser = indirectInterestsForUser.subList(0, maximalPotentialInterests);
+//    }
 
     List<ac.at.tuwien.tdm.commons.pojo.Ad> retrieveAds = docstore.retrieveAds();
 
@@ -444,5 +447,29 @@ public String getUserQuery2() {
 
 public void setUserQuery2(String userQuery2) {
 	this.userQuery2 = userQuery2;
+}
+
+public String getTresholdDirect() {
+	return tresholdDirect;
+}
+
+public void setTresholdDirect(String tresholdDirect) {
+	this.tresholdDirect = tresholdDirect;
+}
+
+public String getDepthIndirect() {
+	return depthIndirect;
+}
+
+public void setDepthIndirect(String depthIndirect) {
+	this.depthIndirect = depthIndirect;
+}
+
+public String getTresholdIndirect() {
+	return tresholdIndirect;
+}
+
+public void setTresholdIndirect(String tresholdIndirect) {
+	this.tresholdIndirect = tresholdIndirect;
 }
 }

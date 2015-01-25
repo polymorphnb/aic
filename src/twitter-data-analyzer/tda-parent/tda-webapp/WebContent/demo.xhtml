@@ -111,8 +111,8 @@
 		<h:form id="existingInterests">
     	User: <p:inputText id="userExistingInterests" rendered="true"
 				style="width:200px;" value="#{user.userExistingInterests}" /> 
-		Maximal Interests: <p:inputText id="amountExistingInterests" rendered="true"
-				style="width:200px;" value="#{user.maximalExistingInterests}" /> 
+		Treshold: <p:inputText id="treshold1" rendered="true"
+				style="width:200px;" value="#{user.tresholdDirect}" /> 
 				<br /><br />
 			<p:commandButton value="Suchen" ajax="true"
 				action="#{user.searchExistingInterests}"
@@ -146,8 +146,10 @@
 		<h:form id="potentialInterests">
     	User: <p:inputText id="userPotentialInterests" rendered="true"
 				style="width:200px;" value="#{user.userPotentialInterests}" /> 
-		Maximal Interests: <p:inputText id="amountPotentialInterests" rendered="true"
-				style="width:200px;" value="#{user.maximalPotentialInterests}" /> 
+		Depth: <p:inputText id="depth" rendered="true"
+				style="width:200px;" value="#{user.depthIndirect}" /> 
+		Threshhold: <p:inputText id="treshold" rendered="true"
+				style="width:200px;" value="#{user.tresholdIndirect}" /> 
 				<br /><br />
 			<p:commandButton value="Suchen" ajax="true"
 				action="#{user.searchPotentialInterests}"
