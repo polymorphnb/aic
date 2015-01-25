@@ -42,6 +42,10 @@ public class UserBean {
   private String influenceFavouritesWeight;
   private String influenceRetweetsWeight;
   
+  private Integer thresholdIndirect;
+  private Integer depthIndirect;
+  private Integer thresholdDirect;
+
   private Neo4JConnector neo4j = null;
   private UserDBConnector userDB = null;
 
@@ -51,36 +55,33 @@ public class UserBean {
     BasicConfigurator.configure();
 
     LOGGER.info("search most influental user");
-    
+
     int favo;
-    if(null!=influenceFavouritesWeight && !influenceFavouritesWeight.isEmpty()){
-    	favo = Integer.parseInt(influenceFavouritesWeight);
+    if (null != influenceFavouritesWeight && !influenceFavouritesWeight.isEmpty()) {
+      favo = Integer.parseInt(influenceFavouritesWeight);
+    } else {
+      favo = 1;
     }
-    else {
-    	favo = 1;
-    }
-    
+
     int foll;
-    if(null!=influenceFollowersWeight && !influenceFollowersWeight.isEmpty()){
-    	foll = Integer.parseInt(influenceFollowersWeight);
+    if (null != influenceFollowersWeight && !influenceFollowersWeight.isEmpty()) {
+      foll = Integer.parseInt(influenceFollowersWeight);
+    } else {
+      foll = 1;
     }
-    else {
-    	foll = 1;
-    }
-    
+
     int retweet;
-    if(null!=influenceRetweetsWeight && !influenceRetweetsWeight.isEmpty()){
-    	retweet = Integer.parseInt(influenceRetweetsWeight);
-    }
-    else {
-    	retweet = 1;
+    if (null != influenceRetweetsWeight && !influenceRetweetsWeight.isEmpty()) {
+      retweet = Integer.parseInt(influenceRetweetsWeight);
+    } else {
+      retweet = 1;
     }
 
     this.initialize();
     List<InfluenceResult> users = this.userDB.calcInfluenceAll(foll, retweet, favo, countInfluentalUser);
 
     if (null != users) {
-      LOGGER.info(users.size());
+      LOGGER.info("Found " + users.size() + " users for most influential query");
       influentalUsers = users;
     }
 
@@ -97,6 +98,19 @@ public class UserBean {
   public void deleteMostInfluentalUsers() {
     influentalUsers = new ArrayList<InfluenceResult>();
     countInfluentalUser = null;
+    influenceFavouritesWeight = null;
+    influenceFollowersWeight = null;
+    influenceRetweetsWeight = null;
+  }
+
+  
+  public Integer getThresholdIndirect() {
+    return thresholdIndirect;
+  }
+
+  
+  public void setThresholdIndirect(Integer thresholdIndirect) {
+    this.thresholdIndirect = thresholdIndirect;
   }
 
   private Integer countFrequencedUser;
@@ -111,35 +125,41 @@ public class UserBean {
 
     this.initialize();
     
+    boolean singleUser = false;
+
     List<User> users = new ArrayList<User>();
-    if(userQuery2!=null && !userQuery2.isEmpty()){
-    	User u = this.userDB.getUser(Long.parseLong(userQuery2));
-    	LOGGER.info(u.toString());
-    	if(null!=u){
-    	users.add(u);
-    	}
+    if (userQuery2 != null && userQuery2.isEmpty() == false) {
+      User u = this.userDB.getUser(Long.parseLong(userQuery2));
+      if (null != u) {
+        users.add(u);
+        singleUser = true;
+      }
     }
-    
-    if(users.isEmpty()){
-    	LOGGER.info("users empty");
-		users = this.userDB.getUsers();
+
+    if (users.isEmpty()) {
+      LOGGER.info("users empty");
+      users = this.userDB.getUsers();
     }
-    
-    LOGGER.info(users.size());
-    this.userDB.disconnect();
+
+    LOGGER.info("Got " + users.size() + " users");
     
     frequencedUsers = new ArrayList<UserFrequency>();
-    
+
     int countfor = 0;
-    if(users.size() > countFrequencedUser){
-    	countfor = countFrequencedUser;
+    if (singleUser == false) {
+      if (users.size() > countFrequencedUser) {
+        countfor = countFrequencedUser;
+      } 
+      else {
+        countfor = users.size();
+      }
     }
-    else{
-    	countfor = users.size();
+    else {
+      countfor = users.size();
     }
-    
+
     this.neo4j.startTransaction();
-    
+
     for (int i = 0; i < countfor; i++) {
       User user = users.get(i);
       int numTweetsInTopic = this.neo4j.getTopicWeightForUser(user.getId(), Long.parseLong(topic));
@@ -153,9 +173,9 @@ public class UserBean {
     }
 
     this.neo4j.closeTransaction();
-    
+
     //show only given amount
-    if (frequencedUsers.size() > countFrequencedUser) {
+    if (singleUser == false && frequencedUsers.size() > countFrequencedUser) {
       frequencedUsers = frequencedUsers.subList(0, countFrequencedUser);
     }
 
@@ -165,31 +185,34 @@ public class UserBean {
   public void deleteMostFrequencedUsers() {
     frequencedUsers = new ArrayList<UserFrequency>();
     countFrequencedUser = null;
+    userQuery2 = null;
+    topic = null;
   }
 
   private String userExistingInterests;
-  private Integer maximalExistingInterests;
   private List<Ad> existingInterests;
-  private String tresholdDirect;
-  
+
   //Parameter countInfluentalUser
   public void searchExistingInterests() throws IOException {
     //		Initialize Logger
     BasicConfigurator.configure();
-    
+
     this.initialize();
     this.neo4j.startTransaction();
+    
     DocStoreConnectorImpl docstore = new DocStoreConnectorImpl();
-    List<DirectInterestResult> directInterestsForUser =  this.neo4j.getDirectInterestsForUser(
-        Long.parseLong(userExistingInterests), Integer.parseInt(tresholdDirect), docstore);
-    LOGGER.info(directInterestsForUser.size());
+    List<DirectInterestResult> directInterestsForUser = this.neo4j.getDirectInterestsForUser(
+        Long.parseLong(userExistingInterests), thresholdDirect, docstore);
+    
+    LOGGER.info("Got " + directInterestsForUser.size() + " direct interests!");
+    
     this.neo4j.closeTransaction();
     setExistingInterests(new ArrayList<Ad>());
-    
-//    //show only given amount of interests
-//    if (directInterestsForUser.size() > maximalExistingInterests) {
-//    	directInterestsForUser = directInterestsForUser.subList(0, maximalExistingInterests);
-//    }
+
+    //show only given amount of interests
+    //    if (directInterestsForUser.size() > maximalExistingInterests) {
+    //    	directInterestsForUser = directInterestsForUser.subList(0, maximalExistingInterests);
+    //    }
 
     List<Ad> retrieveAds = docstore.retrieveAds();
 
@@ -197,8 +220,8 @@ public class UserBean {
       for (DirectInterestResult di : directInterestsForUser) {
         for (Ad ad : retrieveAds) {
           if (ad.getTopicID() == di.getTopicID().intValue()) {
-        	  String topicForID = docstore.getTopicForID(di.getTopicID());
-        	  ad.setTopicName(topicForID);
+            String topicForID = docstore.getTopicForID(di.getTopicID());
+            ad.setTopicName(topicForID);
             existingInterests.add(ad);
           }
         }
@@ -210,44 +233,42 @@ public class UserBean {
 
   public void deleteExistingInterests() {
     existingInterests = new ArrayList<Ad>();
-    maximalExistingInterests = null;
+    thresholdDirect = null;
     userExistingInterests = "";
   }
 
   private String userPotentialInterests;
-  private Integer maximalPotentialInterests;
   private List<Ad> potentialInterests;
-  private String depthIndirect;
-  private String tresholdIndirect;
 
   //Parameter countInfluentalUser
   public void searchPotentialInterests() throws IOException {
     BasicConfigurator.configure();
     //		if(null==influentalUsers){
-    
+
     this.initialize();
     this.neo4j.startTransaction();
     DocStoreConnectorImpl docstore = new DocStoreConnectorImpl();
-    List<IndirectInterestResult> indirectInterestsForUser =  this.neo4j.getIndirectInterestsForUser(
-        Long.parseLong(userPotentialInterests), Integer.parseInt(depthIndirect), Integer.parseInt(tresholdIndirect), docstore);
+    List<IndirectInterestResult> indirectInterestsForUser = this.neo4j.getIndirectInterestsForUser(
+        Long.parseLong(userPotentialInterests), depthIndirect, thresholdIndirect, docstore);
     this.neo4j.closeTransaction();
     setPotentialInterests(new ArrayList<Ad>());
-    LOGGER.info("indirectInterests: " + indirectInterestsForUser.size());
-  //show only given amount
-//    if (indirectInterestsForUser.size() > maximalPotentialInterests) {
-//    	indirectInterestsForUser = indirectInterestsForUser.subList(0, maximalPotentialInterests);
-//    }
+    
+    LOGGER.info("Got " + indirectInterestsForUser.size() + " indirect interests");
+    //show only given amount
+    if (indirectInterestsForUser.size() > thresholdIndirect) {
+      indirectInterestsForUser = indirectInterestsForUser.subList(0, thresholdIndirect);
+    }
 
     List<ac.at.tuwien.tdm.commons.pojo.Ad> retrieveAds = docstore.retrieveAds();
 
-    LOGGER.info("ads - " + retrieveAds.size());
     if (null != indirectInterestsForUser) {
       for (IndirectInterestResult di : indirectInterestsForUser) {
+        LOGGER.info("IndirectInterest: " + di.getTopicID());
         for (Ad ad : retrieveAds) {
           if (ad.getTopicID() == di.getTopicID().intValue()) {
-        	  String topicForID = docstore.getTopicForID(di.getTopicID());
-        	  ad.setTopicName(topicForID);
-        	  ad.setIndirectDepth(di.getDepth()+"");
+            String topicForID = docstore.getTopicForID(di.getTopicID());
+            ad.setTopicName(topicForID);
+            ad.setIndirectDepth(di.getDepth() + "");
             potentialInterests.add(ad);
           }
         }
@@ -259,7 +280,7 @@ public class UserBean {
 
   public void deletePotentialInterests() {
     potentialInterests = new ArrayList<Ad>();
-    maximalPotentialInterests = null;
+    thresholdIndirect = null;
     userPotentialInterests = "";
   }
 
@@ -336,14 +357,6 @@ public class UserBean {
     this.existingInterests = existingInterests;
   }
 
-  public Integer getMaximalExistingInterests() {
-    return maximalExistingInterests;
-  }
-
-  public void setMaximalExistingInterests(Integer maximalExistingInterests) {
-    this.maximalExistingInterests = maximalExistingInterests;
-  }
-
   public void setPotentialInterests(List<Ad> potentialInterests) {
     if (null == potentialInterests) {
       potentialInterests = new ArrayList<Ad>();
@@ -355,14 +368,6 @@ public class UserBean {
     return potentialInterests;
   }
 
-  public Integer getMaximalPotentialInterests() {
-    return maximalPotentialInterests;
-  }
-
-  public void setMaximalPotentialInterests(Integer maximalPotentialInterests) {
-    this.maximalPotentialInterests = maximalPotentialInterests;
-  }
-
   public String getUserPotentialInterests() {
     return userPotentialInterests;
   }
@@ -372,60 +377,60 @@ public class UserBean {
   }
 
   public String getInfluenceFollowersWeight() {
-	return influenceFollowersWeight;
-}
+    return influenceFollowersWeight;
+  }
 
-public void setInfluenceFollowersWeight(String influenceFollowersWeight) {
-	this.influenceFollowersWeight = influenceFollowersWeight;
-}
+  public void setInfluenceFollowersWeight(String influenceFollowersWeight) {
+    this.influenceFollowersWeight = influenceFollowersWeight;
+  }
 
-public String getInfluenceFavouritesWeight() {
-	return influenceFavouritesWeight;
-}
+  public String getInfluenceFavouritesWeight() {
+    return influenceFavouritesWeight;
+  }
 
-public void setInfluenceFavouritesWeight(String influenceFavouritesWeight) {
-	this.influenceFavouritesWeight = influenceFavouritesWeight;
-}
+  public void setInfluenceFavouritesWeight(String influenceFavouritesWeight) {
+    this.influenceFavouritesWeight = influenceFavouritesWeight;
+  }
 
-public String getInfluenceRetweetsWeight() {
-	return influenceRetweetsWeight;
-}
+  public String getInfluenceRetweetsWeight() {
+    return influenceRetweetsWeight;
+  }
 
-public void setInfluenceRetweetsWeight(String influenceRetweetsWeight) {
-	this.influenceRetweetsWeight = influenceRetweetsWeight;
-}
+  public void setInfluenceRetweetsWeight(String influenceRetweetsWeight) {
+    this.influenceRetweetsWeight = influenceRetweetsWeight;
+  }
 
-public Properties loadProperties() throws IOException {
+  public Properties loadProperties() throws IOException {
     Properties prop = new Properties();
 
     prop.load(this.getClass().getResourceAsStream("/" + ac.at.tuwien.tdm.commons.Constants.CONFIG_FILE_NAME));
 
     return prop;
   }
-  
+
   public void initializeUserDB() throws IOException {
-    if(this.userDB == null) {
+    if (this.userDB == null) {
       this.userDB = new UserDBConnector(loadProperties().getProperty(UserDBConnector.PATH_USERDB_KEY), false);
     }
   }
 
   public void initializeNeo4J() throws IOException {
-    if(this.neo4j == null) {
+    if (this.neo4j == null) {
       Properties prop = loadProperties();
       String neoPath = prop.getProperty(Neo4JConnector.NEO4J_PATH_KEY);
       String neoProp = prop.getProperty(Neo4JConnector.NEO4J_PATH_PROPERTIES_KEY);
-  
+
       this.neo4j = new Neo4JConnectorImpl(neoPath, neoProp);
       this.neo4j.connect(false);
     }
   }
-  
+
   @PostConstruct
   public void initialize() throws IOException {
     this.initializeNeo4J();
     this.initializeUserDB();
   }
-  
+
   @PreDestroy
   public void cleanup() {
     System.out.println("CLEANUP CALLED");
@@ -433,43 +438,35 @@ public Properties loadProperties() throws IOException {
     this.userDB.disconnect();
   }
 
-public String getTopic() {
-	return topic;
-}
+  public String getTopic() {
+    return topic;
+  }
 
-public void setTopic(String topic) {
-	this.topic = topic;
-}
+  public void setTopic(String topic) {
+    this.topic = topic;
+  }
 
-public String getUserQuery2() {
-	return userQuery2;
-}
+  public String getUserQuery2() {
+    return userQuery2;
+  }
 
-public void setUserQuery2(String userQuery2) {
-	this.userQuery2 = userQuery2;
-}
-
-public String getTresholdDirect() {
-	return tresholdDirect;
-}
-
-public void setTresholdDirect(String tresholdDirect) {
-	this.tresholdDirect = tresholdDirect;
-}
-
-public String getDepthIndirect() {
-	return depthIndirect;
-}
-
-public void setDepthIndirect(String depthIndirect) {
-	this.depthIndirect = depthIndirect;
-}
-
-public String getTresholdIndirect() {
-	return tresholdIndirect;
-}
-
-public void setTresholdIndirect(String tresholdIndirect) {
-	this.tresholdIndirect = tresholdIndirect;
-}
+  public void setUserQuery2(String userQuery2) {
+    this.userQuery2 = userQuery2;
+  }
+  
+  public Integer getDepthIndirect() {
+    return depthIndirect;
+  }
+  
+  public void setDepthIndirect(Integer depthIndirect) {
+    this.depthIndirect = depthIndirect;
+  }
+  
+  public Integer getThresholdDirect() {
+    return thresholdDirect;
+  }
+  
+  public void setThresholdDirect(Integer thresholdDirect) {
+    this.thresholdDirect = thresholdDirect;
+  }
 }
