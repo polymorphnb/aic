@@ -213,7 +213,7 @@ public class UserBean {
     List<IndirectInterestResult> directInterestsForUser =  this.neo4j.getIndirectInterestsForUser(
         Long.parseLong(userPotentialInterests), 5, maximalPotentialInterests, docstore);
     this.neo4j.closeTransaction();
-    setExistingInterests(new ArrayList<Ad>());
+    setPotentialInterests(new ArrayList<Ad>());
 
     List<ac.at.tuwien.tdm.commons.pojo.Ad> retrieveAds = docstore.retrieveAds();
 
