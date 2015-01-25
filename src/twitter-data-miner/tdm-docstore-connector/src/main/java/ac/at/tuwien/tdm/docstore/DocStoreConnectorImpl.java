@@ -152,10 +152,10 @@ public class DocStoreConnectorImpl implements DocStoreConnector {
 	    BasicDBObject whereQuery = new BasicDBObject();
 	    whereQuery.put("id", id);
 	    DBCursor cursor = collection.find(whereQuery);
-	    return (String)cursor.next().get("Topic");
+	    return (String)cursor.next().get("name");
   }
   
-  public void addTopicToUser(String user, String topic) {
+  public void addTopicToUser(Long user, Long topic) {
 	  DBCollection coll = db.getCollection(USER_TWEET_COLLECTION);
 	  coll.insert(new BasicDBObjectBuilder().add("user",user).add("topic",topic).get());
   }
@@ -206,19 +206,21 @@ public class DocStoreConnectorImpl implements DocStoreConnector {
   /*calculate term frequency inverse document frequence*/
   /*using boolean frequencies for terms in documents*/
   /*denominator is adjusted by 1 to avoid division by zero*/
-  public double calc_tf_idf_UserTopic(Long userID, String topic) {
+  public double calc_tf_idf_UserTopic(Long userID, Long topic) {
+    System.out.println(this.countAllTweetsForUser(userID));
+    System.out.println(this.countTopicTweetsForUser(userID, topic));
 	  return Math.log(this.countAllTweetsForUser(userID)/(1+this.countTopicTweetsForUser(userID, topic)));
   }
   
-  public int countTopicTweetsForUser(Long userID, String topic) {
-	  DBCollection collection = this.db.getCollection(DocStoreConnectorImpl.TOPIC_COLLECTION);
+  public int countTopicTweetsForUser(Long userID, Long topic) {
+	  DBCollection collection = this.db.getCollection(DocStoreConnectorImpl.USER_TWEET_COLLECTION);
 	  BasicDBObject query = new BasicDBObject("user", userID);
 	  query.append("topic", topic);
 	  return collection.find(query).count();
   }
   
   public int countAllTweetsForUser(Long userID) {	  
-	  DBCollection collection = this.db.getCollection(DocStoreConnectorImpl.TOPIC_COLLECTION);
+	  DBCollection collection = this.db.getCollection(DocStoreConnectorImpl.USER_TWEET_COLLECTION);
 	  BasicDBObject query = new BasicDBObject("user", userID);
 	  return collection.find(query).count();
   }
