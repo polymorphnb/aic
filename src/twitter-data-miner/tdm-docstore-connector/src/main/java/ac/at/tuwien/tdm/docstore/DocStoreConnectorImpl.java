@@ -13,7 +13,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mongodb.BasicDBObject;
-import com.mongodb.BasicDBObjectBuilder;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
@@ -34,6 +33,7 @@ public class DocStoreConnectorImpl implements DocStoreConnector {
   private static final String ADS_FILE = "ads.json";
   private static final String TOPIC_COLLECTION = "topics";
   private static final String ADS_COLLECTION = "ads";
+  @SuppressWarnings("unused")
   private static final String USER_TWEET_COLLECTION = "user_tweets";
   private DB db;
   
@@ -70,11 +70,11 @@ public class DocStoreConnectorImpl implements DocStoreConnector {
     }
   }
   
-  public void createUserTweetCollection() {
-	    if(this.db.collectionExists(DocStoreConnectorImpl.USER_TWEET_COLLECTION) == false) {
-	      this.db.getCollection(DocStoreConnectorImpl.USER_TWEET_COLLECTION);
-	    }
-  }
+//  public void createUserTweetCollection() {
+//	    if(this.db.collectionExists(DocStoreConnectorImpl.USER_TWEET_COLLECTION) == false) {
+//	      this.db.getCollection(DocStoreConnectorImpl.USER_TWEET_COLLECTION);
+//	    }
+//  }
   
   public void createAdsCollection() {
     if(this.db.collectionExists(DocStoreConnectorImpl.ADS_COLLECTION) == false) {
@@ -155,10 +155,10 @@ public class DocStoreConnectorImpl implements DocStoreConnector {
 	    return (String)cursor.next().get("name");
   }
   
-  public void addTopicToUser(Long user, Long topic) {
-	  DBCollection coll = db.getCollection(USER_TWEET_COLLECTION);
-	  coll.insert(new BasicDBObjectBuilder().add("user",user).add("topic",topic).get());
-  }
+//  public void addTopicToUser(Long user, Long topic) {
+//	  DBCollection coll = db.getCollection(USER_TWEET_COLLECTION);
+//	  coll.insert(new BasicDBObjectBuilder().add("user",user).add("topic",topic).get());
+//  }
   
   public String getKeywordsForTopic(int id) {
     DBCollection collection = this.db.getCollection(DocStoreConnectorImpl.TOPIC_COLLECTION);
@@ -180,48 +180,26 @@ public class DocStoreConnectorImpl implements DocStoreConnector {
   public void dropDatabase() {
     this.db.dropDatabase();
   }
-  /*
-  public void getInterestsForUsers(int interestThreshold, Neo4JConnector neo4jdb) {
-	  DBCollection coll = db.getCollection(USER_TWEET_COLLECTION);
-	  
-	  Map<String, Object> dbObjIdMap = new HashMap <String, Object>();
-	  dbObjIdMap.put("user", "$user");
-	  dbObjIdMap.put("topic", "$topic");
-	  
-	  DBObject groupFields = new BasicDBObject( "_id", new BasicDBObject(dbObjIdMap));
-	  groupFields.put("cnt", new BasicDBObject( "$sum", 1));
-	  DBObject group = new BasicDBObject("$group", groupFields);
-	  DBObject match = new BasicDBObject("$match", new BasicDBObject("cnt", new BasicDBObject("$gte",interestThreshold)));
-	  
-	  List<DBObject> pipeline = Arrays.asList(group,match);
-	  AggregationOutput output = coll.aggregate(pipeline);
-	  
-	  for(DBObject result : output.results()) {
-		  neo4jdb.addInterestedInRelationship(((Long) ((DBObject)result.get("_id")).get("user")), 
-				                              ((Long) ((DBObject)result.get("_id")).get("topic")), 
-				                               new Integer((String)result.get("cnt")).intValue()
-				                              );
-	  }
-  }*/
-  /*calculate term frequency inverse document frequence*/
-  /*using boolean frequencies for terms in documents*/
-  /*denominator is adjusted by 1 to avoid division by zero*/
-  public double calc_tf_idf_UserTopic(Long userID, Long topic) {
-	  return Math.log(this.countAllTweetsForUser(userID)/(1+this.countTopicTweetsForUser(userID, topic)));
-  }
-  
-  public int countTopicTweetsForUser(Long userID, Long topic) {
-	  DBCollection collection = this.db.getCollection(DocStoreConnectorImpl.USER_TWEET_COLLECTION);
-	  BasicDBObject query = new BasicDBObject("user", userID);
-	  query.append("topic", topic);
-	  return collection.find(query).count();
-  }
-  
-  public int countAllTweetsForUser(Long userID) {	  
-	  DBCollection collection = this.db.getCollection(DocStoreConnectorImpl.USER_TWEET_COLLECTION);
-	  BasicDBObject query = new BasicDBObject("user", userID);
-	  return collection.find(query).count();
-  }
+
+//  /*calculate term frequency inverse document frequence*/
+//  /*using boolean frequencies for terms in documents*/
+//  /*denominator is adjusted by 1 to avoid division by zero*/
+//  public double calc_tf_idf_UserTopic(Long userID, Long topic) {
+//	  return Math.log(this.countAllTweetsForUser(userID)/(1+this.countTopicTweetsForUser(userID, topic)));
+//  }
+//  
+//  public int countTopicTweetsForUser(Long userID, Long topic) {
+//	  DBCollection collection = this.db.getCollection(DocStoreConnectorImpl.USER_TWEET_COLLECTION);
+//	  BasicDBObject query = new BasicDBObject("user", userID);
+//	  query.append("topic", topic);
+//	  return collection.find(query).count();
+//  }
+//  
+//  public int countAllTweetsForUser(Long userID) {	  
+//	  DBCollection collection = this.db.getCollection(DocStoreConnectorImpl.USER_TWEET_COLLECTION);
+//	  BasicDBObject query = new BasicDBObject("user", userID);
+//	  return collection.find(query).count();
+//  }
   
   public static void main(String[] args) {
     DocStoreConnectorImpl docstore = new DocStoreConnectorImpl();
