@@ -11,7 +11,7 @@ public final class RelationshipTypeConstants {
   
   public final static String RETWEETS = "retweets";
   
-  public final static String INTERESTED_IN = "interestedIn";
+  public final static String INTERESTED_IN = "interested-in";
   
   public final static String INTERACTS_WITH = "interacts-with";
   

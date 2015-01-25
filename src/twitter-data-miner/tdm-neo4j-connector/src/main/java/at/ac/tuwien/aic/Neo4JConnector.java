@@ -30,7 +30,7 @@ public interface Neo4JConnector {
   
   public String getUserAsString(Long userID);
   
-  public void addTopic(Long topicID);
+  //public void addTopic(Long topicID);
   
   public void addUserNode(Long id);
   

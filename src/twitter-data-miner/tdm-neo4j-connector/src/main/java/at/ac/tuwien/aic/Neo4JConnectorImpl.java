@@ -55,6 +55,7 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
 
   private GraphDatabaseService graphDb;
   private ReadableIndex<Node> autoNodeIndex;
+  private ReadableIndex<Relationship> autoRelationshipIndex;
 
   private Transaction currentTransaction;
 
@@ -115,6 +116,7 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
             .loadPropertiesFromURL(this.getClass().getResource("/" + this.neo4JPropertiesLocation))
               .newGraphDatabase();
         autoNodeIndex = graphDb.index().getNodeAutoIndexer().getAutoIndex();
+        autoRelationshipIndex = graphDb.index().getRelationshipAutoIndexer().getAutoIndex();
         return;
       } catch (Exception ex) {
         LOGGER.info(String.format("Could not load properties file '%s' as resource, trying file system.", "/" + this.neo4JPropertiesLocation));
@@ -124,6 +126,7 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
             .newGraphDatabase();
       
       autoNodeIndex = graphDb.index().getNodeAutoIndexer().getAutoIndex();
+      autoRelationshipIndex = graphDb.index().getRelationshipAutoIndexer().getAutoIndex();
     }
 
   }
@@ -167,13 +170,13 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
     
   }
   
-  public void addTopic(Long topicID) {
-    Node topic = this.getUser(topicID);
-    if(topic == null) {
-      topic = this.graphDb.createNode(TOPIC_LABEL);
-      topic.setProperty(TOPIC_NODE_INDEX_NAME, topicID);
-    }
-  }
+//  public void addTopic(Long topicID) {
+//    Node topic = this.getUser(topicID);
+//    if(topic == null) {
+//      topic = this.graphDb.createNode(TOPIC_LABEL);
+//      topic.setProperty(TOPIC_NODE_INDEX_NAME, topicID);
+//    }
+//  }
   
   public String getUserAsString(Long userID) {
     return this.autoNodeIndex.get(USER_NODE_INDEX_NAME, userID).getSingle().toString();
@@ -295,6 +298,17 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
   private Node getUser(Long id) {
     Node user = autoNodeIndex.get(USER_NODE_INDEX_NAME, id).getSingle();
     return user;
+  }
+  
+  public Relationship getRelationshipInterested(Long userID, Long topicID) {
+    Relationship rel = autoRelationshipIndex.get(TwitterRelationshipType.INTERESTEDIN.getValue(), userID + "_" + topicID).getSingle();
+    if(rel == null) {
+      Node user1 = this.getUser(userID);
+      UniqueEntity<Node> topic = this.getOrCreateTopicWithUniqueFactory(topicID);
+      UniqueEntity<Relationship> rel2 = this.getOrCreateRelationshipWithUniqueFactory(user1, topic.entity(), TwitterRelationshipType.INTERESTEDIN, true);
+      return rel2.entity();
+    }
+    return rel;
   }
 
   private void addRelationship(Long userID1, Long userID2, TwitterRelationshipType type) {
