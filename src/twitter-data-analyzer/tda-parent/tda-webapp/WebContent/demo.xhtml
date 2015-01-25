@@ -37,12 +37,14 @@
 				action="#{user.deleteMostInfluentalUsers}"
 				update="searchMostInfluentalUsers">
 			</p:commandButton>
-			<br />
+			<br /><br />
 			<p:dataTable var="u" value="#{user.influentalUsers}" rendered="#{not empty user.influentalUsers}">
 				<p:column headerText="Username">
 					<h:outputText value="#{u.screenName}" />
 				</p:column>
-
+				<p:column headerText="User ID">
+					<h:outputText value="#{u.uid}"/>
+				</p:column>
 				<p:column headerText="Amount of Followers">
 					<h:outputText value="#{u.followersCount}" />
 				</p:column>
@@ -119,16 +121,16 @@
 			</p:commandButton>
 			<br />
 			<p:dataTable var="interest" value="#{user.existingInterests}" rendered="#{not empty user.existingInterests}">
-				<p:column headerText="Brand">
-					<h:outputText value="#{interest.brand}" />
+				<p:column headerText="Topic">
+					<h:outputText value="#{interest.topicName}" />
 				</p:column>
 
-				<p:column headerText="Product">
-					<h:outputText value="#{interest.product}" />
+				<p:column headerText="Ad Name">
+					<h:outputText value="#{interest.name}" />
 				</p:column>
 
-				<p:column headerText="Website">
-					<h:outputText value="#{interest.website}" />
+				<p:column headerText="Ad Content">
+					<h:outputText value="#{interest.content}" />
 				</p:column>
 
 			</p:dataTable>
@@ -154,16 +156,16 @@
 			</p:commandButton>
 			<br />
 			<p:dataTable var="interest" value="#{user.potentialInterests}" rendered="#{not empty user.potentialInterests}">
-				<p:column headerText="Brand">
-					<h:outputText value="#{interest.brand}" />
+				<p:column headerText="Topic">
+					<h:outputText value="#{interest.topicName}" />
 				</p:column>
 
-				<p:column headerText="Product">
-					<h:outputText value="#{interest.product}" />
+				<p:column headerText="Ad Name">
+					<h:outputText value="#{interest.name}" />
 				</p:column>
 
-				<p:column headerText="Website">
-					<h:outputText value="#{interest.website}" />
+				<p:column headerText="Ad Content">
+					<h:outputText value="#{interest.content}" />
 				</p:column>
 
 			</p:dataTable>

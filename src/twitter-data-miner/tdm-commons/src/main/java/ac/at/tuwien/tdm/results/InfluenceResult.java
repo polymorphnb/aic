@@ -2,6 +2,7 @@ package ac.at.tuwien.tdm.results;
 
 public class InfluenceResult {
 	  
+	private String uid;
 	private String screenName;
 	private int followersCount;
 	private int favouritesCount;
@@ -9,12 +10,14 @@ public class InfluenceResult {
 	private int influenceScore;
 	
 	public InfluenceResult (
+			 String uid,
 			 String screenName,
 			 int followersCount,
 			 int favouritesCount,
 			 int retweetsCount,
 			 int influenceScore	
 	) {
+		this.setUid(uid);
 		this.screenName = screenName;
 		this.followersCount = followersCount;
 		this.favouritesCount = favouritesCount;
@@ -40,6 +43,14 @@ public class InfluenceResult {
 
 	public int getInfluenceScore() {
 		return influenceScore;
+	}
+
+	public String getUid() {
+		return uid;
+	}
+
+	public void setUid(String uid) {
+		this.uid = uid;
 	}
 	
 }

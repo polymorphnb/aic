@@ -142,8 +142,8 @@ public class UserDBConnector {
   }
   
   public List<InfluenceResult> calcInfluenceAll(int followersWeight, int retweetsWeight, int favouritesWeight, int maxResults) {
-	  String sum = "followersCount * " + followersWeight + " + favoritesCount * " + favouritesWeight;
-	  String query = "SELECT screenName, followersCount, favoritesCount, " + sum +" as influence_score";
+	  String sum = "followersCount * " + followersWeight + " + favoritesCount * " + favouritesWeight + " + retweetsCount * " + retweetsWeight;
+	  String query = "SELECT userId, screenName, followersCount, favoritesCount, retweetsCount, " + sum +" as influence_score";
 	  query = query + " from twitterUsers order by " + sum + " desc";
 	  
 	  LinkedList<InfluenceResult> ret = new LinkedList<InfluenceResult>();
@@ -155,10 +155,11 @@ public class UserDBConnector {
 	      while (rs.next() && tmp < maxResults) {
 	    	  tmp += 1;
 	    	  ret.addLast(new InfluenceResult(
+	    			  	 rs.getString("userId"),
 	    			     rs.getString("screenName"),
 	    				 rs.getInt("followersCount"),
 	    				 rs.getInt("favoritesCount"),
-	    				 rs.getInt("favoritesCount"),
+	    				 rs.getInt("retweetsCount"),
 	    				 rs.getInt("influence_score")
 	    			  ));
 	      }

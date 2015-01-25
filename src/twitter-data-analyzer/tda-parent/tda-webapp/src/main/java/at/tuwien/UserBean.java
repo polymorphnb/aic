@@ -8,7 +8,6 @@ import ac.at.tuwien.tdm.results.DirectInterestResult;
 import ac.at.tuwien.tdm.results.IndirectInterestResult;
 import ac.at.tuwien.tdm.results.InfluenceResult;
 import ac.at.tuwien.tdm.userdb.UserDBConnector;
-
 import at.ac.tuwien.aic.Neo4JConnector;
 import at.ac.tuwien.aic.Neo4JConnectorImpl;
 
@@ -109,11 +108,21 @@ public class UserBean {
 
     this.initialize();
     List<User> users = this.userDB.getUsers();
+    LOGGER.info(users.size());
     this.userDB.disconnect();
 
     DocStoreConnectorImpl docstore = new DocStoreConnectorImpl();
     frequencedUsers = new ArrayList<UserFrequency>();
-    for (int i = 0; i < countFrequencedUser; i++) {
+    
+    int countfor = 0;
+    if(users.size()>countFrequencedUser){
+    	countfor = countFrequencedUser;
+    }
+    else{
+    	countfor = users.size();
+    }
+    
+    for (int i = 0; i < countfor; i++) {
       User user = users.get(i);
       double calc_tf_idf_UserTopic = docstore.calc_tf_idf_UserTopic(user.getId(), Long.parseLong(topic));
       UserFrequency uf = new UserFrequency();
@@ -150,15 +159,18 @@ public class UserBean {
     DocStoreConnectorImpl docstore = new DocStoreConnectorImpl();
     List<DirectInterestResult> directInterestsForUser =  this.neo4j.getDirectInterestsForUser(
         Long.parseLong(userExistingInterests), maximalExistingInterests, docstore);
+    LOGGER.info(directInterestsForUser.size());
     this.neo4j.closeTransaction();
     setExistingInterests(new ArrayList<Ad>());
 
-    List<ac.at.tuwien.tdm.commons.pojo.Ad> retrieveAds = docstore.retrieveAds();
+    List<Ad> retrieveAds = docstore.retrieveAds();
 
     if (null != directInterestsForUser) {
       for (DirectInterestResult di : directInterestsForUser) {
         for (Ad ad : retrieveAds) {
           if (ad.getTopicID() == di.getTopicID().intValue()) {
+        	  String topicForID = docstore.getTopicForID(di.getTopicID());
+        	  ad.setTopicName(topicForID);
             existingInterests.add(ad);
           }
         }
@@ -202,6 +214,8 @@ public class UserBean {
       for (IndirectInterestResult di : directInterestsForUser) {
         for (Ad ad : retrieveAds) {
           if (ad.getTopicID() == di.getTopicID().intValue()) {
+        	  String topicForID = docstore.getTopicForID(di.getTopicID());
+        	  ad.setTopicName(topicForID);
             potentialInterests.add(ad);
           }
         }
