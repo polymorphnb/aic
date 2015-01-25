@@ -66,13 +66,16 @@
 				<hr style="margin-left:0;color:red; background-color:orange; height:2px; text-align:left; border:none;" />
 		
 		
-		<h3>User Frequency</h3>
+		<h3>User Interest Distribution</h3>
 
 		<h:form id="searchMostFrequencedUsers">
-    	Maximum of Users: <p:inputText id="countFrequencedUsers" rendered="true"
+		for User ID: <p:inputText id="userQuery2" rendered="true"
+				style="width:200px;" value="#{user.userQuery2}" />
+				<br /> 
+    	for a maximum of Users: <p:inputText id="countFrequencedUsers" rendered="true"
 				style="width:200px;" value="#{user.countFrequencedUser}" />
 				<br />
-		Topic: <p:inputText id="topic" rendered="true"
+		to Topic ID: <p:inputText id="topic" rendered="true"
 				style="width:200px;" value="#{user.topic}" />		
 				<br /><br /> 
 			<p:commandButton value="Suchen" ajax="true"
@@ -167,7 +170,11 @@
 				<p:column headerText="Ad Content">
 					<h:outputText value="#{interest.content}" />
 				</p:column>
-
+				
+				<p:column headerText="Indirect Interest Depth">
+					<h:outputText value="#{interest.indirectDepth}" />
+				</p:column>
+				
 			</p:dataTable>
 		</h:form>
 	</f:view>

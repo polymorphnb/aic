@@ -102,6 +102,7 @@ public class UserBean {
   private Integer countFrequencedUser;
   private List<UserFrequency> frequencedUsers;
   private String topic;
+  private String userQuery2;
 
   //Parameter countInfluentalUser
   public void searchMostFrequencedUser() throws FileNotFoundException, IOException {
@@ -109,7 +110,21 @@ public class UserBean {
     BasicConfigurator.configure();
 
     this.initialize();
-    List<User> users = this.userDB.getUsers();
+    
+    List<User> users = new ArrayList<User>();
+    if(userQuery2!=null && !userQuery2.isEmpty()){
+    	User u = this.userDB.getUser(Long.parseLong(userQuery2));
+    	LOGGER.info(u.toString());
+    	if(null!=u){
+    	users.add(u);
+    	}
+    }
+    
+    if(users.isEmpty()){
+    	LOGGER.info("users empty");
+		users = this.userDB.getUsers();
+    }
+    
     LOGGER.info(users.size());
     this.userDB.disconnect();
     
@@ -169,6 +184,11 @@ public class UserBean {
     LOGGER.info(directInterestsForUser.size());
     this.neo4j.closeTransaction();
     setExistingInterests(new ArrayList<Ad>());
+    
+    //show only given amount of interests
+    if (directInterestsForUser.size() > maximalExistingInterests) {
+    	directInterestsForUser = directInterestsForUser.subList(0, maximalExistingInterests);
+    }
 
     List<Ad> retrieveAds = docstore.retrieveAds();
 
@@ -182,11 +202,6 @@ public class UserBean {
           }
         }
       }
-    }
-
-    //show only given amount
-    if (existingInterests.size() > maximalExistingInterests) {
-      existingInterests = existingInterests.subList(0, maximalExistingInterests);
     }
 
     BasicConfigurator.resetConfiguration();
@@ -210,27 +225,30 @@ public class UserBean {
     this.initialize();
     this.neo4j.startTransaction();
     DocStoreConnectorImpl docstore = new DocStoreConnectorImpl();
-    List<IndirectInterestResult> directInterestsForUser =  this.neo4j.getIndirectInterestsForUser(
+    List<IndirectInterestResult> indirectInterestsForUser =  this.neo4j.getIndirectInterestsForUser(
         Long.parseLong(userPotentialInterests), 5, maximalPotentialInterests, docstore);
     this.neo4j.closeTransaction();
     setPotentialInterests(new ArrayList<Ad>());
+    LOGGER.info("indirectInterests: " + indirectInterestsForUser.size());
+  //show only given amount
+    if (indirectInterestsForUser.size() > maximalPotentialInterests) {
+    	indirectInterestsForUser = indirectInterestsForUser.subList(0, maximalPotentialInterests);
+    }
 
     List<ac.at.tuwien.tdm.commons.pojo.Ad> retrieveAds = docstore.retrieveAds();
 
-    if (null != directInterestsForUser) {
-      for (IndirectInterestResult di : directInterestsForUser) {
+    LOGGER.info("ads - " + retrieveAds.size());
+    if (null != indirectInterestsForUser) {
+      for (IndirectInterestResult di : indirectInterestsForUser) {
         for (Ad ad : retrieveAds) {
           if (ad.getTopicID() == di.getTopicID().intValue()) {
         	  String topicForID = docstore.getTopicForID(di.getTopicID());
         	  ad.setTopicName(topicForID);
+        	  ad.setIndirectDepth(di.getDepth()+"");
             potentialInterests.add(ad);
           }
         }
       }
-    }
-    //show only given amount
-    if (potentialInterests.size() > maximalPotentialInterests) {
-      potentialInterests = potentialInterests.subList(0, maximalPotentialInterests);
     }
 
     BasicConfigurator.resetConfiguration();
@@ -418,5 +436,13 @@ public String getTopic() {
 
 public void setTopic(String topic) {
 	this.topic = topic;
+}
+
+public String getUserQuery2() {
+	return userQuery2;
+}
+
+public void setUserQuery2(String userQuery2) {
+	this.userQuery2 = userQuery2;
 }
 }
