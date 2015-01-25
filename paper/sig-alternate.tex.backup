@@ -183,20 +183,21 @@ for a very efficient parallelization on GPUs.
 For various benchmarks this technique led to significant speedups. Figure ~\ref{fig:gpuperf}
 shows the performance comparison between a GPU and a sequential implementation 
 for frequent graph mining on multiple datasets.
+
 The principles of this research can also be extended to additional graph algorithms like closed graph,
 maximal graph and temporal graph mining.
 
 \begin{figure}
 \centering
 \epsfig{file=subgraphs.png, width=3in}
-\caption{Graphs and pattern P}
+\caption{Graphs and pattern P \cite{kessl2014parallel}}
 \label{fig:subgraphs}
 \end{figure}
 
 \begin{figure*}
 \centering
 \epsfig{file=gpuperf.png, width=6in}
-\caption{GPU Benchmarks}
+\caption{GPU Benchmarks \cite{kessl2014parallel}}
 \label{fig:gpuperf}
 \end{figure*}
 
@@ -231,7 +232,7 @@ same attributes, the resulting difference graph will contain the non matching co
 \begin{figure}
 \centering
 \epsfig{file=diffquery.png, width=3in}
-\caption{Differential graph for data and query}
+\caption{Differential graph for data and query \cite{vasilyeva2014top}}
 \label{fig:diffquery}
 \end{figure}
 
@@ -257,6 +258,7 @@ professional users is the SLQ language \cite{yang2014schemaless} \cite{yang2014s
 A property graph model is used for formulating queries. Aside
 from having nodes and edges there are key value pairs associated with
 each node. These key value pairs will be further treated as keywords.
+
 Queries are then further transformed using a library $L$ consisting of transformations
 functions. Those may include simple string replacements, semantic transformations,
 numerical and topological transformations.
@@ -285,14 +287,14 @@ the node Missouri the user specifies that it may be somehow related to the first
 \centering
 \epsfig{file=slqlearning.png, width=3in}
 \caption{SLQ: graph querying framework}
-\label{fig:slqlearning}
+\label{fig:slqlearning \cite{yang2014schemaless}}
 \end{figure}
 
 \begin{figure}
 \centering
 \epsfig{file=slqexample.png, width=3in}
 \caption{SLQ query examples}
-\label{fig:slqexample}
+\label{fig:slqexample \cite{yang2014schemaless}}
 \end{figure}
 
 \section{Parallel Adjacency Lists}
@@ -309,13 +311,16 @@ space required. Edges are stored as pairs of vertices and are partitioned by a r
 vertices and are ordered by the source ID. These partitions do not necessarily be of equal length, but should 
 be chosen such that a partition can fit into main memory. Note that this may theoretically limit the number of
 incoming edges a vertex may have.
+
 As the graph connectivity is fully represented 
 by the edge partitions, vertex data can be stored separately and is partitioned 
 based on the edge partitions. Retrieving vertex data can be achieved by simply calculating an offset from
 the edge partitions.
+
 Edge partitions are immutable data structures and do not allow for direct insertion of edges. 
 To counter this problem new edges a stored in a buffer and inserted if their number exceeds a certain threshold.
 During search operations these buffers are also considered.
+
 Queries are built on top of primitive operations that return in or out edges of a vertex.
 Finding in-edges is straight forward due to the partitioning. Due to the fact that out-edges
 for a given node may be present in all partitions their retrieval is more expensive than
@@ -331,8 +336,10 @@ GraphChi-DB but as shown in the benchmark are not fit for natural graphs.
 %https://dl.acm.org/citation.cfm?id=2689677
 %http://delivery.acm.org/10.1145/2690000/2689677/p1-dayarathna.pdf?ip=128.131.237.61&id=2689677&acc=ACTIVE%20SERVICE&key=9074CF143665B1C6.97709C79A94C9E0F.4D4702B0C3E38B35.4D4702B0C3E38B35&CFID=621086552&CFTOKEN=17755639&__acm__=1422145282_da483414101f63310da71f6d768c3e23
 Current graph databases are mainly intended to run on a single instance and therefore
-face performance and availability problems when employed in large scale settings. TODO Zitat aus paper 
-Acacia is a distributed graph database intended to run in hybrid cloud configurations.
+face performance and availability problems when employed in large scale settings \cite{dayarathna2012xgdbench} 
+\cite{dayarathna2013graph}.
+
+Acacia \cite{dayarathna2014towards} is a distributed graph database intended to run in hybrid cloud configurations.
 Hybrid clouds a characterized by running mainly in a private network and only
 some time are available to the public to ensure good performance.
 The basic system design relies on a combination of a Master-Worker pattern 
@@ -373,8 +380,6 @@ the included graph partitioning are the limiting factors.
 %\section{Conclusions}
 %TODO
 %\end{document}  % This is where a 'short' article might terminate
-
-\section{References}
 
 %
 % The following two commands are all you need in the

@@ -46,7 +46,7 @@
 % For tracking purposes - this is V2.0 - May 2012
 
 \documentclass{sig-alternate}
-
+\usepackage{float}
 \begin{document}
 %
 % --- Author Metadata here ---
@@ -161,6 +161,13 @@ in a set of graphs. Among various applications this technique can be used to
 find similar communities within social networks.
 Figure ~\ref{fig:subgraphs} shows a pattern $P$ that occurs in $G1$ and $G2$
 
+\begin{figure}[H]
+\centering
+\epsfig{file=subgraphs.png, width=3in}
+\caption{Graphs and pattern P \cite{kessl2014parallel}}
+\label{fig:subgraphs}
+\end{figure}
+
 As this problem has been shown to be NP-complete \cite{ullmann1976algorithm} it is especially important to
 find scalable algorithms to deal with this problem.
 The GPU-based graph mining algorithm combines concepts from gSpan \cite{yan2002gspan}
@@ -187,17 +194,10 @@ for frequent graph mining on multiple datasets.
 The principles of this research can also be extended to additional graph algorithms like closed graph,
 maximal graph and temporal graph mining.
 
-\begin{figure}
-\centering
-\epsfig{file=subgraphs.png, width=3in}
-\caption{Graphs and pattern P}
-\label{fig:subgraphs}
-\end{figure}
-
 \begin{figure*}
 \centering
 \epsfig{file=gpuperf.png, width=6in}
-\caption{GPU Benchmarks}
+\caption{GPU Benchmarks \cite{kessl2014parallel}}
 \label{fig:gpuperf}
 \end{figure*}
 
@@ -229,10 +229,10 @@ If the graph database has a player that matches parts of the query conditions,
 namely playing for a national team and a club, but there is no second player with the 
 same attributes, the resulting difference graph will contain the non matching conditions.
 
-\begin{figure}
+\begin{figure}[H]
 \centering
 \epsfig{file=diffquery.png, width=3in}
-\caption{Differential graph for data and query}
+\caption{Differential graph for data and query \cite{vasilyeva2014top}}
 \label{fig:diffquery}
 \end{figure}
 
@@ -276,25 +276,24 @@ As a high quality pair of queries and their results may not always be available 
 is added. During the online operation, users can specify a number $k$ which will then be used
 to display the most relevant results after applying a set of transformation. Be receiving 
 feedback from the user SLQ is able to further improve the rankings of the transformations.
-
 Figure ~\ref{fig:slqlearning} shows the basics of this learning process.
+
+\begin{figure}[H]
+\centering
+\epsfig{file=slqlearning.png, width=3in}
+\caption{SLQ: graph querying framework \cite{yang2014schemaless}}
+\label{fig:slqlearning }
+\end{figure}
 
 Figure ~\ref{fig:slqexample} gives an example for three possible queries and their final results.
 The second query tries to find a person serving in the union army and was in a battle. By introducing 
 the node Missouri the user specifies that it may be somehow related to the first conditions.
 
-\begin{figure}
-\centering
-\epsfig{file=slqlearning.png, width=3in}
-\caption{SLQ: graph querying framework}
-\label{fig:slqlearning}
-\end{figure}
-
-\begin{figure}
+\begin{figure}[H]
 \centering
 \epsfig{file=slqexample.png, width=3in}
-\caption{SLQ query examples}
-\label{fig:slqexample}
+\caption{SLQ query examples \cite{yang2014schemaless}}
+\label{fig:slqexample }
 \end{figure}
 
 \section{Parallel Adjacency Lists}
@@ -355,25 +354,25 @@ Neo4J instances. Figure ~\ref{fig:distgraph} shows the underlying design of Acac
 are only relevant for graph partitioning and are not used during other 
 activities.
 
-Among other implemented algorithms a benchmark for the average degree distribution was run on 4 workers.
-Figure ~\ref{fig:distgraphperf} shows the elapsed time in comparison to the number of edges in a graph.
-
-The paper concludes that Acacia is able to handle medium size graph data, but the loading process and 
-the included graph partitioning are the limiting factors.
-
-\begin{figure}
+\begin{figure}[H]
 \centering
 \epsfig{file=distgraph.png, width=3in}
-\caption{SLQ: graph querying framework}
+\caption{Acacia: system overview \cite{dayarathna2014towards}}
 \label{fig:distgraph}
 \end{figure}
 
-\begin{figure}
+Among other implemented algorithms a benchmark for the average degree distribution was run on 4 workers.
+Figure ~\ref{fig:distgraphperf} shows the elapsed time in comparison to the number of edges in a graph.
+
+\begin{figure}[H]
 \centering
 \epsfig{file=distgraphperf.png, width=3in}
-\caption{SLQ: graph querying framework}
+\caption{Acacia: Benchmark \cite{dayarathna2014towards}}
 \label{fig:distgraphperf}
 \end{figure}
+
+The paper concludes that Acacia is able to handle medium size graph data, but the loading process and 
+the included graph partitioning are the limiting factors.
 
 
 

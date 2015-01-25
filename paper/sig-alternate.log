@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2015.1.24)  25 JAN 2015 17:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2015.1.24)  25 JAN 2015 18:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -186,7 +186,15 @@ LaTeX Font Info:    Try loading font information for T1+aer on input line 100.
 
 (/usr/share/texlive/texmf-dist/tex/latex/ae/t1aer.fd
 File: t1aer.fd 1997/11/16 Font definitions for T1/aer.
-))) (./sig-alternate.aux)
+)))
+(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count109
+\float@exts=\toks35
+\float@box=\box30
+\@float@everytoks=\toks36
+\@floatcapt=\box31
+) (./sig-alternate.aux)
 \openout1 = `sig-alternate.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 50.
@@ -201,20 +209,19 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 50.
 LaTeX Font Info:    ... okay on input line 50.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 50.
 LaTeX Font Info:    ... okay on input line 50.
-
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count109
+\scratchcounter=\count110
 \scratchdimen=\dimen123
-\scratchbox=\box30
-\nofMPsegments=\count110
-\nofMParguments=\count111
-\everyMPshowfont=\toks35
-\MPscratchCnt=\count112
+\scratchbox=\box32
+\nofMPsegments=\count111
+\nofMParguments=\count112
+\everyMPshowfont=\toks37
+\MPscratchCnt=\count113
 \MPscratchDim=\dimen124
-\MPnumerator=\count113
-\makeMPintoPDFobject=\count114
-\everyMPtoPDFconversion=\toks36
+\MPnumerator=\count114
+\makeMPintoPDFobject=\count115
+\everyMPtoPDFconversion=\toks38
 ) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -281,7 +288,7 @@ File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 <subgraphs.png, id=1, 1606.0pt x 359.3425pt>
 File: subgraphs.png Graphic file (type png)
  <use subgraphs.png>
-Package pdftex.def Info: subgraphs.png used on input line 192.
+Package pdftex.def Info: subgraphs.png used on input line 166.
 (pdftex.def)             Requested size: 216.81pt x 48.50914pt.
 
 <gpuperf.png, id=3, 1653.17625pt x 381.425pt>
@@ -292,67 +299,75 @@ Package pdftex.def Info: gpuperf.png used on input line 199.
  [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
-]
-<diffquery.png, id=14, 1728.4575pt x 457.71pt>
+ <./subgraphs.png>]
+<diffquery.png, id=16, 1728.4575pt x 457.71pt>
 File: diffquery.png Graphic file (type png)
  <use diffquery.png>
 Package pdftex.def Info: diffquery.png used on input line 234.
 (pdftex.def)             Requested size: 216.81pt x 57.40916pt.
 
-<slqlearning.png, id=15, 1154.3125pt x 773.89125pt>
+
+LaTeX Warning: Reference `fig:slqlearning' on page \thepage  undefined on input
+ line 279.
+
+<slqlearning.png, id=17, 1154.3125pt x 773.89125pt>
 File: slqlearning.png Graphic file (type png)
  <use slqlearning.png>
-Package pdftex.def Info: slqlearning.png used on input line 288.
+Package pdftex.def Info: slqlearning.png used on input line 283.
 (pdftex.def)             Requested size: 216.81pt x 145.35223pt.
 
-<slqexample.png, id=16, 762.85pt x 393.47pt>
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [2 <./gpuperf.png> <./diffquery.png>]
+
+LaTeX Warning: Reference `fig:slqexample' on page \thepage  undefined on input 
+line 288.
+
+<slqexample.png, id=23, 762.85pt x 393.47pt>
 File: slqexample.png Graphic file (type png)
  <use slqexample.png>
-Package pdftex.def Info: slqexample.png used on input line 295.
+Package pdftex.def Info: slqexample.png used on input line 294.
 (pdftex.def)             Requested size: 216.81pt x 111.82791pt.
- [2 <./gpuperf.png> <./subgraphs.png> <./diffquery.png>]
-Overfull \hbox (9.67317pt too wide) in paragraph at lines 329--334
+
+Overfull \hbox (9.67317pt too wide) in paragraph at lines 328--333
 []\T1/aer/m/n/9 While com-par-ing per-for-mance for di-rected un-weighted short
 -
  []
 
-
-Underfull \vbox (badness 1715) has occurred while \output is active []
-
-
 <distgraph.png, id=24, 839.135pt x 521.95pt>
 File: distgraph.png Graphic file (type png)
  <use distgraph.png>
-Package pdftex.def Info: distgraph.png used on input line 366.
+Package pdftex.def Info: distgraph.png used on input line 359.
 (pdftex.def)             Requested size: 216.81pt x 134.85161pt.
 
 <distgraphperf.png, id=25, 840.13875pt x 477.785pt>
 File: distgraphperf.png Graphic file (type png)
  <use distgraphperf.png>
-Package pdftex.def Info: distgraphperf.png used on input line 373.
+Package pdftex.def Info: distgraphperf.png used on input line 369.
 (pdftex.def)             Requested size: 216.81pt x 123.29529pt.
 
-(./sig-alternate.bbl [3 <./slqlearning.png> <./slqexample.png> <./distgraph.png
->]) [4
+[3 <./slqlearning.png> <./slqexample.png> <./distgraph.png>]
+(./sig-alternate.bbl) [4 <./distgraphperf.png>] (./sig-alternate.aux)
 
- <./distgraphperf.png>] (./sig-alternate.aux) ) 
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 2825 strings out of 493105
- 35858 string characters out of 6137072
- 99822 words of memory out of 5000000
- 6219 multiletter control sequences out of 15000+600000
+ 2889 strings out of 493105
+ 36701 string characters out of 6137072
+ 100199 words of memory out of 5000000
+ 6279 multiletter control sequences out of 15000+600000
  46161 words of font info for 63 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,10n,28p,292b,240s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/f
-onts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9
-.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/urw/times/utmb8a.pfb>
-Output written on sig-alternate.pdf (4 pages, 532514 bytes).
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmti9.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/
+helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhv
+r8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>
+Output written on sig-alternate.pdf (4 pages, 533354 bytes).
 PDF statistics:
  61 PDF objects out of 1000 (max. 8388607)
  33 compressed objects within 1 object stream
