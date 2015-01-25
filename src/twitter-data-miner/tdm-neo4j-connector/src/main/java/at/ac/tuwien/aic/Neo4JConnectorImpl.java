@@ -416,6 +416,7 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
   public List<IndirectInterestResult> getIndirectInterestsForUser(Long userId, int maxDepth, int interestThreshold, DocStoreConnector docstore ) {
 	  //TODO return type and sort by weight, remove duplicate interests
 	  LinkedList<IndirectInterestResult> ret = new LinkedList<IndirectInterestResult>();
+	  Map<Long, IndirectInterestResult> interestTopicToUser = new HashMap<Long, IndirectInterestResult>();
 	  for( Path position : this.graphDb.traversalDescription()
 			               .breadthFirst()
 			               .relationships(TwitterRelationshipType.INTERACTS_WITH)
@@ -423,27 +424,17 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
 			               .traverse(this.getUser(userId))
 			  
 	  ) {
-	    Map<Long, IndirectInterestResult> interestTopicToUser = new HashMap<Long, IndirectInterestResult>();
-		 for(DirectInterestResult x : 
+	   
+	    for(DirectInterestResult x : 
 			   this.getDirectInterestsForUser(((Long)position.endNode().getProperty(USER_NODE_INDEX_NAME)).longValue(), interestThreshold, docstore))
-		 {
-		   if(interestTopicToUser.containsKey(x.getTopicID())) {
-		     // IndirectInterestResult tempResult = interestTopicToUser.get(x.getTopicID());
-		   }
-			 ret.addLast(
-			    new IndirectInterestResult(
-			    		x.getInterest(), 
-			    		x.getTopic(), 
-			    		x.getTopicID(), 
-			    		position.length()
-			    )		 
-			 );
+	    {
+	      if(interestTopicToUser.containsKey(x.getTopicID())) {
+	        continue;
+	      }
+	      IndirectInterestResult tempResult = new IndirectInterestResult(x.getInterest(), x.getTopic(), x.getTopicID(), position.length());   
+	      ret.addLast(tempResult);
+	      interestTopicToUser.put(x.getTopicID(), tempResult);
 		 }
-		 //ret.addLast(
-		 //	new IndirectInterestResult(int interest, String topic, long topicID, int depth)	 
-		 //);
-		
-		 //this.getDirectInterestsForUser(((Long)position.endNode().getProperty(USER_NODE_INDEX_NAME)).longValue(), interestThreshold);
 	  }
 	  
 	  return ret;
