@@ -26,11 +26,13 @@ public interface Neo4JConnector {
   
   public void disconnect();
   
+  public void startTransaction();
+  
+  public void closeTransaction();
+  
   public String getUserViaCypher(Long userID);
   
   public String getUserAsString(Long userID);
-  
-  //public void addTopic(Long topicID);
   
   public void addUserNode(Long id);
   
@@ -50,9 +52,7 @@ public interface Neo4JConnector {
   
   public void addInterestedInRelationship(Long userID1, Long topicID, int weight);
   
-  public void startTransaction();
-  
-  public void closeTransaction();
+  public Integer getTopicWeightForUser(Long userID, Long topicID);
   
   public List<DirectInterestResult> getDirectInterestsForUser(Long userId, int interestThreshold, DocStoreConnector docstore);
   

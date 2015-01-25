@@ -2,6 +2,7 @@ package at.ac.tuwien.aic;
 
 import ac.at.tuwien.tdm.commons.pojo.User;
 import ac.at.tuwien.tdm.docstore.DocStoreConnector;
+import ac.at.tuwien.tdm.queries.QueryHelper;
 import ac.at.tuwien.tdm.results.DirectInterestResult;
 import ac.at.tuwien.tdm.results.IndirectInterestResult;
 
@@ -310,6 +311,14 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
     }
     return rel;
   }
+  
+  public Integer getTopicWeightForUser(Long userID, Long topicID) {
+    Relationship rel = this.getRelationshipInterested(userID, topicID);
+    if(rel == null) {
+      return 0;
+    }
+    return Integer.valueOf(rel.getProperty(RelationshipTypeConstants.WEIGHT).toString());
+  }
 
   private void addRelationship(Long userID1, Long userID2, TwitterRelationshipType type) {
     if (this.batchInsert == true) {
@@ -400,7 +409,8 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
 					  ));
 		  }
 	  }
-	  return ret;
+
+	  return QueryHelper.sortDirectInterestResults(ret);
   }
   
   public List<IndirectInterestResult> getIndirectInterestsForUser(Long userId, int maxDepth, int interestThreshold, DocStoreConnector docstore ) {
@@ -413,9 +423,13 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
 			               .traverse(this.getUser(userId))
 			  
 	  ) {
+	    Map<Long, IndirectInterestResult> interestTopicToUser = new HashMap<Long, IndirectInterestResult>();
 		 for(DirectInterestResult x : 
 			   this.getDirectInterestsForUser(((Long)position.endNode().getProperty(USER_NODE_INDEX_NAME)).longValue(), interestThreshold, docstore))
 		 {
+		   if(interestTopicToUser.containsKey(x.getTopicID())) {
+		     // IndirectInterestResult tempResult = interestTopicToUser.get(x.getTopicID());
+		   }
 			 ret.addLast(
 			    new IndirectInterestResult(
 			    		x.getInterest(), 
