@@ -207,8 +207,6 @@ public class DocStoreConnectorImpl implements DocStoreConnector {
   /*using boolean frequencies for terms in documents*/
   /*denominator is adjusted by 1 to avoid division by zero*/
   public double calc_tf_idf_UserTopic(Long userID, Long topic) {
-    System.out.println(this.countAllTweetsForUser(userID));
-    System.out.println(this.countTopicTweetsForUser(userID, topic));
 	  return Math.log(this.countAllTweetsForUser(userID)/(1+this.countTopicTweetsForUser(userID, topic)));
   }
   
