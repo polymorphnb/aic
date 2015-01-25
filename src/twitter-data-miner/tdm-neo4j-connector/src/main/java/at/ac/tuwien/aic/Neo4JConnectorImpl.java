@@ -291,6 +291,7 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
     }
   }
   
+  @SuppressWarnings("unused")
   private Node getTopic(Long id) {
     Node topic = autoNodeIndex.get(TOPIC_NODE_INDEX_NAME, id).getSingle();
     return topic;
