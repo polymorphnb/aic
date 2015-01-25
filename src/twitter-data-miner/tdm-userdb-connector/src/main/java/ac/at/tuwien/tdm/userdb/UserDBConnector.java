@@ -139,12 +139,12 @@ public class UserDBConnector {
   
   public int calcInfluence(Long userID, int followersWeight, int retweetsWeight, int favouritesWeight) {
 	  User u = this.getUser(userID);
-	  return u.getFollowersCount() * followersWeight + u.getRetweetsCount() * retweetsWeight + u.getFavoritesCount() * favouritesWeight;
+	  return u.getFollowersCount() * followersWeight + u.getRetweetsCount() * retweetsWeight + u.getFavoritedCount() * favouritesWeight;
   }
   
   public List<InfluenceResult> calcInfluenceAll(int followersWeight, int retweetsWeight, int favouritesWeight, int maxResults) {
-	  String sum = "followersCount * " + followersWeight + " + favoritesCount * " + favouritesWeight + " + retweetsCount * " + retweetsWeight;
-	  String query = "SELECT userId, screenName, followersCount, favoritesCount, retweetsCount, " + sum +" as influence_score";
+	  String sum = "followersCount * " + followersWeight + " + favoritedCount * " + favouritesWeight + " + retweetsCount * " + retweetsWeight;
+	  String query = "SELECT userId, screenName, followersCount, favoritedCount, retweetsCount, " + sum +" as influence_score";
 	  query = query + " from twitterUsers order by " + sum + " desc";
 	  
 	  LinkedList<InfluenceResult> ret = new LinkedList<InfluenceResult>();
@@ -159,7 +159,7 @@ public class UserDBConnector {
 	    			  	 rs.getString("userId"),
 	    			     rs.getString("screenName"),
 	    				 rs.getInt("followersCount"),
-	    				 rs.getInt("favoritesCount"),
+	    				 rs.getInt("favoritedCount"),
 	    				 rs.getInt("retweetsCount"),
 	    				 rs.getInt("influence_score")
 	    			  ));
@@ -221,6 +221,7 @@ public class UserDBConnector {
       PreparedStatement updateRetweet = this.conn.prepareStatement(updateString);
       updateRetweet.setInt(1, retweetCount);
       updateRetweet.setLong(2, userID);
+      updateRetweet.execute();
       this.conn.commit();
     } catch (SQLException ex) {
       LOGGER.error(String.format("Couldn't update retweet count for user '%s'", userID));
@@ -230,8 +231,9 @@ public class UserDBConnector {
   public void updateTweetCountForUser(Long userID) {
     String updateString = "update twitterUsers set collectedTweetsCount = collectedTweetsCount + 1 where userID = ?";
     try {
-      PreparedStatement updateRetweet = this.conn.prepareStatement(updateString);
-      updateRetweet.setLong(1, userID);
+      PreparedStatement updateTweetCount = this.conn.prepareStatement(updateString);
+      updateTweetCount.setLong(1, userID);
+      updateTweetCount.execute();
       this.conn.commit();
     } catch (SQLException ex) {
       LOGGER.error(String.format("Couldn't update retweet count for user '%s'", userID));
@@ -241,9 +243,10 @@ public class UserDBConnector {
   public void updateFavoritedCountForUser(Long userID, int favoritedCount) {
     String updateString = "update twitterUsers set favoritedCount = favoritedCount + ? where userID = ?";
     try {
-      PreparedStatement updateRetweet = this.conn.prepareStatement(updateString);
-      updateRetweet.setInt(1, favoritedCount);
-      updateRetweet.setLong(2, userID);
+      PreparedStatement updateFavoritedCount = this.conn.prepareStatement(updateString);
+      updateFavoritedCount.setInt(1, favoritedCount);
+      updateFavoritedCount.setLong(2, userID);
+      updateFavoritedCount.execute();
       this.conn.commit();
     } catch (SQLException ex) {
       LOGGER.error(String.format("Couldn't update retweet count for user '%s'", userID));
@@ -253,10 +256,11 @@ public class UserDBConnector {
   public void updateFavoritedCountTweetCountRetweetCountForUser(Long userID, int retweetCount, int favoritedCount) {
     String updateString = "update twitterUsers set favoritedCount = favoritedCount + ?, collectedTweetsCount = collectedTweetsCount + 1, retweetsCount = retweetsCount + ? where userID = ?";
     try {
-      PreparedStatement updateRetweet = this.conn.prepareStatement(updateString);
-      updateRetweet.setInt(1, favoritedCount);
-      updateRetweet.setInt(2, retweetCount);
-      updateRetweet.setLong(3, userID);
+      PreparedStatement updateUser = this.conn.prepareStatement(updateString);
+      updateUser.setInt(1, favoritedCount);
+      updateUser.setInt(2, retweetCount);
+      updateUser.setLong(3, userID);
+      updateUser.execute();
       this.conn.commit();
     } catch (SQLException ex) {
       LOGGER.error(String.format("Couldn't update retweet count for user '%s'", userID));
