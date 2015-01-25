@@ -78,7 +78,8 @@ public class TwitterTweetDataProcessor extends TwitterDataProcessor {
 
   private void addTopicInterestsUser(Tweet tweet) {
     Long topicID = this.docStore.getTopicIDForKeyword(tweet.getSearchTerm());
-    this.neo4j.addInterestedInRelationship(tweet.getAuthorUserId(), topicID, 0);
+    this.neo4j.addInterestedInRelationship(tweet.getAuthorUserId(), topicID);
+    this.docStore.addTopicToUser(tweet.getAuthorUserId(), topicID);
   }
   
   private void addInteractsWithUser(Tweet tweet) {
