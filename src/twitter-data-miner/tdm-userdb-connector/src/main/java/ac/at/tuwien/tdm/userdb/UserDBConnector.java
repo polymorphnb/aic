@@ -222,7 +222,6 @@ public class UserDBConnector {
       updateRetweet.setInt(1, retweetCount);
       updateRetweet.setLong(2, userID);
       updateRetweet.execute();
-      this.conn.commit();
     } catch (SQLException ex) {
       LOGGER.error(String.format("Couldn't update retweet count for user '%s'", userID));
     }
@@ -234,7 +233,6 @@ public class UserDBConnector {
       PreparedStatement updateTweetCount = this.conn.prepareStatement(updateString);
       updateTweetCount.setLong(1, userID);
       updateTweetCount.execute();
-      this.conn.commit();
     } catch (SQLException ex) {
       LOGGER.error(String.format("Couldn't update retweet count for user '%s'", userID));
     }
@@ -247,7 +245,6 @@ public class UserDBConnector {
       updateFavoritedCount.setInt(1, favoritedCount);
       updateFavoritedCount.setLong(2, userID);
       updateFavoritedCount.execute();
-      this.conn.commit();
     } catch (SQLException ex) {
       LOGGER.error(String.format("Couldn't update retweet count for user '%s'", userID));
     }
@@ -261,7 +258,6 @@ public class UserDBConnector {
       updateUser.setInt(2, retweetCount);
       updateUser.setLong(3, userID);
       updateUser.execute();
-      this.conn.commit();
     } catch (SQLException ex) {
       LOGGER.error(String.format("Couldn't update retweet count for user '%s'", userID));
     }
