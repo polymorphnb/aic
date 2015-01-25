@@ -15,6 +15,7 @@ We assume you are running a current version of ubuntu.
     git clone https://github.com/polymorphnb/aic.git
 
 2. Install dependencies
+
    add new repository for Java 8 and neo4j
    
    sudo su
@@ -25,12 +26,14 @@ We assume you are running a current version of ubuntu.
    apt-get install oracle-java8-installer neo4j mongodb maven tomcat7
 
 3. compile via maven
+
    cd $HOME/src/aic/src/twitter-data-miner
    mvn install -DskipTests
    
    This will create two standalone executable jar-Files. One of them is used to collect data from Twitter while the other is used to process the collected data files.
    
 4. The TwitterCollector
+
    The executable jar-File for the TwitterCollector is located in src/twitter-data-miner/tdm-file-dumper/target. 
    There are two files created via maven where TwitterTweetCollector-jar-with-dependencies.jar is the standalone file that is used to collect the data.
    Since the Twitter-API requires authentication to use various of their services. The authentication tokens are loaded automatically by the TwitterConnector and several of them 
@@ -51,11 +54,13 @@ We assume you are running a current version of ubuntu.
    is created with the found tweets and the corresponding users. 
   
 5. running the TwitterCollector
+
    The TwitterCollector can be run via the following command:
    
    java -jar TwitterTweetCollector-jar-with-dependencies.jar
   
 6. The TwitterProcessor
+
    The TwitterProcessor is used to process the collected data from the TwitterCollector. It can be found (after a mvn clean install -DskipTests) under src/tdm-processor/target and is called TwitterTweetProcessor-jar-with-dependencies.jar It uses the same dist folder where the resulting files are located. Since the TwitterProcessor uses different kind of technologies 
    several configuration values can be set. During the processing of the files a graph based database (neo4j) is created where all users and their interactions as well as interests in topics are stored. Furthermore, 
    topics that classify the searchTerms are organized via a document store (mongoDB). In addition the user meta-data is stored in a traditional relational database (H2).
@@ -90,7 +95,9 @@ We assume you are running a current version of ubuntu.
    Please keep in mind that these values have to point to a correct location (with write permission) because otherwise the TwitterProcessor will terminate immediatly.
    
 7. running the TwitterProcessor
+
 	First the mongoDB service has to be started. If default values are used it can be started via:
+	
 	mongod
 	java -jar TwitterTweetProcessor-jar-with-dependencies.jar [rebuild]
 	
@@ -103,6 +110,7 @@ We assume you are running a current version of ubuntu.
 	After completion of the TwitterProcessr the document store is populated and the populated user database and graph database can be found under the location of its configuration.
 	
 8. Setting up Tomcat
+
 	The Web-Frontend is built as a JSF application and can be run in Tomcat. However, since the databases are (and should not) be included in the resulting war-archive, their location has to specified separately. For this purpose a 
 	file with the configuration values (config.properties) has to be placed in the classpath of Tomcat. The config.properties file has the same format as described in section 6 and should contain absolute file paths to the location of the 
 	graph databse and the user database. An example for such a file is shown here:
@@ -121,6 +129,7 @@ We assume you are running a current version of ubuntu.
 	Afterwards the tomcat server has to be restarted.
 	
 9. Creating the Web-Frontend
+
 	The web application can be built via maven in the src/twitter-data-analyzer folder:
 	
 	mvn clean install
@@ -141,6 +150,7 @@ We assume you are running a current version of ubuntu.
 	cp tda-webapp-1.0.0-SNAPSHOT.war $TOMCAT_HOME/webapps
 	
 11. Using the Web-Frontend	
+
 	After deploying the web application it can be used. Assuming that there are default values for Tomcat in place it can be called via:
 	
 	http://localhost:8080/tda-webapp-1.0.0-SNAPSHOT/
