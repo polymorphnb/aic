@@ -46,6 +46,8 @@ public interface Neo4JConnector {
   
   public void addInteractsWithRelationship(Long userID1, Long userID2);
   
+  public void addInterestedInRelationship(Long userID1, Long topicID);
+  
   public void addInterestedInRelationship(Long userID1, Long topicID, int weight);
   
   public void startTransaction();
@@ -54,6 +56,6 @@ public interface Neo4JConnector {
   
   public List<DirectInterestResult> getDirectInterestsForUser(Long userId, int interestThreshold, DocStoreConnector docstore);
   
-  public List<IndirectInterestResult> getIndirectInterestsForUser(Long userId, int maxDepth, int interestThreshold, DocStoreConnector docstore );
+  public List<IndirectInterestResult> getIndirectInterestsForUser(Long userId, int maxDepth, int interestThreshold, DocStoreConnector docstore);
 
 }

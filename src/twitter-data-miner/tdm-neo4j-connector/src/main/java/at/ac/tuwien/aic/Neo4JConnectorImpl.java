@@ -266,21 +266,25 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
     return factory.getOrCreateWithOutcome(TOPIC_NODE_INDEX_NAME, id);
   }
 
-  public UniqueEntity<Relationship> getOrCreateRelationshipWithUniqueFactory(final Node user1, final Node user2,
-      final TwitterRelationshipType type) {
+  public UniqueEntity<Relationship> getOrCreateRelationshipWithUniqueFactory(final Node user1, final Node node2,
+      final TwitterRelationshipType type, boolean isTopic) {
     UniqueFactory<Relationship> factory = new UniqueFactory.UniqueRelationshipFactory(graphDb, type.getValue()) {
 
       @Override
       protected Relationship create(Map<String, Object> properties) {
-        Relationship rel = user1.createRelationshipTo(user2, type);
+        Relationship rel = user1.createRelationshipTo(node2, type);
         rel.setProperty(type.getValue(), properties.get(type.getValue()));
         rel.setProperty(RelationshipTypeConstants.WEIGHT, 0);
         return rel;
       }
     };
 
-    return factory.getOrCreateWithOutcome(type.getValue(),
-        user1.getProperty(USER_NODE_INDEX_NAME) + "_" + user2.getProperty(USER_NODE_INDEX_NAME));
+    if(isTopic == false) {    
+      return factory.getOrCreateWithOutcome(type.getValue(), user1.getProperty(USER_NODE_INDEX_NAME) + "_" + node2.getProperty(USER_NODE_INDEX_NAME));
+    }
+    else {
+      return factory.getOrCreateWithOutcome(type.getValue(), user1.getProperty(USER_NODE_INDEX_NAME) + "_" + node2.getProperty(TOPIC_NODE_INDEX_NAME));
+    }
   }
   
   private Node getTopic(Long id) {
@@ -305,7 +309,7 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
         return;
       }
       
-      UniqueEntity<Relationship> rel = this.getOrCreateRelationshipWithUniqueFactory(user1, user2, type);
+      UniqueEntity<Relationship> rel = this.getOrCreateRelationshipWithUniqueFactory(user1, user2, type, false);
       if (rel.wasCreated() == false) {
         int weight = ((Integer) rel.entity().getProperty(RelationshipTypeConstants.WEIGHT)).intValue();
         weight++;
@@ -317,16 +321,16 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
   private void addRelationshipInterested(Long userID1, Long topicID, int weight, TwitterRelationshipType type) {
     Node user1 = this.getUser(userID1);
     UniqueEntity<Node> topic = this.getOrCreateTopicWithUniqueFactory(topicID);
-    Relationship rel = this.getRelationship(user1, topic.entity(), type);
-    if (rel != null) {
-      Integer weightInt = (Integer) rel.getProperty(RelationshipTypeConstants.WEIGHT);
+    UniqueEntity<Relationship> rel = this.getOrCreateRelationshipWithUniqueFactory(user1, topic.entity(), type, true);
+    if (rel.wasCreated() == false) {
+      Integer weightInt = (Integer) rel.entity().getProperty(RelationshipTypeConstants.WEIGHT);
+      if(weight == 0) {
+        // just in case the value has not been set properly
+        weight = 1;
+      }
       weightInt += Integer.valueOf(weight);
-      rel.setProperty(RelationshipTypeConstants.WEIGHT, weightInt);
-    } else {
-      rel = user1.createRelationshipTo(topic.entity(), type);
-      rel.setProperty(RelationshipTypeConstants.WEIGHT, Integer.valueOf(weight));
+      rel.entity().setProperty(RelationshipTypeConstants.WEIGHT, weightInt);
     }
-
   }
 
   public void addFollowsRelationship(Long userID1, Long userID2) {
@@ -348,21 +352,25 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
   public void addInteractsWithRelationship(Long userID1, Long userID2) {
     this.addRelationship(userID1, userID2, TwitterRelationshipType.INTERACTS_WITH);
   }
+  
+  public void addInterestedInRelationship(Long userID1, Long topicID) {
+    this.addRelationshipInterested(userID1, topicID, 0, TwitterRelationshipType.INTERESTEDIN);
+  }
 
   public void addInterestedInRelationship(Long userID1, Long topicID, int weight) {
     this.addRelationshipInterested(userID1, topicID, weight, TwitterRelationshipType.INTERESTEDIN);
   }
 
-  private Relationship getRelationship(Node user1, Node user2, TwitterRelationshipType type) {
-    Iterable<Relationship> itRel = user1.getRelationships(type);
-    if (itRel != null) {
-      if (itRel.iterator().hasNext()) {
-        return itRel.iterator().next();
-      }
-    }
-    return null;
-
-  }
+//  private Relationship getRelationship(Node user1, Node user2, TwitterRelationshipType type) {
+//    Iterable<Relationship> itRel = user1.getRelationships(type);
+//    if (itRel != null) {
+//      if (itRel.iterator().hasNext()) {
+//        return itRel.iterator().next();
+//      }
+//    }
+//    return null;
+//
+//  }
   
   public List<DirectInterestResult> getDirectInterestsForUser(Long userId, int interestThreshold, DocStoreConnector docstore) {
 	  LinkedList<DirectInterestResult> ret = new LinkedList<DirectInterestResult>();
