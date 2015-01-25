@@ -9,32 +9,26 @@
 <h:head>
 <script src="resources/js/sigma.min.js"></script>
 	<script src="resources/js/plugins/sigma.parsers.json.min.js"></script>
-	<style type="text/css">
-  #container {
-    max-width: 400px;
-    height: 400px;
-    margin: auto;
-  }
-</style>
+	<link type="text/css" rel="stylesheet" href="/faces/javax.faces.resource/theme.css?ln=primefaces-zaristo" />
 </h:head>
-<h:body>
+<h:body style="background-color:#FFFACD;">
 	
-	<div id="container"></div>
-	
-	<!-- <script>
-	  sigma.parsers.json('resources/data/data.json', {
-	    container: 'container',
-	    settings: {
-	      defaultNodeColor: '#ec5148'
-	    }
-	  });
-	</script> -->
 	<f:view>
-		<h2>Most Influental User</h2>
+		<h3>Most Influental User</h3>
 
 		<h:form id="searchMostInfluentalUsers">
     	Maximum of Users: <p:inputText id="countInfluentalUsers" rendered="true"
 				style="width:200px;" value="#{user.countInfluentalUser}" /> 
+				<br />
+		Favourites Weight: <p:inputText id="favouritesWeight" rendered="true"
+				style="width:200px;" value="#{user.influenceFavouritesWeight}" /> 
+				<br />
+		Followers Weight:  <p:inputText id="followersWeight" rendered="true"
+				style="width:200px;" value="#{user.influenceFollowersWeight}" /> 
+				<br />
+		Retweets Weight:   <p:inputText id="retweetsWeight" rendered="true"
+				style="width:200px;" value="#{user.influenceRetweetsWeight}" /> 
+				<br /><br />
 			<p:commandButton value="Suchen" ajax="true"
 				action="#{user.searchMostInfluentalUser}"
 				update="searchMostInfluentalUsers">
@@ -43,6 +37,7 @@
 				action="#{user.deleteMostInfluentalUsers}"
 				update="searchMostInfluentalUsers">
 			</p:commandButton>
+			<br />
 			<p:dataTable var="u" value="#{user.influentalUsers}" rendered="#{not empty user.influentalUsers}">
 				<p:column headerText="Username">
 					<h:outputText value="#{u.screenName}" />
@@ -66,12 +61,18 @@
 			</p:dataTable>
 		</h:form>
 		
+				<hr style="margin-left:0;color:red; background-color:orange; height:2px; text-align:left; border:none;" />
 		
-		<h2>User Frequency</h2>
+		
+		<h3>User Frequency</h3>
 
 		<h:form id="searchMostFrequencedUsers">
     	Maximum of Users: <p:inputText id="countFrequencedUsers" rendered="true"
-				style="width:200px;" value="#{user.countFrequencedUser}" /> 
+				style="width:200px;" value="#{user.countFrequencedUser}" />
+				<br />
+		Topic: <p:inputText id="topic" rendered="true"
+				style="width:200px;" value="#{user.topic}" />		
+				<br /><br /> 
 			<p:commandButton value="Suchen" ajax="true"
 				action="#{user.searchMostFrequencedUser}"
 				update="searchMostFrequencedUsers">
@@ -80,6 +81,7 @@
 				action="#{user.deleteMostFrequencedUsers}"
 				update="searchMostFrequencedUsers">
 			</p:commandButton>
+			<br />
 			<p:dataTable var="u" value="#{user.frequencedUsers}" rendered="#{not empty user.frequencedUsers}">
 				<p:column headerText="Id">
 					<h:outputText value="#{u.id}" />
@@ -96,13 +98,17 @@
 			</p:dataTable>
 		</h:form>
 		
-		<h2>Existing Interests of User</h2>
+				<hr style="margin-left:0;color:red; background-color:orange; height:2px; text-align:left; border:none;" />
+		
+		
+		<h3>Existing Interests of User</h3>
 
 		<h:form id="existingInterests">
     	User: <p:inputText id="userExistingInterests" rendered="true"
 				style="width:200px;" value="#{user.userExistingInterests}" /> 
 		Maximal Interests: <p:inputText id="amountExistingInterests" rendered="true"
 				style="width:200px;" value="#{user.maximalExistingInterests}" /> 
+				<br /><br />
 			<p:commandButton value="Suchen" ajax="true"
 				action="#{user.searchExistingInterests}"
 				update="existingInterests">
@@ -111,6 +117,7 @@
 				action="#{user.deleteExistingInterests}"
 				update="existingInterests">
 			</p:commandButton>
+			<br />
 			<p:dataTable var="interest" value="#{user.existingInterests}" rendered="#{not empty user.existingInterests}">
 				<p:column headerText="Brand">
 					<h:outputText value="#{interest.brand}" />
@@ -127,13 +134,16 @@
 			</p:dataTable>
 		</h:form>
 		
-		<h2>Potential Interests of User</h2>
+		<hr style="margin-left:0;color:red; background-color:orange; height:2px; text-align:left; border:none;" />
+		
+		<h3>Potential Interests of User</h3>
 		
 		<h:form id="potentialInterests">
     	User: <p:inputText id="userPotentialInterests" rendered="true"
 				style="width:200px;" value="#{user.userPotentialInterests}" /> 
 		Maximal Interests: <p:inputText id="amountPotentialInterests" rendered="true"
 				style="width:200px;" value="#{user.maximalPotentialInterests}" /> 
+				<br /><br />
 			<p:commandButton value="Suchen" ajax="true"
 				action="#{user.searchPotentialInterests}"
 				update="potentialInterests">
@@ -142,6 +152,7 @@
 				action="#{user.deletePotentialInterests}"
 				update="potentialInterests">
 			</p:commandButton>
+			<br />
 			<p:dataTable var="interest" value="#{user.potentialInterests}" rendered="#{not empty user.potentialInterests}">
 				<p:column headerText="Brand">
 					<h:outputText value="#{interest.brand}" />

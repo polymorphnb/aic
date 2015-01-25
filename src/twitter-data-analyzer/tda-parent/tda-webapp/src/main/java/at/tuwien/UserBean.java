@@ -37,6 +37,9 @@ public class UserBean {
 
   private Integer countInfluentalUser;
   private List<InfluenceResult> influentalUsers;
+  private String influenceFollowersWeight;
+  private String influenceFavouritesWeight;
+  private String influenceRetweetsWeight;
   
   private Neo4JConnector neo4j = null;
   private UserDBConnector userDB = null;
@@ -47,9 +50,33 @@ public class UserBean {
     BasicConfigurator.configure();
 
     LOGGER.info("search most influental user");
+    
+    int favo;
+    if(null!=influenceFavouritesWeight && !influenceFavouritesWeight.isEmpty()){
+    	favo = Integer.parseInt(influenceFavouritesWeight);
+    }
+    else {
+    	favo = 1;
+    }
+    
+    int foll;
+    if(null!=influenceFollowersWeight && !influenceFollowersWeight.isEmpty()){
+    	foll = Integer.parseInt(influenceFollowersWeight);
+    }
+    else {
+    	foll = 1;
+    }
+    
+    int retweet;
+    if(null!=influenceRetweetsWeight && !influenceRetweetsWeight.isEmpty()){
+    	retweet = Integer.parseInt(influenceRetweetsWeight);
+    }
+    else {
+    	retweet = 1;
+    }
 
     this.initialize();
-    List<InfluenceResult> users = this.userDB.calcInfluenceAll(1, 1, 1, countInfluentalUser);
+    List<InfluenceResult> users = this.userDB.calcInfluenceAll(foll, retweet, favo, countInfluentalUser);
 
     if (null != users) {
       LOGGER.info(users.size());
@@ -73,6 +100,7 @@ public class UserBean {
 
   private Integer countFrequencedUser;
   private List<UserFrequency> frequencedUsers;
+  private String topic;
 
   //Parameter countInfluentalUser
   public void searchMostFrequencedUser() throws FileNotFoundException, IOException {
@@ -87,7 +115,7 @@ public class UserBean {
     frequencedUsers = new ArrayList<UserFrequency>();
     for (int i = 0; i < countFrequencedUser; i++) {
       User user = users.get(i);
-      double calc_tf_idf_UserTopic = docstore.calc_tf_idf_UserTopic(user.getId(), 1L);
+      double calc_tf_idf_UserTopic = docstore.calc_tf_idf_UserTopic(user.getId(), Long.parseLong(topic));
       UserFrequency uf = new UserFrequency();
       uf.setUsername(user.getScreenName());
       uf.setId(user.getId());
@@ -301,7 +329,31 @@ public class UserBean {
     this.userPotentialInterests = userPotentialInterests;
   }
 
-  public Properties loadProperties() throws IOException {
+  public String getInfluenceFollowersWeight() {
+	return influenceFollowersWeight;
+}
+
+public void setInfluenceFollowersWeight(String influenceFollowersWeight) {
+	this.influenceFollowersWeight = influenceFollowersWeight;
+}
+
+public String getInfluenceFavouritesWeight() {
+	return influenceFavouritesWeight;
+}
+
+public void setInfluenceFavouritesWeight(String influenceFavouritesWeight) {
+	this.influenceFavouritesWeight = influenceFavouritesWeight;
+}
+
+public String getInfluenceRetweetsWeight() {
+	return influenceRetweetsWeight;
+}
+
+public void setInfluenceRetweetsWeight(String influenceRetweetsWeight) {
+	this.influenceRetweetsWeight = influenceRetweetsWeight;
+}
+
+public Properties loadProperties() throws IOException {
     Properties prop = new Properties();
 
     prop.load(this.getClass().getResourceAsStream("/" + ac.at.tuwien.tdm.commons.Constants.CONFIG_FILE_NAME));
@@ -338,4 +390,12 @@ public class UserBean {
     this.neo4j.disconnect();
     this.userDB.disconnect();
   }
+
+public String getTopic() {
+	return topic;
+}
+
+public void setTopic(String topic) {
+	this.topic = topic;
+}
 }
