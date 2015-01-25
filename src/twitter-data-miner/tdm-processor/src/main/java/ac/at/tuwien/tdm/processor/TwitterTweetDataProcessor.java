@@ -42,6 +42,7 @@ public class TwitterTweetDataProcessor extends TwitterDataProcessor {
         this.addTopicInterestsUser(tweet);
         this.addInteractsWithUser(tweet);
         this.addRetweetCountToUser(tweet);
+        this.updateTweetCountForUser(tweet);
         // System.out.println("Tweet " + tweet.getId() + " processed");
         i++;
         
@@ -68,6 +69,10 @@ public class TwitterTweetDataProcessor extends TwitterDataProcessor {
 //        this.addUserFriendsRelationship(user);
 //      }
     }
+  }
+  
+  private void updateTweetCountForUser(Tweet tweet) {
+    this.userDB.updateTweetCountForUser(tweet.getAuthorUserId());
   }
   
   private void addRetweetCountToUser(Tweet tweet) {
