@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2015.1.24)  25 JAN 2015 14:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2015.1.24)  25 JAN 2015 16:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -264,23 +264,23 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Font Info:    Try loading font information for U+msa on input line 118.
+LaTeX Font Info:    Try loading font information for U+msa on input line 117.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 118.
+LaTeX Font Info:    Try loading font information for U+msb on input line 117.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+lasy on input line 118.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 117.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
 ! Misplaced alignment tab character &.
-l.143 .../ieeexplore.ieee.org/stamp/stamp.jsp?tp=&
+l.140 .../ieeexplore.ieee.org/stamp/stamp.jsp?tp=&
                                                   arnumber=1579567
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -290,79 +290,99 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 
-Overfull \hbox (79.66423pt too wide) in paragraph at lines 134--150
+Overfull \hbox (79.66423pt too wide) in paragraph at lines 131--147
 \T1/aer/m/n/9 TODO cite http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=arnumber=
 1579567
  []
 
 
-Overfull \hbox (12.83159pt too wide) in paragraph at lines 161--166
+Overfull \hbox (12.83159pt too wide) in paragraph at lines 158--163
 []\T1/aer/m/n/9 Source: http://jmlr.org/proceedings/papers/v36/kessl14.pdf
  []
 
 <subgraphs.png, id=1, 1606.0pt x 359.3425pt>
 File: subgraphs.png Graphic file (type png)
  <use subgraphs.png>
-Package pdftex.def Info: subgraphs.png used on input line 191.
+Package pdftex.def Info: subgraphs.png used on input line 188.
 (pdftex.def)             Requested size: 216.81pt x 48.50914pt.
 
 <gpuperf.png, id=3, 1653.17625pt x 381.425pt>
 File: gpuperf.png Graphic file (type png)
  <use gpuperf.png>
-Package pdftex.def Info: gpuperf.png used on input line 198.
+Package pdftex.def Info: gpuperf.png used on input line 195.
 (pdftex.def)             Requested size: 433.62pt x 100.04117pt.
 
-Overfull \hbox (144.11223pt too wide) in paragraph at lines 204--206
+Underfull \vbox (badness 1331) has occurred while \output is active []
+
+ [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+
+
+ <./subgraphs.png>]
+Overfull \hbox (144.11223pt too wide) in paragraph at lines 201--203
 []\T1/aer/m/n/9 http://ceur-ws.org/Vol-1133/paper-34.pdf http://download.spring
 er.com/static/pdf/593/chp 
  []
 
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
-
-
-]
-<diffquery.png, id=17, 1728.4575pt x 457.71pt>
+<diffquery.png, id=18, 1728.4575pt x 457.71pt>
 File: diffquery.png Graphic file (type png)
  <use diffquery.png>
-Package pdftex.def Info: diffquery.png used on input line 231.
+Package pdftex.def Info: diffquery.png used on input line 228.
 (pdftex.def)             Requested size: 433.62pt x 114.8253pt.
 
-<slqlearning.png, id=18, 1154.3125pt x 773.89125pt>
+<slqlearning.png, id=19, 1154.3125pt x 773.89125pt>
 File: slqlearning.png Graphic file (type png)
  <use slqlearning.png>
-Package pdftex.def Info: slqlearning.png used on input line 281.
+Package pdftex.def Info: slqlearning.png used on input line 278.
 (pdftex.def)             Requested size: 216.81pt x 145.35223pt.
 
-<slqexample.png, id=19, 762.85pt x 393.47pt>
+<slqexample.png, id=20, 762.85pt x 393.47pt>
 File: slqexample.png Graphic file (type png)
  <use slqexample.png>
-Package pdftex.def Info: slqexample.png used on input line 288.
+Package pdftex.def Info: slqexample.png used on input line 285.
 (pdftex.def)             Requested size: 216.81pt x 111.82791pt.
- [2 <./gpuperf.png> <./subgraphs.png> <./slqlearning.png>]
+ [2 <./gpuperf.png> <./slqlearning.png>]
+Overfull \hbox (9.67317pt too wide) in paragraph at lines 316--321
+[]\T1/aer/m/n/9 While com-par-ing per-for-mance for di-rected un-weighted short
+-
+ []
+
+<distgraph.png, id=26, 839.135pt x 521.95pt>
+File: distgraph.png Graphic file (type png)
+ <use distgraph.png>
+Package pdftex.def Info: distgraph.png used on input line 351.
+(pdftex.def)             Requested size: 216.81pt x 134.85161pt.
+
+<distgraphperf.png, id=27, 840.13875pt x 477.785pt>
+File: distgraphperf.png Graphic file (type png)
+ <use distgraphperf.png>
+Package pdftex.def Info: distgraphperf.png used on input line 358.
+(pdftex.def)             Requested size: 216.81pt x 123.29529pt.
+
 No file sig-alternate.bbl.
-[3 <./diffquery.png> <./slqexample.png>] (./sig-alternate.aux) ) 
+[3 <./diffquery.png> <./slqexample.png>] [4
+
+ <./distgraph.png> <./distgraphperf.png>] (./sig-alternate.aux) ) 
 Here is how much of TeX's memory you used:
- 2796 strings out of 493105
- 35308 string characters out of 6137072
- 102233 words of memory out of 5000000
- 6194 multiletter control sequences out of 15000+600000
- 47052 words of font info for 63 fonts, out of 8000000 for 9000
+ 2807 strings out of 493105
+ 35523 string characters out of 6137072
+ 100249 words of memory out of 5000000
+ 6204 multiletter control sequences out of 15000+600000
+ 45892 words of font info for 62 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,10n,28p,454b,240s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/tex
-live/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/font
-s/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/u
-hvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvbo8a.pfb><
-/usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-urw/times/utmri8a.pfb>
-Output written on sig-alternate.pdf (3 pages, 465304 bytes).
+{/usr/share/te
+xlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/
+uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/urw/times/utmri8a.pfb>
+Output written on sig-alternate.pdf (4 pages, 527082 bytes).
 PDF statistics:
- 62 PDF objects out of 1000 (max. 8388607)
- 37 compressed objects within 1 object stream
+ 65 PDF objects out of 1000 (max. 8388607)
+ 36 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 26 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 36 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -50,13 +50,12 @@
 \begin{document}
 %
 % --- Author Metadata here ---
-\conferenceinfo{WOODSTOCK}{'97 El Paso, Texas USA}
+\conferenceinfo{AIC}{2015 Tu Wien}
 %\CopyrightYear{2007} % Allows default copyright year (20XX) to be over-ridden - IF NEED BE.
 %\crdata{0-12345-67-8/90/01}  % Allows default copyright data (0-89791-88-6/97/05) to be over-ridden - IF NEED BE.
 % --- End of Author Metadata ---
 
-\title{Alternate {\ttlit ACM} SIG Proceedings Paper in LaTeX
-Format}
+\title{Advanced Internet Computing: Group 5 Topic Analysing Big Data}
 %
 % You need the command \numberofauthors to handle the 'placement
 % and alignment' of the authors beneath the title.
@@ -125,8 +124,6 @@ This paper tries to give a short overview of current scientific trends
 in NoSQL and big data management. As graph databases are especially fitting for 
 modelling social interactions, this paper puts an emphasis on this type of NoSql.
 \end{abstract}
-
-\terms{Big Data, targeted advertising, NoSQL, graph database}
 
 \keywords{Big Data, targeted advertising, NoSQL, graph database}
 
@@ -296,31 +293,73 @@ Modelling social networks like Twitter has some particular challenges
 for graph DB which come from the uneven distribution of edges between nodes.
 Such graphs have the tendency to have a small number of nodes with a high number of edges
 and a high number of nodes with a small number of edges. TODO zitat aus Paper 11
-This makes partitioning a graph to allow for localized acces hard.
-Partitioned Adjacecny Lists PAL tries to reduce the number of random accesses while minimizing the storage
+A a standard procedure for partitioning is to cut the graph, but in 
+a scenario with such uneven edge distribution this becomes extremely challenging.
+
+Partitioned Adjaceny Lists PAL tries to reduce the number of random accesses while minimizing the storage
 space required. Edges are stored as pairs of vertices and are partitioned by a range of destination
-vertices and are ordered by the source ID. These partitiones must not be of equal length but should 
-be chosen such that a partition can fit into memory. This theoretically limits the number of
+vertices and are ordered by the source ID. These partitiones do not necessarily be of equal length, but should 
+be chosen such that a partition can fit into main memory. Note that this may theoretically limit the number of
 incoming edges a vertex may have.
 As the graph connectivity is fully represented 
 by the edge partitions, vertex data can be stored seperately and is partitioned 
-based on the edge partitions. Retrieving verted data can be achieved by simly calculating an offset from
+based on the edge partitions. Retrieving vertex data can be achieved by sipmly calculating an offset from
 the edge partitions.
-Edge partitions are immutable data structures and do not allow direct insertion of edges. 
+Edge partitions are immutable data structures and do not allow for direct insertion of edges. 
 To counter this problem new edges a stored in a buffer and inserted if their number exceeds a certain threshold.
 During search operations these buffers are also considered.
-Todo zahlen und benchmark bilder
+Queries are built on top of primitive operations that return in or out edges of a vertex.
+Finding in-edges is straight forward due to the partitioning. Due to the fact that out-edges
+for a given node may be present in all partitions their retrieval is more expensive than
+in existing implementations. On the other hand the PAL structure gives improved performance in other access and writing operations.
+
+While comparing performance for directed unweighted shortest path algorithms it has been shown that while Neo4J
+is up to 50 times faster than GraphChi-DB it should be notet that huge dataset, that follow the uneven distribution 
+of incoming edges, Neo4J was not able to finish the query due to memory restrictions.
+While not directly meassured it is expected that Neo4J in similar systems will outperform 
+GraphChi-DB but as shown in the benchmark are not fit for natural graphs.
 
 \section{Distributed Graph Database}
+%https://dl.acm.org/citation.cfm?id=2689677
 %http://delivery.acm.org/10.1145/2690000/2689677/p1-dayarathna.pdf?ip=128.131.237.61&id=2689677&acc=ACTIVE%20SERVICE&key=9074CF143665B1C6.97709C79A94C9E0F.4D4702B0C3E38B35.4D4702B0C3E38B35&CFID=621086552&CFTOKEN=17755639&__acm__=1422145282_da483414101f63310da71f6d768c3e23
 Current graph databases are mainly inteded to run on a single instance and therefore
-face performance and availability problems. TODO Zitat aus paper 
-Acadia is a distributed graph database intented to run in hybrid cloud settings.
-By utilizing graph partitioning and a Master-Worker pattern it is well fit to 
-operate in an environment with less than 100 workers.
+face performance and availability problems when employed in large scale settings. TODO Zitat aus paper 
+Acacia is a distributed graph database intented to run in hybrid cloud configurations.
+Hybrid clouds a characterized by running mainly in a private network and only
+some time are available to the public to ensure good performance.
+The basic system design relies on a combination of a Master-Worker pattern 
+and graph partitioning. While a P2P approach would lead to a higher scalability
+the Master-Worker approach allows for better controlling in settings with less than 100 workers.
+The partitioning, while an expensive operation, reduces the need for inter node communication
+which is necessary for exchanging information concerning nodes which lie outside of a graph partition.
+The number of partitions corresponds to the number of workers.
+
 Each distributed process has an associated local data store with an assigned storage quota.
 When adding a new graph the partitioning happens via Hadoop and Metis and the subgraphs are then inserted into local
-Neo4j instances.
+Neo4j instances. Figure ~\ref{fig:distgraph} shows the underlying design of Acacia, note that Hadoop and Metis 
+are only relevant for graph partitioning and are not used during other 
+activities.
+
+Among other implemented algorithms a benchmark for the average degree distribution was run on 4 workers.
+Figure ~\ref{fig:distgraphperf} shows the elapsed time in comparison to the numer of edges in a graph.
+
+The paper concludes that Acacia is able to handle medium size graph data, but the loading process and 
+the included graph partitioning are the limiting factors.
+
+\begin{figure}
+\centering
+\epsfig{file=distgraph.png, width=3in}
+\caption{SLQ: graph querying framework}
+\label{fig:distgraph}
+\end{figure}
+
+\begin{figure}
+\centering
+\epsfig{file=distgraphperf.png, width=3in}
+\caption{SLQ: graph querying framework}
+\label{fig:distgraphperf}
+\end{figure}
+
 
 \section{Conclusions}
 TODO
