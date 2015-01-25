@@ -20,7 +20,7 @@ public class IndirectInterestResult {
 	public int getInterest() {
 		return this.interest;
 	}
-
+	
 	public String getTopic() {
 		return this.topic;
 	}

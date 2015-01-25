@@ -38,6 +38,10 @@ public final class User implements Comparable<User> {
   private int friendsCount; // 4 bytes
   
   private int retweetsCount;
+  
+  private int collectedTweetsCount;
+  
+  private int favoritedCount;
 
   private List<Long> followerUserIds; // approx. 2500 * 8 bytes
 
@@ -49,6 +53,7 @@ public final class User implements Comparable<User> {
     favoritesCount = 0;
     followersCount = 0;
     friendsCount = 0;
+    collectedTweetsCount = 0;
     followerUserIds = new ArrayList<Long>();
     friendsUserIds = new ArrayList<Long>();
   }
@@ -69,7 +74,8 @@ public final class User implements Comparable<User> {
   }
   
   public User(final long id, final String screenName, final String name, final String location, final String language,
-	      final int statusesCount, final int favoritesCount, final int followersCount, final int friendsCount, final int retweetsCount) {
+	      final int statusesCount, final int favoritesCount, final int followersCount, final int friendsCount, 
+	      final int retweetsCount, final int collectedTweetsCount, final int favoritedCount) {
 	    this();
 	    this.id = id;
 	    this.screenName = screenName;
@@ -81,6 +87,8 @@ public final class User implements Comparable<User> {
 	    this.followersCount = followersCount;
 	    this.friendsCount = friendsCount;
 	    this.retweetsCount = retweetsCount;
+	    this.collectedTweetsCount = collectedTweetsCount;
+	    this.favoritedCount = favoritedCount;
 	  }
 
   public long getId() {
@@ -153,6 +161,22 @@ public final class User implements Comparable<User> {
 
   public void setFriendsCount(int friendsCount) {
     this.friendsCount = friendsCount;
+  }
+  
+  public int getCollectedTweetsCount() {
+    return collectedTweetsCount;
+  }
+
+  public void setCollectedTweetsCount(int collectedTweetsCount) {
+    this.collectedTweetsCount = collectedTweetsCount;
+  }
+  
+  public int getFavoritedCount() {
+    return favoritedCount;
+  }
+  
+  public void setFavoritedCount(int favoritedCount) {
+    this.favoritedCount = favoritedCount;
   }
 
   public List<Long> getFollowerUserIds() {
