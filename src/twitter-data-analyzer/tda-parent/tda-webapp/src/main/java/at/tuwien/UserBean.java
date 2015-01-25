@@ -3,6 +3,7 @@ package at.tuwien;
 import ac.at.tuwien.tdm.commons.pojo.Ad;
 import ac.at.tuwien.tdm.commons.pojo.User;
 import ac.at.tuwien.tdm.commons.pojo.UserFrequency;
+import ac.at.tuwien.tdm.docstore.DocStoreConnector;
 import ac.at.tuwien.tdm.docstore.DocStoreConnectorImpl;
 import ac.at.tuwien.tdm.queries.QueryHelper;
 import ac.at.tuwien.tdm.results.DirectInterestResult;
@@ -48,6 +49,7 @@ public class UserBean {
 
   private Neo4JConnector neo4j = null;
   private UserDBConnector userDB = null;
+  private DocStoreConnector docstore = null;
 
   //Parameter countInfluentalUser
   public void searchMostInfluentalUser() throws IOException {
@@ -159,17 +161,39 @@ public class UserBean {
     }
 
     this.neo4j.startTransaction();
-
-    for (int i = 0; i < countfor; i++) {
-      User user = users.get(i);
-      int numTweetsInTopic = this.neo4j.getTopicWeightForUser(user.getId(), Long.parseLong(topic));
-      double calc_tf_idf_UserTopic = QueryHelper.calc_tf_idf_UserTopic(user.getCollectedTweetsCount(), numTweetsInTopic);
-      //double calc_tf_idf_UserTopic = docstore.calc_tf_idf_UserTopic(user.getId(), Long.parseLong(topic));
-      UserFrequency uf = new UserFrequency();
-      uf.setUsername(user.getScreenName());
-      uf.setId(user.getId());
-      uf.setFrequence(calc_tf_idf_UserTopic);
-      frequencedUsers.add(uf);
+    
+    String[] topicIDs = topic.split(",");
+    
+    if(singleUser == true) {
+      User user = users.get(0);
+      for(String topicID : topicIDs) {
+        int numTweetsInTopic = this.neo4j.getTopicWeightForUser(user.getId(), Long.parseLong(topicID));
+        double calc_tf_idf_UserTopic = QueryHelper.calc_tf_idf_UserTopic(user.getCollectedTweetsCount(), numTweetsInTopic);
+        String topicName = this.docstore.getTopicForID(Long.parseLong(topicID));
+        UserFrequency uf = new UserFrequency();
+        uf.setUsername(user.getScreenName());
+        uf.setId(user.getId());
+        uf.setFrequence(calc_tf_idf_UserTopic);
+        uf.setTopicID(Long.parseLong(topicID));
+        uf.setTopic(topicName);
+        frequencedUsers.add(uf);
+      }
+    }
+    else {
+      for (int i = 0; i < countfor; i++) {
+        User user = users.get(i);
+        int numTweetsInTopic = this.neo4j.getTopicWeightForUser(user.getId(), Long.parseLong(topic));
+        double calc_tf_idf_UserTopic = QueryHelper.calc_tf_idf_UserTopic(user.getCollectedTweetsCount(), numTweetsInTopic);
+        //double calc_tf_idf_UserTopic = docstore.calc_tf_idf_UserTopic(user.getId(), Long.parseLong(topic));
+        String topicName = this.docstore.getTopicForID(Long.parseLong(topic));
+        UserFrequency uf = new UserFrequency();
+        uf.setUsername(user.getScreenName());
+        uf.setId(user.getId());
+        uf.setFrequence(calc_tf_idf_UserTopic);
+        uf.setTopicID(Long.parseLong(topic));
+        uf.setTopic(topicName);
+        frequencedUsers.add(uf);
+      }
     }
 
     this.neo4j.closeTransaction();
@@ -200,7 +224,7 @@ public class UserBean {
     this.initialize();
     this.neo4j.startTransaction();
     
-    DocStoreConnectorImpl docstore = new DocStoreConnectorImpl();
+    
     List<DirectInterestResult> directInterestsForUser = this.neo4j.getDirectInterestsForUser(
         Long.parseLong(userExistingInterests), thresholdDirect, docstore);
     
@@ -255,9 +279,9 @@ public class UserBean {
     
     LOGGER.info("Got " + indirectInterestsForUser.size() + " indirect interests");
     //show only given amount
-    if (indirectInterestsForUser.size() > thresholdIndirect) {
-      indirectInterestsForUser = indirectInterestsForUser.subList(0, thresholdIndirect);
-    }
+//    if (indirectInterestsForUser.size() > thresholdIndirect) {
+//      indirectInterestsForUser = indirectInterestsForUser.subList(0, thresholdIndirect);
+//    }
 
     List<ac.at.tuwien.tdm.commons.pojo.Ad> retrieveAds = docstore.retrieveAds();
 
@@ -281,6 +305,7 @@ public class UserBean {
   public void deletePotentialInterests() {
     potentialInterests = new ArrayList<Ad>();
     thresholdIndirect = null;
+    depthIndirect = null;
     userPotentialInterests = "";
   }
 
@@ -429,6 +454,7 @@ public class UserBean {
   public void initialize() throws IOException {
     this.initializeNeo4J();
     this.initializeUserDB();
+    this.docstore = new DocStoreConnectorImpl();
   }
 
   @PreDestroy
