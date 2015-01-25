@@ -4,10 +4,12 @@ import ac.at.tuwien.tdm.commons.pojo.Ad;
 import ac.at.tuwien.tdm.commons.pojo.User;
 import ac.at.tuwien.tdm.commons.pojo.UserFrequency;
 import ac.at.tuwien.tdm.docstore.DocStoreConnectorImpl;
+import ac.at.tuwien.tdm.queries.QueryHelper;
 import ac.at.tuwien.tdm.results.DirectInterestResult;
 import ac.at.tuwien.tdm.results.IndirectInterestResult;
 import ac.at.tuwien.tdm.results.InfluenceResult;
 import ac.at.tuwien.tdm.userdb.UserDBConnector;
+
 import at.ac.tuwien.aic.Neo4JConnector;
 import at.ac.tuwien.aic.Neo4JConnectorImpl;
 
@@ -110,21 +112,24 @@ public class UserBean {
     List<User> users = this.userDB.getUsers();
     LOGGER.info(users.size());
     this.userDB.disconnect();
-
-    DocStoreConnectorImpl docstore = new DocStoreConnectorImpl();
+    
     frequencedUsers = new ArrayList<UserFrequency>();
     
     int countfor = 0;
-    if(users.size()>countFrequencedUser){
+    if(users.size() > countFrequencedUser){
     	countfor = countFrequencedUser;
     }
     else{
     	countfor = users.size();
     }
     
+    this.neo4j.startTransaction();
+    
     for (int i = 0; i < countfor; i++) {
       User user = users.get(i);
-      double calc_tf_idf_UserTopic = docstore.calc_tf_idf_UserTopic(user.getId(), Long.parseLong(topic));
+      int numTweetsInTopic = this.neo4j.getTopicWeightForUser(user.getId(), Long.parseLong(topic));
+      double calc_tf_idf_UserTopic = QueryHelper.calc_tf_idf_UserTopic(user.getCollectedTweetsCount(), numTweetsInTopic);
+      //double calc_tf_idf_UserTopic = docstore.calc_tf_idf_UserTopic(user.getId(), Long.parseLong(topic));
       UserFrequency uf = new UserFrequency();
       uf.setUsername(user.getScreenName());
       uf.setId(user.getId());
@@ -132,6 +137,8 @@ public class UserBean {
       frequencedUsers.add(uf);
     }
 
+    this.neo4j.closeTransaction();
+    
     //show only given amount
     if (frequencedUsers.size() > countFrequencedUser) {
       frequencedUsers = frequencedUsers.subList(0, countFrequencedUser);
