@@ -252,6 +252,7 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
       @Override
       protected void initialize(Node created, Map<String, Object> properties) {
         created.setProperty(USER_NODE_INDEX_NAME, properties.get(USER_NODE_INDEX_NAME));
+        created.addLabel(USER_LABEL);
       }
     };
 
@@ -264,6 +265,7 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
       @Override
       protected void initialize(Node created, Map<String, Object> properties) {
         created.setProperty(TOPIC_NODE_INDEX_NAME, properties.get(TOPIC_NODE_INDEX_NAME));
+        created.addLabel(TOPIC_LABEL);
       }
     };
 
