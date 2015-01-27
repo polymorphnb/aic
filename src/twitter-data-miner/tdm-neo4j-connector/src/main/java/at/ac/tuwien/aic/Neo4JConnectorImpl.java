@@ -278,7 +278,7 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
       protected Relationship create(Map<String, Object> properties) {
         Relationship rel = user1.createRelationshipTo(node2, type);
         rel.setProperty(type.getValue(), properties.get(type.getValue()));
-        rel.setProperty(RelationshipTypeConstants.WEIGHT, 0);
+        rel.setProperty(RelationshipTypeConstants.WEIGHT, 1);
         return rel;
       }
     };
@@ -304,12 +304,7 @@ public class Neo4JConnectorImpl implements Neo4JConnector {
   
   public Relationship getRelationshipInterested(Long userID, Long topicID) {
     Relationship rel = autoRelationshipIndex.get(TwitterRelationshipType.INTERESTEDIN.getValue(), userID + "_" + topicID).getSingle();
-    if(rel == null) {
-      Node user1 = this.getUser(userID);
-      UniqueEntity<Node> topic = this.getOrCreateTopicWithUniqueFactory(topicID);
-      UniqueEntity<Relationship> rel2 = this.getOrCreateRelationshipWithUniqueFactory(user1, topic.entity(), TwitterRelationshipType.INTERESTEDIN, true);
-      return rel2.entity();
-    }
+
     return rel;
   }
   
