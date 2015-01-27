@@ -13,7 +13,8 @@ public class QueryHelper {
     if(numTweetsInTopic == 0) {
       return 0;
     }
-    double calc_tf_idf_UserTopic = Math.log(numTotalTweets/numTweetsInTopic);
+    
+    double calc_tf_idf_UserTopic = Math.log(((double)numTotalTweets)/numTweetsInTopic);
     
     return calc_tf_idf_UserTopic;
   }
